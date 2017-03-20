@@ -1,5 +1,6 @@
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<!DOCTYPE html>	<!-- 이 문서가 버전이 5인 html임을 알려주는 표기. -->
 <html>
 <head>
 	<title>Home</title>
