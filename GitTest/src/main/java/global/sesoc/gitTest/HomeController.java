@@ -36,6 +36,14 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String insertMeeting() {
+		
+		
+		
+		return "meeting";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String insertMeeting(Model model) {
 		
