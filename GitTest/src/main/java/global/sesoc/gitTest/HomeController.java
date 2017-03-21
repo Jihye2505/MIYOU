@@ -23,7 +23,7 @@ public class HomeController {
 		//�λ�
 		
 		
-		return "home";
+		return "login";
 	}
 	
 	@RequestMapping(value = "/insertMeeting", method = RequestMethod.GET)
