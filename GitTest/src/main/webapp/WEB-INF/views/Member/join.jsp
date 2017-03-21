@@ -64,8 +64,6 @@ function checkform(){
 </script>
 
 
-
-
 </head>
 <body class="aqua-bg login">
 <div class="middle-box text-center loginscreen   ">
