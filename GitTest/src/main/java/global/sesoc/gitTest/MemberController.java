@@ -15,8 +15,7 @@ public class MemberController {
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String join(){
 		
-		return "home";
-//		return "Member/join";
+		return "Member/join";
 	}
 	
 	
