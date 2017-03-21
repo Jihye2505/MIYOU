@@ -1,0 +1,109 @@
+/*!
+ * Adminbag v1.1 (http://adminbag.bittyfox.com/)
+ * Copyright AdminBag Company © 2017 
+ * 
+ */
+
+/*------------------------------------------------
+
+widgets css
+
+-------------------------------------------------*/
+
+.widget .flot-chart.dashboard-chart {
+  display: block;
+  height: 120px;
+  margin-top: 40px;
+}
+.gray-bg  {
+  background-color: #f3f3f4;
+}
+.white-bg {
+  background-color: #ffffff;
+}
+.navy-bg {
+  background-color: #1ab394;
+  color: #ffffff;
+}
+.blue-bg {
+  background-color: #1c84c6;
+  color: #ffffff;
+}
+.lazur-bg {
+  background-color: #23c6c8;
+  color: #ffffff;
+}
+.yellow-bg {
+  background-color: #f8ac59;
+  color: #ffffff;
+}
+.red-bg {
+  background-color: #ed5565;
+  color: #ffffff;
+}
+.black-bg {
+  background-color: #262626;
+}
+
+.widget {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 15px 20px;    
+}
+
+.color-inherit{
+    color: inherit;
+}
+.widget-head-color-box {
+    border-radius: 5px 5px 0 0;
+    margin-top: 10px;
+}
+.widget-text-box {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #e7eaec;
+    padding: 20px;
+}
+
+.p-lg {
+    padding: 30px;
+}
+.m-b-md {
+    margin-bottom: 20px;
+}
+
+.ibox-content {
+    background-color: #ffffff;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+    color: inherit;
+    padding: 15px 20px 20px;
+}
+
+.chat-element img.img-circle, .dropdown-messages-box img.img-circle {
+    height: 38px;
+    width: 38px;
+}
+
+.flot-chart-content {
+    height: 100%;
+    width: 100%;
+}
+.widget .flot-chart {
+    height: 100px;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+.p-m {
+    padding: 20px;
+}
+.p-xl {
+    padding: 40px;
+}
+.p-lg {
+    padding: 30px;
+}
