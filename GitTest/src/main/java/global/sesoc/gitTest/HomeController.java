@@ -20,13 +20,13 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
-		//ÀÎ»ý
+		//ï¿½Î»ï¿½
 		
 		
 		return "home";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertMeeting", method = RequestMethod.GET)
 	public String insertMeeting() {
 		
 		
@@ -34,7 +34,7 @@ public class HomeController {
 		return "meeting";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertMeeting", method = RequestMethod.POST)
 	public String insertMeeting(Model model) {
 		
 		
