@@ -6,11 +6,14 @@
 <configuration>		<!-- 나중에 고칩시다. -->
 	<!-- 타입 별칭 설정 -->
 	<typeAliases>
-		<!-- <typeAlias type="global.sesoc.test4.vo.Member" alias="Member" /> -->
+		<typeAlias type="global.sesoc.gitTest.vo.Conf_mng" alias="Conf_mng" />
+		
 	</typeAliases>
 	
 	<!-- 매퍼 파일 위치 설정 -->
 	<mappers>
-    	<!-- <mapper resource="mappers/memberMapper.xml"/> -->
+    	<mapper resource="mappers/confMapper.xml"/>
+    	
 	</mappers>
+	
 </configuration>
