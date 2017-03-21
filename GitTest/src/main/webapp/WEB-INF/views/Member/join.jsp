@@ -4,75 +4,135 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin-Bag</title>
+<!-- Bootstrap -->
+<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- icheck -->
+<link href="resources/assets/css/skins/all.css" rel="stylesheet">
+<!-- slimscroll -->
+<link href="resources/assets/css/jquery.slimscroll.css" rel="stylesheet">
+<!-- Fontes -->
+<link href="resources/assets/css/font-awesome.min.css" rel="stylesheet">
+<link href="resources/assets/css/simple-line-icons.css" rel="stylesheet">
+<!-- all buttons css -->
+<link href="resources/assets/css/buttons.css" rel="stylesheet">
+<!-- adminbag main css -->
+<link href="resources/assets/css/main.css" rel="stylesheet">
+<!-- aqua black theme css -->
+<link href="resources/assets/css/aqua-black.css" rel="stylesheet">
+<!-- media css for responsive  -->
+<link href="resources/assets/css/main.media.css" rel="stylesheet">
+<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
+
+
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+function checkform(){
+		var employee_num = document.getElementById("employee_num");
+		var password = document.getElementById("password1");
+		var password2 = document.getElementById("password2");
+		var name = document.getElementById("name");
+		var job_name = document.getElementById("job_name");
+		var dept_name = document.getElementById("dept_name");
+		var email = document.getElementById("email");
+		var language = document.getElementById("language");
+		var phone = document.getElementById("phone");
+		
+		if(employee_num.value==""){
+			alert("input id");
+			return;
+		}
+		if(password.value===""){
+			alert("input password");
+			return;
+		}
+		if(password.value!=password2.value){
+			alert("check your password");
+			return;
+		}
+		if(password.value===""){
+			alert("input password");
+			return;
+		}
+
+};
+
+</script>
+
+
+
+
 </head>
-<body>
-	<h1>회원가입</h1>
-	<div>
-
-		<table>
-			<tr>
-				<td>Employee Number</td>
-				<td><input type="text" name="emplyee_num"></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><input type="text" name="password" id="password1"></td>
-			</tr>
-			<tr>
-				<td>Password check</td>
-				<td><input type="text" id="password2"></td>
-			</tr>
-			<tr>
-				<td>Name</td>
-				<td><input type="text" name="name" id="name"></td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td><input type="text" name="email" id="email"></td>
-			</tr>
-			<tr>
-				<td>Language</td>
-				<td><input type="text" name="language" id="language"></td>
-			</tr>
-			<tr>
-				<td>Phone</td>
-				<td><input type="text" name="phone" id="password2"></td>
-			</tr>
-			<tr>
-				<td>Department</td>
-				<td>
-				<!--   이 부분은 부서테이블 에서 목록을 가져올 예정 -->
-					<select>
-						<optgroup label="영업부">
-							<option>영업 1팀</option>
-							<option>영업 2팀</option>
-						</optgroup>
-						<optgroup label="개발부">
-							<option>개발 1팀</option>
-							<option>개발 2팀</option>
-						</optgroup>
-					</select>
-				<!--   이 부분은 부서테이블 에서 목록을 가져올 예정 -->	
-				</td>
-			</tr>
-			<tr>
-				<td>Job</td>
-				<td>
-				<!--   이 부분은 부서테이블 에서 목록을 가져올 예정 -->
-					<select>
-							<option>사장</option>
-							<option>부장</option>
-							<option>차장</option>
-							<option>과장</option>
-							<option>대리</option>
-							<option>사원</option>
-					</select>
-				<!--   이 부분은 부서테이블 에서 목록을 가져올 예정 -->	
-				</td>
-			</tr>
-		</table>
-
-	</div>
+<body class="aqua-bg login">
+<div class="middle-box text-center loginscreen   ">
+  <div class="widgets-container">
+    <div>
+      <h1 class="logo-name">A-BAG</h1>
+    </div>
+    <h3>Register to Admin-Bag</h3>
+    <p>Create account to see it in action.</p>
+    <form action="join"  class="m-t" method="POST" onsubmit="return checkform()">
+      <div class="form-group">
+        <input type="text" required="" placeholder="Employee number" class="form-control" name="employee_num" id="employee_num">
+      </div>
+      <div class="form-group">
+        <input type="text" required="" placeholder="Password" class="form-control" name="password" id="password">
+      </div>
+       <div class="form-group">
+        <input type="text" required="" placeholder="Password check" class="form-control" name="password2" id="password2">
+      </div>
+       <div class="form-group">
+        <input type="text" required="" placeholder="Name" class="form-control" name="name" id="name">
+      </div>
+       <div class="form-group">
+        <input type="text" required="" placeholder="Job" class="form-control" name="job_name" id="job_name">
+      </div>
+       <div class="form-group">
+        <input type="text" required="" placeholder="Department" class="form-control" name="dept_name" id="dept_name">
+      </div>
+       <div class="form-group">
+        <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email">
+      </div>
+       <div class="form-group">
+        <input type="text" required="" placeholder="Language" class="form-control" name="language" id="language">
+      </div>
+       <div class="form-group">
+        <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone">
+      </div>
+      
+      
+      <div class="form-group">
+        <div class="i-checks">
+          <input type="checkbox" class="iCheck" indeterminate="true">
+          Agree the terms and policy </div>
+      </div>
+      <button class="btn aqua block full-width m-b" type="submit">Register</button>
+      <p class="text-muted text-center"><small>Already have an account?</small></p>
+      <a href="login.html" class="btn btn-sm btn-white btn-block">Login</a>
+    </form>
+    <p class="top15"> <small>Admin-Bag is easy to use and customize &copy; 2016-2017</small> </p>
+  </div>
+</div>
 </body>
+<!-- Go top -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/js/vendor/jquery.min.js"></script>
+<!-- icheck -->
+<script src="assets/js/vendor/icheck.js"></script>
+<!-- bootstrap js -->
+<script src="assets/js/vendor/bootstrap.min.js"></script>
+<!-- main js -->
+<script src="assets/js/main.js"></script>
+<script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
 </html>
