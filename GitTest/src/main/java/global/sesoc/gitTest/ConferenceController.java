@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import global.sesoc.gitTest.mapper.confRepository;
+import global.sesoc.gitTest.mapper.ConfRepository;
 import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
 
@@ -16,7 +16,7 @@ import global.sesoc.gitTest.vo.Conf_topic;
 public class ConferenceController {
 
 	@Autowired
-	confRepository repository;
+	ConfRepository repository;
 	
 	@RequestMapping(value = "insertConf", method = RequestMethod.GET)
 	public String conf_mng(Model model) {
