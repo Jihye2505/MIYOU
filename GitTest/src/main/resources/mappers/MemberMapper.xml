@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.gitTest.DAO.MemberDAO">
+	<insert id="insertMember" parameterType="Member">
+		insert into member 
+		(
+		employee_num, password,name,email,language,phone,dept_id,job_id
+		)
+		values
+		(
+		#{employee_num},#{password},#{name},#{email},#{language},#{phone},#{dept_id},#{job_id}
+		)
+	</insert>	
+</mapper>
