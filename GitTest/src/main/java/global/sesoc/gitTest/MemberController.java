@@ -9,14 +9,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MemberController {
 
-	final static Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
-	
-	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public String join(){
-		
-		return "Member/join";
-	}
-	
-	
+   final static Logger logger = LoggerFactory.getLogger(MemberController.class);
+   
+   
+   @RequestMapping(value="/join", method=RequestMethod.GET)
+   public String join(){
+      
+      return "Member/join";
+   }
+   
+   @RequestMapping(value="/delete", method=RequestMethod.GET)
+   public String delete(){
+      
+      return "Member/delete";
+   }
+   
+   @RequestMapping(value="/check", method=RequestMethod.GET)
+   public String check(){
+      
+      return "Member/check";
+   }
+   
+   
 }
