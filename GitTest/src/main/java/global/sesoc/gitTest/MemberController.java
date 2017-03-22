@@ -39,6 +39,25 @@ public class MemberController {
    }
    
    
+   @RequestMapping(value="/update", method=RequestMethod.GET)
+   public String update(){
+      
+      return "Member/update";
+   }
+   
+   @RequestMapping(value="/update", method=RequestMethod.POST)
+   public String update(Member member){
+      try {
+      int result = mRepository.insertMember(member);
+   } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+   }
+      
+      return "login";
+   }
+
+   
    
    @RequestMapping(value="/delete", method=RequestMethod.GET)
    public String delete(){

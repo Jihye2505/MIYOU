@@ -13,5 +13,9 @@
 		(
 		#{employee_num},#{password},#{name},#{email},#{language},#{phone},#{dept_id},#{job_id}
 		)
-	</insert>	
+	</insert>
+	<update id="updateMember" parameterType="Member" >
+      update member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone}
+   </update>
+	
 </mapper>

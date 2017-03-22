@@ -31,5 +31,19 @@ public class MemberRepository {
 		return result;
 	}
 	
+	public int updateMember(Member member){
+		   int result=0;
+		      
+		   MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		   try {
+		      result = mDAO.updateMember(member);
+		   } catch (Exception e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		   }
+		      
+		   return result;
+		}
+
 	
 }
