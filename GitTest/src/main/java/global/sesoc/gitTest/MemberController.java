@@ -26,7 +26,7 @@ public class MemberController {
       return "Member/join";
    }
    
-   @RequestMapping(value="/join", method=RequestMethod.POST)
+   @RequestMapping(value="/joinMember", method=RequestMethod.POST)
    public String join(Member member){
       try {
 		int result = mRepository.insertMember(member);
@@ -34,7 +34,6 @@ public class MemberController {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-      
       
       return "login";
    }

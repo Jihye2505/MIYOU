@@ -5,7 +5,7 @@
 
 <mapper namespace="global.sesoc.gitTest.DAO.MemberDAO">
 	<insert id="insertMember" parameterType="Member">
-		insert into member 
+		insert into e_member 
 		(
 		employee_num, password,name,email,language,phone,dept_id,job_id
 		)

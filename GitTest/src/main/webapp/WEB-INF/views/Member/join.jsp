@@ -72,8 +72,8 @@ function checkform(){
       <h1 class="logo-name">Join</h1>
     </div>
     <h3>Register to MIYOU</h3>
+    <form action="joinMember"  class="m-t" method="post" onsubmit="return checkform()">
     <p>Create account to meet your foreign fellows.</p>
-    <form action="join"  class="m-t" method="POST" onsubmit="return checkform()">
       <div class="form-group">
         <input type="text" required="" placeholder="Employee number" class="form-control" name="employee_num" id="employee_num">
       </div>
@@ -108,7 +108,8 @@ function checkform(){
           <input type="checkbox" class="iCheck" indeterminate="true">
           Agree the terms and policy </div>
       </div>
-      <button class="btn aqua block full-width m-b" type="submit">Register</button>
+      
+      <input class="btn aqua block full-width m-b" type="submit" value="Register">
       <p class="text-muted text-center"><small>Already have an account?</small></p>
       <a href="${pageContext.request.contextPath}/" class="btn btn-sm btn-white btn-block">Login</a>
     </form>
