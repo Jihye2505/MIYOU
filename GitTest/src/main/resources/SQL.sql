@@ -11,6 +11,7 @@ DROP TABLE e_position CASCADE CONSTRAINTS;
 
 
 
+
 /* Create Tables */
 
 CREATE TABLE conf_mng
