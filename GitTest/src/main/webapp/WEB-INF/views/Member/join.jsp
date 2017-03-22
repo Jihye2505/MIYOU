@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin-Bag</title>
+<title>Join</title>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- icheck -->
@@ -69,10 +69,10 @@ function checkform(){
 <div class="middle-box text-center loginscreen   ">
   <div class="widgets-container">
     <div>
-      <h1 class="logo-name">A-BAG</h1>
+      <h1 class="logo-name">Join</h1>
     </div>
-    <h3>Register to Admin-Bag</h3>
-    <p>Create account to see it in action.</p>
+    <h3>Register to MIYOU</h3>
+    <p>Create account to meet your foreign fellows.</p>
     <form action="join"  class="m-t" method="POST" onsubmit="return checkform()">
       <div class="form-group">
         <input type="text" required="" placeholder="Employee number" class="form-control" name="employee_num" id="employee_num">
@@ -110,9 +110,9 @@ function checkform(){
       </div>
       <button class="btn aqua block full-width m-b" type="submit">Register</button>
       <p class="text-muted text-center"><small>Already have an account?</small></p>
-      <a href="login.html" class="btn btn-sm btn-white btn-block">Login</a>
+      <a href="${pageContext.request.contextPath}/" class="btn btn-sm btn-white btn-block">Login</a>
     </form>
-    <p class="top15"> <small>Admin-Bag is easy to use and customize &copy; 2016-2017</small> </p>
+    <p class="top15"> <small>SCIT KYSP &copy; 2017</small> </p>
   </div>
 </div>
 </body>
