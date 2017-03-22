@@ -1,45 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>deleteMember</title>
 <script>
-   function check() {
-      window.open("check", "window", "width=500,height=300");
-   }
+	function check() {
+		window.open("check", "window", "width=500,height=300");
+	}
 </script>
+<!-- Bootstrap -->
+<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- slimscroll -->
+<link href="resources/assets/css/jquery.slimscroll.css" rel="stylesheet">
+<!-- Fontes -->
+<link href="resources/assets/css/font-awesome.min.css" rel="stylesheet">
+<link href="resources/assets/css/simple-line-icons.css" rel="stylesheet">
+<!-- all buttons css -->
+<link href="resources/assets/css/buttons.css" rel="stylesheet">
+<!-- adminbag main css -->
+<link href="resources/assets/css/main.css" rel="stylesheet">
+<!-- aqua black theme css -->
+<link href="resources/assets/css/aqua-black.css" rel="stylesheet">
+<!-- media css for responsive  -->
+<link href="resources/assets/css/main.media.css" rel="stylesheet">
+<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 </head>
-<body>
-   <h1>회원탈퇴</h1>
-   
-   <form action="" method="get">
-      <table>
-         <tr>
-            <td>Employee Id</td>
-            <td><input type="text" name="id"></td>
-            <td>
-               <input type="button" value="검색" onclick="return check();">
-            </td>
-         </tr>
-         <tr>
-            <td>Manager Password</td>
-            <td><input type="text" name="password" id="password1"></td>
-         </tr>
-         <tr>
-            <td>Manager Password check</td>
-            <td><input type="text" id="password2"></td>
-         </tr>
-         <tr>
-            <td>
-               <input type="submit" value="삭제">
-               <input type="button" value="취소" onclick="">
-            </td>
-         </tr>
-         
-      </table>
 
-   </form>
+<body class="aqua-bg login">
+	<div class="middle-box text-center loginscreen ">
+		<div class="widgets-container">
+			<div>
+				<h1 class="logo-name">DELETE</h1>
+			</div>
+			<h3>GET OUT OF HERE</h3>
+			<p>Delete a member..</p>
+			<p>byebye-.</p>
+			<form action="" class="top15" method="get">
+				<div class="form-group">
+					<input type="text" required="" placeholder="UserID"
+						class="form-control" name="id">
+				</div>
+				
+				<div class="form-group">
+					<button class="btn aqua block full-width bottom15" type="submit" onclick="return check();">Search</button>
+				</div>
+				
+				<div class="form-group">
+					<input type="password" required="" placeholder="Password"
+						class="form-control">
+				</div>
+				<button class="btn aqua block full-width bottom15" type="submit">Delete</button>
+			</form>
+			<p class="top15">
+				<small>SCIT KYSP &copy;2017</small>
+			</p>
+		</div>
+	</div>
 </body>
+
 </html>
