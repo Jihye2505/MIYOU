@@ -3,9 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="global.sesoc.gitTest.DAO.ConfDAO">
-	<insert id="insert" parameterType="">
-		insert into 
+	<insert id="insertConf_mng" parameterType="Conf_mng">
+		insert into conf_mng
+		(
+		conf_num, employee_num, title
+		<if test="originalfile != null and savedfile != null" >
+		,originalfile, savedfile
+		</if> 
+		)
+		values
+		(
+		conf_mng_seq.nextval, #{employee_num}, #{title}
+		<if test="originalfile != null and savedfile != null" >
+		, #{originalfile}, #{savedfile}
+		</if>
+		)
 	</insert>
-	<update id="update" parameterType="">
+	
+	<insert id="insertConf_topic" parameterType="Conf_topic">
+		insert into conf_topic
+		(
+		subtitle_id, subtitle, conf_num
+		)
+		values
+		(
+		subtitle_id_seq.nextval, #{subtitle}, #{conf_num}
+		)
+	</insert>
+	<update id="update" parameterType="Conf_mng">
+		update 
 	</update>
+	
 </mapper>
