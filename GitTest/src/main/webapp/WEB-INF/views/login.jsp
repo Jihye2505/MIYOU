@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Admin-Bag</title>
+	<title>Login</title>
 	<!-- Bootstrap -->
 	<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
 	<!-- slimscroll -->
@@ -50,7 +50,7 @@
     <button class="btn aqua block full-width bottom15" type="submit">Login</button>
     <a href="forgot_password.html"><small>Forgot password?</small></a>
     <p class="text-muted text-center"><small>Do not have an account?</small></p>
-    <a href="register_v2.html" class="btn btn-sm btn-white btn-block">Create an account</a>
+    <a href="join" class="btn btn-sm btn-white btn-block">Create an account</a>
   </form>
   <p class=" copyR"> <small>SCIT KYSP &copy; 2017</small> </p>
 </div>
