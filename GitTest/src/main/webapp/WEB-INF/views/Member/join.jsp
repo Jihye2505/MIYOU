@@ -36,8 +36,8 @@ function checkform(){
 		var password = document.getElementById("password1");
 		var password2 = document.getElementById("password2");
 		var name = document.getElementById("name");
-		var job_name = document.getElementById("job_name");
-		var dept_name = document.getElementById("dept_name");
+		var job_name = document.getElementById("job_id");
+		var dept_name = document.getElementById("dept_id");
 		var email = document.getElementById("email");
 		var language = document.getElementById("language");
 		var phone = document.getElementById("phone");
@@ -87,10 +87,10 @@ function checkform(){
         <input type="text" required="" placeholder="Name" class="form-control" name="name" id="name">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Job" class="form-control" name="job_name" id="job_name">
+        <input type="text" required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Department" class="form-control" name="dept_name" id="dept_name">
+        <input type="text" required="" placeholder="Department" class="form-control" name="dept_id" id="dept_id">
       </div>
        <div class="form-group">
         <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email">
