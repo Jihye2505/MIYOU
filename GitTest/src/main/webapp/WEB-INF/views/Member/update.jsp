@@ -33,7 +33,7 @@
 <script type="text/javascript">
 function checkform(){
 	  var password1 = document.getElementById("password1");	//기존 비번
-      var password2 = document.getElementById("password2");	//바꿀 비번
+      var password = document.getElementById("password");	//바꿀 비번
       var password3 = document.getElementById("password3");	//바꿀 비번 확인
       var email = document.getElementById("email");
       var language = document.getElementById("language");
@@ -46,14 +46,14 @@ function checkform(){
           return false;
        }
       
-      if(password1.value==="" || password2.value==="" || password3.value===""){
+      if(password1.value==="" || password.value==="" || password3.value===""){
          alert("input password");
          return false;
       }
       
-      if(password2.value!=password3.value){
+      if(password.value!=password3.value){
          alert("passwords are different");
-         document.getElementById("password2").value="";
+         document.getElementById("password").value="";
          document.getElementById("password3").value="";
          return false;
       }
@@ -78,7 +78,7 @@ function checkform(){
         <input type="password" required="" placeholder="Password" class="form-control" name="password1" id="password1">
       </div>
       <div class="form-group">
-        <input type="password" required="" placeholder="new Password" class="form-control" name="password2" id="password2">
+        <input type="password" required="" placeholder="new Password" class="form-control" name="password" id="password">
       </div>
        <div class="form-group">
         <input type="password" required="" placeholder="new Password check" class="form-control" name="password3" id="password3">
