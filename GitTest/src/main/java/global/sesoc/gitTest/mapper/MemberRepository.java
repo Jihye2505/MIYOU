@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import global.sesoc.gitTest.MemberController;
 import global.sesoc.gitTest.DAO.MemberDAO;
-import global.sesoc.gitTest.vo.JobDeptList;
+import global.sesoc.gitTest.vo.DeptList;
+import global.sesoc.gitTest.vo.JobList;
 import global.sesoc.gitTest.vo.Member;
 
 @Repository
@@ -60,16 +61,28 @@ public class MemberRepository {
 		return result;
 	}
 	
-	public List<JobDeptList> jobDeptList(){
-		List<JobDeptList> jobDeptList=null;
+	public List<JobList> jobList(){
+		List<JobList> jobList=null;
 		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
 		try {
-			jobDeptList = mDAO.jobDeptList();
+			jobList = mDAO.jobList();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return jobDeptList;
+		return jobList;
+	}
+	
+	public List<DeptList> deptList(){
+		List<DeptList> deptList=null;
+		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		try {
+			deptList = mDAO.deptList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return deptList;
 	}
 	
 	
