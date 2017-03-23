@@ -23,7 +23,7 @@
    
    <!-- (로그인) 1명 선택하기 -->
    <select id="selectOne" resultType="Member">
-   		select * from e_member where employee_num=#{param1} and password=#{param2}
+   		select * from e_member where employee_num=#{param1}
    </select>
 	
 	<!-- jobList 받기 -->

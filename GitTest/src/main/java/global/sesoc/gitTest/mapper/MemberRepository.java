@@ -49,11 +49,11 @@ public class MemberRepository {
 		   return result;
 		}
 
-	public Member selectOne(String loginNum, String loginPw){
+	public Member selectOne(String loginNum){
 		Member result = null;
 		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
 		try {
-			result=mDAO.selectOne(loginNum,loginPw);
+			result=mDAO.selectOne(loginNum);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

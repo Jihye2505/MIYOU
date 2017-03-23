@@ -52,10 +52,13 @@ public class MemberController {
 	public String login(Member member, HttpSession session) {
 		String loginNum = member.getEmployee_num();
 		String loginPw = member.getPassword();
-		Member user = mRepository.selectOne(loginNum,loginPw);
-		if(loginNum.equals(user.getEmployee_num())&&loginPw.equals(user.getPassword())){
+		Member user = mRepository.selectOne(loginNum);
+		if(user.getEmployee_num().equals(loginNum) && user.getPassword().equals(loginPw)) {
 			session.setAttribute("user",user);
 			return "main";
+		}
+		else {
+			//안됐을경우 안됐다고 팝업을 띄우고싶은데...
 		}
 		return "redirect:/";
 	}
