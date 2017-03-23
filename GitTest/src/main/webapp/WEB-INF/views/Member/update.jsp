@@ -32,25 +32,33 @@
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 function checkform(){
-      var password = document.getElementById("password1");
-      var password2 = document.getElementById("password2");
+	  var password1 = document.getElementById("password1");	//기존 비번
+      var password2 = document.getElementById("password2");	//바꿀 비번
+      var password3 = document.getElementById("password3");	//바꿀 비번 확인
       var email = document.getElementById("email");
       var language = document.getElementById("language");
       var phone = document.getElementById("phone");
+      var pw = <%= (String)session.getAttribute("loginPw") %>
+   
+      if(password1.value!=pw){
+    	  alert("check your password");
+    	  document.getElementById("password1").value="";
+          return false;
+       }
       
-      if(password.value===""){
+      if(password1.value==="" || password2.value==="" || password3.value===""){
          alert("input password");
-         return;
+         return false;
       }
-      if(password.value!=password2.value){
-         alert("check your password");
-         return;
+      
+      if(password2.value!=password3.value){
+         alert("passwords are different");
+         document.getElementById("password2").value="";
+         document.getElementById("password3").value="";
+         return false;
       }
-      if(password.value===""){
-         alert("input password");
-         return;
-      }
-
+      
+      return true;
 };
 
 </script>
@@ -65,12 +73,14 @@ function checkform(){
     <h3>Update section</h3>
     <p>Update your personal information</p>
     <form action="update"  class="m-t" method="POST" onsubmit="return checkform()">
-      
       <div class="form-group">
-        <input type="text" required="" placeholder="Password" class="form-control" name="password" id="password">
+        <input type="password" required="" placeholder="Password" class="form-control" name="password1" id="password1">
+      </div>
+      <div class="form-group">
+        <input type="password" required="" placeholder="new Password" class="form-control" name="password2" id="password2">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Password check" class="form-control" name="password2" id="password2">
+        <input type="password" required="" placeholder="new Password check" class="form-control" name="password3" id="password3">
       </div>
        <div class="form-group">
         <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email">
