@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2017-03-14 10:06:47</creation_date>
-			<updated_date>2017-03-22 12:49:14</updated_date>
+			<updated_date>2017-03-23 10:06:39</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -628,8 +628,8 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>today</logical_name>
-			<physical_name>today</physical_name>
+			<logical_name>todate</logical_name>
+			<physical_name>todate</physical_name>
 			<type>date</type>
 		</word>
 	</dictionary>
@@ -968,7 +968,7 @@
 			<connections>
 				<relation>
 					<id>1</id>
-					<source>0</source>
+					<source>3</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -990,7 +990,7 @@
 				</relation>
 				<relation>
 					<id>2</id>
-					<source>3</source>
+					<source>0</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1252,7 +1252,7 @@
 				<normal_column>
 					<id>14</id>
 					<referenced_column>0</referenced_column>
-					<relation>1</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1286,7 +1286,7 @@
 				<normal_column>
 					<id>15</id>
 					<referenced_column>16</referenced_column>
-					<relation>2</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
