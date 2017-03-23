@@ -88,16 +88,19 @@ function checkform(){
         <input type="text" required="" placeholder="Name" class="form-control" name="name" id="name">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
+        <select required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
+        <option selected="selected">Job</option>
+        <c:forEach var="i" items="${jobList}">
+        		<option value="${i.job_id}">${i.job_name}</option>     
+        </c:forEach>
+        </select>
       </div>
        <div class="form-group">
         <select required="" placeholder="Department" class="form-control" name="dept_id" id="dept_id">
-        <option selected="selected">---</option>
-        <c:forEach var="i" items="${jobDeptList}">
-        		<option value="${i.deptId}">${i.deptName}</option>       
+        <option selected="selected">Department</option>
+        <c:forEach var="i" items="${deptList}">
+        		<option value="${i.dept_id}">${i.dept_name}</option>     
         </c:forEach>
-        
-        	
         </select>
       </div>
        <div class="form-group">

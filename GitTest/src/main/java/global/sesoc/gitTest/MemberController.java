@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import global.sesoc.gitTest.mapper.MemberRepository;
-import global.sesoc.gitTest.vo.JobDeptList;
+import global.sesoc.gitTest.vo.DeptList;
+import global.sesoc.gitTest.vo.JobList;
 import global.sesoc.gitTest.vo.Member;
 
 @Controller
@@ -28,8 +29,10 @@ public class MemberController {
    
    @RequestMapping(value="/join", method=RequestMethod.GET)
    public String join(HttpSession session){
-      List<JobDeptList> jobDeptList = mRepository.jobDeptList();
-      session.setAttribute("jobDeptList", jobDeptList);
+      List<JobList> jobList = mRepository.jobList();
+      List<DeptList> deptList = mRepository.deptList();
+      session.setAttribute("jobList", jobList);
+      session.setAttribute("deptList", deptList);
       return "Member/join";
    }
    

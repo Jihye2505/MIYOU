@@ -1,4 +1,5 @@
 /* insert jobs */
+insert into e_dept (dept_id, dept_name) values (1,''); /*사장*/
 insert into e_dept (dept_id, dept_name) values (100,'영업부');
 insert into e_dept (dept_id, dept_name) values (101,'영업1팀');
 insert into e_dept (dept_id, dept_name) values (102,'영업2팀');
@@ -115,18 +116,21 @@ CREATE TABLE e_position
 ALTER TABLE conf_topic
 	ADD FOREIGN KEY (conf_num)
 	REFERENCES conf_mng (conf_num)
+	on delete cascade
 ;
 
 
 ALTER TABLE e_member
 	ADD FOREIGN KEY (dept_id)
 	REFERENCES e_dept (dept_id)
+	on update cascade
 ;
 
 
 ALTER TABLE e_member
 	ADD FOREIGN KEY (job_id)
 	REFERENCES e_position (job_id)
+	on update cascade
 ;
 
 

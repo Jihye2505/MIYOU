@@ -26,9 +26,14 @@
    		select * from e_member where employee_num=#{param1} and password=#{param2}
    </select>
 	
-	<!-- jobDeptList 받기 -->
-	<select id="jobDeptList" resultType="JobDeptList">
-		select a.job_id,a.job_name,b.dept_id,b.dept_name from e_position a, e_dept b order by a.job_id
+	<!-- jobList 받기 -->
+	<select id="jobList" resultType="JobList">
+		select * from e_position order by job_id
+	</select>
+	
+	<!-- DeptList 받기 -->
+	<select id="deptList" resultType="DeptList">
+		select * from e_dept order by dept_id
 	</select>
 	
 	
