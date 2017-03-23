@@ -1,3 +1,24 @@
+/* insert jobs */
+insert into e_dept (dept_id, dept_name) values (100,'영업부');
+insert into e_dept (dept_id, dept_name) values (101,'영업1팀');
+insert into e_dept (dept_id, dept_name) values (102,'영업2팀');
+insert into e_dept (dept_id, dept_name) values (103,'영업3팀');
+insert into e_dept (dept_id, dept_name) values (200,'연구소');
+insert into e_dept (dept_id, dept_name) values (201,'개발1팀');
+insert into e_dept (dept_id, dept_name) values (202,'개발2팀');
+insert into e_dept (dept_id, dept_name) values (203,'개발3팀');
+
+
+insert into e_position (job_id, job_name) values (10,'사장');
+insert into e_position (job_id, job_name) values (20,'전무');
+insert into e_position (job_id, job_name) values (30,'이사');
+insert into e_position (job_id, job_name) values (40,'부장');
+insert into e_position (job_id, job_name) values (50,'차장');
+insert into e_position (job_id, job_name) values (60,'과장');
+insert into e_position (job_id, job_name) values (70,'대리');
+insert into e_position (job_id, job_name) values (80,'사원');
+
+
 
 /* Drop Tables */
 

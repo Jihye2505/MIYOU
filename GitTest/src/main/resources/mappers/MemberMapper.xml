@@ -4,18 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="global.sesoc.gitTest.DAO.MemberDAO">
+	<!-- 회원등록 -->
 	<insert id="insertMember" parameterType="Member">
 		insert into e_member 
 		(
-		employee_num, password,name,email,language,phone,dept_id,job_id
+			employee_num, password,name,email,language,phone,dept_id,job_id
 		)
 		values
 		(
-		#{employee_num},#{password},#{name},#{email},#{language},#{phone},#{dept_id},#{job_id}
+			#{employee_num},#{password},#{name},#{email},#{language},#{phone},#{dept_id},#{job_id}
 		)
 	</insert>
+	
+	<!-- 회원정보 업데이트 -->
 	<update id="updateMember" parameterType="Member" >
       update member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone}
    </update>
+   
+   <!-- (로그인) 1명 선택하기 -->
+   <select id="selectOne" resultType="Member">
+   		select * from e_member where employee_num=#{param1} and password=#{param2}
+   </select>
+	
+	<!-- jobDeptList 받기 -->
+	<select id="jobDeptList" resultType="JobDeptList">
+		select a.job_id,a.job_name,b.dept_id,b.dept_name from e_position a, e_dept b order by a.job_id
+	</select>
+	
+	
 	
 </mapper>

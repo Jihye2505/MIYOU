@@ -1,5 +1,7 @@
 package global.sesoc.gitTest.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import global.sesoc.gitTest.MemberController;
 import global.sesoc.gitTest.DAO.MemberDAO;
+import global.sesoc.gitTest.vo.JobDeptList;
 import global.sesoc.gitTest.vo.Member;
 
 @Repository
@@ -45,5 +48,29 @@ public class MemberRepository {
 		   return result;
 		}
 
+	public Member selectOne(String loginNum, String loginPw){
+		Member result = null;
+		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		try {
+			result=mDAO.selectOne(loginNum,loginPw);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public List<JobDeptList> jobDeptList(){
+		List<JobDeptList> jobDeptList=null;
+		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		try {
+			jobDeptList = mDAO.jobDeptList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jobDeptList;
+	}
+	
 	
 }

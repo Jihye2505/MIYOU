@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,10 +79,10 @@ function checkform(){
         <input type="text" required="" placeholder="Employee number" class="form-control" name="employee_num" id="employee_num">
       </div>
       <div class="form-group">
-        <input type="text" required="" placeholder="Password" class="form-control" name="password" id="password">
+        <input type="password" required="" placeholder="Password" class="form-control" name="password" id="password">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Password check" class="form-control" name="password2" id="password2">
+        <input type="password" required="" placeholder="Password check" class="form-control" name="password2" id="password2">
       </div>
        <div class="form-group">
         <input type="text" required="" placeholder="Name" class="form-control" name="name" id="name">
@@ -90,7 +91,14 @@ function checkform(){
         <input type="text" required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Department" class="form-control" name="dept_id" id="dept_id">
+        <select required="" placeholder="Department" class="form-control" name="dept_id" id="dept_id">
+        <option selected="selected">---</option>
+        <c:forEach var="i" items="${jobDeptList}">
+        		<option value="${i.deptId}">${i.deptName}</option>       
+        </c:forEach>
+        
+        	
+        </select>
       </div>
        <div class="form-group">
         <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email">

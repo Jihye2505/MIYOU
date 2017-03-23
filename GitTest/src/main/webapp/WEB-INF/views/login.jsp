@@ -40,12 +40,12 @@
   </div>
   <h3>Start your meeting with MIYOU</h3>
   <p>Now, don't panic even when you meet foreign fellows.</p>
-  <form action="index.html"  class="top15">
+  <form action="login"  class="top15" method="post">
     <div class="form-group">
-      <input required="" placeholder="Username" class="form-control" type="email">
+      <input required="" placeholder="Username" class="form-control" type="text" name="employee_num">
     </div>
     <div class="form-group">
-      <input required="" placeholder="Password" class="form-control" type="password">
+      <input required="" placeholder="Password" class="form-control" type="password" name="password">
     </div>
     <button class="btn aqua block full-width bottom15" type="submit">Login</button>
     <a href="forgot_password.html"><small>Forgot password?</small></a>
