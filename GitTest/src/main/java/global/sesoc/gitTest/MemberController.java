@@ -48,16 +48,13 @@ public class MemberController {
       return "login";
    }
    
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+   @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member member, HttpSession session) {
 		String loginNum = member.getEmployee_num();
 		String loginPw = member.getPassword();
-		Member data = mRepository.selectOne(loginNum,loginPw);
-		if(loginNum.equals(data.getEmployee_num())&&loginPw.equals(data.getPassword())){
-			System.out.println("y");
-			session.setAttribute("loginId",loginNum);
-			session.setAttribute("loginPw",loginPw);
-			
+		Member user = mRepository.selectOne(loginNum,loginPw);
+		if(loginNum.equals(user.getEmployee_num())&&loginPw.equals(user.getPassword())){
+			session.setAttribute("user",user);
 			return "main";
 		}
 		return "redirect:/";
