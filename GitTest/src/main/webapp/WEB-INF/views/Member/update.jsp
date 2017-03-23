@@ -38,7 +38,7 @@ function checkform(){
       var email = document.getElementById("email");
       var language = document.getElementById("language");
       var phone = document.getElementById("phone");
-      var pw = <%= (String)session.getAttribute("loginPw") %>
+      var pw = document.getElementById("h").value;
    
       if(password1.value!=pw){
     	  alert("check your password");
@@ -73,6 +73,7 @@ function checkform(){
     <h3>Update section</h3>
     <p>Update your personal information</p>
     <form action="update"  class="m-t" method="POST" onsubmit="return checkform()">
+    <input type="hidden" id="h" name="h" value="${user.password}">
       <div class="form-group">
         <input type="password" required="" placeholder="Password" class="form-control" name="password1" id="password1">
       </div>
