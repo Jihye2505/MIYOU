@@ -8,6 +8,7 @@
 	<typeAliases>
 <!-- 		<typeAlias type="global.sesoc.gitTest.vo.Conf_mng" alias="Conf_mng" /> -->
 		<typeAlias type="global.sesoc.gitTest.vo.Member" alias="Member" />
+		<typeAlias type="global.sesoc.gitTest.vo.JobDeptList" alias="JobDeptList" />
 	</typeAliases>
 	
 	<!-- 매퍼 파일 위치 설정 -->
