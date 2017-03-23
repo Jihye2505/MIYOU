@@ -124,7 +124,7 @@
         <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-th-large"></i> <span class="title">Mypage</span> <span class="arrow"></span> </a>
           <ul class="sub-menu">
             <li class="nav-item"> <a class="nav-link" href="index.html"> <span class="title">내 업무 관리</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link" href="dashboard2.html"> <span class="title">정보수정</span> </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="update"> <span class="title">정보수정</span> </a> </li>
             <li class="nav-item"> <a class="nav-link" href="dashboard3.html"> <span class="title">메시지함</span><span class="label label-warning pull-right">16/70</span></a> </li>
           </ul>
         </li>

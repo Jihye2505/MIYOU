@@ -70,7 +70,7 @@ public class MemberController {
    @RequestMapping(value="/update", method=RequestMethod.POST)
    public String update(Member member){
       try {
-      int result = mRepository.insertMember(member);
+      int result = mRepository.updateMember(member);
    } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
