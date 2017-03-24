@@ -9,7 +9,7 @@ public class Message {
 	private String receiverenum;
 	private String text;
 	private int notice;
-	private int check;
+	private int checkm;
 	
 	public Message(String employee_num, Date send_date, String receiverenum, String text, int notice, int check) {
 		super();
@@ -18,7 +18,7 @@ public class Message {
 		this.receiverenum = receiverenum;
 		this.text = text;
 		this.notice = notice;
-		this.check = check;
+		this.checkm = checkm;
 	}
 
 	public String getEmployee_num() {
@@ -62,18 +62,18 @@ public class Message {
 		this.notice = notice;
 	}
 
-	public int getCheck() {
-		return check;
+	public int getCheckm() {
+		return checkm;
 	}
 
-	public void setCheck(int check) {
-		this.check = check;
+	public void setCheckm(int checkm) {
+		this.checkm = checkm;
 	}
 
 	@Override
 	public String toString() {
 		return "massage [employee_num=" + employee_num + ", send_date=" + send_date + ", receiverenum=" + receiverenum
-				+ ", text=" + text + ", notice=" + notice + ", check=" + check + "]";
+				+ ", text=" + text + ", notice=" + notice + ", checkm=" + checkm + "]";
 	}
 	
 }
