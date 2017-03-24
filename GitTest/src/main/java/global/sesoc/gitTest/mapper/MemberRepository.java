@@ -21,7 +21,7 @@ public class MemberRepository {
 	@Autowired
 	SqlSession sqlsession;
 	
-	public int insertMember(Member member){
+	public int insert(Member member){
 		int result=0;
 		
 		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
@@ -35,19 +35,19 @@ public class MemberRepository {
 		return result;
 	}
 	
-	public int updateMember(Member member){
+	public int update(Member member){
 		   int result=0;
 		      
 		   MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
 		   try {
-		      result = mDAO.updateMember(member);
+		      result = mDAO.update(member);
 		   } catch (Exception e) {
 		      // TODO Auto-generated catch block
 		      e.printStackTrace();
 		   }
 		      
 		   return result;
-		}
+	}
 
 	public Member selectOne(String loginNum){
 		Member result = null;
@@ -85,5 +85,18 @@ public class MemberRepository {
 		return deptList;
 	}
 	
+	public int memberUpdate(Member member){
+		   int result=0;
+		      
+		   MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		   try {
+		      result = mDAO.memberUpdate(member);
+		   } catch (Exception e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		   }
+		      
+		   return result;
+	}
 	
 }

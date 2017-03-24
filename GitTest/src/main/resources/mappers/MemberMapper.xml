@@ -5,7 +5,7 @@
 
 <mapper namespace="global.sesoc.gitTest.DAO.MemberDAO">
 	<!-- 회원등록 -->
-	<insert id="insertMember" parameterType="Member">
+	<insert id="insert" parameterType="Member">
 		insert into e_member 
 		(
 			employee_num, password,name,email,language,phone,dept_id,job_id
@@ -17,7 +17,7 @@
 	</insert>
 	
 	<!-- 회원정보 업데이트 -->
-	<update id="updateMember" parameterType="Member" >
+	<update id="update" parameterType="Member" >
       update e_member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone}
    </update>
    
@@ -35,7 +35,5 @@
 	<select id="deptList" resultType="DeptList">
 		select * from e_dept order by dept_id
 	</select>
-	
-	
 	
 </mapper>

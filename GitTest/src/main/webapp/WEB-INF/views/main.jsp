@@ -145,8 +145,8 @@
         <!-- 관리자만 보이는 관리자 메뉴 -->
         <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-sitemap"></i> <span class="title">Manager's</span> <span class="arrow"></span> </a>
           <ul class="sub-menu">
-            <li class="nav-item"> <a class="nav-link nav-toggle" href="table_static_basic.html"> <span class="title">사원 등록</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link nav-toggle" href="table_datatables.html"> <span class="title">사원 정보 수정</span> </a> </li>
+            <li class="nav-item"> <a class="nav-link nav-toggle" href="join"> <span class="title">사원 등록</span> </a> </li>
+            <li class="nav-item"> <a class="nav-link nav-toggle" href="memberUpdate"> <span class="title">사원 정보 수정</span> </a> </li>
           </ul>
         </li>
     </div>

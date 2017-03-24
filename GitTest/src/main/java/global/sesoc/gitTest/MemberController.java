@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import global.sesoc.gitTest.mapper.MemberRepository;
@@ -39,7 +41,7 @@ public class MemberController {
    @RequestMapping(value="/joinMember", method=RequestMethod.POST)
    public String join(Member member){
       try {
-		int result = mRepository.insertMember(member);
+		int result = mRepository.insert(member);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -78,14 +80,14 @@ public class MemberController {
    
    @RequestMapping(value="/update", method=RequestMethod.POST)
    public String update(Member member){
-      try {
-      int result = mRepository.updateMember(member);
-   } catch (Exception e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-   }
-      
-      return "login";
+	   try {
+	      int result = mRepository.update(member);
+	   } catch (Exception e) {
+	      // TODO Auto-generated catch block
+	      e.printStackTrace();
+	   }
+	      
+	     return "login";
    }
 
    @RequestMapping(value="/delete", method=RequestMethod.GET)
@@ -123,6 +125,40 @@ public class MemberController {
 	   
       return "Member/myInfo";
    }
+   
+   @RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
+   public String memberUpdate(){
+      
+      return "Member/memberUpdate";
+   }
+   
+   @RequestMapping(value="/memberUpdate", method=RequestMethod.POST)
+   public String memberUpdate(Member member){
+	   try {
+	      int result = mRepository.memberUpdate(member);
+	   } catch (Exception e) {
+	      // TODO Auto-generated catch block
+	      e.printStackTrace();
+	   }
+	      
+	     return "login";
+   }
+   
+   @RequestMapping(value = "/idCheck", method = RequestMethod.GET)
+	public @ResponseBody boolean idCheck(@RequestBody String employee_num) {
+	   Member member = null;
+	   try {
+		      member = mRepository.selectOne(employee_num);
+		   } catch (Exception e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		   }
+	   
+	   if(member == null) {
+		   return false;
+	   }
+	   else	return true;
+	}
    
    
 }

@@ -38,7 +38,7 @@
       <h1 class="logo-name">My Info</h1>
     </div>
     <br><p>check your personal information</p><br>
-    <form action="javascript:history.back();"  class="m-t" method="POST">
+    <form action="javascript:history.back();" class="m-t" method="POST">
     <input type="hidden" id="h" name="h" value="${user.password}">
       <div class="form-group">
         아이디: ${user.employee_num}
