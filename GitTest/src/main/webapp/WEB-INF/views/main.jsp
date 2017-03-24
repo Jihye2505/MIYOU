@@ -90,7 +90,6 @@
 <li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt=""> <span class="username username-hide-on-mobile"> ${user.employee_num} </span> <i class="fa fa-angle-down"></i> </a>
           <ul class="dropdown-menu dropdown-menu-default">
           
-          	<!-- 여기에 락 스크린 화면으로 넘어가는 거, 로그아웃 넣기 -->
             <li> <a href="lockscreen"> <i class="icon-lock"></i> Lock Screen </a> </li>
             <li> <a href="login"> <i class="icon-key"></i> Log Out </a> </li>
           </ul>
@@ -123,6 +122,7 @@
         </li>
         <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-th-large"></i> <span class="title">Mypage</span> <span class="arrow"></span> </a>
           <ul class="sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="myInfo"> <span class="title">내 정보</span> </a> </li>
             <li class="nav-item"> <a class="nav-link" href="index.html"> <span class="title">내 업무 관리</span> </a> </li>
             <li class="nav-item"> <a class="nav-link" href="update"> <span class="title">정보수정</span> </a> </li>
             <li class="nav-item"> <a class="nav-link" href="dashboard3.html"> <span class="title">메시지함</span><span class="label label-warning pull-right">16/70</span></a> </li>

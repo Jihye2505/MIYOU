@@ -115,5 +115,14 @@ public class MemberController {
 	   return "main";
    }
    
+   @RequestMapping(value="/myInfo", method=RequestMethod.GET)
+   public String myInfo(Member member, HttpSession session){
+	   /*String loginNum = member.getEmployee_num();
+	   Member user = mRepository.selectOne(loginNum);
+	   session.setAttribute("user", user);*/
+	   
+      return "Member/myInfo";
+   }
+   
    
 }
