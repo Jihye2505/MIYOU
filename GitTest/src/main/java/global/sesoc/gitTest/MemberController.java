@@ -58,7 +58,7 @@ public class MemberController {
 			return "main";
 		}
 		else {
-			//안됐을경우 안됐다고 팝업을 띄우고싶은데...
+			//안됐을경우 안됐다고 팝업을 띄우고싶은데... 
 		}
 		return "redirect:/";
 	}

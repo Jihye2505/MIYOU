@@ -87,7 +87,7 @@
           </ul>
         </li>
         <!-- START USER LOGIN DROPDOWN -->
-<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt=""> <span class="username username-hide-on-mobile"> logined User</span> <i class="fa fa-angle-down"></i> </a>
+<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt=""> <span class="username username-hide-on-mobile"> ${user.employee_num} </span> <i class="fa fa-angle-down"></i> </a>
           <ul class="dropdown-menu dropdown-menu-default">
           
           	<!-- 여기에 락 스크린 화면으로 넘어가는 거, 로그아웃 넣기 -->
