@@ -86,20 +86,20 @@ CREATE TABLE e_member
 
 CREATE TABLE e_message
 (
-	massage_num number NOT NULL,
+	message_num number NOT NULL,
 	-- 보내는 사람 사원번호
 	-- 
 	employee_num varchar2(20) NOT NULL,
 	-- 보낸 날짜
 	send_date date NOT NULL,
-	receiverenum varchar2(20) NOT NULL,
-	text varchar2(1000) NOT NULL,
+	receiver_num varchar2(20) NOT NULL,
+	content varchar2(1000) NOT NULL,
 	-- 0 개인 연락
 	-- 1 공지
 	notice number DEFAULT 0,
 	-- 0 안읽음
 	-- 1 읽음
-	checkm number DEFAULT 0,
+	checked number DEFAULT 0,
 	PRIMARY KEY (massage_num)
 );
 
