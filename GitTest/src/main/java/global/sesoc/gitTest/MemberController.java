@@ -48,13 +48,19 @@ public class MemberController {
       return "login";
    }
    
+   @RequestMapping(value="/login", method=RequestMethod.GET)
+   public String login(HttpSession session){
+      session.removeAttribute("user");
+      return "login";
+   }
+   
    @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member member, HttpSession session) {
 		String loginNum = member.getEmployee_num();
 		String loginPw = member.getPassword();
 		Member user = mRepository.selectOne(loginNum);
 		if(user.getEmployee_num().equals(loginNum) && user.getPassword().equals(loginPw)) {
-			session.setAttribute("user",user);
+			session.setAttribute("user", user);
 			return "main";
 		}
 		else {
@@ -82,8 +88,6 @@ public class MemberController {
       return "login";
    }
 
-   
-   
    @RequestMapping(value="/delete", method=RequestMethod.GET)
    public String delete(){
       
@@ -94,6 +98,21 @@ public class MemberController {
    public String check(){
       
       return "Member/check";
+   }
+   
+   @RequestMapping(value="/lockscreen", method=RequestMethod.GET)
+   public String lockscreen(){
+      
+      return "Member/lockscreen";
+   }
+   
+   @RequestMapping(value="/lockscreen", method=RequestMethod.POST)
+   public String lockscreen(Member member, HttpSession session){
+	   String loginNum = member.getEmployee_num();
+	   Member user = mRepository.selectOne(loginNum);
+	   session.setAttribute("user", user);
+	   
+	   return "main";
    }
    
    

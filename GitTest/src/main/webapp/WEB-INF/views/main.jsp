@@ -91,8 +91,8 @@
           <ul class="dropdown-menu dropdown-menu-default">
           
           	<!-- 여기에 락 스크린 화면으로 넘어가는 거, 로그아웃 넣기 -->
-            <li> <a href="lockscreen.html"> <i class="icon-lock"></i> Lock Screen </a> </li>
-            <li> <a href="login.html"> <i class="icon-key"></i> Log Out </a> </li>
+            <li> <a href="lockscreen"> <i class="icon-lock"></i> Lock Screen </a> </li>
+            <li> <a href="login"> <i class="icon-key"></i> Log Out </a> </li>
           </ul>
         </li>
         <!-- END USER LOGIN DROPDOWN -->
