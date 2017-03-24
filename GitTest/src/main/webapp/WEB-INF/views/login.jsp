@@ -48,7 +48,6 @@
       <input required="" placeholder="Password" class="form-control" type="password" name="password">
     </div>
     <button class="btn aqua block full-width bottom15" type="submit">Login</button>
-    <a href="forgot_password.html"><small>Forgot password?</small></a>
     <p class="text-muted text-center"><small>Do not have an account?</small></p>
     <a href="join" class="btn btn-sm btn-white btn-block">Create an account</a>
   </form>
