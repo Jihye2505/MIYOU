@@ -2,7 +2,7 @@ package global.sesoc.gitTest.vo;
 
 import java.util.Date;
 
-public class Massage {
+public class Message {
 
 	private String employee_num;
 	private Date send_date;
@@ -11,7 +11,7 @@ public class Massage {
 	private int notice;
 	private int check;
 	
-	public Massage(String employee_num, Date send_date, String receiverenum, String text, int notice, int check) {
+	public Message(String employee_num, Date send_date, String receiverenum, String text, int notice, int check) {
 		super();
 		this.employee_num = employee_num;
 		this.send_date = send_date;
