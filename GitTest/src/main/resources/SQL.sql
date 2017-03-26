@@ -99,8 +99,8 @@ CREATE TABLE e_message
 	notice number DEFAULT 0,
 	-- 0 안읽음
 	-- 1 읽음
-	checked number DEFAULT 0,
-	PRIMARY KEY (massage_num)
+	checked varchar2(10) DEFAULT 'unread',
+	PRIMARY KEY (message_num)
 );
 
 
