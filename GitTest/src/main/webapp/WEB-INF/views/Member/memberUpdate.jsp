@@ -32,7 +32,6 @@
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
 	$("#employee_num").keyup(function() {
 	    
        $.ajax({
@@ -53,10 +52,8 @@ $(function(){
        });
 	    
 	 }); 
-	
       //사원번호랑 매니저번호 제대로 입력되었는지 확인!
       //다른부분에 입력하지 않을경우 입력된 부분만 갱신되도록 조건문 걸자!!
-}
 
 </script>
 

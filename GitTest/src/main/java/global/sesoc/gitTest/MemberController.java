@@ -147,6 +147,7 @@ public class MemberController {
    @RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	public @ResponseBody boolean idCheck(@RequestBody String employee_num) {
 	   Member member = null;
+	   System.out.println(employee_num);
 	   try {
 		      member = mRepository.selectOne(employee_num);
 		   } catch (Exception e) {
