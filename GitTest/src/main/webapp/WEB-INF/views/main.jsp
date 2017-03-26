@@ -37,66 +37,7 @@
     <div class="library-menu"> <span class="one">-</span> <span class="two">-</span> <span class="three">-</span> </div>
     <!-- END LOGO -->
     <!-- BEGIN TOP NAVIGATION MENU -->
-    <div class="top-menu">
-      <ul class="nav navbar-nav pull-right">
-        <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle count-info" > <i class="fa fa-envelope"></i> <span class="badge badge-info">6</span> </a>
-          <ul class="dropdown-menu dropdown-messages menuBig">
-            <li>
-              <div class="dropdown-messages-box"> <a class="pull-left" href="profile.html"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="image"> </a>
-                <div class="media-body"> <small class="pull-right">46h ago</small> <strong>Mike Loreipsum</strong> started following <strong>Olivia Wenscombe</strong>. <br>
-                  <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small> </div>
-              </div>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <div class="dropdown-messages-box"> <a class="pull-left" href="profile.html"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="image"> </a>
-                <div class="media-body "> <small class="pull-right text-navy">5h ago</small> <strong> Alex Smith </strong> started following <strong>Olivia Wenscombe</strong>. <br>
-                  <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small> </div>
-              </div>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <div class="dropdown-messages-box"> <a class="pull-left" href="profile.html"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="image"> </a>
-                <div class="media-body "> <small class="pull-right">23h ago</small> <strong>Olivia Wenscombe</strong> love <strong>Sophie </strong>. <br>
-                  <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small> </div>
-              </div>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <div class="text-center link-block"> <a href="mailbox.html"> <i class="fa fa-envelope"></i> <strong>Read All Messages</strong> </a> </div>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle count-info" > <i class="fa fa-bell"></i> <span class="badge badge-primary">8</span> </a>
-          <ul class="dropdown-menu dropdown-alerts menuBig">
-            <li> <a href="mailbox.html">
-              <div> <i class="fa fa-envelope fa-fw"></i> You have 16 messages <span class="pull-right text-muted small">4 minutes ago</span> </div>
-              </a> </li>
-            <li class="divider"></li>
-            <li> <a href="profile.html">
-              <div> <i class="fa fa-twitter fa-fw"></i> 3 New Followers <span class="pull-right text-muted small">12 minutes ago</span> </div>
-              </a> </li>
-            <li class="divider"></li>
-            <li> <a href="grid_options.html">
-              <div> <i class="fa fa-upload fa-fw"></i> Server Rebooted <span class="pull-right text-muted small">4 minutes ago</span> </div>
-              </a> </li>
-            <li class="divider"></li>
-            <li>
-              <div class="text-center link-block"> <a href="notifications.html"> <strong>See All Alerts</strong> <i class="fa fa-angle-right"></i> </a> </div>
-            </li>
-          </ul>
-        </li>
-        <!-- START USER LOGIN DROPDOWN -->
-<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt=""> <span class="username username-hide-on-mobile"> ${user.employee_num} </span> <i class="fa fa-angle-down"></i> </a>
-          <ul class="dropdown-menu dropdown-menu-default">
-          
-            <li> <a href="lockscreen"> <i class="icon-lock"></i> Lock Screen </a> </li>
-            <li> <a href="login"> <i class="icon-key"></i> Log Out </a> </li>
-          </ul>
-        </li>
-        <!-- END USER LOGIN DROPDOWN -->
-      </ul>
-    </div>
+	<%@ include file="header.jspf"%>
     <!-- END TOP NAVIGATION MENU -->
   </div>
   <!-- END HEADER INNER -->
@@ -104,53 +45,7 @@
 <div class="clearfix"> </div>
 <div class="page-container">
   <!-- Start page sidebar wrapper -->
-  <div class="page-sidebar-wrapper">
-    <div class="page-sidebar">
-      <ul class="page-sidebar-menu  page-header-fixed ">
-        <li class="sidebar-search-wrapper">
-          <!-- START RESPONSIVE SEARCH FORM -->
-          <form class="sidebar-search  " action="search_results.html" method="POST">
-            <a href="javascript:;" class="remove"> <i class="icon-close"></i> </a>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search...">
-              <span class="input-group-btn"> <a href="javascript:;" class="btn submit"> <i class="icon-magnifier"></i> </a> </span> </div>
-          </form>
-          <!-- END RESPONSIVE SEARCH FORM -->
-        </li>
-        <li class="heading">
-          <h3 class="uppercase">MENU</h3>
-        </li>
-        <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-th-large"></i> <span class="title">Mypage</span> <span class="arrow"></span> </a>
-          <ul class="sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="myInfo"> <span class="title">내 정보</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link" href="index.html"> <span class="title">내 업무 관리</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link" href="update"> <span class="title">정보수정</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link" href="dashboard3.html"> <span class="title">메시지함</span><span class="label label-warning pull-right">16/70</span></a> </li>
-          </ul>
-        </li>
-        <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-diamond"></i> <span class="title">Team</span> <span class="arrow"></span> </a>
-          <ul class="sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="ui_colors.html" > <span class="title">팀 업무</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link" href="ui_buttons.html"> <span class="title">전체 업무 흐름 확인</span> </a> </li>
-            </ul>
-        </li>
-        <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="icon-calendar"></i> <span class="title">Schedule</span> <span class="arrow"></span> </a>
-          <ul class="sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="components_fileinput.html" > <span class="title">개인 일정 관리</span></a> </li>
-            <li class="nav-item"> <a class="nav-link" href="components_autocomplete.html"> <span class="title">회의 기획</span> </a> </li>
-          </ul>
-        </li>
-        
-        
-        <!-- 관리자만 보이는 관리자 메뉴 -->
-        <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-sitemap"></i> <span class="title">Manager's</span> <span class="arrow"></span> </a>
-          <ul class="sub-menu">
-            <li class="nav-item"> <a class="nav-link nav-toggle" href="join"> <span class="title">사원 등록</span> </a> </li>
-            <li class="nav-item"> <a class="nav-link nav-toggle" href="memberUpdate"> <span class="title">사원 정보 수정</span> </a> </li>
-          </ul>
-        </li>
-    </div>
-  </div>
+	<%@ include file="side.jspf"%>
   <!-- End page sidebar wrapper -->
   <!-- Start page content wrapper -->
   <div class="page-content-wrapper">
@@ -235,17 +130,7 @@
       </div>
       
 <!-- start footer -->
-<div class="footer">
-        <div class="pull-right">
-          <ul class="list-inline">
-            <li><a title="" href="index.html">Dashboard</a></li>
-            <li><a title="" href="mailbox.html"> Inbox </a></li>
-            <li><a title="" href="blog.html">Blog</a></li>
-            <li><a title="" href="contacts.html">Contacts</a></li>
-          </ul>
-        </div>
-        <div> <strong>Copyright</strong> AdminBag Company &copy; 2017 </div>
-      </div>
+<%@ include file="footer.jspf"%>
     </div>
   </div>
 </div>

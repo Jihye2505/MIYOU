@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.gitTest.DAO.MessageDAO">
+
+	<!-- 메시지 보내기 (insert) -->
+	<insert id="sendMessage" parameterType="Message">
+		INSERT INTO e_message
+		(message_num, employee_num, send_date, receiver_num, content, notice)
+		VALUES
+		(message_seq.nextval,
+		#{employee_num},
+		sysdate,
+		#{receiver_num},
+		#{content},
+		#{notice}
+		)
+	</insert>
+	
+	<!-- 메시지 체크시 체크 변경 -->
+	<update id="messageCheck" parameterType="int">
+		UPDATE e_message
+		SET checked = 'read'
+		WHERE message_num = #{message_num}
+	</update>
+	
+	<!-- 메시지 리스트를 가져와보자 -->
+	<select id="messageList" resultType="Message" parameterType="String">
+		SELECT * FROM e_message
+		WHERE receiver_num = #{user}
+	</select>
+	
+	<!-- 내가 보낸 메시지리스트 -->
+	<select id="sentMessages" resultType="Message" parameterType="String">
+		SELECT * FROM e_message
+		WHERE employee_num = #{user}
+	</select>
+
+	<!-- 나에게 온 "모든" 메시지 개수 확인 -->
+	<select id="countMessage" resultType="int" parameterType="String">
+		SELECT count(*) FROM e_message
+		WHERE receiver_num = #{user}
+	</select>
+	
+	<!-- 나에게 온 "안읽은" 메시지 개수 확인 -->
+	<select id="countNotRead" resultType="int" parameterType="String">
+		SELECT count(*) FROM e_message
+		WHERE receiver_num = #{user}
+	</select>
+	
+	<!-- 메시지 하나 읽어오기 -->
+	<select id="readMessage" resultType="Message" parameterType="int">
+		SELECT * 
+		FROM e_message
+		WHERE message_num = #{message_num}
+	</select>
+	
+	<!-- 메시지 하나 지우기 -->
+	<delete id="deleteMessage" parameterType="int">
+		DELETE e_message
+		WHERE message_num = #{message_num}
+	</delete>
+</mapper>

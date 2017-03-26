@@ -11,7 +11,7 @@
     <!-- BEGIN TOP NAVIGATION MENU -->
     <div class="top-menu">
       <ul class="nav navbar-nav pull-right">
-        <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle count-info" > <i class="fa fa-envelope"></i> <span class="badge badge-info">6</span> </a>
+        <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle count-info" > <i class="fa fa-envelope"></i> <span class="badge badge-info">${unread}</span> </a>
           <ul class="dropdown-menu dropdown-messages menuBig">
             <li>
               <div class="dropdown-messages-box"> <a class="pull-left" href="profile.html"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="image"> </a>
@@ -59,7 +59,7 @@
           </ul>
         </li>
         <!-- START USER LOGIN DROPDOWN -->
-<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt=""> <span class="username username-hide-on-mobile"> logined User</span> <i class="fa fa-angle-down"></i> </a>
+<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt=""> <span class="username username-hide-on-mobile">${user.employee_num}</span> <i class="fa fa-angle-down"></i> </a>
           <ul class="dropdown-menu dropdown-menu-default">
           
           	<!-- 여기에 락 스크린 화면으로 넘어가는 거, 로그아웃 넣기 -->

@@ -4,21 +4,36 @@ import java.util.Date;
 
 public class Message {
 
+	private int message_num;
 	private String employee_num;
 	private Date send_date;
-	private String receiverenum;
-	private String text;
+	private String receiver_num;
+	private String content;
 	private int notice;
-	private int checkm;
+	private String checked;
+
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	public Message(String employee_num, Date send_date, String receiverenum, String text, int notice, int check) {
+	public Message(int message_num, String employee_num, Date send_date, String receiver_num, String content,
+			int notice, String checked) {
 		super();
+		this.message_num = message_num;
 		this.employee_num = employee_num;
 		this.send_date = send_date;
-		this.receiverenum = receiverenum;
-		this.text = text;
+		this.receiver_num = receiver_num;
+		this.content = content;
 		this.notice = notice;
-		this.checkm = checkm;
+		this.checked = checked;
+	}
+
+	public int getMessage_num() {
+		return message_num;
+	}
+
+	public void setMessage_num(int message_num) {
+		this.message_num = message_num;
 	}
 
 	public String getEmployee_num() {
@@ -29,7 +44,6 @@ public class Message {
 		this.employee_num = employee_num;
 	}
 
-	
 	public Date getSend_date() {
 		return send_date;
 	}
@@ -38,20 +52,20 @@ public class Message {
 		this.send_date = send_date;
 	}
 
-	public String getReceiverenum() {
-		return receiverenum;
+	public String getReceiver_num() {
+		return receiver_num;
 	}
 
-	public void setReceiverenum(String receiverenum) {
-		this.receiverenum = receiverenum;
+	public void setReceiver_num(String receiver_num) {
+		this.receiver_num = receiver_num;
 	}
 
-	public String getText() {
-		return text;
+	public String getContent() {
+		return content;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public int getNotice() {
@@ -62,18 +76,20 @@ public class Message {
 		this.notice = notice;
 	}
 
-	public int getCheckm() {
-		return checkm;
+	public String getChecked() {
+		return checked;
 	}
 
-	public void setCheckm(int checkm) {
-		this.checkm = checkm;
+	public void setChecked(String checked) {
+		this.checked = checked;
 	}
 
 	@Override
 	public String toString() {
-		return "massage [employee_num=" + employee_num + ", send_date=" + send_date + ", receiverenum=" + receiverenum
-				+ ", text=" + text + ", notice=" + notice + ", checkm=" + checkm + "]";
+		return "Message [message_num=" + message_num + ", employee_num=" + employee_num + ", send_date=" + send_date
+				+ ", receiver_num=" + receiver_num + ", content=" + content + ", notice=" + notice + ", checked="
+				+ checked + "]";
 	}
+
 	
 }
