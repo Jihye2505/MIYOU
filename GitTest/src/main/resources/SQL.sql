@@ -1,5 +1,4 @@
 /* insert jobs */
-insert into e_dept (dept_id, dept_name) values (10,''); /*사장*/
 insert into e_dept (dept_id, dept_name) values (100,'영업부');
 insert into e_dept (dept_id, dept_name) values (101,'영업1팀');
 insert into e_dept (dept_id, dept_name) values (102,'영업2팀');
@@ -29,11 +28,13 @@ DROP TABLE e_member CASCADE CONSTRAINTS;
 DROP TABLE e_dept CASCADE CONSTRAINTS;
 DROP TABLE e_message CASCADE CONSTRAINTS;
 DROP TABLE e_position CASCADE CONSTRAINTS;
-
+drop sequence message_seq;
 
 
 
 /* Create Tables */
+
+create sequence message_seq;
 
 CREATE TABLE conf_mng
 (
@@ -147,6 +148,5 @@ COMMENT ON COLUMN e_message.notice IS '0 개인 연락
 COMMENT ON COLUMN e_message.checkm IS '0 안읽음
 1 읽음';
 
-create sequence message_seq;
-drop sequence message_seq;
+
 
