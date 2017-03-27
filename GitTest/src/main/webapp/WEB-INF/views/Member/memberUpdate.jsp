@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Update</title>
@@ -30,10 +29,10 @@
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
 
-<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-	$("#employee_num").keyup(function() {
-	    
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script>
+$(function(){
+	$("#employee_num").keyup(function(event) {
        $.ajax({
           type: "GET",
           url: "idCheck",
@@ -42,19 +41,17 @@
           },
           success: function(data) {
              
-             if(data == false){
+             if(data == "false")
                 $("#check").text("invalid ID");
-             }
-             else {
+             else
                 $("#check").text("valid ID");
-             }
           }
        });
 	    
 	 }); 
       //사원번호랑 매니저번호 제대로 입력되었는지 확인!
       //다른부분에 입력하지 않을경우 입력된 부분만 갱신되도록 조건문 걸자!!
-
+});
 </script>
 
 </head>
@@ -109,7 +106,7 @@
 <!-- bootstrap js -->
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <!-- main js -->
-<script src="assets/js/main.js"></script>
+<!-- <script src="assets/js/main.js"></script> -->
 <script>
         $(document).ready(function(){
             $('.i-checks').iCheck({

@@ -145,7 +145,8 @@ public class MemberController {
    }
    
    @RequestMapping(value = "/idCheck", method = RequestMethod.GET)
-	public @ResponseBody boolean idCheck(@RequestBody String employee_num) {
+	public @ResponseBody String idCheck(String employee_num) {
+	   
 	   Member member = null;
 	   System.out.println(employee_num);
 	   try {
@@ -154,11 +155,11 @@ public class MemberController {
 		      // TODO Auto-generated catch block
 		      e.printStackTrace();
 		   }
-	   
+	   System.out.println(member);
 	   if(member == null) {
-		   return false;
+		   return "false";
 	   }
-	   else	return true;
+	   else	return "true";
 	}
    
    
