@@ -147,5 +147,6 @@ COMMENT ON COLUMN e_message.notice IS '0 개인 연락
 COMMENT ON COLUMN e_message.checkm IS '0 안읽음
 1 읽음';
 
-
+create sequence message_seq;
+drop sequence message_seq;
 
