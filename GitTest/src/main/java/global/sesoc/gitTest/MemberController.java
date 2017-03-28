@@ -135,8 +135,11 @@ public class MemberController {
    }
    
    @RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
-   public String memberUpdate(){
-      
+   public String memberUpdate(HttpSession session){
+	  List<JobList> jobList = mRepository.jobList();
+	  List<DeptList> deptList = mRepository.deptList();
+	  session.setAttribute("jobList", jobList);
+	  session.setAttribute("deptList", deptList);
       return "Member/memberUpdate";
    }
    

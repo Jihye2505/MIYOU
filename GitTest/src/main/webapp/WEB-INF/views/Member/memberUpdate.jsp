@@ -41,17 +41,56 @@ $(function(){
           },
           success: function(data) {
              
-             if(data == "false")
-                $("#check").text("invalid ID");
-             else
-                $("#check").text("valid ID");
+             if(data == "false"){
+                $("#check1").text("invalid ID");
+                document.getElementById("check1").value = "false";
+             }
+             else{
+                $("#check1").text("valid ID");
+                document.getElementById("check1").value = "true";
+             }
           }
        });
 	    
 	 }); 
-      //사원번호랑 매니저번호 제대로 입력되었는지 확인!
       //다른부분에 입력하지 않을경우 입력된 부분만 갱신되도록 조건문 걸자!!
 });
+
+$(function(){
+	$("#manager_num").keyup(function(event) {
+       $.ajax({
+          type: "GET",
+          url: "idCheck",
+          data: {
+             "employee_num" : $("#manager_num").val()
+          },
+          success: function(data) {
+             
+             if(data == "false"){
+                $("#check2").text("invalid ID");
+                document.getElementById("check2").value = "false";
+             }
+             else{
+                $("#check2").text("valid ID");
+                document.getElementById("check2").value = "true";
+             }
+          }
+       });
+	 }); 
+});
+
+function checkForm(){
+
+	var check1 = document.getElementById("check1").value;
+	var check2 = document.getElementById("check2").value;
+	if(check1 == "false" || check2 == "false"){
+		alert("존재하지 않는 ID 입니다.");
+		return false;
+	}
+	
+	return true;
+}
+
 </script>
 
 </head>
@@ -63,16 +102,17 @@ $(function(){
     </div><br>
     <h3>Update section for manager</h3>
     <p>Update member's information</p>
-    <form action="memberUpdate"  class="m-t" method="POST" onsubmit="return checkform()">
+    <form action="memberUpdate"  class="m-t" method="POST" onsubmit="return checkForm();">
       <div class="form-group">
         <input type="text" placeholder="employee_num" class="form-control" name="employee_num" id="employee_num">
-        <div id="check"></div>
+        <div id="check1"></div>
       </div>
       <div class="form-group">
         <input type="text" placeholder="name" class="form-control" name="name" id="name">
       </div>
       <div class="form-group">
         <input type="text" placeholder="manager_num" class="form-control" name="manager_num" id="manager_num">
+     	<div id="check2"></div>
       </div>
       <div class="form-group">
         <select required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
