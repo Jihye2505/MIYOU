@@ -39,7 +39,7 @@
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="messages">
 							<span class="title">메시지함</span><span
-							class="label label-warning pull-right">16/70</span>
+							class="label label-warning pull-right">${unread }/${total }</span>
 					</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link nav-toggle"

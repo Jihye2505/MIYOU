@@ -48,6 +48,7 @@
 	<select id="countNotRead" resultType="int" parameterType="String">
 		SELECT count(*) FROM e_message
 		WHERE receiver_num = #{user}
+		AND checked = 'unread'
 	</select>
 	
 	<!-- 메시지 하나 읽어오기 -->

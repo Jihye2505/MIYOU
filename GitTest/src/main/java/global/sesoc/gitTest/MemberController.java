@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import global.sesoc.gitTest.mapper.MemberRepository;
+import global.sesoc.gitTest.mapper.MessageRepository;
 import global.sesoc.gitTest.vo.DeptList;
 import global.sesoc.gitTest.vo.JobList;
 import global.sesoc.gitTest.vo.Member;
@@ -27,6 +28,9 @@ public class MemberController {
    
    @Autowired
    MemberRepository mRepository;
+   
+   @Autowired
+   MessageRepository msgRepository;
    
    
    @RequestMapping(value="/join", method=RequestMethod.GET)
@@ -58,11 +62,15 @@ public class MemberController {
    
    @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member member, HttpSession session) {
-		String loginNum = member.getEmployee_num();
+	   String loginNum = member.getEmployee_num();
 		String loginPw = member.getPassword();
 		Member user = mRepository.selectOne(loginNum);
+		int total = msgRepository.countMessage(user.getEmployee_num());
+		int unread = msgRepository.countNotRead(user.getEmployee_num());
 		if(user.getEmployee_num().equals(loginNum) && user.getPassword().equals(loginPw)) {
 			session.setAttribute("user", user);
+			session.setAttribute("total", total);
+			session.setAttribute("unread", unread);
 			return "main";
 		}
 		else {

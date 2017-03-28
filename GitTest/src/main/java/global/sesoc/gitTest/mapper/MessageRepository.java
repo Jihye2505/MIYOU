@@ -108,4 +108,18 @@ public class MessageRepository {
 		}
 		return result;
 	}
+	
+	public int countNotRead(String user){
+		int result=0;
+		
+		MessageDAO msgDAO = sqlsession.getMapper(MessageDAO.class);
+		try {
+			result = msgDAO.countNotRead(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
