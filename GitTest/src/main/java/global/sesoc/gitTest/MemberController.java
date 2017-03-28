@@ -148,17 +148,12 @@ public class MemberController {
 	public @ResponseBody String idCheck(String employee_num) {
 	   
 	   Member member = null;
-	   System.out.println(employee_num);
 	   try {
 		      member = mRepository.selectOne(employee_num);
 		   } catch (Exception e) {
-		      // TODO Auto-generated catch block
 		      e.printStackTrace();
 		   }
-	   System.out.println(member);
-	   if(member == null) {
-		   return "false";
-	   }
+	   if(member == null) return "false";
 	   else	return "true";
 	}
    

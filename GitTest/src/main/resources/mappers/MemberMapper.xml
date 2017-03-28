@@ -25,6 +25,11 @@
    <select id="selectOne" resultType="Member">
    		select * from e_member where employee_num=#{param1}
    </select>
+   
+   <!-- 메세지 보낼때 아이디 검색하기 -->
+   <select id="search" resultType="Member">
+   		select employee_num from e_member where employee_num like #{param1}||'%'
+   </select>
 	
 	<!-- jobList 받기 -->
 	<select id="jobList" resultType="JobList">

@@ -92,7 +92,7 @@ $(function(){
       </div>
       
       <button class="btn aqua block full-width m-b" type="submit">memberUpdate</button>
-      <a href="${pageContext.request.contextPath}/" class="btn btn-sm btn-white btn-block">Cancel</a>
+      <a href="javascript:history.back();" class="btn btn-sm btn-white btn-block">Cancel</a>
     </form>
     <p class="top15"> <small>SCIT KYSP &copy; 2017</small> </p>
   </div>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +30,33 @@
 <link href="resources/assets/css/skins/all.css" rel="stylesheet">
 <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
+
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script>
+$(function(){
+	$("#receiver_num").keyup(function(event) {
+       $.ajax({
+          type: "GET",
+          url: "receiverCheck",
+          data: {
+             "receiver_num" : $("#receiver_num").val()
+          },
+          success: function(data) {
+				var result= "<a class='check' onclick='clicked("+data+")'> "+${data}+" </a><br>";
+			
+        		$("#findResult").html(result);
+          }
+       });
+	 }); 
+});
+
+function clicked(list){
+	document.getElementById("receiver_num").value = list;
+}
+
+</script>
+
+
 </head>
 <body class="page-header-fixed ">
 	<%@ include file="../header.jspf"%>
@@ -52,10 +82,13 @@
 
 										<div class="form-group">
 											<label class="col-sm-2 control-label">To:</label>
-
+ 											
 											<div class="col-sm-10">
 												<input type="text" class="form-control" name="receiver_num" id="receiver_num">
 											</div>
+											<span id="findResult">
+
+											</span>
 										</div>
 										<!-- <div class="form-group">
 											<label class="col-sm-2 control-label">Subject:</label>
@@ -156,8 +189,8 @@
 											</div>
 
 											<!-- <div id="editor">hi hello it's me</div> -->
-											<input type="text" name="content" id="editor">
-											
+											<!-- <input type="text" name="content" id="editor"> -->
+											<textarea rows="100" cols="147" name="content" id="editor"></textarea>
 										</div>
 
 									</div>
