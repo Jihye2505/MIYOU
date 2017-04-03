@@ -63,9 +63,14 @@
 						href="components_fileinput.html"> <span class="title">개인
 								일정 관리</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="components_autocomplete.html"> <span class="title">회의
+						href="confList"> <span class="title">회의
+								일정</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="insertConf"> <span class="title">회의
 								기획</span>
 					</a></li>
+					
 				</ul></li>
 
 
