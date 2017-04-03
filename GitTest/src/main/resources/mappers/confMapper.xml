@@ -6,14 +6,14 @@
 	<insert id="insertConf_mng" parameterType="Conf_mng">
 		insert into conf_mng
 		(
-		conf_num, employee_num, title
+		conf_num, employee_nums, title, todate, writer
 		<if test="originalfile != null and savedfile != null" >
 		,originalfile, savedfile
 		</if> 
 		)
 		values
 		(
-		conf_mng_seq.nextval, #{employee_num}, #{title}
+		conf_mng_seq.nextval, #{employee_nums}, #{title}, #{todate}, #{writer}
 		<if test="originalfile != null and savedfile != null" >
 		, #{originalfile}, #{savedfile}
 		</if>
@@ -30,8 +30,98 @@
 		subtitle_id_seq.nextval, #{subtitle}, #{conf_num}
 		)
 	</insert>
-	<update id="update" parameterType="Conf_mng">
-		update 
+	
+	<update id="updateConf_mng" parameterType="Conf_mng">
+		update conf_mng set
+		employee_nums = #{employee_nums}
+		, title = #{title}
+<!-- 		, conf_date = #{conf_date} -->
+		<if test="originalfile != null and savedfile != null" >
+		, originalfile = #{originalfile}
+		, savedfile = #{savedfile}
+		</if>
+		where conf_num = #{conf_num}
 	</update>
+	
+	<update id="updateConf_topic" parameterType="Conf_topic">
+		update conf_topic set
+		subtitle = #{subtitle}
+		, employee_num = #{employee_num}
+		, process = #{process}
+		where subtitle_id = #{subtitle_id}
+	</update>
+	
+	<update id="deleteConf" parameterType="int">
+		update conf_mng set
+		deletecheck = 1
+		where conf_num = #{conf_num}
+	</update>
+	
+	<select id="selectConf" parameterType="int" resultType="Conf_mng">
+	select * from conf_mng
+	where conf_num = #{conf_num}
+	</select>
+	
+	<select id="selectConf_topic" parameterType="int" resultType="Conf_topic">
+	select * from Conf_topic
+	where conf_num = #{conf_num}
+	</select>
+	
+	<select id="getTotal" resultType="int" parameterType="map">
+		select count(*) 
+		from conf_mng m
+<!-- 		<if test="searchTitle != null and searchText != null"> -->
+<!-- 			<choose> -->
+<!-- 				<when test="searchTitle == 'title'"> -->
+<!-- 					where title like '%'||#{searchText}||'%' -->
+<!-- 				</when> -->
+<!-- 				<when test="searchTitle == 'subtitle'"> -->
+<!-- 					where subtitle like '%'||#{searchText}||'%' -->
+<!-- 				</when> -->
+<!-- 				<when test="searchTitle == 'employee_nums'"> -->
+<!-- 					where employee_nums like '%'||#{searchText}||'%' -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 		</if> -->
+		where deleteCheck = 0
+	</select>
+	
+	<select id="confList" resultType="conf_mng" parameterType="map">
+		select con.*, cmm.conf_date, cmm.todate, cmm.employee_nums, cmm.title, cmm.writer
+		from (select rownum rnum, n.* 
+		from (select distinct conf_num
+		from (select * 
+		from (select cm.*, ct.subtitle_id, ct.subtitle, ct.employee_num
+		from (select *
+		from conf_mng 
+		where deleteCheck = 0) cm, conf_topic ct 
+		where cm.conf_num=ct.conf_num) conf 
+		<if test="searchTitle != null and searchText != null">
+			<choose>
+				<when test="searchTitle == 'title'">
+					where title like '%'||#{searchText}||'%'
+				</when>
+				<when test="searchTitle == 'subtitle'">
+					where subtitle like '%'||#{searchText}||'%'
+				</when>
+				<when test="searchTitle == 'employee_nums'">
+					where employee_nums like '%'||#{searchText}||'%'
+				</when>
+				<when test="searchTitle == 'employee_num'">
+					where employee_num like '%'||#{searchText}||'%'
+				</when>
+			</choose>
+		</if>
+		) )n )con, conf_mng cmm
+		where con.conf_num = cmm.conf_num
+		and rnum between #{firstnum} and #{endnum}
+		order by cmm.todate desc
+	</select>
+	
+	<select id="selectInsert" parameterType="Conf_mng" resultType="int">
+	select conf_num from conf_mng
+	where todate = #{todate} and title = #{title}
+	</select>
+	
 	
 </mapper>

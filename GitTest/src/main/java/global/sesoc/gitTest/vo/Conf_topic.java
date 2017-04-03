@@ -1,6 +1,8 @@
 package global.sesoc.gitTest.vo;
 
-public class Conf_topic {
+import java.io.Serializable;
+
+public class Conf_topic implements Serializable{
 
 	private int subtitle_id;
 	private int conf_num;
@@ -8,6 +10,11 @@ public class Conf_topic {
 	private int employee_num;
 	private int process;
 	
+	
+	public Conf_topic() {
+		super();
+	}
+
 	public Conf_topic(int subtitle_id, int conf_num, String subtitle, int employee_num, int process) {
 		super();
 		this.subtitle_id = subtitle_id;

@@ -6,7 +6,8 @@
 <configuration>		<!-- 나중에 고칩시다. -->
 	<!-- 타입 별칭 설정 -->
 	<typeAliases>
-<!-- 		<typeAlias type="global.sesoc.gitTest.vo.Conf_mng" alias="Conf_mng" /> -->
+		<typeAlias type="global.sesoc.gitTest.vo.Conf_mng" alias="Conf_mng" />
+		<typeAlias type="global.sesoc.gitTest.vo.Conf_topic" alias="Conf_topic" />
 		<typeAlias type="global.sesoc.gitTest.vo.Member" alias="Member" />
 		<typeAlias type="global.sesoc.gitTest.vo.DeptList" alias="DeptList" />
 		<typeAlias type="global.sesoc.gitTest.vo.JobList" alias="JobList" />
@@ -15,7 +16,7 @@
 	
 	<!-- 매퍼 파일 위치 설정 -->
 	<mappers>
-<!--     	<mapper resource="mappers/ConfMapper.xml"/> -->
+    	<mapper resource="mappers/ConfMapper.xml"/>
     	<mapper resource="mappers/MemberMapper.xml"/>
     	<mapper resource="mappers/MessageMapper.xml"/>
 	</mappers>
