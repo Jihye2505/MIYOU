@@ -11,6 +11,7 @@ public interface MemberDAO {
 	public int insertMember(Member member) throws Exception;
 	public int update(Member member) throws Exception;
 	public Member selectOne(String loginNum) throws Exception;
+	public List<Member> search(String loginNum) throws Exception;
 	public List<JobList> jobList() throws Exception;
 	public List<DeptList> deptList() throws Exception;
 	public int memberUpdate(Member member) throws Exception;

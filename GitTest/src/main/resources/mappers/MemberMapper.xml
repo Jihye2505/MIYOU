@@ -18,12 +18,23 @@
 	
 	<!-- 회원정보 업데이트 -->
 	<update id="update" parameterType="Member" >
-      update e_member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone}
-   </update>
+		update e_member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone}
+	</update>
+   
+   <!-- 관리자모드 회원정보 업데이트 -->
+	<update id="memberUpdate" parameterType="Member" >
+		update e_member set name=#{name}, manager_num=#{manager_num}, job_id=#{job_id}, dept_id=#{dept_id} where employee_num=#{employee_num}
+	</update>
+   
    
    <!-- (로그인) 1명 선택하기 -->
    <select id="selectOne" resultType="Member">
    		select * from e_member where employee_num=#{param1}
+   </select>
+   
+   <!-- 메세지 보낼때 아이디 검색하기 -->
+   <select id="search" resultType="Member">
+   		select employee_num from e_member where employee_num like #{param1}||'%'
    </select>
 	
 	<!-- jobList 받기 -->

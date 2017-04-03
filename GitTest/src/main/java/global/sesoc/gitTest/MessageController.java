@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import global.sesoc.gitTest.mapper.MemberRepository;
 import global.sesoc.gitTest.mapper.MessageRepository;
 import global.sesoc.gitTest.vo.Member;
 import global.sesoc.gitTest.vo.Message;
@@ -23,6 +25,8 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	
 	@Autowired
 	MessageRepository msgRepository;
+	@Autowired
+	MemberRepository mRepository;
 
 	
 	//메시지함
@@ -97,6 +101,25 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	public String messgeTest() {
 
 		return "Message/messageTest";
+	}
+	
+	//받는사람이 디비에 있는지 체크
+	@RequestMapping(value = "/receiverCheck", method = RequestMethod.GET)
+	public @ResponseBody String idCheck(String receiver_num, HttpSession session) {
+	   
+	   List<Member> memberList = null;
+	   String s = "";
+	   try {
+		      memberList = mRepository.search(receiver_num);
+		   } catch (Exception e) {
+		      e.printStackTrace();
+		   }
+	   for(int i = 0; i < memberList.size(); i++) {
+		   s = s + memberList.get(i).getEmployee_num() + "\n";
+	   }
+	   session.setAttribute("memberList", memberList);
+	   System.out.println(memberList);
+	   return s;
 	}
 
 }

@@ -52,7 +52,7 @@
 										</div>
 									</div>
 								</form>
-								<h2>Inbox (${unread})</h2>
+								<h2>Inbox (${unread} New Messages)</h2>
 								<div class="mail-tools tooltip-demo ">
 									<div class="btn-group pull-right">
 										<button class="btn btn-white btn-sm">

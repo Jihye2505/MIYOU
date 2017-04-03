@@ -35,11 +35,11 @@
 							<span class="title">내 업무 관리</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="dashboard2.html"> <span class="title">정보수정</span>
+						href="update"> <span class="title">정보수정</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="messages">
 							<span class="title">메시지함</span><span
-							class="label label-warning pull-right">16/70</span>
+							class="label label-warning pull-right">${unread }/${total }</span>
 					</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link nav-toggle"
@@ -76,11 +76,11 @@
 			</a>
 				<ul class="sub-menu">
 					<li class="nav-item"><a class="nav-link nav-toggle"
-						href="table_static_basic.html"> <span class="title">사원
+						href="join"> <span class="title">사원
 								등록</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link nav-toggle"
-						href="table_datatables.html"> <span class="title">사원 정보
+						href="memberUpdate"> <span class="title">사원 정보
 								수정</span>
 					</a></li>
 				</ul></li>
