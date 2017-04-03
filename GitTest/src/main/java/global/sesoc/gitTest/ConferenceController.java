@@ -157,14 +157,6 @@ public class ConferenceController {
 		return "redirect:/confList";
 	}
 	
-	@RequestMapping(value = "/myConf", method = RequestMethod.GET)
-	public String myConf(int employee_num, Model model) {
-		
-//		int result = repository.myConf(employee_num);
-		
-		return "Conf/confList";
-	}
-	
 	@RequestMapping(value = "download", method = RequestMethod.GET)
 	public String download(int conf_num, String savedfile, HttpServletResponse response){
 		
