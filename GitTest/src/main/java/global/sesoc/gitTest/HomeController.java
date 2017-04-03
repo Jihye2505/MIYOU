@@ -24,6 +24,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String insertMeeting(Model model) {
-		return "redirect:main";
+		return "main";
 	}
 }
