@@ -19,25 +19,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		
-		
-		
 		return "login";
 	}
 	
-	@RequestMapping(value = "/insertMeeting", method = RequestMethod.GET)
-	public String insertMeeting() {
-		
-		
-		
-		return "meeting";
-	}
-	
-	@RequestMapping(value = "/insertMeeting", method = RequestMethod.POST)
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String insertMeeting(Model model) {
-		
-		
-		
-		return "meeting";
+		return "redirect:main";
 	}
 }

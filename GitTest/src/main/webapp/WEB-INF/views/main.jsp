@@ -54,7 +54,7 @@
         <div class="col-lg-12">
           <h2> Calendar </h2>
           <ol class="breadcrumb">
-            <li> <a href="index.html">Home</a> </li>
+            <li> <a href="main">Home</a> </li>
             <li> <a> Page Layouts </a> </li>
             <li class="active"> <strong>Calendar</strong> </li>
           </ol>
