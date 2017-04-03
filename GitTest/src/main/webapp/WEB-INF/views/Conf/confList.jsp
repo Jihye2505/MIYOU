@@ -56,10 +56,10 @@ function countPerPage() {
 <!-- 검색 -->
 <form id="pagingForm" action="confList" method="get">
 	<select name="searchTitle">
-		<option value="title" >제목</option>
-		<option value="subtitle">내용</option>
-		<option value="employee_nums">참여자</option>
-		<option value="employee_num">담당자</option>
+		<option value="title" ${searchTitle == 'title' ? 'selected':''}>제목</option>
+		<option value="subtitle" ${searchTitle == 'subtitle' ? 'selected':''}>내용</option>
+		<option value="employee_nums" ${searchTitle == 'employee_nums' ? 'selected':''}>참여자</option>
+		<option value="employee_num" ${searchTitle == 'employee_num' ? 'selected':''}>담당자</option>
 	</select> 
 	<input type="hidden" name="page" id="page">
 	<input type="text" name="searchText" value="${searchText }"> 
