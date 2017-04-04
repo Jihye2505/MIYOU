@@ -15,7 +15,6 @@ $(document).ready(function(){
 			,url:"translate"
 			,data:myData
 			,success:function(resp){
-				alert(typeof(resp));
 				$("#translatedText").html(resp);
 			}
 		}); 

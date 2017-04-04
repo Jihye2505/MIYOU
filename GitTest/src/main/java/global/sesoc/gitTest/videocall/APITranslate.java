@@ -20,7 +20,7 @@ import global.sesoc.gitTest.vo.MiyouTranslate;
 public class APITranslate {
 
 	// parameter : user_language, original_text
-	@RequestMapping(value = "translate", method = RequestMethod.GET)
+	@RequestMapping(value = "translate", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String translate(MiyouTranslate translate) throws Exception {
 
 		JSONObject jsonObj = new JSONObject();
@@ -78,14 +78,6 @@ public class APITranslate {
 		JSONObject jsonobject1 = (JSONObject) jsonobject.get("message");
 		JSONObject jsonobject2 = (JSONObject) jsonobject1.get("result");
 		result = (String) jsonobject2.get("translatedText");
-		
-		
-		//URLEncoder.encode(result,"UTF-8");
-		//URLEncoder.encode(result,"EUC-KR");
-		URLEncoder.encode(result,"ISO-8859-1");
-		//String encodingText = new String(result.getBytes("UTF-8"),"UTF-8");
-		//System.out.println(encodingText);
-
 		return result;
 	}
 }
