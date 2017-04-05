@@ -54,11 +54,11 @@
 					class="title">Team</span> <span class="arrow"></span>
 			</a>
 				<ul class="sub-menu">
-					<li class="nav-item"><a class="nav-link" href="ui_colors.html">
+					<li class="nav-item"><a class="nav-link" href="team_process">
 							<span class="title">팀 업무</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="ui_buttons.html"> <span class="title">전체 업무 흐름 확인</span>
+						href="whole_process"> <span class="title">전체 업무 흐름 확인</span>
 					</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link nav-toggle"
