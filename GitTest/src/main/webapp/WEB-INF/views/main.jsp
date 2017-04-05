@@ -154,6 +154,9 @@
 <script>
 
   $(document).ready(function() {
+	$(this).toggleClass("active");
+	$('body').toggleClass('page-sidebar-closed'); 
+	
     $('#drop-remove').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue'
