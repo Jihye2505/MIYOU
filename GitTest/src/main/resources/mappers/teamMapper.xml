@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.gitTest.DAO.TeamDAO">
+   
+   <!-- 자신의 매니저의 정보 가져오기 -->
+   <select id="getManager" resultType="Member">
+   		select * from e_member where employee_num=#{param1}
+   </select>
+   
+   <!-- 매니저넘버가 ~~인 사원들의 리스트 가져오기 -->
+   <select id="getMembers" resultType="HashMap">
+   		select m.name, d.dept_name, p.job_name from e_member m, e_dept d, e_position p where m.manager_num=#{param1} and m.dept_id = d.dept_id and m.job_id = p.job_id
+   </select>
+	
+</mapper>

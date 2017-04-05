@@ -45,7 +45,7 @@ public class MemberController {
    @RequestMapping(value="/joinMember", method=RequestMethod.POST)
    public String join(Member member){
       try {
-		int result = mRepository.insert(member);
+		int result = mRepository.join(member);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

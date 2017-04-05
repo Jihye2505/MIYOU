@@ -21,12 +21,12 @@ public class MemberRepository {
 	@Autowired
 	SqlSession sqlsession;
 	
-	public int insert(Member member){
+	public int join(Member member){
 		int result=0;
 		
 		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
 		try {
-			result = mDAO.insertMember(member);
+			result = mDAO.join(member);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

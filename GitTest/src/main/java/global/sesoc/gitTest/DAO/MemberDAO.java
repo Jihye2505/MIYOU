@@ -8,7 +8,7 @@ import global.sesoc.gitTest.vo.Member;
 
 public interface MemberDAO {
 
-	public int insertMember(Member member) throws Exception;
+	public int join(Member member) throws Exception;
 	public int update(Member member) throws Exception;
 	public Member selectOne(String loginNum) throws Exception;
 	public List<Member> search(String loginNum) throws Exception;

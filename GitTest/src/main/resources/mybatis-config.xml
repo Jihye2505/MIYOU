@@ -19,6 +19,7 @@
     	<mapper resource="mappers/confMapper.xml"/>
     	<mapper resource="mappers/MemberMapper.xml"/>
     	<mapper resource="mappers/MessageMapper.xml"/>
+    	<mapper resource="mappers/teamMapper.xml"/>
 	</mappers>
 	
 </configuration>
