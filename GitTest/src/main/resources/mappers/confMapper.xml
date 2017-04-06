@@ -6,14 +6,14 @@
 	<insert id="insertConf_mng" parameterType="Conf_mng">
 		insert into conf_mng
 		(
-		conf_num, employee_nums, title, todate, writer, conf_date
+		conf_num, employee_nums, title, writer, conf_date
 		<if test="originalfile != null and savedfile != null" >
 		,originalfile, savedfile
 		</if> 
 		)
 		values
 		(
-		conf_num_seq.nextval, #{employee_nums}, #{title}, #{todate}, #{writer}, #{conf_date}
+		conf_mng_seq.nextval, #{employee_nums}, #{title}, #{writer}, #{conf_date}
 		<if test="originalfile != null and savedfile != null" >
 		, #{originalfile}, #{savedfile}
 		</if>
@@ -69,7 +69,15 @@
 	</select>
 	
 	<select id="calendarMyList" parameterType="String" resultType="Conf_mng">
-		select con.*, cmm.conf_date, cmm.todate, cmm.employee_nums, cmm.title, cmm.writer
+		select title, conf_date, conf_num
+		from conf_mng 
+		where deleteCheck = 0 and employee_nums like '%'||#{employee_num}||'%'
+	</select>
+	
+	<select id="getTotal" resultType="int" parameterType="map">
+		select count(*) 
+		from (select con.*, cmm.conf_date, cmm.todate, cmm.employee_nums, cmm.title, cmm.writer
+		from (select rownum rnum, n.* 
 		from (select distinct conf_num
 		from (select * 
 		from (select cm.*, ct.subtitle_id, ct.subtitle, ct.employee_num
@@ -77,14 +85,6 @@
 		from conf_mng 
 		where deleteCheck = 0) cm, conf_topic ct 
 		where cm.conf_num=ct.conf_num) conf 
-		where employee_num = #{employee_num}) 
-		)con, conf_mng cmm
-		where con.conf_num = cmm.conf_num
-	</select>
-	
-	<select id="getTotal" resultType="int" parameterType="map">
-		select count(*) 
-		from conf_mng m
 		<if test="searchTitle != null and searchText != null">
 			<choose>
 				<when test="searchTitle == 'title'">
@@ -96,9 +96,14 @@
 				<when test="searchTitle == 'employee_nums'">
 					where employee_nums like '%'||#{searchText}||'%'
 				</when>
+				<when test="searchTitle == 'employee_num'">
+					where employee_num = #{searchText}
+				</when>
 			</choose>
 		</if>
-		where deleteCheck = 0
+		) )n )con, conf_mng cmm
+		where con.conf_num = cmm.conf_num
+		order by cmm.todate desc)
 	</select>
 	
 	<select id="confList" resultType="conf_mng" parameterType="map">
@@ -134,9 +139,6 @@
 	</select>
 	
 	<select id="selectInsert" parameterType="Conf_mng" resultType="int">
-	select conf_num from conf_mng
-	where todate = #{todate} and title = #{title}
+	select max(conf_num) as conf_num from conf_mng
 	</select>
-	
-	
 </mapper>

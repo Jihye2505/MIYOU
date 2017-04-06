@@ -51,7 +51,7 @@ function countPerPage() {
 <body>
 <div>
 <h2>[ 회의 목록 ]</h2>
-<a href="login">처음으로</a>
+<a href="main">처음으로</a>
 <a href="confList?searchTitle=employee_num&page=1&searchText=${user.employee_num }">내 업무 확인</a>
 <!-- 검색 -->
 <form id="pagingForm" action="confList" method="get">
@@ -94,7 +94,7 @@ function countPerPage() {
 <c:if test="${navi.startPageGroup != 1 }" >
 	<a href="javascript:pagingForSubmit(${navi.startPageGroup-1 })" >◁◁</a>
 </c:if>
-<c:if test="${navi.currentPage != 1 }" >
+<c:if test="${navi.currentPage > 1 }" >
 	<a href="javascript:pagingForSubmit(${navi.currentPage-1 })" >◀</a>
 </c:if>
 <c:forEach var="page" begin="${navi.startPageGroup }" end="${navi.endPageGroup }">

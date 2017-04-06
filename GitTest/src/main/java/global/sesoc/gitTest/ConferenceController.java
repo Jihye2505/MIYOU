@@ -29,6 +29,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import global.sesoc.gitTest.mapper.ConfRepository;
 import global.sesoc.gitTest.util.PageNavigator;
@@ -60,7 +63,7 @@ public class ConferenceController {
 
 	@RequestMapping(value = "/insertConf", method = RequestMethod.POST)
 	public String insertConf(Conf_mng conf_mng, String conf_date2, String time,
-			@RequestParam(value = "subtitle", required = true) List<String> subtitles) {
+			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles) {
 
 		String conf_date = conf_date2 + ", " + time + ":00:00";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
@@ -78,17 +81,11 @@ public class ConferenceController {
 			Conf_topic conf_topic = new Conf_topic();
 			conf_topic.setSubtitle(subtitles.get(i));
 			conf_topics.add(conf_topic);
+			System.out.println("subtitle========" + conf_topics);
 		}
 
 		Date todate = new Date();
-		Date todate2;
-		try {
-			todate2 = sdf.parse(conf_date);
-			conf_mng.setTodate(todate2);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		conf_mng.setTodate(todate);
 
 		int result = repository.insertConf(conf_mng, conf_topics);
 
@@ -100,26 +97,13 @@ public class ConferenceController {
 			@RequestParam(value = "countPerPage", defaultValue = "10") int countPerPage,
 			@RequestParam(value = "searchText", defaultValue = "") String searchText,
 			@RequestParam(value = "page", defaultValue = "1") int currentPage, Model model) {
+		this.countPerPage = countPerPage;
 		int totalRecordsCount = 0;
 		totalRecordsCount = repository.getTotal(searchTitle, searchText);
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, currentPage, totalRecordsCount);
 		int start = navi.getStartRecord() + 1;
 		int end = navi.getStartRecord() + countPerPage;
 		List<Conf_mng> confList = repository.confList(searchTitle, searchText, start, end);
-		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
-		// for (int i = 0; i < confList.size(); i++) {
-		// String date2 = sdf.format(confList.get(i).getConf_date());
-		// System.out.println(date2);
-		// Date date;
-		// try {
-		// date = sdf.parse(date2);
-		// confList.get(i).setConf_date(date);
-		// System.out.println(confList.get(i).getConf_date());
-		// } catch (ParseException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// }
 		model.addAttribute("confList", confList);
 		model.addAttribute("total", totalRecordsCount);
 		model.addAttribute("searchTitle", searchTitle);
@@ -239,26 +223,34 @@ public class ConferenceController {
 		return null;
 	}
 
-	@RequestMapping(value = "/calendarMyList", method = RequestMethod.POST)
+	@RequestMapping(produces = "text/plain;charset=UTF-8", value = "/calendarMyList", method = RequestMethod.POST)
 	public @ResponseBody String calendarMyList(HttpSession session, Model model) {
 
 		Member member = (Member) session.getAttribute("user");
-		String employee_num = member.getEmployee_num();
-		System.out.println(employee_num);
-		List<Conf_mng> list = repository.calendarMyList(employee_num);
-		// HashMap<String, Object> list = new HashMap<>();
-		// List<HashMap<String, Object>> myList = new ArrayList<>();
-		// for (int i = 0; i < 3; i++) {
-		// list.put("conf_num", "1");
-		// list.put("title", "1");
-		// list.put("start", new Date());
-		// myList.add(list);
-		// }
-		// System.out.println(myList.toString());
+		if (member != null) {
+			String employee_num = member.getEmployee_num();
+			System.out.println("login ID : " + employee_num);
+			List<Conf_mng> list = repository.calendarMyList(employee_num);
 
-//		Gson gson = new Gson();
-//		String jsonPlace = gson.toJson(placeList);
-		return "";
+			SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
+			List<HashMap<String, Object>> calendarMyList = new ArrayList<>();
+			for (int i = 0; i < list.size(); i++) {
+				HashMap<String, Object> myList = new HashMap<>();
+				myList.put("conf_num", list.get(i).getConf_num());
+				myList.put("title", list.get(i).getTitle());
+				String conf_date2 = sdf2.format(list.get(i).getConf_date());
+				// System.out.println("conf_date2====="+conf_date2);
+				myList.put("start", conf_date2);
+				calendarMyList.add(myList);
+
+			}
+
+			Gson gson = new Gson();
+			String data = gson.toJson(calendarMyList);
+			// System.out.println(data);
+
+			return data;
+		}
+		return null;
 	}
-
 }

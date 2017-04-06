@@ -155,25 +155,16 @@
 <script>
 
   $(document).ready(function() {
-		    	var events = [];
 	  	$.ajax({
 		  	type : "post"
 		    , url : "calendarMyList"
 			, dataType : "json"
-			, data : events
 		    , success : function(data) {
-// 		    	$(data).each(function() {
-//                     events.push({
-//                         title: $(this).attr('title'),
-//                         start: $(this).attr('start'),
-//                         url: "selectConf?conf_num="+$(this).attr('conf_num')
-//                     });
-// 		    	})
-				events=data;
+        		setCalendar(data);
 		    }
 		});
   
-	  alert(JSON.stringify(events));
+	  
     $('#drop-remove').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue'
@@ -197,16 +188,16 @@
         });
 
     });
-
+  });
     /* initialize the calendar
           -----------------------------------------------------------------*/
+function setCalendar(data){
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-// 	var myList = [{"title":1, "start":new Date(y, m, d), "conf_num":1}, {"title":1, "start":new Date(y, m, d), "conf_num":1}]
+    var myList = JSON.stringify(data);
 	
-
     $('#calendar').fullCalendar({
     	
 		dayClick: function(date, jsEvent, view) {
@@ -232,13 +223,15 @@
                 $(this).remove();
             }
         },
-        events: events
+        
+        events: 
+        	eval(myList)
+        
         
         
     });
-
-});       
-
+};       
+  
   
 </script>
 </body>
