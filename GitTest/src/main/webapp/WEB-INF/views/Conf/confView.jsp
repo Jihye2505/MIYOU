@@ -82,7 +82,7 @@ function deleteCheck(){
 		</tr>
 	</c:forEach>
 </table>
-	<c:if test="${1 == conf_mng.writer}">
+	<c:if test="${user.employee_num == conf_mng.writer}">
 		<form action="updateConf" method="get">
 			<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
 			<input type="submit" value="수정">
