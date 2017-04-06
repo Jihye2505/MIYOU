@@ -63,7 +63,7 @@ CREATE TABLE conf_topic
 	subtitle varchar2(4000) NOT NULL,
 	employee_num varchar2(10),
 	conf_num number NOT NULL,
-	process number,
+	process number default 0,
 	PRIMARY KEY (subtitle_id)
 );
 
