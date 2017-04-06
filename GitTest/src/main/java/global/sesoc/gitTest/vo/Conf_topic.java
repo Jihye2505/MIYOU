@@ -7,7 +7,7 @@ public class Conf_topic implements Serializable{
 	private int subtitle_id;
 	private int conf_num;
 	private String subtitle;
-	private int employee_num;
+	private String employee_num;
 	private int process;
 	
 	
@@ -15,7 +15,7 @@ public class Conf_topic implements Serializable{
 		super();
 	}
 
-	public Conf_topic(int subtitle_id, int conf_num, String subtitle, int employee_num, int process) {
+	public Conf_topic(int subtitle_id, int conf_num, String subtitle, String employee_num, int process) {
 		super();
 		this.subtitle_id = subtitle_id;
 		this.conf_num = conf_num;
@@ -48,11 +48,11 @@ public class Conf_topic implements Serializable{
 		this.subtitle = subtitle;
 	}
 
-	public int getEmployee_num() {
+	public String getEmployee_num() {
 		return employee_num;
 	}
 
-	public void setEmployee_num(int employee_num) {
+	public void setEmployee_num(String employee_num) {
 		this.employee_num = employee_num;
 	}
 

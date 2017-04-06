@@ -5,17 +5,22 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +28,13 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.gitTest.mapper.ConfRepository;
 import global.sesoc.gitTest.util.PageNavigator;
 import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
+import global.sesoc.gitTest.vo.Member;
 
 @Controller
 public class ConferenceController {
@@ -150,7 +157,7 @@ public class ConferenceController {
 	public String updateConf(Conf_mng conf_mng, String conf_date2, String todate2,
 			@RequestParam(value = "subtitle_id", required = true) List<Integer> subtitle_ids,
 			@RequestParam(value = "subtitle", required = true) List<String> subtitles,
-			@RequestParam(value = "employee_num", required = true) List<Integer> employee_nums,
+			@RequestParam(value = "employee_num", required = true) List<String> employee_nums,
 			@RequestParam(value = "process", required = true) List<Integer> processes) {
 
 		SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
@@ -230,6 +237,28 @@ public class ConferenceController {
 			}
 		}
 		return null;
+	}
+
+	@RequestMapping(value = "/calendarMyList", method = RequestMethod.POST)
+	public @ResponseBody String calendarMyList(HttpSession session, Model model) {
+
+		Member member = (Member) session.getAttribute("user");
+		String employee_num = member.getEmployee_num();
+		System.out.println(employee_num);
+		List<Conf_mng> list = repository.calendarMyList(employee_num);
+		// HashMap<String, Object> list = new HashMap<>();
+		// List<HashMap<String, Object>> myList = new ArrayList<>();
+		// for (int i = 0; i < 3; i++) {
+		// list.put("conf_num", "1");
+		// list.put("title", "1");
+		// list.put("start", new Date());
+		// myList.add(list);
+		// }
+		// System.out.println(myList.toString());
+
+//		Gson gson = new Gson();
+//		String jsonPlace = gson.toJson(placeList);
+		return "";
 	}
 
 }

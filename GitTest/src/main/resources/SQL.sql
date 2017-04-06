@@ -43,8 +43,10 @@ CREATE TABLE conf_mng
 	todate date DEFAULT SYSDATE NOT NULL,
 	-- 회의 참석자
 	-- 다국적, 우리회사, 다른회사
-	employee_num varchar2(1000) NOT NULL,
+	employee_nums varchar2(1000) NOT NULL,
 	title varchar2(20) NOT NULL,
+	writer varchar2(20) NOT NULL,
+	deleteCheck number default 0 NOT NULL,
 	savedfile varchar2(30) NOT NULL,
 	originalfile varchar2(30) NOT NULL,
 	PRIMARY KEY (conf_num)
@@ -55,7 +57,7 @@ CREATE TABLE conf_topic
 (
 	subtitle_id number NOT NULL,
 	subtitle varchar2(4000) NOT NULL,
-	employee_num number,
+	employee_num varchar2(10),
 	conf_num number NOT NULL,
 	process number,
 	PRIMARY KEY (subtitle_id)
@@ -139,7 +141,7 @@ ALTER TABLE e_member
 
 /* Comments */
 
-COMMENT ON COLUMN conf_mng.employee_num IS '회의 참석자
+COMMENT ON COLUMN conf_mng.employee_nums IS '회의 참석자
 다국적, 우리회사, 다른회사';
 COMMENT ON COLUMN e_message.employee_num IS '보내는 사람 사원번호
 ';
