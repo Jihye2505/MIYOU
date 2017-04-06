@@ -6,8 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Team process</title>
+
+
+<!-- Bootstrap -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- adminbag main css -->
+	<link href="assets/css/main.css" rel="stylesheet">
+	
+
 </head>
 <body>
+
 
 <table border="1">
 	<tr>
@@ -18,9 +27,11 @@
 			<td>팀원(${i.NAME})</td>
 			<td>뎊아이디(${i.DEPT_NAME})</td>
 			<td>잡아이디(${i.JOB_NAME})</td>
+			<td>진행상황(${i.PROCESS}%)<div class="progress progress-mini"><div class="progress-bar" style="width: ${i.PROCESS}%;"></div></div> </td>
 		</tr>
 	</c:forEach>
 </table>
+
 
 </body>
 </html>
