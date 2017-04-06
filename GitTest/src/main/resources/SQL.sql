@@ -51,8 +51,8 @@ CREATE TABLE conf_mng
 	title varchar2(20) NOT NULL,
 	writer varchar2(20) NOT NULL,
 	deleteCheck number default 0 NOT NULL,
-	savedfile varchar2(30) NOT NULL,
-	originalfile varchar2(30) NOT NULL,
+	savedfile varchar2(30),
+	originalfile varchar2(30),
 	PRIMARY KEY (conf_num)
 );
 
