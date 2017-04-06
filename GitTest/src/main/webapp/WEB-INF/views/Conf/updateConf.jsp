@@ -35,7 +35,7 @@
 </script>
 </head>
 <body>
-<form action="updateConf" method="post">
+<form action="updateConfs" method="get">
 <table border="1">
 	<tr>
 		<td>회의 번호</td>
@@ -48,8 +48,8 @@
 		<td>${conf_mng.conf_num }</td>
 		<td><input type="text" name="employee_nums" value="${conf_mng.employee_nums }"></td>
 		<td>${conf_mng.todate }</td>
-<%-- 		<td><input type="text" name="" value="${conf_mng.conf_date }"></td> --%><td></td>
-		<td><input type="file" name="upload"></td>
+		<td><input type="text" name="conf_date2" value="${conf_mng.conf_date }"></td><td></td>
+<!-- 		<td><input type="file" name="upload"></td> -->
 	</tr>
 </table>
 <br>
@@ -73,7 +73,7 @@
 </table>
 			<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
 			<input type="hidden" name="title" value="${conf_mng.title }">
-			<input type="hidden" name="todate" value="${conf_mng.todate }">
+			<input type="hidden" name="todate2" value="${conf_mng.todate }">
 			<input type="hidden" name="writer" value="${conf_mng.writer }">
 			<input type="submit" value="수정">
 		</form>

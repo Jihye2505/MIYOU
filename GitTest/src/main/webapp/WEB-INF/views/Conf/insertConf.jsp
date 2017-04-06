@@ -105,12 +105,21 @@ function deleteInput() {
 	<div class="form-group">
 		<div class="col-sm-10">
 			제목 : <input name="title" class="form-control input-lg bottom15" type="text">
-			참여 명단 : <input name="employee_nums" class="form-control bottom15" type="text">
-			회의 날짜 : ${conf_date} <br><br>
+			참여 명단 : <input name="employee_nums" type="text">, <input name="employee_nums" type="text">, <input name="employee_nums" type="text"><br>
+			회의 날짜 : <input name="conf_date2" type="hidden" value="${conf_date}"  >${conf_date}
+			<select name="time">
+				<option value="9" >9시</option>
+				<option value="10" >10시</option>
+				<option value="11" >11시</option>
+				<option value="13" >13시</option>
+				<option value="14" >14시</option>
+				<option value="15" >15시</option>
+				<option value="16" >16시</option>
+				<option value="17" >17시</option>
+			</select><br><br>
 			안건 : <input name="subtitle" class="form-control bottom15" type="text">
-<%-- 			<input type="hidden" name="conf_date" value="${conf_date }"> --%>
 		<div id="parah"></div>
-			<input type="hidden" name="writer" value="123">
+			<input type="hidden" name="writer" value="${user.employee_num }">
 			<input name="addButton" type="button" onClick="addInput();" value="안건 추가">
 			<input type="button" value="삭제" onclick="deleteInput();">
 			<input type="submit" value="등록" onClick="frmCheck();">

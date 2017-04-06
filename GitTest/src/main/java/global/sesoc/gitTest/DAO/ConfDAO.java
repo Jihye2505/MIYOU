@@ -17,4 +17,5 @@ public interface ConfDAO {
    public int selectInsert(Conf_mng conf_mng) throws Exception;
    public int getTotal(Map<String, String> search) throws Exception;
    public List<Conf_mng> confList(Map<String, String> search) throws Exception;
+   public List<Conf_mng> calendarMyList(String employee_num) throws Exception;
 }

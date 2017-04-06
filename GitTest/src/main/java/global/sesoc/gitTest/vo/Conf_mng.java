@@ -6,7 +6,7 @@ public class Conf_mng {
 
 	private int conf_num;
 	private Date conf_date;
-	private String todate;
+	private Date todate;
 	private String employee_nums;
 	private String title;
 	private String savedfile;
@@ -20,7 +20,7 @@ public class Conf_mng {
 	}
 
 
-	public Conf_mng(int conf_num, Date conf_date, String todate, String employee_nums, String title, String savedfile,
+	public Conf_mng(int conf_num, Date conf_date, Date todate, String employee_nums, String title, String savedfile,
 			String originalfile, String writer, int deleteCheck) {
 		super();
 		this.conf_num = conf_num;
@@ -55,12 +55,12 @@ public class Conf_mng {
 	}
 
 
-	public String getTodate() {
+	public Date getTodate() {
 		return todate;
 	}
 
 
-	public void setTodate(String todate) {
+	public void setTodate(Date todate) {
 		this.todate = todate;
 	}
 

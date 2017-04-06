@@ -24,6 +24,7 @@ public class ConfRepository {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
+		System.out.println(conf_mng);
 		int result = 0;
 		try {
 			result = dao.insertConf_mng(conf_mng);
@@ -69,7 +70,6 @@ public class ConfRepository {
 			for (int i = 0; i < conf_topics.size(); i++) {
 				if (result == 1) {
 					Conf_topic conf_topic = conf_topics.get(i);
-					System.out.println(conf_topic.toString()+"--------repository");
 					result = dao.updateConf_topic(conf_topic);
 				}
 			}
@@ -151,6 +151,22 @@ public class ConfRepository {
 		}
 		
 		return total;
+		
+	}
+	
+public List<Conf_mng> calendarMyList(String employee_num){
+		
+		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
+		
+		List<Conf_mng> calendarMyList = null;
+		try {
+			calendarMyList = dao.calendarMyList(employee_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return calendarMyList;
 		
 	}
 }
