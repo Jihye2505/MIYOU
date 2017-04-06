@@ -47,4 +47,9 @@
 		select * from e_dept order by dept_id
 	</select>
 	
+	<select id="toList" resultType="String">
+   		select employee_num from e_member
+   </select>
+	
+	
 </mapper>

@@ -110,4 +110,16 @@ public class MemberRepository {
 		   return result;
 	}
 	
+	public List<String> toList(){
+		List<String> toList=null;
+		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		try {
+			toList = mDAO.toList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return toList;
+	}
+	
 }

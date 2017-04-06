@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sent Messages</title>
+<title>Trash</title>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- mailbox -->
@@ -40,35 +40,37 @@
 					<div class="row">
 						<%@ include file="messageSide.jspf"%>
 						<div class="col-lg-10 animated fadeInRight">
+						
+						<form method="post" action="deleteMessage">
 							<div class="mail-box-header">
-								<form class="pull-right mail-search" method="get"
-									action="index.html">
-									<div class="input-group">
-										<input class="form-control input-sm" name="search"
-											placeholder="Search email" type="text">
-										<div class="input-group-btn">
-											<button class="btn btn-sm aqua" type="submit">
-												Search</button>
-										</div>
+								<h2>Notice</h2>
+								<div class="mail-tools tooltip-demo ">
+									<div class="btn-group pull-right">
 									</div>
-								</form>
-								<h2>Sent Messages</h2>
+									<button title="" data-placement="top" data-toggle="tooltip" class="btn btn-white btn-sm"
+										data-original-title="bye bye trash">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</div>
 							</div>
 							<div class="mail-box">
 								<table class="table table-hover table-mail">
 									<tbody>
-										<c:forEach var="m" items="${sentMessageList}">
-											<tr class="read">
-												<td class="check-mail"><span class="label label-warning pull-right">${m.checked}</span></td>
-												<td class="mail-ontact">${m.receiver_num}</td>
-												<td class="mail-subject">${m.content }</td>
+										<c:forEach var="n" items="${noticeList}">
+											<tr class="${n.checked}">
+												<td class="check-mail">
+												<input type="checkbox" class="iCheck" name="check" value="${n.message_num}"></td>
+												<td class="mail-ontact">${n.employee_num} <span class="label label-info pull-right">Notice</span></td>
+												<td class="mail-subject"><a href="readMessage?message_num=${n.message_num}">${n.content }</a></td>
 												<td></td>
-												<td class="text-right mail-date">${m.send_date}</td>
+												<td class="text-right mail-date">${n.send_date}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
+						</form>
+							
 						</div>
 					</div>
 				</div>

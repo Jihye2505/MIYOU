@@ -31,31 +31,83 @@
 <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script>
-$(function(){
-	$("#receiver_num").keyup(function(event) {
-       $.ajax({
-          type: "GET",
-          url: "receiverCheck",
-          data: {
-             "receiver_num" : $("#receiver_num").val()
-          },
-          success: function(data) {
-				var result= "<a class='check' onclick='clicked("+data+")'> "+${data}+" </a><br>";
-			
-        		$("#findResult").html(result);
-          }
-       });
-	 }); 
-});
-
-function clicked(list){
-	document.getElementById("receiver_num").value = list;
+<!-- Le styles -->
+	<!-- <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-responsive.no-icons.min.css" rel="stylesheet"> -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
+    <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
+	<!-- <link href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" rel="stylesheet"> -->
+    <style>
+      /* body {
+        padding-top: 60px; 
+      }*/
+	  h2, h3{
+		  margin : 40px 0 5px;
+	  }
+	  h3{
+		  border-bottom : 1px solid #ddd;
+		  color : #655;
+		  line-height : 30px;
+	  } */
+	  .muted.text-right{
+		  padding-right : 16%;
+		  text-align : right;
+	  }
+	 /*  section{
+		  margin-left : 20px;
+	  } */
+	  .markup a{
+		  text-decoration : none;
+	  }
+	  .markup div{
+		  display : none;
+	  }
+      section.examples p{
+		  color : #777;
+		}
+		section.examples ul{
+				margin : 5px 0;
+		}
+		section.examples article:first-child h3{
+			margin-top : 10px;
+		}
+	  	#options li{
+			color : #944;
+		}
+		#options li span{
+			font-family : Monaco, Courier;
+			color : #666;
+			font-size : 80%;
+		}
+		#options li p{
+			color : #222;
+		}
+		input.original{
+			width : 350px;
+		}
+		
+		
+.badgebox
+{
+    opacity: 0;
 }
 
-</script>
+.badgebox + .badge
+{
+    text-indent: -999999px;
+    width: 27px;
+}
 
+.badgebox:focus + .badge
+{
+    box-shadow: inset 0px 0px 5px;
+}
+
+.badgebox:checked + .badge
+{
+	text-indent: 0;
+}
+	
+</style>
 
 </head>
 <body class="page-header-fixed ">
@@ -74,30 +126,32 @@ function clicked(list){
 						<div class="col-lg-10 animated fadeInRight">
 							<div class="mail-box-header">
 
-								<h2>Compose Message</h2>
+								<h2>Compose Message</h2> 
 							</div>
 							<div class="mail-box">
 								<form method="post" class="form-horizontal" action="sendMessage">
 									<div class="mail-body">
 
 										<div class="form-group">
+											 
 											<label class="col-sm-2 control-label">To:</label>
  											
 											<div class="col-sm-10">
-												<input type="text" class="form-control" name="receiver_num" id="receiver_num">
+		<article>
+			<input type="text" value="" id="widget2" />
+			<div class="markup">
+				<div>
+					<input type="text" id="widget2_reflect" class="original" disabled="disabled" />
+					<div id="forToList"></div>
+				</div>
+			</div>
+		</article>
 											</div>
 											<span id="findResult">
 
 											</span>
 										</div>
-										<!-- <div class="form-group">
-											<label class="col-sm-2 control-label">Subject:</label>
-
-											<div class="col-sm-10">
-												<input type="text" class="form-control" name="subject" >
-											</div>
-										</div> -->
-										<!-- </form> -->
+										
 									</div>
 
 									<div class="mail-text">
@@ -196,12 +250,11 @@ function clicked(list){
 									</div>
 								<div class="mail-body text-right tooltip-demo">
 										<!-- <i class="fa fa-reply"></i> -->
-										<input type="submit" value="Send" class="btn aqua  btn-sm btn-primary">
+										<label for="warning" class="btn btn-warning">Notice <input type="checkbox" id="warning" class="badgebox" value="R" name="notice" onclick="save(this)"><span class="badge">&check;</span></label>
+										<input type="submit" value="Send" class="btn aqua btn-primary">
 								</div>
 								</form>
 								<div class="clearfix"></div>
-
-
 
 							</div>
 						</div>
@@ -236,6 +289,34 @@ function clicked(list){
 	<!-- main js -->
 	<script src="resources/assets/js/main.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	
+    <script src="resources/assets/js/inputosaurus.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+	<script src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 
+	<script>
+		$('#widget2').inputosaurus({
+			width : '350px',
+			autoCompleteSource : ${toList },
+			activateFinalResult : true,
+			change : function(ev){
+				$('#widget2_reflect').val(ev.target.value);
+				var forToList = document.getElementById("forToList");
+				forToList.innerHTML="<input type='text' name='receiver_num' hidden='hidden' value="+ev.target.value+">";
+			}
+		});
+	
+		$('.markup').on('click', 'a', function(ev){ $(ev.currentTarget).next('div').toggle();});
+		prettyPrint();
+		
+		function save(obj) {
+			if($("input:checkbox[id='warning']").is(":checked")==true){
+				obj.value = 'N';
+			} 
+		}
+		
+	</script>
 </body>
 </html>

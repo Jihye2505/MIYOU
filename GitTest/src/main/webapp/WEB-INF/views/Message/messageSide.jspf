@@ -2,8 +2,7 @@
 	<div class="ibox float-e-margins">
 		<div class="ibox-content mailbox-content">
 			<div class="file-manager">
-				<a href="messageCompose" class="btn btn-block aqua  ">Compose
-					Mail</a>
+				<a href="messageCompose" class="btn btn-block aqua  ">Send Message</a>
 				<div class="space-25"></div>
 				<h5>Folders</h5>
 				<ul class="folder-list m-b-md">
@@ -13,9 +12,10 @@
 					<li><a href="sentMessage"> <i class="fa fa-envelope-o"></i>
 							Sent Message
 					</a></li>
-					<li><a href="mailbox.html"> <i class="fa fa-certificate"></i>
+					<li><a href="notice"> <i class="fa fa-certificate"></i>
 							Notice
 					</a></li>
+					<li><a href="trash"> <i class="fa fa-trash-o"></i> Trash</a></li>
 					<!--  <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger pull-right">50</span></a></li> -->
 				</ul>
 				<div class="clearfix"></div>

@@ -27,6 +27,19 @@
 <link href="resources/assets/css/skins/all.css" rel="stylesheet">
 <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
+
+<script type="text/javascript">
+	function btnSubmit(choice) {
+		if(choice==1){
+			document.submitForm.action='toRead';
+		}if(choice==2){
+			document.submitForm.action='toTrash';
+		}
+		
+		document.submitForm.submit();
+	}
+</script>
+
 </head>
 <body class="page-header-fixed ">
 	<%@ include file="../header.jspf"%>
@@ -40,8 +53,10 @@
 					<div class="row">
 						<%@ include file="messageSide.jspf"%>
 						<div class="col-lg-10 animated fadeInRight">
+						
+						<form method="post" name="submitForm">
 							<div class="mail-box-header">
-								<form class="pull-right mail-search" method="get"
+								<!-- <form class="pull-right mail-search" method="get"
 									action="index.html">
 									<div class="input-group">
 										<input class="form-control input-sm" name="search"
@@ -51,7 +66,7 @@
 												Search</button>
 										</div>
 									</div>
-								</form>
+								</form> -->
 								<h2>Inbox (${unread} New Messages)</h2>
 								<div class="mail-tools tooltip-demo ">
 									<div class="btn-group pull-right">
@@ -69,12 +84,12 @@
 									</a>
 									<button title="" data-placement="top" data-toggle="tooltip"
 										class="btn btn-white btn-sm"
-										data-original-title="Mark as read">
+										data-original-title="Mark as read" type="button" onclick="btnSubmit(1)">
 										<i class="fa fa-eye"></i>
 									</button>
 									<button title="" data-placement="top" data-toggle="tooltip"
 										class="btn btn-white btn-sm"
-										data-original-title="Move to trash">
+										data-original-title="Move to trash" type="button" onclick="btnSubmit(2)">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>
@@ -84,9 +99,11 @@
 									<tbody>
 										<c:forEach var="m" items="${messageList}">
 											<tr class="${m.checked}">
-												<td class="check-mail"><input type="checkbox"
-													class="iCheck "></td>
-												<td class="mail-ontact">${m.employee_num}</td>
+												<td class="check-mail">
+												<input type="checkbox" class="iCheck" name="check" value="${m.message_num}"></td>
+												<td class="mail-ontact">${m.employee_num}
+													<c:if test="${m.notice=='N'}"><span class="label label-info pull-right">Notice</span></c:if>
+												</td>
 												<td class="mail-subject"><a href="readMessage?message_num=${m.message_num}">${m.content }</a></td>
 												<td></td>
 												<td class="text-right mail-date">${m.send_date}</td>
@@ -95,6 +112,9 @@
 									</tbody>
 								</table>
 							</div>
+							</form>
+
+							
 						</div>
 					</div>
 				</div>

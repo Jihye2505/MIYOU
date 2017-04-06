@@ -95,12 +95,13 @@ CREATE TABLE e_message
 	send_date date NOT NULL,
 	receiver_num varchar2(20) NOT NULL,
 	content varchar2(1000) NOT NULL,
-	-- 0 개인 연락
-	-- 1 공지
-	notice number DEFAULT 0,
-	-- 0 안읽음
-	-- 1 읽음
+	-- R 개인 연락
+	-- N 공지
+	notice varchar2(10),
+	-- unread 안읽음
+	-- read 읽음
 	checked varchar2(10) DEFAULT 'unread',
+	trash number DEFAULT 0,
 	PRIMARY KEY (message_num)
 );
 

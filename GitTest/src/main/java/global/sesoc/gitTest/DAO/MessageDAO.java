@@ -29,4 +29,13 @@ public interface MessageDAO {
 	
 	//내가 보낸 메시지
 	public List<Message> sentMessages(String user) throws Exception;
+	
+	//메시지 쓰레기통으로 보내기
+	public int trashMessage(int message_num) throws Exception;
+	
+	//쓰레기통 리스트
+	public List<Message> trashMessages(String user) throws Exception;
+	
+	//notice 리스트
+	public List<Message> notice(String user) throws Exception;
 }

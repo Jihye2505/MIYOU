@@ -9,15 +9,15 @@ public class Message {
 	private Date send_date;
 	private String receiver_num;
 	private String content;
-	private int notice;
+	private String notice;
 	private String checked;
 
 	public Message() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Message(int message_num, String employee_num, Date send_date, String receiver_num, String content,
-			int notice, String checked) {
+			String notice, String checked) {
 		super();
 		this.message_num = message_num;
 		this.employee_num = employee_num;
@@ -68,11 +68,11 @@ public class Message {
 		this.content = content;
 	}
 
-	public int getNotice() {
+	public String getNotice() {
 		return notice;
 	}
 
-	public void setNotice(int notice) {
+	public void setNotice(String notice) {
 		this.notice = notice;
 	}
 
@@ -90,6 +90,5 @@ public class Message {
 				+ ", receiver_num=" + receiver_num + ", content=" + content + ", notice=" + notice + ", checked="
 				+ checked + "]";
 	}
-
 	
 }

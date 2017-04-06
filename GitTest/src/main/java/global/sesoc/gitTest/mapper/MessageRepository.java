@@ -122,4 +122,42 @@ public class MessageRepository {
 		
 		return result;
 	}
+	
+	public int trashMessage(int message_num){
+		int result=0;
+		
+		MessageDAO msgDAO = sqlsession.getMapper(MessageDAO.class);
+		try {
+			result = msgDAO.trashMessage(message_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public List<Message> trash(String user){
+		List<Message> trashMessages=null;
+		MessageDAO msgDAO = sqlsession.getMapper(MessageDAO.class);
+		try {
+			trashMessages = msgDAO.trashMessages(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trashMessages;
+	}
+	
+	public List<Message> notice(String user){
+		List<Message> noticeList = null;
+		MessageDAO msgDAO = sqlsession.getMapper(MessageDAO.class);
+		try {
+			noticeList = msgDAO.notice(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return noticeList;
+	}
 }
