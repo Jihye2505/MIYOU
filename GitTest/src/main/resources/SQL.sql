@@ -36,6 +36,10 @@ drop sequence message_seq;
 
 create sequence message_seq;
 
+create sequence conf_num_seq;
+
+create sequence subtitle_id_seq;
+
 CREATE TABLE conf_mng
 (
 	conf_num number NOT NULL,
