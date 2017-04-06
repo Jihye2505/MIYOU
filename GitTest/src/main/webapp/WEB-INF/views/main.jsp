@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +55,7 @@
         <div class="col-lg-12">
           <h2> Calendar </h2>
           <ol class="breadcrumb">
-            <li> <a href="main">Home</a> </li>
+            <li> <a href="index.html">Home</a> </li>
             <li> <a> Page Layouts </a> </li>
             <li class="active"> <strong>Calendar</strong> </li>
           </ol>
@@ -154,14 +155,29 @@
 <script>
 
   $(document).ready(function() {
-	$(this).toggleClass("active");
-	$('body').toggleClass('page-sidebar-closed'); 
-	
+		    	var events = [];
+	  	$.ajax({
+		  	type : "post"
+		    , url : "calendarMyList"
+			, dataType : "json"
+			, data : events
+		    , success : function(data) {
+// 		    	$(data).each(function() {
+//                     events.push({
+//                         title: $(this).attr('title'),
+//                         start: $(this).attr('start'),
+//                         url: "selectConf?conf_num="+$(this).attr('conf_num')
+//                     });
+// 		    	})
+				events=data;
+		    }
+		});
+  
+	  alert(JSON.stringify(events));
     $('#drop-remove').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue'
     });
-
     /* initialize the external events
     -----------------------------------------------------------------*/
 
@@ -188,15 +204,26 @@
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+// 	var myList = [{"title":1, "start":new Date(y, m, d), "conf_num":1}, {"title":1, "start":new Date(y, m, d), "conf_num":1}]
+	
 
     $('#calendar').fullCalendar({
+    	
+		dayClick: function(date, jsEvent, view) {
+			conf_date = date.format();
+            window.location.href = "insertConf?conf_date="+conf_date;
+	    },
+	    eventClick: function(calEvent, jsEvent, view) {
+	    	var conf_num = calEvent.conf_num;
+	    	window.location.href = "selectConf?conf_num="+conf_num;
+	    },
         header: {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
         height: 500,
-        editable: true,
+        editable: false,
         droppable: true, // this allows things to be dropped onto the calendar
         drop: function() {
             // is the "remove after drop" checkbox checked?
@@ -205,55 +232,14 @@
                 $(this).remove();
             }
         },
-        events: [{
-                title: 'All Day Event',
-                start: new Date(y, m, 1)
-            },
-            {
-                title: 'Long Event',
-                start: new Date(y, m, d - 5),
-                end: new Date(y, m, d - 2)
-            },
-            {
-                id: 999,
-                title: 'Repeating Event',
-                start: new Date(y, m, d - 3, 16, 0),
-                allDay: false
-            },
-            {
-                id: 999,
-                title: 'Repeating Event',
-                start: new Date(y, m, d + 4, 16, 0),
-                allDay: false
-            },
-            {
-                title: 'Meeting',
-                start: new Date(y, m, d, 10, 30),
-                allDay: false
-            },
-            {
-                title: 'Lunch',
-                start: new Date(y, m, d, 12, 0),
-                end: new Date(y, m, d, 14, 0),
-                allDay: false
-            },
-            {
-                title: 'Birthday Party',
-                start: new Date(y, m, d + 1, 19, 0),
-                end: new Date(y, m, d + 1, 22, 30),
-                allDay: false
-            },
-            {
-                title: 'Click for Google',
-                start: new Date(y, m, 28),
-                end: new Date(y, m, 29),
-                url: 'http://google.com/'
-            }
-        ]
+        events: events
+        
+        
     });
 
 });       
 
+  
 </script>
 </body>
 </html>
