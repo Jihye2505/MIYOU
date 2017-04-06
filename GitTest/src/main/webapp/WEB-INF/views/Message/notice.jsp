@@ -41,7 +41,7 @@
 						<%@ include file="messageSide.jspf"%>
 						<div class="col-lg-10 animated fadeInRight">
 						
-						<form method="post" action="deleteMessage">
+						<form method="post" action="toTrash">
 							<div class="mail-box-header">
 								<h2>Notice</h2>
 								<div class="mail-tools tooltip-demo ">
