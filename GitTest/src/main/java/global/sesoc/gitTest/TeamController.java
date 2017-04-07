@@ -33,9 +33,9 @@ public class TeamController {
 	    return "Team/team_process";
 	}
 	
-	@RequestMapping(value="/whole_process", method=RequestMethod.GET)
+/*	@RequestMapping(value="/whole_process", method=RequestMethod.GET)
 	public String whole_process(HttpSession session){
 		
 	    return "Team/whole_process";
-	}
+	}*/
 }
