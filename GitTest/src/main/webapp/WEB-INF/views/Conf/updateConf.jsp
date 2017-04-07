@@ -32,6 +32,7 @@
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
+
 </script>
 </head>
 <body>
@@ -64,8 +65,9 @@
 	
 	<c:forEach var="conf_topic" items="${list_topic }">
 		<tr>
-			<td><input type="text" name="subtitle" value="${conf_topic.subtitle }">
-			<input type="hidden" name="subtitle_id" value="${conf_topic.subtitle_id }"></td>
+			<td><textarea cols="30" rows="5" name="subtitle" >${conf_topic.subtitle }</textarea>
+			<input type="hidden" name="subtitle_id" value="${conf_topic.subtitle_id }">
+			<input type="hidden" name="subtitle" value="${conf_topic.subtitle }"></td>
 			<td><input type="text" name="employee_num" value="${conf_topic.employee_num }"></td>
 			<td><input type="text" name="process" value="${conf_topic.process }"></td>
 		</tr>
@@ -78,7 +80,7 @@
 			<input type="submit" value="수정">
 		</form>
 		<form action="confList" method="get">
-			<input type="submit" value="돌아가기">
+			<input type="button" onclick="" value="돌아가기">
 		</form>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package global.sesoc.gitTest;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
@@ -51,7 +53,7 @@ public class ConferenceController {
 	int countPerPage = 10;
 	int pagePerGroup = 5;
 
-	final String uploadPath = "/conffile";
+	final String uploadPath = "D:\\";
 
 	@RequestMapping(value = "/insertConf", method = RequestMethod.GET)
 	public String insertConf(String conf_date, Model model) {
@@ -65,29 +67,7 @@ public class ConferenceController {
 	public String insertConf(Conf_mng conf_mng, String conf_date2, String time,
 			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles) {
 
-		String conf_date = conf_date2 + ", " + time + ":00:00";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
-		Date conf_date3;
-		try {
-			conf_date3 = sdf.parse(conf_date);
-			conf_mng.setConf_date(conf_date3);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List<Conf_topic> conf_topics = new ArrayList<>();
-
-		for (int i = 0; i < subtitles.size(); i++) {
-			Conf_topic conf_topic = new Conf_topic();
-			conf_topic.setSubtitle(subtitles.get(i));
-			conf_topics.add(conf_topic);
-			System.out.println("subtitle========" + conf_topics);
-		}
-
-		Date todate = new Date();
-		conf_mng.setTodate(todate);
-
-		int result = repository.insertConf(conf_mng, conf_topics);
+		int result = repository.insertConf(conf_mng, conf_date2, time, subtitles);
 
 		return "redirect:/confList";
 	}
@@ -144,28 +124,8 @@ public class ConferenceController {
 			@RequestParam(value = "employee_num", required = true) List<String> employee_nums,
 			@RequestParam(value = "process", required = true) List<Integer> processes) {
 
-		SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-		try {
-			Date conf_date = sdf2.parse(conf_date2);
-			conf_mng.setConf_date(conf_date);
-			Date todate = sdf2.parse(todate2);
-			conf_mng.setTodate(todate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ArrayList<Conf_topic> conf_topics = new ArrayList<>();
-
-		for (int i = 0; i < subtitles.size(); i++) {
-			Conf_topic conf_topic = new Conf_topic();
-			conf_topic.setConf_num(conf_mng.getConf_num());
-			conf_topic.setSubtitle_id(subtitle_ids.get(i));
-			conf_topic.setSubtitle(subtitles.get(i));
-			conf_topic.setEmployee_num(employee_nums.get(i));
-			conf_topic.setProcess(processes.get(i));
-			conf_topics.add(conf_topic);
-		}
-		int result = repository.updateConf(conf_mng, conf_topics);
+		
+		int result = repository.updateConf(conf_mng, conf_date2, todate2, subtitle_ids, subtitles, employee_nums, processes);
 
 		return "redirect:/selectConf?conf_num=" + conf_mng.getConf_num();
 	}
@@ -174,6 +134,14 @@ public class ConferenceController {
 	public String deleteConf(int conf_num, Model model) {
 
 		int result = repository.deleteConf(conf_num);
+
+		return "redirect:/confList";
+	}
+
+	@RequestMapping(value = "/insertTextFile", method = RequestMethod.POST)
+	public String insertTextFile(Conf_mng conf_mng, String stringText) {
+		
+		int result = repository.insertTextFile(conf_mng, stringText);
 
 		return "redirect:/confList";
 	}
@@ -195,7 +163,8 @@ public class ConferenceController {
 			e.printStackTrace();
 		}
 
-		String fullpath = uploadPath + "/" + conf_mng.getSavedfile();
+		String fullpath = uploadPath + conf_mng.getSavedfile();
+//		System.out.println(fullpath+"==========다운로드 경로");
 
 		ServletOutputStream fileout = null;
 		FileInputStream filein = null;

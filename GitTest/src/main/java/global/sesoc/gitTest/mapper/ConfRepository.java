@@ -1,9 +1,15 @@
 package global.sesoc.gitTest.mapper;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,11 +26,34 @@ public class ConfRepository {
 	@Autowired
 	SqlSession sqlSession;
 
-	public int insertConf(Conf_mng conf_mng, List<Conf_topic> conf_topics) {
+	public int insertConf(Conf_mng conf_mng, String conf_date2, String time, List<String> subtitles) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
-		System.out.println(conf_mng);
+		String conf_date = conf_date2 + ", " + time + ":00:00";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
+		Date conf_date3;
+		try {
+			conf_date3 = sdf.parse(conf_date);
+			conf_mng.setConf_date(conf_date3);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Conf_topic> conf_topics = new ArrayList<>();
+
+		for (int i = 0; i < subtitles.size(); i++) {
+			Conf_topic conf_topic = new Conf_topic();
+			conf_topic.setSubtitle(subtitles.get(i));
+			conf_topics.add(conf_topic);
+//			System.out.println("subtitle========" + conf_topics);
+		}
+
+		Date todate = new Date();
+		conf_mng.setTodate(todate);
+		
+		
+//		System.out.println(conf_mng);
 		int result = 0;
 		try {
 			result = dao.insertConf_mng(conf_mng);
@@ -60,10 +89,32 @@ public class ConfRepository {
 		return result;
 	}
 
-	public int updateConf(Conf_mng conf_mng, ArrayList<Conf_topic> conf_topics) {
+	public int updateConf(Conf_mng conf_mng, String conf_date2, String todate2, List<Integer> subtitle_ids, List<String> subtitles, List<String> employee_nums, List<Integer> processes) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
+		SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		try {
+			Date conf_date = sdf2.parse(conf_date2);
+			conf_mng.setConf_date(conf_date);
+			Date todate = sdf2.parse(todate2);
+			conf_mng.setTodate(todate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<Conf_topic> conf_topics = new ArrayList<>();
+
+		for (int i = 0; i < subtitles.size(); i++) {
+			Conf_topic conf_topic = new Conf_topic();
+			conf_topic.setConf_num(conf_mng.getConf_num());
+			conf_topic.setSubtitle_id(subtitle_ids.get(i));
+			conf_topic.setSubtitle(subtitles.get(i));
+			conf_topic.setEmployee_num(employee_nums.get(i));
+			conf_topic.setProcess(processes.get(i));
+			conf_topics.add(conf_topic);
+		}
+		
 		int result = 0;
 		try {
 			result = dao.updateConf_mng(conf_mng);
@@ -145,7 +196,7 @@ public class ConfRepository {
 		
 		try {
 			total = dao.getTotal(search);
-			System.out.println("total============"+total);
+//			System.out.println("total============"+total);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -168,6 +219,40 @@ public class ConfRepository {
 		}
 		
 		return calendarMyList;
+		
+	}
+	
+	public int insertTextFile(Conf_mng conf_mng, String stringText){
+		
+		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
+		
+//		System.out.println(stringText);
+		String[] s = stringText.split("[\r\n\t]");
+		BufferedWriter out;
+		try {
+			out = new BufferedWriter(new FileWriter("D:\\"+conf_mng.getConf_num()+".txt"));
+			for (int i = 0; i < s.length; i++) {
+				out.write(s[i]);
+				out.newLine();
+			}
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		conf_mng.setOriginalfile(conf_mng.getConf_num()+".txt");
+		conf_mng.setSavedfile(conf_mng.getConf_num()+".txt");
+		
+		int result= 0;
+		try {
+			result = dao.insertTextFile(conf_mng);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 		
 	}
 }

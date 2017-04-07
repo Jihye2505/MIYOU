@@ -34,7 +34,7 @@
 <script type="text/javascript">
 
 function deleteCheck(){
-	var check = confirm("삭제")
+	var check = confirm("삭제");
 	if(check) alert("삭제완료");
 	else alert("취소");
 	return;
@@ -58,7 +58,7 @@ function deleteCheck(){
 		<td>${conf_mng.conf_date }</td>
 		<td>
 			<c:if test="${conf_mng.originalfile != null}">
-				<a href="download?conf_num=${conf_mng.conf_num }">${conf_mng.originalfile}></a>
+				<a href="download?conf_num=${conf_mng.conf_num }">${conf_mng.originalfile}</a>
 				<img src="download?conf_num=${conf_mng.conf_num }">
 			</c:if>
 		</td>
@@ -82,7 +82,7 @@ function deleteCheck(){
 		</tr>
 	</c:forEach>
 </table>
-	<c:if test="${1 == conf_mng.writer}">
+	<c:if test="${user.employee_num == conf_mng.writer}">
 		<form action="updateConf" method="get">
 			<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
 			<input type="submit" value="수정">
@@ -92,5 +92,12 @@ function deleteCheck(){
 			<input type="submit" value="삭제">
 		</form>
 	</c:if>
+	
+	
+	<form action="insertTextFile" method="post">
+	<textarea rows="10" cols="50" name="stringText"></textarea>
+	<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
+	<input type="submit" value="ㄱㄱ">
+</form>
 </body>
 </html>

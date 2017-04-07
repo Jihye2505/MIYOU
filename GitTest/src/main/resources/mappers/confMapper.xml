@@ -141,4 +141,10 @@
 	<select id="selectInsert" parameterType="Conf_mng" resultType="int">
 	select max(conf_num) as conf_num from conf_mng
 	</select>
+	
+	<update id="insertTextFile" parameterType="Conf_mng">
+		update conf_mng set
+		originalfile = #{originalfile}, savedfile = #{savedfile}
+		where conf_num = #{conf_num}
+	</update>
 </mapper>
