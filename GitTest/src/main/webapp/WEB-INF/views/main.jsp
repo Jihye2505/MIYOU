@@ -155,6 +155,10 @@
 <script>
 
   $(document).ready(function() {
+	  
+	    $(this).toggleClass("active");
+		$('body').toggleClass('page-sidebar-closed');  
+	  
 	  	$.ajax({
 		  	type : "post"
 		    , url : "calendarMyList"
