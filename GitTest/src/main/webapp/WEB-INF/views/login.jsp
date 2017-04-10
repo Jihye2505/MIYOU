@@ -25,6 +25,31 @@
 	<link href="resources/assets/css/main.media.css" rel="stylesheet">
 	<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 	<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script>
+	$(function(){
+		$('#btn').on('click', function() {
+			$.ajax({
+				type: 'POST',
+				url: 'login',
+				data: {
+						"employee_num" : $("#employee_num").val(),
+						"password" : $("#password").val()
+					},
+				success: function(data) {
+					 if(data == "false"){
+						 alert("잘못입력하셨습니다.");
+						 $("#password").val("");
+					 }
+					 else {
+						 location.href = 'main';
+					 }
+				}
+			});
+		});
+	});
+</script>
+
 </head>
 
 
@@ -40,15 +65,15 @@
   </div>
   <h3>Start your meeting with MIYOU</h3>
   <p>Now, don't panic even when you meet foreign fellows.</p>
-  <form action="login"  class="top15" method="post">
+  <!-- <form action="login"  class="top15" method="post"> -->
     <div class="form-group">
-      <input required="" placeholder="Username" class="form-control" type="text" name="employee_num">
+      <input required="" placeholder="Username" class="form-control" type="text" name="employee_num" id="employee_num">
     </div>
     <div class="form-group">
-      <input required="" placeholder="Password" class="form-control" type="password" name="password">
+      <input required="" placeholder="Password" class="form-control" type="password" name="password" id="password">
     </div>
-    <button class="btn aqua block full-width bottom15" type="submit">Login</button>
-  </form>
+    <button class="btn aqua block full-width bottom15" id="btn">Login</button><!-- <button class="btn aqua block full-width bottom15" type="submit" id="btn">Login</button> -->
+  <!-- </form> -->
   <p class=" copyR"> <small>SCIT KYSP &copy; 2017</small> </p>
 </div>
 </body>

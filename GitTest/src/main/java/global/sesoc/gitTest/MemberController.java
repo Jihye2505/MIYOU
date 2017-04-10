@@ -1,14 +1,19 @@
 package global.sesoc.gitTest;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,8 +65,9 @@ public class MemberController {
       return "login";
    }
    
+
    @RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Member member, HttpSession session) {
+	public @ResponseBody String login(Member member, HttpSession session) {
 	   String loginNum = member.getEmployee_num();
 		String loginPw = member.getPassword();
 		Member user = mRepository.selectOne(loginNum);
@@ -73,12 +79,9 @@ public class MemberController {
 			session.setAttribute("unread", unread);
 			return "main";
 		}
-		else {
-			//안됐을경우 안됐다고 팝업을 띄우고싶은데... 
-		}
-		return "redirect:/";
+		else return "false";
 	}
-   
+
    
    @RequestMapping(value="/update", method=RequestMethod.GET)
    public String update(){
