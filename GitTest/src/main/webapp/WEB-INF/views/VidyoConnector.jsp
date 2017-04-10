@@ -137,6 +137,12 @@
 	// Runs when the page loads
 	$(function() {
 			joinViaBrowser();
+
+			$("#messege1").on('click',function(){
+				var mesg = $("#msg").val();
+				
+				vidyoConnector.SendChatMessage(mesg);
+			});
 	});
 	</script>
 </head>
@@ -220,6 +226,8 @@ to hook up all of the events to elements. -->
 		<!-- This button mutes and unmutes the users' microphone. -->
 		<button id="microphoneButton" title="Microphone Privacy" class="toolbarButton microphoneOn"></button>
 		
+		<input type="button" id="messege1" value="sending"></button>
+		<input type="text" id="msg" name="msg">
 		
 		
 		<span id="connectionStatus">Initializing</span>

@@ -21,7 +21,7 @@ public class VideoController {
 				+ "NmIzNGVmNTUwODRiYThjY2JmNmFjMDRjZjYzZjRiMjYxM2NjMDFmYzAwZjg"
 				+ "0NDA1NmQ3MjE0MjMwMzg=";
 		session.setAttribute("token", token);
-		return "connection";
+		return "VidyoConnector";
 	}
 	
 	@RequestMapping(value="catchVoice", method=RequestMethod.GET)
