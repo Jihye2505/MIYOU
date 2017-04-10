@@ -39,6 +39,12 @@
     <!-- END LOGO -->
     <!-- BEGIN TOP NAVIGATION MENU -->
 	<%@ include file="header.jspf"%>
+
+	<script>
+	function lockscreen() {
+		location.replace("lockscreen.html");
+	}
+	</script>
     <!-- END TOP NAVIGATION MENU -->
   </div>
   <!-- END HEADER INNER -->
