@@ -5,9 +5,9 @@
 <div class="page-sidebar-wrapper">
 	<div class="page-sidebar">
 		<ul class="page-sidebar-menu  page-header-fixed ">
-			<li class="sidebar-search-wrapper">
+			 <li class="sidebar-search-wrapper">
 				<!-- START RESPONSIVE SEARCH FORM -->
-				<form class="sidebar-search  " action="search_results.html"
+				<!-- <form class="sidebar-search  " action="search_results.html"
 					method="POST">
 					<a href="javascript:;" class="remove"> <i class="icon-close"></i>
 					</a>
@@ -18,8 +18,10 @@
 						</a>
 						</span>
 					</div>
-				</form> <!-- END RESPONSIVE SEARCH FORM -->
-			</li>
+				</form> --> <!-- END RESPONSIVE SEARCH FORM -->
+			</li> 
+			<li>&nbsp;</li><li>&nbsp;</li>
+			
 			<li class="heading">
 				<h3 class="uppercase">MENU</h3>
 			</li>
@@ -82,20 +84,22 @@
 
 
 			<!-- 관리자만 보이는 관리자 메뉴 -->
-			<li class="nav-item"><a class="nav-link nav-toggle"
-				href="javascript:;"> <i class="fa fa-sitemap"></i> <span
-					class="title">Manager's</span> <span class="arrow"></span>
-			</a>
-				<ul class="sub-menu">
-					<li class="nav-item"><a class="nav-link nav-toggle"
-						href="join"> <span class="title">사원
-								등록</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link nav-toggle"
-						href="memberUpdate"> <span class="title">사원 정보
-								수정</span>
-					</a></li>
-				</ul></li>
+			<c:if test="${user.dept_id == 100}">
+				<li class="nav-item"><a class="nav-link nav-toggle"
+					href="javascript:;"> <i class="fa fa-sitemap"></i> <span
+						class="title">Manager's</span> <span class="arrow"></span>
+				</a>
+					<ul class="sub-menu">
+						<li class="nav-item"><a class="nav-link nav-toggle"
+							href="join"> <span class="title">사원
+									등록</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link nav-toggle"
+							href="memberUpdate"> <span class="title">사원 정보
+									수정</span>
+						</a></li>
+					</ul></li>
+			</c:if>
 		</ul>
 	</div>
 </div>

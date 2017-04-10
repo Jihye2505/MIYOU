@@ -59,17 +59,18 @@
     <div class="page-content" >
       <div class="row wrapper border-bottom page-heading">
         <div class="col-lg-12">
-          <h2> Calendar </h2>
-          <ol class="breadcrumb">
+          <h1> Calendar </h1>
+          <!-- <ol class="breadcrumb">
             <li> <a href="index.html">Home</a> </li>
             <li> <a> Page Layouts </a> </li>
             <li class="active"> <strong>Calendar</strong> </li>
-          </ol>
+          </ol> -->
         </div>
       </div>
       <div class="wrapper-content ">
         <div class="row">
-          <div class="col-lg-3">
+        <!-- 여기는 드래거블이벤트랑 풀캘린더 설명 있던 곳-->
+          <!-- <div class="col-lg-3">
             <div class="ibox float-e-margins">
               <div class="ibox-title">
                 <h5>Draggable Events </h5>
@@ -78,17 +79,17 @@
                     <li><a href="#">Config option 1</a> </li>
                     <li><a href="#">Config option 2</a> </li>
                   </ul>
-                  <!-- /dropdown-menu -->
+                  /dropdown-menu
                   <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
-                  <!-- ibox-tools -->
+                  ibox-tools
               </div>
-              <!-- / ibox-title -->
+              / ibox-title
               <div id="demo1" class="ibox-content collapse in">
                 <div class="demo-container">
                   <div class="widgets-container">
                     <p>Drag a event and drop into callendar.</p>
                                       
-                  <!-- Drag a event list-->
+                  Drag a event list
                     <div id='external-events'>
                       <div class='fc-event'>My Event 1</div>
                       <div class='fc-event'>My Event 2</div>
@@ -118,7 +119,7 @@
                 </div>
               </div>
             </div>
-          </div>
+           --></div>
           <div class="col-lg-9">
             <div class="ibox float-e-margins">
               <div id="demo2" class="ibox-content collapse in">

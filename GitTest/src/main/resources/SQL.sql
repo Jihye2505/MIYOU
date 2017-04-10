@@ -1,12 +1,12 @@
 /* insert jobs */
-insert into e_dept (dept_id, dept_name) values (100,'영업부');
-insert into e_dept (dept_id, dept_name) values (101,'영업1팀');
-insert into e_dept (dept_id, dept_name) values (102,'영업2팀');
-insert into e_dept (dept_id, dept_name) values (103,'영업3팀');
-insert into e_dept (dept_id, dept_name) values (200,'연구소');
-insert into e_dept (dept_id, dept_name) values (201,'개발1팀');
-insert into e_dept (dept_id, dept_name) values (202,'개발2팀');
-insert into e_dept (dept_id, dept_name) values (203,'개발3팀');
+insert into e_dept (dept_id, dept_name) values (100,'관리팀');
+insert into e_dept (dept_id, dept_name) values (200,'인사팀');
+insert into e_dept (dept_id, dept_name) values (301,'영업1팀');
+insert into e_dept (dept_id, dept_name) values (302,'영업2팀');
+insert into e_dept (dept_id, dept_name) values (303,'영업3팀');
+insert into e_dept (dept_id, dept_name) values (401,'개발1팀');
+insert into e_dept (dept_id, dept_name) values (402,'개발2팀');
+insert into e_dept (dept_id, dept_name) values (403,'개발3팀');
 
 
 insert into e_position (job_id, job_name) values (10,'사장');
@@ -26,8 +26,8 @@ DROP TABLE conf_topic CASCADE CONSTRAINTS;
 DROP TABLE conf_mng CASCADE CONSTRAINTS;
 DROP TABLE e_member CASCADE CONSTRAINTS;
 DROP TABLE e_dept CASCADE CONSTRAINTS;
-DROP TABLE e_message CASCADE CONSTRAINTS;
 DROP TABLE e_position CASCADE CONSTRAINTS;
+DROP TABLE e_message CASCADE CONSTRAINTS;
 drop sequence message_seq;
 
 
@@ -68,14 +68,6 @@ CREATE TABLE conf_topic
 );
 
 
-CREATE TABLE e_dept
-(
-	dept_id varchar2(20) NOT NULL,
-	dept_name varchar2(20) NOT NULL,
-	PRIMARY KEY (dept_id)
-);
-
-
 CREATE TABLE e_member
 (
 	employee_num varchar2(10) NOT NULL,
@@ -112,6 +104,13 @@ CREATE TABLE e_message
 );
 
 
+CREATE TABLE e_dept
+(
+	dept_id varchar2(20) NOT NULL,
+	dept_name varchar2(20) NOT NULL,
+	PRIMARY KEY (dept_id)
+);
+
 CREATE TABLE e_position
 (
 	job_id varchar2(20) NOT NULL,
@@ -133,12 +132,14 @@ ALTER TABLE conf_topic
 ALTER TABLE e_member
 	ADD FOREIGN KEY (dept_id)
 	REFERENCES e_dept (dept_id)
+	on DELETE cascade 
 ;
 
 
 ALTER TABLE e_member
 	ADD FOREIGN KEY (job_id)
 	REFERENCES e_position (job_id)
+	on DELETE cascade 
 ;
 
 
