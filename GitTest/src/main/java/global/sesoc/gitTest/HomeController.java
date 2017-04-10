@@ -26,4 +26,9 @@ public class HomeController {
 	public String insertMeeting(Model model) {
 		return "main";
 	}
+	
+	@RequestMapping(value = "/about_us", method = RequestMethod.GET)
+	public String aboutUs(Model model) {
+		return "about_us";
+	}
 }
