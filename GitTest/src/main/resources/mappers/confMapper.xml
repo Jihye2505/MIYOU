@@ -13,7 +13,7 @@
 		)
 		values
 		(
-		conf_mng_seq.nextval, #{employee_nums}, #{title}, #{writer}, #{conf_date}
+		conf_num_seq.nextval, #{employee_nums}, #{title}, #{writer}, #{conf_date}
 		<if test="originalfile != null and savedfile != null" >
 		, #{originalfile}, #{savedfile}
 		</if>
