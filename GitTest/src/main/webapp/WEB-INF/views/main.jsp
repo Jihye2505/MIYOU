@@ -51,12 +51,11 @@
 </div>
 <div class="clearfix"> </div>
 <div class="page-container">
-  <!-- Start page sidebar wrapper -->
 	<%@ include file="side.jspf"%>
-  <!-- End page sidebar wrapper -->
   <!-- Start page content wrapper -->
   <div class="page-content-wrapper">
     <div class="page-content" >
+    <div class="wrapper-content ">
       <div class="row wrapper border-bottom page-heading">
         <div class="col-lg-12">
           <h1> Calendar </h1>
@@ -139,9 +138,9 @@
       
 <!-- start footer -->
 <%@ include file="footer.jspf"%>
+      </div>
     </div>
   </div>
-</div>
 <!-- Go top -->
 <a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
 <!-- Go top -->
