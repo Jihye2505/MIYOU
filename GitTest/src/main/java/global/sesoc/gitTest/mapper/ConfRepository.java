@@ -105,7 +105,7 @@ public class ConfRepository {
 		}
 		ArrayList<Conf_topic> conf_topics = new ArrayList<>();
 
-		for (int i = 0; i < subtitles.size(); i++) {
+		for (int i = 0; i < subtitle_ids.size(); i++) {
 			Conf_topic conf_topic = new Conf_topic();
 			conf_topic.setConf_num(conf_mng.getConf_num());
 			conf_topic.setSubtitle_id(subtitle_ids.get(i));
