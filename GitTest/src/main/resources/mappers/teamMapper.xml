@@ -12,7 +12,7 @@
    
    <!-- 매니저넘버가 ~~인 사원들의 리스트 가져오기 -->
    <select id="getMembers" resultType="HashMap">
-   		select m.name, d.dept_name, p.job_name, t.process, t.subtitle from e_member m, e_dept d, e_position p, conf_topic t where m.manager_num=#{param1} and m.dept_id = d.dept_id and m.job_id = p.job_id and m.employee_num = t.employee_num
+   		select m.name, d.dept_name, p.job_name, t.process, t.subtitle, c.title from e_member m, e_dept d, e_position p, conf_topic t, conf_mng c where d.dept_id = #{param1} and m.job_id = p.job_id and m.employee_num = t.employee_num and t.conf_num = c.conf_num order by m.job_id
    </select>
 	
 </mapper>

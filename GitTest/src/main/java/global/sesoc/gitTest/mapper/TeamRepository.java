@@ -30,12 +30,12 @@ public class TeamRepository {
 		return result;
 	}
 	
-	public ArrayList<HashMap<String, Object>> getMembers(String manager_num){
+	public ArrayList<HashMap<String, Object>> getMembers(String dept_id){
 		ArrayList<HashMap<String, Object>> result = null;
 		TeamDAO tDAO = sqlsession.getMapper(TeamDAO.class);
 		
 		try {
-			result = tDAO.getMembers(manager_num);
+			result = tDAO.getMembers(dept_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

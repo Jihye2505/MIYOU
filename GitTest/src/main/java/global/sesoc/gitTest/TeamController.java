@@ -23,13 +23,10 @@ public class TeamController {
 	public String team_process(HttpSession session){
 		
 		Member user = (Member) session.getAttribute("user");
-		String manager_num = user.getManager_num();
-		Member manager = tRepository.getManager(manager_num);
-		session.setAttribute("manager", manager);
 		
-		ArrayList<HashMap<String, Object>> members = tRepository.getMembers(manager_num);
+		ArrayList<HashMap<String, Object>> members = tRepository.getMembers(user.getDept_id());
 		session.setAttribute("members", members);
-		
+		System.out.println(members);
 	    return "Team/team_process";
 	}
 	

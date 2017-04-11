@@ -56,7 +56,7 @@ public class MemberController {
 		e.printStackTrace();
 	}
       
-      return "login";
+      return "main";
    }
    
    @RequestMapping(value="/login", method=RequestMethod.GET)
