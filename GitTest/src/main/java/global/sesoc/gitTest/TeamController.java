@@ -26,7 +26,6 @@ public class TeamController {
 		
 		ArrayList<HashMap<String, Object>> members = tRepository.getMembers(user.getDept_id());
 		session.setAttribute("members", members);
-		System.out.println(members);
 	    return "Team/team_process";
 	}
 	

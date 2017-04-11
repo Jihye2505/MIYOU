@@ -1,25 +1,3 @@
-/* insert jobs */
-insert into e_dept (dept_id, dept_name) values (100,'관리팀');
-insert into e_dept (dept_id, dept_name) values (200,'인사팀');
-insert into e_dept (dept_id, dept_name) values (301,'영업1팀');
-insert into e_dept (dept_id, dept_name) values (302,'영업2팀');
-insert into e_dept (dept_id, dept_name) values (303,'영업3팀');
-insert into e_dept (dept_id, dept_name) values (401,'개발1팀');
-insert into e_dept (dept_id, dept_name) values (402,'개발2팀');
-insert into e_dept (dept_id, dept_name) values (403,'개발3팀');
-
-
-insert into e_position (job_id, job_name) values (10,'사장');
-insert into e_position (job_id, job_name) values (20,'전무');
-insert into e_position (job_id, job_name) values (30,'이사');
-insert into e_position (job_id, job_name) values (40,'부장');
-insert into e_position (job_id, job_name) values (50,'차장');
-insert into e_position (job_id, job_name) values (60,'과장');
-insert into e_position (job_id, job_name) values (70,'대리');
-insert into e_position (job_id, job_name) values (80,'사원');
-
-
-
 /* Drop Tables */
 
 DROP TABLE conf_topic CASCADE CONSTRAINTS;
@@ -29,16 +7,40 @@ DROP TABLE e_dept CASCADE CONSTRAINTS;
 DROP TABLE e_position CASCADE CONSTRAINTS;
 DROP TABLE e_message CASCADE CONSTRAINTS;
 drop sequence message_seq;
-
+drop sequence conf_num_seq;
+drop sequence subtitle_id_seq;
 
 
 /* Create Tables */
 
-create sequence message_seq;
+CREATE TABLE e_member
+(
+	employee_num varchar2(10) NOT NULL,
+	password varchar2(20) NOT NULL,
+	name varchar2(20) NOT NULL,
+	manager_num varchar2(20),
+	email varchar2(30) NOT NULL,
+	language varchar2(20) NOT NULL,
+	phone varchar2(20),
+	dept_id varchar2(20) NOT NULL,
+	job_id varchar2(20) NOT NULL,
+	PRIMARY KEY (employee_num)
+);
 
-create sequence conf_num_seq;
+CREATE TABLE e_dept
+(
+	dept_id varchar2(20) NOT NULL,
+	dept_name varchar2(20) NOT NULL,
+	PRIMARY KEY (dept_id)
+);
 
-create sequence subtitle_id_seq;
+CREATE TABLE e_position
+(
+	job_id varchar2(20) NOT NULL,
+	job_name varchar2(20),
+	PRIMARY KEY (job_id)
+);
+
 
 CREATE TABLE conf_mng
 (
@@ -56,7 +58,6 @@ CREATE TABLE conf_mng
 	PRIMARY KEY (conf_num)
 );
 
-
 CREATE TABLE conf_topic
 (
 	subtitle_id number NOT NULL,
@@ -65,21 +66,6 @@ CREATE TABLE conf_topic
 	conf_num number NOT NULL,
 	process number default 0,
 	PRIMARY KEY (subtitle_id)
-);
-
-
-CREATE TABLE e_member
-(
-	employee_num varchar2(10) NOT NULL,
-	password varchar2(20) NOT NULL,
-	name varchar2(20) NOT NULL,
-	manager_num varchar2(20),
-	email varchar2(30) NOT NULL,
-	language varchar2(20) NOT NULL,
-	phone varchar2(20),
-	dept_id varchar2(20) NOT NULL,
-	job_id varchar2(20) NOT NULL,
-	PRIMARY KEY (employee_num)
 );
 
 
@@ -104,20 +90,12 @@ CREATE TABLE e_message
 );
 
 
-CREATE TABLE e_dept
-(
-	dept_id varchar2(20) NOT NULL,
-	dept_name varchar2(20) NOT NULL,
-	PRIMARY KEY (dept_id)
-);
 
-CREATE TABLE e_position
-(
-	job_id varchar2(20) NOT NULL,
-	job_name varchar2(20),
-	PRIMARY KEY (job_id)
-);
+/* Create Sequences Keys */
 
+create sequence message_seq;
+create sequence conf_num_seq;
+create sequence subtitle_id_seq;
 
 
 /* Create Foreign Keys */
@@ -157,4 +135,22 @@ COMMENT ON COLUMN e_message.checkm IS '0 안읽음
 1 읽음';
 
 
+/* insert jobs */
+insert into e_dept (dept_id, dept_name) values (100,'관리팀');
+insert into e_dept (dept_id, dept_name) values (200,'인사팀');
+insert into e_dept (dept_id, dept_name) values (301,'영업1팀');
+insert into e_dept (dept_id, dept_name) values (302,'영업2팀');
+insert into e_dept (dept_id, dept_name) values (303,'영업3팀');
+insert into e_dept (dept_id, dept_name) values (401,'개발1팀');
+insert into e_dept (dept_id, dept_name) values (402,'개발2팀');
+insert into e_dept (dept_id, dept_name) values (403,'개발3팀');
+
+insert into e_position (job_id, job_name) values (10,'사장');
+insert into e_position (job_id, job_name) values (20,'전무');
+insert into e_position (job_id, job_name) values (30,'이사');
+insert into e_position (job_id, job_name) values (40,'부장');
+insert into e_position (job_id, job_name) values (50,'차장');
+insert into e_position (job_id, job_name) values (60,'과장');
+insert into e_position (job_id, job_name) values (70,'대리');
+insert into e_position (job_id, job_name) values (80,'사원');
 

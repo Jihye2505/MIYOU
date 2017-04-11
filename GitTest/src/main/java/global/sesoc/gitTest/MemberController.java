@@ -1,13 +1,7 @@
 package global.sesoc.gitTest;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -69,17 +63,18 @@ public class MemberController {
    @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody String login(Member member, HttpSession session) {
 	   String loginNum = member.getEmployee_num();
-		String loginPw = member.getPassword();
-		Member user = mRepository.selectOne(loginNum);
-		int total = msgRepository.countMessage(user.getEmployee_num());
-		int unread = msgRepository.countNotRead(user.getEmployee_num());
-		if(user.getEmployee_num().equals(loginNum) && user.getPassword().equals(loginPw)) {
-			session.setAttribute("user", user);
-			session.setAttribute("total", total);
-			session.setAttribute("unread", unread);
-			return "main";
-		}
-		else return "false";
+	   String loginPw = member.getPassword();
+	   Member user = mRepository.selectOne(loginNum);
+	   
+	   if(user != null && user.getEmployee_num().equals(loginNum) && user.getPassword().equals(loginPw)) {
+		   int total = msgRepository.countMessage(user.getEmployee_num());
+		   int unread = msgRepository.countNotRead(user.getEmployee_num());
+		   session.setAttribute("user", user);
+		   session.setAttribute("total", total);
+		   session.setAttribute("unread", unread);
+		   return "main";
+	   }
+	   else return "false";
 	}
 
    
@@ -155,7 +150,7 @@ public class MemberController {
 	      e.printStackTrace();
 	   }
 	      
-	     return "login";
+	     return "main";
    }
    
    @RequestMapping(value = "/idCheck", method = RequestMethod.GET)

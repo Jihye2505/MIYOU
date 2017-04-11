@@ -14,5 +14,9 @@
    <select id="getMembers" resultType="HashMap">
    		select m.name, d.dept_name, p.job_name, t.process, t.subtitle, c.title from e_member m, e_dept d, e_position p, conf_topic t, conf_mng c where d.dept_id = #{param1} and m.job_id = p.job_id and m.employee_num = t.employee_num and t.conf_num = c.conf_num order by m.job_id
    </select>
+   
+   <select id="" resultType="HashMap">
+   		select d.dept_name, count(subtitle_id) count from conf_topic t, e_member m, e_dept d where t.employee_num = m.employee_num and m.dept_id = d.dept_id and t.process = 100 group by d.dept_name
+   </select>
 	
 </mapper>
