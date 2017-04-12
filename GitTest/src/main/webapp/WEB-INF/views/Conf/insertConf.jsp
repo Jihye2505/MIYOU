@@ -30,101 +30,177 @@
 <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
+<link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
+
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-
-// var oTbl;
-// //Row 추가
-// function insRow() {
-//   oTbl = document.getElementById("addTable");
-//   var oRow = oTbl.insertRow();
-//   oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-//   var oCell = oRow.insertCell();
-
-//   //삽입될 Form Tag
-//   var frmTag = "<input type=text name=subtitle class=form-control bottom15> ";
-//   frmTag += "<input type=button value='삭제' onClick='removeRow()' class=form-control bottom15>";
-//   oCell.innerHTML = frmTag;
-// }
-// //Row 삭제
-// function removeRow() {
-//   oTbl.deleteRow(oTbl.clickedRowIndex);
-// }
-
-// function frmCheck()
-// {
-//   var frm = document.form;
-  
-//   for( var i = 0; i <= frm.elements.length - 1; i++ ){
-//      if( frm.elements[i].name == "addText" )
-//      {
-//          if( !frm.elements[i].value ){
-//              alert("텍스트박스에 값을 입력하세요!");
-//                  frm.elements[i].focus();
-// 	 return;
-//           }
-//       }
-//    }
-//  }
-
-
-var arrInput = new Array(0);
-var arrInputValue = new Array(0);
- 
-function addInput() {
-  arrInput.push(arrInput.length);
-  arrInputValue.push("");
-  display();
-}
- 
-function display() {
-  document.getElementById('parah').innerHTML="";
-  for (intI=1;intI<arrInput.length;intI++) {
-    document.getElementById('parah').innerHTML+="<input type='text' name='subtitle' class = 'form-control bottom15' >";
-  }
-}
- 
-function saveValue(intId,strValue) {
-  arrInputValue[intId]=strValue;
-}  
- 
- 
-function deleteInput() {
-  if (arrInput.length > 0) { 
-     arrInput.pop(); 
-     arrInputValue.pop();
-  }
-  display(); 
-}
-
-</script>
 
 </head>
-<body>
-<form action="insertConf" method="post">
-	<div class="form-group">
-		<div class="col-sm-10">
-			제목 : <input name="title" class="form-control input-lg bottom15" type="text">
-			참여 명단 : <input name="employee_nums" type="text">, <input name="employee_nums" type="text">, <input name="employee_nums" type="text"><br>
-			회의 날짜 : <input name="conf_date2" type="hidden" value="${conf_date}"  >${conf_date}
-			<select name="time">
-				<option value="9" >9시</option>
-				<option value="10" >10시</option>
-				<option value="11" >11시</option>
-				<option value="13" >13시</option>
-				<option value="14" >14시</option>
-				<option value="15" >15시</option>
-				<option value="16" >16시</option>
-				<option value="17" >17시</option>
-			</select><br><br>
-			안건 : <input name="subtitle" class="form-control bottom15" type="text">
-		<div id="parah"></div>
-			<input type="hidden" name="writer" value="${user.employee_num }">
-			<input name="addButton" type="button" onClick="addInput();" value="안건 추가">
-			<input type="button" value="삭제" onclick="deleteInput();">
-			<input type="submit" value="등록" onClick="frmCheck();">
+<body class="page-header-fixed ">
+	<%@ include file="../header.jspf"%>
+	<div class="clearfix"></div>
+	<div class="page-container">
+		<%@ include file="../side.jspf"%>
+		<!-- Start page content wrapper -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<div class="wrapper-content ">
+					<div class="row">
+
+<div class="col-lg-12 top20 bottom20">
+          <div class="widgets-container">
+            <h3>Conference Planning</h3>
+            <br>
+            <form action="insertConf" method="post" class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">제목</label>
+                <div class="col-sm-10">
+                  <input class="form-control input-lg bottom15" type="text" name="title">
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">참여자</label>
+                <div class="col-sm-10">
+			       <article>
+			         <input type="text" value="" id="widget2" />
+			         <div class="markup">
+			            <div>
+			               <input type="text" id="widget2_reflect" class="original" disabled="disabled" hidden="hidden">
+			               <div id="forToList"></div>
+			            </div>
+			         </div>
+			      </article>
+                  <!-- <input class="form-control" type="text"> -->
+                </div>
+                
+              </div>
+              <hr>
+              <div class="form-group">
+                <input name="conf_date2" type="hidden" value="${conf_date}" >
+                <label class="col-sm-2 control-label">${conf_date}</label>
+                <div class="col-sm-10">
+                  <select class="form-control bottom15" name="time">
+                    <option value="9" >9시</option>
+					<option value="10" >10시</option>
+					<option value="11" >11시</option>
+					<option value="13" >13시</option>
+					<option value="14" >14시</option>
+					<option value="15" >15시</option>
+					<option value="16" >16시</option>
+					<option value="17" >17시</option>
+                  </select>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">안건</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="text" name="subtitle">
+                <div id="parah"></div>
+                <br>
+				<input class="btn aqua btn-outline btn-block sbold uppercase" name="addButton" type="button" value="안건 추가">
+				<input class="btn  red btn-outline btn-block" value="안건삭제" type="button" name="delInput">
+				
+				<input type="hidden" name="writer" value="${user.employee_num }">
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                  <button class="btn btn-white" type="reset">Cancel</button>
+                  <button class="btn aqua" type="submit" onClick="frmCheck();">Register</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+					</div>
+				</div>
+				<!-- start footer -->
+				<%@ include file="../footer.jspf"%>
+			</div>
 		</div>
 	</div>
-</form>
+	<!-- Go top -->
+	<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+	<!-- Go top -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="resources/assets/js/vendor/jquery.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
+	<!-- icheck -->
+	<script src="resources/assets/js/vendor/icheck.js"></script>
+	<!-- slimscroll js -->
+	<script type="text/javascript"
+		src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
+	<!-- main js -->
+	<script src="resources/assets/js/main.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+   
+  	<script src="resources/assets/js/inputosaurus.js"></script>
+   	<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+   	<script src="https://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+   	
+<script>
+ $(function () {
+  $('#myForm').validator();
+});
+
+  $(document).ready(function(){
+            var callbacks_list = $('.demo-callbacks ul');
+            $('input.iCheck').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+              callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
+            }).iCheck({
+               checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+              increaseArea: '20%'
+            });
+          });
+  
+  //추가 버튼
+  $(document).on("click","input[name=addButton]",function(){
+       
+      var addStText =  '<br><input type="text" name="subtitle" class="form-control">';
+           
+      var inputHtml = $( "input[name=subtitle]:last" ); 
+       
+      inputHtml.after(addStText); 
+       
+  });
+   
+  //삭제 버튼
+  $(document).on("click","input[name=delInput]",function(){
+       
+      var stHtml = $( "input[name=subtitle]:last" ); 
+      var brHtml = $( "br:last" ); 
+      
+      stHtml.remove();
+      brHtml.remove();
+       
+  });
+  
+  $('#widget2').inputosaurus({
+      width : '100%',
+      autoCompleteSource : ${toList },
+      activateFinalResult : true,
+      change : function(ev){
+         $('#widget2_reflect').val(ev.target.value);
+         var forToList = document.getElementById("forToList");
+         forToList.innerHTML="<input type='text' name='employee_nums' hidden='hidden' value="+ev.target.value+">";
+      }
+   });
+
+   $('.markup').on('click', 'a', function(ev){ $(ev.currentTarget).next('div').toggle();});
+   prettyPrint();
+   
+   function save(obj) {
+      if($("input:checkbox[id='warning']").is(":checked")==true){
+         obj.value = 'N';
+      } 
+   }
+</script>
 </body>
 </html>

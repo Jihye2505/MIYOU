@@ -36,6 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import global.sesoc.gitTest.mapper.ConfRepository;
+import global.sesoc.gitTest.mapper.MemberRepository;
 import global.sesoc.gitTest.util.PageNavigator;
 import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
@@ -46,6 +47,10 @@ public class ConferenceController {
 
 	@Autowired
 	ConfRepository repository;
+	
+	//jh
+	@Autowired
+	MemberRepository mRepository;
 
 	@Autowired
 	HttpSession session;
@@ -58,6 +63,21 @@ public class ConferenceController {
 	@RequestMapping(value = "/insertConf", method = RequestMethod.GET)
 	public String insertConf(String conf_date, Model model) {
 
+		//jh
+		List<String> toList = null;
+		ArrayList<String> toList2 = new ArrayList<>();
+		try {
+			toList = mRepository.toList();
+			for (String empNum : toList) {
+				toList2.add("'"+empNum+"'");
+			}
+			toList = toList2;
+		   } catch (Exception e) {
+		      e.printStackTrace();
+		   }
+		session.setAttribute("toList", toList);
+		//end Jh
+		
 		model.addAttribute("conf_date", conf_date);
 
 		return "Conf/insertConf";
@@ -198,7 +218,6 @@ public class ConferenceController {
 		Member member = (Member) session.getAttribute("user");
 		if (member != null) {
 			String employee_num = member.getEmployee_num();
-			System.out.println("login ID : " + employee_num);
 			List<Conf_mng> list = repository.calendarMyList(employee_num);
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
