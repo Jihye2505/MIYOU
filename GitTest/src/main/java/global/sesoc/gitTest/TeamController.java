@@ -32,6 +32,8 @@ public class TeamController {
 	@RequestMapping(value="/whole_process", method=RequestMethod.GET)
 	public String whole_process(HttpSession session){
 		
+		ArrayList<HashMap<String, Object>> whole = tRepository.getWhole();
+		session.setAttribute("whole", whole);
 	    return "Team/whole_process";
 	}
 }

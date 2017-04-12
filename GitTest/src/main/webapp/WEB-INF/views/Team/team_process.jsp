@@ -42,8 +42,10 @@
 
 </head>
 <body>
-<c:if test="${user.manager_num != null}">
-	내 상사: ${user.manager_num}<br><br>
+<c:if test="${user.manager_num == null}">등록된 상사가 없습니다.</c:if>
+<c:if test="${user.manager_num != null}">내 상사: ${user.manager_num}</c:if>
+<c:if test="${members != '[]'}">
+	<br><br>
 	<table border="1">
 		<tr>
 			<td>이름</td><td>부서명</td><td>직급</td><td>진행상황</td>
@@ -65,11 +67,11 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="javascript:opened();" id="opened">상세업무 보기</a>
+	<a href="javascript:closed();" id="closed">접어두기</a>
 </c:if>
-<c:if test="${user.manager_num == null}">당신은 사장입니다.</c:if> <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="javascript:opened();" id="opened">상세업무 보기</a>
-<a href="javascript:closed();" id="closed">접어두기</a>
 &nbsp;&nbsp;
 <a href="javascript:history.back();">뒤로가기</a>
 </body>

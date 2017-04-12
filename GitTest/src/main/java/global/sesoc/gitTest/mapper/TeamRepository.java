@@ -42,6 +42,19 @@ public class TeamRepository {
 		
 		return result;
 	}
+	
+	public ArrayList<HashMap<String, Object>> getWhole(){
+		ArrayList<HashMap<String, Object>> result = null;
+		TeamDAO tDAO = sqlsession.getMapper(TeamDAO.class);
+		
+		try {
+			result = tDAO.getWhole();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	
 }
