@@ -11,7 +11,7 @@ function StartVidyoConnector(VC) {
     VC.CreateVidyoConnector({
         viewId: "renderer", // Div ID where the composited video will be rendered, see VidyoConnectorSample.html
         viewStyle: "VIDYO_CONNECTORVIEWSTYLE_Default", // Visual style of the composited renderer
-        remoteParticipants: 16,     // Maximum number of participants
+        remoteParticipants: 4,     // Maximum number of participants
         logFileFilter: "warning all@VidyoConnector info@VidyoClient",
         logFileName:"",
         userData:""
@@ -260,6 +260,43 @@ function getParticipantName(participant, cb) {
 }
 
 function handleParticipantChange(vidyoConnector) {
+	
+	// message
+	vidyoConnector.RegisterMessageEventListener({
+		  onChatMessageReceived: function(participant, chatMessage) { /*Message received from other participant */ 
+			  getParticipantName(participant, function(name) {
+				  var selectLang;
+				  var userLang = $("#language").val();
+				  if(userLanguage=="ko"){
+					  selectLang="ko";
+				  }else{
+					  selectLang="ja";
+				  }
+				  var originalText=chatMessage.body;
+				  var translatedText;
+				  var myData = {userLanguage:userLang, inputText:originalText};
+					$.ajax({
+						method:"get"
+						,url:"translate"
+						,data:myData
+						,success:function(resp){
+							$("#participantStatus").html(" "+name + " : "+resp);
+						}
+					});
+				  
+	            });
+			  
+		  }
+		}).then(function() {
+		  console.log("RegisterParticipantEventListener Success");
+		}).catch(function() {
+		  console.err("RegisterParticipantEventListener Failed");
+		});
+    
+	
+	
+	
+	
     vidyoConnector.RegisterParticipantEventListener({
         onJoined: function(participant) {
             getParticipantName(participant, function(name) {

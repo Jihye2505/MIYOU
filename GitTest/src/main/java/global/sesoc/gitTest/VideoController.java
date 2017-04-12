@@ -23,11 +23,5 @@ public class VideoController {
 		session.setAttribute("token", token);
 		return "VidyoConnector";
 	}
-	
-	@RequestMapping(value="catchVoice", method=RequestMethod.GET)
-	public String getVoice(){
-		return "videocall/catchVoice";
-	}
-	
 			
 }

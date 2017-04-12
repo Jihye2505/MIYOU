@@ -82,7 +82,6 @@
 		loadVidyoClientLibrary(true, false);
 	}
 
-
 	function loadHelperOptions() {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -135,16 +134,103 @@
 		}
 	}
 	// Runs when the page loads
+	
+	
+	// Get voice
+	var final_transcript = '';
+	var recognizing = false;
+	var ignore_onend;
+	var start_timestamp;
+	var userLanguage;
+	var recognition;
+	
+	if (!('webkitSpeechRecognition' in window)) {
+	  upgrade();
+	} else {
+	  recognition = new webkitSpeechRecognition();
+	  recognition.continuous = true;
+	  recognition.interimResults = true;
+	  recognition.onstart = function() {
+	    recognizing = true;
+	    $("#messages").html("speaking now");
+	  };
+	  recognition.onerror = function(event) {
+	    if (event.error == 'no-speech') {
+	      $("#messages").html("no-speech");
+	    }
+	    if (event.error == 'audio-capture') {
+	      $("#messages").html("no microphone");
+	    }
+	  };
+	  recognition.onend = function() {
+	    recognizing = false;
+	    if (ignore_onend) {
+	      return;
+	    }
+	    if (!final_transcript) {
+	      return;
+	    }
+	  };
+	  recognition.onresult = function(event) {
+	    var interim_transcript = '';
+	     for (var i = event.resultIndex; i < event.results.length; ++i) {
+	      if (event.results[i].isFinal) {
+	        final_transcript = event.results[i][0].transcript;
+	      } else {
+	    	  final_transcript = event.results[i][0].transcript;
+	      }
+	    } 
+	     
+	    final_transcript = capitalize(final_transcript);
+	    vidyoConnector.SendChatMessage(final_transcript);
+	  };
+	}
+	var two_line = /\n\n/g;
+	var one_line = /\n/g;
+	function linebreak(s) {
+	  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+	}
+	var first_char = /\S/;
+	function capitalize(s) {
+	  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+	}
+	
+	function startButton(event) {
+	  userLanguage = $("#language").val();
+	  if (recognizing) {
+	    recognition.stop();
+	    return;
+	  }
+	  final_transcript = '';
+		if(userLanguage == '123'){
+			recognition.lang = 'ko-KR';
+		}else{
+			recognition.lang = 'ja-JP';
+		};
+	  recognition.start();
+	  ignore_onend = false;
+	}
+	var current_style;
+	function showButtons(style) {
+	  if (style == current_style) {
+	    return;
+	  }
+	  current_style = style;
+	}
+	
+	
+	
+	// 자바스크립트 Ready
 	$(function() {
 			joinViaBrowser();
-
+			
 			$("#messege1").on('click',function(){
 				var mesg = $("#msg").val();
-				
 				vidyoConnector.SendChatMessage(mesg);
 			});
 	});
 	</script>
+	
 </head>
 
 <!-- We execute the VidyoConnectorApp library on page load
@@ -226,9 +312,12 @@ to hook up all of the events to elements. -->
 		<!-- This button mutes and unmutes the users' microphone. -->
 		<button id="microphoneButton" title="Microphone Privacy" class="toolbarButton microphoneOn"></button>
 		
-		<input type="button" id="messege1" value="sending"></button>
+		<input type="button" id="messege1" value="sending">
 		<input type="text" id="msg" name="msg">
 		
+		<input type="button" id="translate" value="translate" onclick="startButton(event)">
+		<input type="hidden" id="language" value="${user.language}">
+	
 		
 		<span id="connectionStatus">Initializing</span>
 

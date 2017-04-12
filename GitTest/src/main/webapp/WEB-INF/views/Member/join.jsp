@@ -33,32 +33,32 @@
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 function checkform(){
-		var employee_num = document.getElementById("employee_num");
-		var password = document.getElementById("password1");
-		var password2 = document.getElementById("password2");
-		var name = document.getElementById("name");
-		var job_name = document.getElementById("job_id");
-		var dept_name = document.getElementById("dept_id");
-		var email = document.getElementById("email");
-		var language = document.getElementById("language");
-		var phone = document.getElementById("phone");
-		
-		if(employee_num.value==""){
-			alert("input id");
-			return;
-		}
-		if(password.value===""){
-			alert("input password");
-			return;
-		}
-		if(password.value!=password2.value){
-			alert("check your password");
-			return;
-		}
-		if(password.value===""){
-			alert("input password");
-			return;
-		}
+	var employee_num = document.getElementById("employee_num");
+	var password = document.getElementById("password");
+	var password2 = document.getElementById("password2");
+	var name = document.getElementById("name");
+	var job_id = document.getElementById("job_id");
+	var dept_id = document.getElementById("dept_id");
+	var email = document.getElementById("email");
+	var language = document.getElementById("language");
+	var phone = document.getElementById("phone");
+	
+	if(password.value != password2.value){
+		alert("check your password");
+		return false;
+	}
+	if(job_id.value==""){
+		alert("Select Job");
+		return false;
+	}
+	if(dept_id.value==""){
+		alert("Select Department");
+		return false;
+	}
+	if(language.value==""){
+		alert("Select Language");
+		return false;
+	}
 
 };
 
@@ -88,16 +88,16 @@ function checkform(){
         <input type="text" required="" placeholder="Name" class="form-control" name="name" id="name">
       </div>
        <div class="form-group">
-        <select required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
-        <option selected="selected">Job</option>
+        <select class="form-control" name="job_id" id="job_id">
+        <option value="" selected="selected">Job</option>
         <c:forEach var="i" items="${jobList}">
         		<option value="${i.job_id}">${i.job_name}</option>     
         </c:forEach>
         </select>
       </div>
        <div class="form-group">
-        <select required="" placeholder="Department" class="form-control" name="dept_id" id="dept_id">
-        <option selected="selected">Department</option>
+        <select class="form-control" name="dept_id" id="dept_id">
+        <option value="" selected="selected">Department</option>
         <c:forEach var="i" items="${deptList}">
         		<option value="${i.dept_id}">${i.dept_name}</option>     
         </c:forEach>
@@ -107,10 +107,14 @@ function checkform(){
         <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Language" class="form-control" name="language" id="language">
+        <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone">
+       	<select class="form-control" name="language" id="language">
+	        <option value="" selected="selected">Language</option>
+	        <option value="ko">Korean</option>
+	        <option value="ja">Japanese</option>
+       	</select>
       </div>
       <br>
       <input class="btn aqua block full-width m-b" type="submit" value="Register">
