@@ -107,7 +107,7 @@ public class ConferenceController {
 		
 		Member user = (Member)session.getAttribute("user");
 		message.setEmployee_num(user.getEmployee_num());
-		message.setNotice("N");
+		message.setNotice("R");
 
 		String receivers = conf_mng.getEmployee_nums();
 		String [] toList = receivers.split(",");
