@@ -37,10 +37,12 @@ import com.google.gson.Gson;
 
 import global.sesoc.gitTest.mapper.ConfRepository;
 import global.sesoc.gitTest.mapper.MemberRepository;
+import global.sesoc.gitTest.mapper.MessageRepository;
 import global.sesoc.gitTest.util.PageNavigator;
 import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
 import global.sesoc.gitTest.vo.Member;
+import global.sesoc.gitTest.vo.Message;
 
 @Controller
 public class ConferenceController {
@@ -52,6 +54,9 @@ public class ConferenceController {
 	@Autowired
 	MemberRepository mRepository;
 
+	@Autowired
+	MessageRepository msgRepository;
+	
 	@Autowired
 	HttpSession session;
 
@@ -78,16 +83,40 @@ public class ConferenceController {
 		session.setAttribute("toList", toList);
 		//end Jh
 		
-		model.addAttribute("conf_date", conf_date);
+		String conf_date2 = conf_date.substring(0,10);
+//		System.out.println(conf_date2);
+		model.addAttribute("conf_date", conf_date2);
 
 		return "Conf/insertConf";
 	}
 
 	@RequestMapping(value = "/insertConf", method = RequestMethod.POST)
 	public String insertConf(Conf_mng conf_mng, String conf_date2, String time,
-			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles) {
+			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles
+			,HttpSession session) {
+		
+		Message message = new Message();
+		
+		String content = 
+			"회의가 등록되었습니다."
+			+"<br>일시 : "+conf_date2+", "+time+"시"
+			+"<br>회의 주제 : "+conf_mng.getTitle()
+			+"<br>참여자 명단 : "+conf_mng.getEmployee_nums();
+		System.out.println(content);
+		message.setContent(content);
+		
+		Member user = (Member)session.getAttribute("user");
+		message.setEmployee_num(user.getEmployee_num());
+		message.setNotice("N");
 
-		int result = repository.insertConf(conf_mng, conf_date2, time, subtitles);
+		String receivers = conf_mng.getEmployee_nums();
+		String [] toList = receivers.split(",");
+		for (String receiver : toList) {
+			message.setReceiver_num(receiver);
+			int result = msgRepository.sendMessage(message);
+		}
+		
+		int result2 = repository.insertConf(conf_mng, conf_date2, time, subtitles);
 
 		return "redirect:/confList";
 	}
