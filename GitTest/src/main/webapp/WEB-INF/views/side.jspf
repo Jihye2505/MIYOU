@@ -26,7 +26,7 @@
 				<h3 class="uppercase">MENU</h3>
 			</li>
 			
-			<li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-tv"></i> <span class="title">VideoConference</span> <span class="arrow"></span> </a>
+			<li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-tv"></i> <span class="title">Video Conference</span> <span class="arrow"></span> </a>
           		<ul class="sub-menu">
 					<li class="nav-item"><a class="nav-link"  href="videocall"> <span class="title">Connection</span> </a> </li>
          		 </ul>
@@ -34,7 +34,7 @@
 			
 			<li class="nav-item"><a class="nav-link nav-toggle"
 				href="javascript:;"> <i class="fa fa-th-large"></i> <span
-					class="title">Mypage</span> <span class="arrow"></span>
+					class="title">My page</span> <span class="arrow"></span>
 			</a>
 				<ul class="sub-menu">
 				<li class="nav-item"><a class="nav-link" href="myInfo">
@@ -87,7 +87,7 @@
 			<c:if test="${user.dept_id == 100}">
 				<li class="nav-item"><a class="nav-link nav-toggle"
 					href="javascript:;"> <i class="fa fa-sitemap"></i> <span
-						class="title">Manager's</span> <span class="arrow"></span>
+						class="title">Manager</span> <span class="arrow"></span>
 				</a>
 					<ul class="sub-menu">
 						<li class="nav-item"><a class="nav-link nav-toggle"
