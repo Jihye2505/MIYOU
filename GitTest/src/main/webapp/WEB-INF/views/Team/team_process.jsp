@@ -42,9 +42,11 @@
 
 </head>
 <body>
-<c:if test="${user.manager_num == null}">등록된 상사가 없습니다.</c:if>
-<c:if test="${user.manager_num != null}">내 상사: ${user.manager_num}</c:if>
+<c:if test="${members == '[]'}">
+	내 부서의 업무 진행사항이 없습니다. <br><br>
+</c:if>
 <c:if test="${members != '[]'}">
+	${members[0].DEPT_NAME} 업무 현황
 	<br><br>
 	<table border="1">
 		<tr>

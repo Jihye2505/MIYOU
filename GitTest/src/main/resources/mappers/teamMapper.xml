@@ -16,7 +16,7 @@
    </select>
    
    <select id="getWhole" resultType="HashMap">
-   		select d.dept_name, round(avg(t.process),2) aver from conf_topic t, e_member m, e_dept d where m.employee_num = t.employee_num and m.dept_id = d.dept_id group by d.dept_name order by aver desc
+   		select d.dept_id, d.dept_name, round(avg(t.process),2) aver from conf_topic t, e_member m, e_dept d where m.employee_num = t.employee_num and m.dept_id = d.dept_id group by d.dept_id, d.dept_name order by aver desc
    </select>
 	
 </mapper>

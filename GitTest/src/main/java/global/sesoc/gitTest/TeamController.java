@@ -29,6 +29,14 @@ public class TeamController {
 	    return "Team/team_process";
 	}
 	
+	@RequestMapping(value="/selected_team_process", method=RequestMethod.GET)
+	public String team_process(HttpSession session, String dept_id){
+		
+		ArrayList<HashMap<String, Object>> members = tRepository.getMembers(dept_id);
+		session.setAttribute("members", members);
+	    return "Team/team_process";
+	}
+	
 	@RequestMapping(value="/whole_process", method=RequestMethod.GET)
 	public String whole_process(HttpSession session){
 		
