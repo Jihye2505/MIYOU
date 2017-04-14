@@ -267,14 +267,13 @@ function handleParticipantChange(vidyoConnector) {
 			  getParticipantName(participant, function(name) {
 				  var selectLang;
 				  var userLang = $("#language").val();
-				  if(userLanguage=="ko"){
+				  if(userLang=="ko"){
 					  selectLang="ko";
-				  }else if(userLanguage=="ja"){
+				  }else if(userLang=="ja"){
 					  selectLang="ja";
 				  }
-				  var originalText=chatMessage.body;
-				  var translatedText;
-				  var myData = {userLanguage:userLang, inputText:originalText};
+				 var originalText=chatMessage.body;
+				 var myData = {userLanguage:userLang, inputText:originalText};
 					$.ajax({
 						method:"get"
 						,url:"translate"
@@ -293,9 +292,6 @@ function handleParticipantChange(vidyoConnector) {
 		  console.err("RegisterParticipantEventListener Failed");
 		});
     
-	
-	
-	
 	
     vidyoConnector.RegisterParticipantEventListener({
         onJoined: function(participant) {

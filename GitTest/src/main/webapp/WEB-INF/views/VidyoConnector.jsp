@@ -190,7 +190,6 @@
 					final_transcript = event.results[i][0].transcript;
 				}
 			}
-
 			final_transcript = capitalize(final_transcript);
 			vidyoConnector.SendChatMessage(final_transcript);
 		};
@@ -236,7 +235,7 @@
 		joinViaBrowser();
 		startButton(event);
 
-		$("#messege1").on("click", function() {
+		$("#chatMessege").on('click', function() {
 			var mesg = $("#msg").val();
 			vidyoConnector.SendChatMessage(mesg);
 		});
@@ -325,9 +324,9 @@ to hook up all of the events to elements. -->
 		<button id="microphoneButton" title="Microphone Privacy"
 			class="toolbarButton microphoneOn"></button>
 
-		<input type="button" id="messege1" value="sending"> <input
-			type="text" id="msg" name="msg"> <input type="button"
-			id="translate" value="translate" onclick="startButton(event)">
+		<input type="button" id="chatMessege" value="sending"> 
+		<input type="text" id="msg" name="msg">
+		<!-- <input type="button" id="translate" value="translate" onclick="startButton(event)"> -->
 		<input type="hidden" id="language" value="${user.language}"> <span
 			id="connectionStatus">Initializing</span> <span id="clientVersion"></span>
 	</div>
