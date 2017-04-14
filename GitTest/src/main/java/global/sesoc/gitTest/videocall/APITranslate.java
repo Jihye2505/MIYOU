@@ -41,11 +41,11 @@ public class APITranslate {
 
 			String postParams = null;
 			if (translate.getUserLanguage().equals("ko")) {
-				// Korean -> Japanese
-				postParams = "source=ko&target=ja&text=" + text;
-			} else if (translate.getUserLanguage().equals("ja")) {
-				// Japanese -> Korean
+				// Japanese -> Korean 
 				postParams = "source=ja&target=ko&text=" + text;
+			} else if (translate.getUserLanguage().equals("ja")) {
+				// Korean  -> Japanese -> 
+				postParams = "source=ko&target=ja&text=" + text;
 			}
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -56,18 +56,15 @@ public class APITranslate {
 			BufferedReader br;
 			if (responseCode == 200) { // 정상 호출
 				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-				System.out.println(br.toString() + "버퍼리더");
 			} else { // 에러 발생
 				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			}
 			String inputLine;
 			response = new StringBuffer();
 			while ((inputLine = br.readLine()) != null) {
-				System.out.println(inputLine + "인풋라인");
 				response.append(inputLine);
 			}
 			br.close();
-			System.out.println(response.toString());
 		} catch (Exception e) {
 			System.out.println(e);
 		}

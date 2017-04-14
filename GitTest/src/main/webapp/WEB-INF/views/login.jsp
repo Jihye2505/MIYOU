@@ -56,8 +56,7 @@
 <body class="login-layout-full login">
 <div class="page-brand-info">
   <div class="brand"> <img class="brand-img" src="resources/assets/images/miyou.png" alt="..."> </div>
-  <p class="font-size-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.</p>
+  <p class="font-size-20">Whenever you faced a big trouble, think about someone's sight always!</p>
 </div>
 <div class="loginColumns ">
   <div>

@@ -269,7 +269,7 @@ function handleParticipantChange(vidyoConnector) {
 				  var userLang = $("#language").val();
 				  if(userLanguage=="ko"){
 					  selectLang="ko";
-				  }else{
+				  }else if(userLanguage=="ja"){
 					  selectLang="ja";
 				  }
 				  var originalText=chatMessage.body;
