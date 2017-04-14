@@ -41,17 +41,6 @@
 						<%@ include file="messageSide.jspf"%>
 						<div class="col-lg-10 animated fadeInRight">
 							<div class="mail-box-header">
-								<form class="pull-right mail-search" method="get"
-									action="index.html">
-									<div class="input-group">
-										<input class="form-control input-sm" name="search"
-											placeholder="Search email" type="text">
-										<div class="input-group-btn">
-											<button class="btn btn-sm aqua" type="submit">
-												Search</button>
-										</div>
-									</div>
-								</form>
 								<h2>Sent Messages</h2>
 							</div>
 							<div class="mail-box">

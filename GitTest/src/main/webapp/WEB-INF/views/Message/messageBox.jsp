@@ -69,14 +69,6 @@
 								</form> -->
 								<h2>Inbox (${unread} New Messages)</h2>
 								<div class="mail-tools tooltip-demo ">
-									<div class="btn-group pull-right">
-										<button class="btn btn-white btn-sm">
-											<i class="fa fa-arrow-left"></i>
-										</button>
-										<button class="btn btn-white btn-sm">
-											<i class="fa fa-arrow-right"></i>
-										</button>
-									</div>
 									<a href="messages" data-placement="left" data-toggle="tooltip"
 										class="btn btn-white btn-sm"
 										data-original-title="Refresh inbox">

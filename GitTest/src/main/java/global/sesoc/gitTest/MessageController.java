@@ -68,7 +68,6 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	@RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
 	public String sendMessage(Message message, HttpSession session) {
 
-		System.out.println("메시지 보낸다!");
 		Member user = (Member)session.getAttribute("user");
 		message.setEmployee_num(user.getEmployee_num());
 		if (message.getNotice()==null) {
@@ -81,7 +80,6 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		for (String receiver : toList) {
 			message.setReceiver_num(receiver);
 			int result = msgRepository.sendMessage(message);
-			System.out.println(receiver+"에게 메시지보냇나? : " + result);
 		}
 		
 		int total = msgRepository.countMessage(user.getEmployee_num());
@@ -95,10 +93,8 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	@RequestMapping(value = "/readMessage", method = RequestMethod.GET)
 	public String readMessage(int message_num, Model model, HttpSession session) {
 
-		System.out.println("클릭한 메시지 번호 : " + message_num);
 		Message message = msgRepository.readMessage(message_num);
 		msgRepository.messageCheck(message_num);
-		System.out.println(message.toString());
 
 		model.addAttribute("message", message);
 		
@@ -114,14 +110,16 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	//메시지삭제
 	@RequestMapping(value = "/deleteMessage", method = RequestMethod.POST)
 	public String deleteMessage(String [] check, HttpSession session) {
-		for (String message : check) {
-			msgRepository.deleteMessage(Integer.parseInt(message));
+		if(check != null) {
+			for (String message : check) {
+				msgRepository.deleteMessage(Integer.parseInt(message));
+			}
+			Member user = (Member) session.getAttribute("user");
+			int total = msgRepository.countMessage(user.getEmployee_num());
+			int unread = msgRepository.countNotRead(user.getEmployee_num());
+			session.setAttribute("total", total);
+			session.setAttribute("unread", unread);
 		}
-		Member user = (Member) session.getAttribute("user");
-		int total = msgRepository.countMessage(user.getEmployee_num());
-		int unread = msgRepository.countNotRead(user.getEmployee_num());
-		session.setAttribute("total", total);
-		session.setAttribute("unread", unread);
 		return "redirect:trash";
 	}
 		
@@ -165,9 +163,21 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	//메시지를 휴지통으로 
 	@RequestMapping(value = "/toTrash", method = RequestMethod.POST)
 	public String toTrash(String [] check) {
-		for (String message : check) {
-			msgRepository.trashMessage(Integer.parseInt(message));
+		
+		if(check != null) {
+			for (String message : check) {
+				msgRepository.trashMessage(Integer.parseInt(message));
+			}
 		}
+		return "redirect:trash";
+	}
+	
+	//메시지를 휴지통으로 
+	@RequestMapping(value = "/toTrash", method = RequestMethod.GET)
+	public String toTrash(int message_num) {
+		
+		msgRepository.trashMessage(message_num);
+		
 		return "redirect:trash";
 	}
 	
@@ -186,13 +196,15 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	//메시지를 읽음으로 표시
 	@RequestMapping(value = "/toRead", method = RequestMethod.POST)
 	public String toRead(String [] check, HttpSession session) {
-		for (String message : check) {
-			msgRepository.messageCheck(Integer.parseInt(message));
-			Member user = (Member) session.getAttribute("user");
-			int total = msgRepository.countMessage(user.getEmployee_num());
-			int unread = msgRepository.countNotRead(user.getEmployee_num());
-			session.setAttribute("total", total);
-			session.setAttribute("unread", unread);
+		if(check != null) {
+			for (String message : check) {
+				msgRepository.messageCheck(Integer.parseInt(message));
+				Member user = (Member) session.getAttribute("user");
+				int total = msgRepository.countMessage(user.getEmployee_num());
+				int unread = msgRepository.countNotRead(user.getEmployee_num());
+				session.setAttribute("total", total);
+				session.setAttribute("unread", unread);
+			}
 		}
 		return "redirect:messages";
 	}

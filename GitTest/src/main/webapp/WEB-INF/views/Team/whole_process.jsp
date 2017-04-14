@@ -20,7 +20,7 @@
 	</tr>
 	<c:forEach var="i" items="${whole}">
 		<tr>
-			<td>${i.DEPT_NAME}</td>
+			<td><a href="">${i.DEPT_NAME}</a></td>
 			<td align="right">${i.AVER}%
 				<div class="progress progress-mini">
 					<div class="progress-bar" style="width: ${i.AVER}%;">

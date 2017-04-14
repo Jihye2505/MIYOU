@@ -48,7 +48,7 @@
 									<div class="btn-group pull-right">
 									</div>
 									<button title="" data-placement="top" data-toggle="tooltip" class="btn btn-white btn-sm"
-										data-original-title="bye bye trash">
+										data-original-title="Move to trash">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>

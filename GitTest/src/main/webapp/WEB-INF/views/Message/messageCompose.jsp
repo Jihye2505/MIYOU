@@ -297,7 +297,7 @@
 
    <script>
       $('#widget2').inputosaurus({
-         width : '350px',
+         width : '67%',
          autoCompleteSource : ${toList },
          activateFinalResult : true,
          change : function(ev){
