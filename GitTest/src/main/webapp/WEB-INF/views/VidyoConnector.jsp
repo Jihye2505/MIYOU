@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,13 @@
 <!-- We've provide some simple styling to get you started. -->
 <link href="resources/Vidyo/VidyoConnector.css" rel="stylesheet"
 	type="text/css">
+	
+<!-- main style -->
+<link href="resources/assets/css/main.css" rel="stylesheet">
 
 <!-- Here we load the application which knows how to
 	invoke the VidyoConnector API. -->
-
-<script
-	src="https://static.vidyo.io/4.1.9.5/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+<script	src="https://static.vidyo.io/4.1.9.5/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
 <script src="resources/Vidyo/VidyoConnector.js"></script>
 <script type="text/javascript">
 	function onVidyoClientLoaded(status) {
@@ -254,8 +256,8 @@ to hook up all of the events to elements. -->
 			<div id="optionsParameters">
 				<p>
 					<!-- The host of our backend service. -->
-					<label>Host</label> <input type="text" id="host"
-						value="prod.vidyo.io">
+					<!-- <label>Host</label> --> 
+					<input type="hidden" id="host"	value="prod.vidyo.io">
 				</p>
 				<p>
 					<!-- A token that is derived from the deveoper key assigned to your account which will allow access for this particular instance.
@@ -264,21 +266,43 @@ to hook up all of the events to elements. -->
 			For more information visit the developer section of http://vidyo.io -->
 					<!-- <label>Token</label>
 			<input type="text" id="token" placeholder="ACCESS-TOKEN" value="">  -->
-					<input type="hidden" id="token" placeholder="ACCESS-TOKEN"
-						value="${token}">
+					<input type="hidden" id="token" placeholder="ACCESS-TOKEN" value="${token}">
 				</p>
 				<p>
-					<!-- This is the display name that other users will see.
-			-->
-					<label for="displayName">Display Name</label> <input
-						id="displayName" type="text" placeholder="Display Name"
-						value="SCIT">
+					<!-- This is the display name that other users will see. -->
+					<label for="displayName">User Name</label>
+							<c:choose>
+							<c:when test="${user.dept_id == 100}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;관리팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 200}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;인사팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 301}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;영업1팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 302}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;영업2팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 303}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;영업3팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 401}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;개발1팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 402}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;개발2팀&#41;"> 
+						    </c:when>
+						    <c:when test="${user.dept_id == 403}">
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;개발3팀&#41;"> 
+						    </c:when>
+							</c:choose> 
 				</p>
 				<p>
 					<!-- This is the "room" or "space" to which you're connecting
 			the user. Other users who join this same Resource will be able to see and hear each other.
 			-->
-					<label for="resourceId">Resource ID</label> <input id="resourceId"
+					<label for="resourceId">Conference ID</label> <input id="resourceId"
 						type="text" placeholder="Conference Reference" value="${roomNum }">
 				</p>
 			</div>
@@ -330,181 +354,10 @@ to hook up all of the events to elements. -->
 		<input type="hidden" id="language" value="${user.language}"> <span
 			id="connectionStatus">Initializing</span> <span id="clientVersion"></span>
 	</div>
-	<div id="helper">
-		<table>
-			<tr>
-				<td><img class="logo" src="resources/assets/images/miyou.png" /></td>
-			</tr>
-			<tr>
-				<td id="helperText">How would you like to join the call?</td>
-			</tr>
-			<tr id="helperPicker">
-				<td>
-					<table>
-						<tr>
-							<td id="joinViaBrowser" class="hidden">
-								<div class="helperHeader">
-									<img src="resources/Vidyo/Images/web.svg"
-										onclick="javascript:joinViaBrowser()" />
-								</div>
-								<ul>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Join
-										the call immediately</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; No
-										downloads or installations</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Good
-										quality</li>
-								</ul>
-								<div class="helperFooter">
-									<a href="javascript:joinViaBrowser()">Join via the browser</a>
-								</div>
-							</td>
-							<td id="joinViaPlugIn" class="hidden">
-								<div class="helperHeader">
-									<img src="resources/Vidyo/Images/download.svg"
-										onclick="javascript:joinViaPlugIn()" />
-								</div>
-								<ul>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Join
-										meetings right from the browser</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp;
-										Share seamlessly without extensions</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Best
-										quality</li>
-								</ul>
-								<div class="helperFooter">
-									<a href="javascript:joinViaPlugIn()">Join via the plugin</a>
-								</div>
-							</td>
-							<td id="joinViaApp" class="hidden">
-								<div class="helperHeader">
-									<img src="resources/Vidyo/Images/desktop.svg"
-										onclick="javascript:joinViaApp()" />
-								</div>
-								<ul>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Join
-										meetings faster with fewer clicks</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp;
-										Share seamlessly without extensions</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Best
-										quality</li>
-								</ul>
-								<div class="helperFooter">
-									<a href="javascript:joinViaApp()">Join via the app</a>
-								</div>
-							</td>
-							<td id="joinViaOtherApp" class="hidden">
-								<div class="helperHeader">
-									<img src="resources/Vidyo/Images/download.svg"
-										onclick="javascript:joinViaOtherApp()" />
-								</div>
-								<ul>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Join
-										from any device</li>
-									<li class="helperCheck"><img
-										src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Best
-										quality</li>
-								</ul>
-								<div class="helperFooter">
-									<a href="javascript:joinViaOtherApp()">Join via the app</a>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr id="helperPlugIn" class="hidden">
-				<td>
-					<div class="helperHeader">
-						<img src="resources/Vidyo/Images/download.svg"
-							onclick="javascript:joinViaBrowser()" />
-					</div>
-					<ul>
-						<li class="helperCheck"><img
-							src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp;
-							Download and install it now</li>
-						<li class="helperCheck"><img
-							src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; The
-							plugin will launch automatically once installed</li>
-					</ul>
-					<div class="helperFooter">
-						<a id="helperPlugInDownload" href="">Download</a>
-					</div>
-				</td>
-			</tr>
-			<tr id="helperApp" class="hidden">
-				<td>
-					<div class="helperHeader">
-						<img src="resources/Vidyo/Images/download.svg"
-							onclick="javascript:joinViaApp()" />
-					</div>
-					<div>
-						<iframe id="helperAppLoader" src="" class="hidden"></iframe>
-					</div>
-					<ul>
-						<li class="helperCheck"><img
-							src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp;
-							Download and install it now</li>
-						<li class="helperCheck"><img
-							src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Launch
-							once installed</li>
-					</ul>
-					<div class="helperFooter">
-						<a id="helperAppDownload" href="">Download</a> <a
-							href="javascript:joinViaApp()">Launch</a>
-					</div>
-				</td>
-			</tr>
-			<tr id="helperOtherApp" class="hidden">
-				<td>
-					<div class="helperHeader">
-						<img src="resources/Vidyo/Images/download.svg"
-							onclick="javascript:joinViaOtherApp()" />
-					</div>
-					<div>
-						<iframe id="helperOtherAppLoader" src="" class="hidden"></iframe>
-					</div>
-					<ul>
-						<li class="helperCheck"><img
-							src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Build
-							and install from the SDK</li>
-						<li class="helperCheck"><img
-							src="resources/Vidyo/Images/checkmark.svg" />&nbsp;&nbsp; Launch
-							once installed</li>
-					</ul>
-					<div class="helperFooter">
-						<a href="javascript:joinViaOtherApp()">Launch</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div id="downloadContainerLegal">
-						By clicking &quot;Join&quot; or &quot;Download&quot;, you agree to
-						our <a target="_blank" style="color: #6a6a6a;"
-							href="http://www.vidyo.com/eula/">End-User License Agreement</a>
-						& <a target="_blank" style="color: #6a6a6a;"
-							href="http://www.vidyo.com/privacy-policy/">Privacy Policy</a>.
-					</div>
-				</td>
-			</tr>
-		</table>
-	</div>
 	<div id="failed" class="hidden">
 		<table>
 			<tr>
-				<td><img class="logo"
-					src="resources/Vidyo/Images/VidyoIcon.png" /></td>
+				<td><img class="logo" src="resources/assets/images/error.png" /></td>
 			</tr>
 			<tr>
 				<td id="failedText">Error</td>
