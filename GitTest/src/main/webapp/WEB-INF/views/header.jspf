@@ -65,6 +65,7 @@
           
           	<!-- 여기에 락 스크린 화면으로 넘어가는 거, 로그아웃 넣기 -->
           	<li> <a href="myInfo"> <i class="icon-user"></i> My Info </a> </li>
+          	<li class="divider"> </li>
             <li> <a href="javascript:lockscreen();"> <i class="icon-lock"></i> Lock Screen </a> </li>
             <li> <a href="login.html"> <i class="icon-key"></i> Log Out </a> </li>
           </ul>
