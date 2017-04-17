@@ -117,7 +117,7 @@
 						</h3>
 						<br>
 						<h3>
-							担当したパート : My page/Team/Manager
+							担当したパート : Team/Manager
 						</h3>
 						<br>
 						<p class="top15">
