@@ -231,15 +231,22 @@
 		}
 		current_style = style;
 	}
-
+	
+	
+	//Sending Message
+	function sendingMSG(){
+			var mesg = $("#msg").val();
+			vidyoConnector.SendChatMessage(mesg);
+			$("#msg").val("");
+	};
+	
 	// 자바스크립트 Ready
 	$(function() {
 		joinViaBrowser();
 		startButton(event);
 
 		$("#chatMessege").on('click', function() {
-			var mesg = $("#msg").val();
-			vidyoConnector.SendChatMessage(mesg);
+			sendingMSG();
 		});
 	});
 </script>
@@ -273,28 +280,28 @@ to hook up all of the events to elements. -->
 					<label for="displayName">User Name</label>
 							<c:choose>
 							<c:when test="${user.dept_id == 100}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;관리팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; General Affairs Dept. &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 200}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;인사팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Personnel Dept. &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 301}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;영업1팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team1 &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 302}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;영업2팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team2 &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 303}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;영업3팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team3 &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 401}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;개발1팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team1 &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 402}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;개발2팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team2 &#41;"> 
 						    </c:when>
 						    <c:when test="${user.dept_id == 403}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40;개발3팀&#41;"> 
+								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team3 &#41;"> 
 						    </c:when>
 							</c:choose> 
 				</p>
@@ -348,8 +355,8 @@ to hook up all of the events to elements. -->
 		<button id="microphoneButton" title="Microphone Privacy"
 			class="toolbarButton microphoneOn"></button>
 
+		<input type="text" id="msg" name="msg" onkeypress="if(event.keyCode==13) {sendingMSG();}">
 		<input type="button" id="chatMessege" value="sending"> 
-		<input type="text" id="msg" name="msg">
 		<!-- <input type="button" id="translate" value="translate" onclick="startButton(event)"> -->
 		<input type="hidden" id="language" value="${user.language}"> <span
 			id="connectionStatus">Initializing</span> <span id="clientVersion"></span>
