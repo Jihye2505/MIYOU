@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About Us</title>
+<title>About Us - Team KYSP</title>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- icheck -->
@@ -130,7 +130,7 @@
 				<div class="middle-box text-center loginscreen   ">
 					<div class="widgets-container">
 						<div>
-							<img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="">
+							<img src="resources/assets/images/teem/Park.jpg" class="img-circle" alt="">
 						</div>
 						<h2>パク・ジヘ</h2>
 						<br><br>
@@ -158,7 +158,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="4"><a href="javascript:history.back();" class="btn btn-sm btn-white btn-block">Go back</a></td>
+			<td colspan="4"><a href="javascript:history.back();" class="btn btn-sm btn-white btn-block">Back to main</a></td>
 		</tr>
 	</table>
 </body>
