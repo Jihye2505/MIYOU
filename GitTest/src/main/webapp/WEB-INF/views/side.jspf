@@ -73,7 +73,7 @@
 								일정</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="javascript:alert('달력에서 날짜를 선택하세요.');"> <span class="title">회의
+						href="javascript:alert('달력에서 날짜를 선택해주세요.');javascript:location.href='main';"> <span class="title">회의
 								기획</span>
 					</a></li>
 					
