@@ -27,27 +27,30 @@
 	<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 <script src="resources/jquery-3.1.1.min.js"></script>
 <script>
-	$(function(){
-		$('#btn').on('click', function() {
-			$.ajax({
-				type: 'POST',
-				url: 'login',
-				data: {
-						"employee_num" : $("#employee_num").val(),
-						"password" : $("#password").val()
-					},
-				success: function(data) {
-					 if(data == "false"){
-						 alert("잘못입력하셨습니다.");
-						 $("#password").val("");
-					 }
-					 else {
-						 location.href = 'main';
-					 }
-				}
-			});
+ 	function login(){
+ 		$.ajax({
+			type: 'POST',
+			url: 'login',
+			data: {
+					"employee_num" : $("#employee_num").val(),
+					"password" : $("#password").val()
+				},
+			success: function(data) {
+				 if(data == "false"){
+					 alert("잘못입력하셨습니다.");
+					 $("#password").val("");
+				 }
+				 else {
+					 location.href = 'main';
+				 }
+			}
 		});
+	}
+ 	
+	$(function(){
+		$('#btn').on('click', login);
 	});
+	
 </script>
 
 </head>
@@ -69,7 +72,7 @@
       <input required="" placeholder="Username" class="form-control" type="text" name="employee_num" id="employee_num">
     </div>
     <div class="form-group">
-      <input required="" placeholder="Password" class="form-control" type="password" name="password" id="password">
+      <input required="" placeholder="Password" class="form-control" type="password" name="password" id="password" onkeypress="if(event.keyCode==13) {login();}">
     </div>
     <button class="btn aqua block full-width bottom15" id="btn">Login</button><!-- <button class="btn aqua block full-width bottom15" type="submit" id="btn">Login</button> -->
   <!-- </form> -->
