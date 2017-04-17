@@ -52,7 +52,6 @@ function countPerPage() {
 <div>
 <h2>[ 회의 목록 ]</h2>
 <a href="main">처음으로</a>
-<a href="confList?searchTitle=employee_num&page=1&searchText=${user.employee_num }">내 업무 확인</a>
 <!-- 검색 -->
 <form id="pagingForm" action="confList" method="get">
 	<select name="searchTitle">

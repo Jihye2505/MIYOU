@@ -40,7 +40,7 @@
 				<li class="nav-item"><a class="nav-link" href="myInfo">
 							<span class="title">내 정보</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="index.html">
+					<li class="nav-item"><a class="nav-link" href="confList?searchTitle=employee_num&page=1&searchText=${user.employee_num }">
 							<span class="title">내 업무 관리</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -68,9 +68,6 @@
 					class="title">Schedule</span> <span class="arrow"></span>
 			</a>
 				<ul class="sub-menu">
-					<li class="nav-item"><a class="nav-link"
-						href="components_fileinput.html"> <span class="title">개인
-								일정 관리</span></a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="confList"> <span class="title">회의
 								일정</span>
