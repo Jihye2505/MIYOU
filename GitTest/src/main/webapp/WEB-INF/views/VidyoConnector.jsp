@@ -250,7 +250,7 @@
 to hook up all of the events to elements. -->
 <body id="vidyoConnector">
 	<div id="options" class="optionsHide">
-		<img class="logo" src="resources/assets/images/miyou.png" />
+		<a href="main"><img class="logo" src="resources/assets/images/miyou.png" /></a>
 
 		<form>
 			<div id="optionsParameters">
