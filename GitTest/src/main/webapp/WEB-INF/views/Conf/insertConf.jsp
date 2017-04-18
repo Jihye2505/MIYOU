@@ -9,7 +9,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Join</title>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- icheck -->
@@ -34,6 +33,19 @@
 <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+<script>
+function frmCheck(){
+	var title = document.getElementById('title').value;
+	var member = document.getElementById('widget2').value;
+	if(title == '' || member == '') {
+		alert("제목 혹은 참여자를 정확히 입력해주세요.");
+		
+		return false;
+	}
+	return true;
+}
+</script>
+
 
 </head>
 <body class="page-header-fixed ">
@@ -55,7 +67,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">제목</label>
                 <div class="col-sm-10">
-                  <input class="form-control input-lg bottom15" type="text" name="title">
+                  <input class="form-control input-lg bottom15" type="text" name="title" id="title">
                 </div>
               </div>
               <hr>
@@ -107,9 +119,9 @@
               </div>
               <hr>
               <div class="form-group">
-                <div class="col-sm-4 col-sm-offset-2">
-                  <button class="btn btn-white" type="reset">Cancel</button>
-                  <button class="btn aqua" type="submit" onClick="frmCheck();">Register</button>
+                <div align="right"> <!-- <div class="col-sm-4 col-sm-offset-2" align="right"> -->
+                  <button class="btn aqua" type="submit" onclick="return frmCheck();">Register</button>&nbsp;
+                  <button class="btn btn-white" type="reset">Cancel</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
               </div>
             </form>

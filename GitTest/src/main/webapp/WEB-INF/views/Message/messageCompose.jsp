@@ -109,6 +109,19 @@
    
 </style>
 
+<script>
+	function formCheck() {
+		var to = document.getElementById('widget2').value;
+		var content = document.getElementById('editor').value;
+		if(to == '' || content == ''){
+			alert("보낼사람 혹은 메세지 내용을 정확히 입력해주세요.");
+			
+			return false;
+		}
+		return true;
+	}
+</script>
+
 </head>
 <body class="page-header-fixed ">
    <%@ include file="../header.jspf"%>
@@ -251,7 +264,7 @@
                         <div class="mail-body text-right tooltip-demo">
                               <!-- <i class="fa fa-reply"></i> -->
                               <label for="warning" class="btn btn-warning">Notice <input type="checkbox" id="warning" class="badgebox" value="R" name="notice" onclick="save(this)"><span class="badge">&check;</span></label>
-                              <input type="submit" value="Send" class="btn aqua btn-primary">
+                              <input type="submit" value="Send" class="btn aqua btn-primary" onclick="return formCheck();">
                         </div>
                         </form>
                         <div class="clearfix"></div>
