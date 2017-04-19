@@ -118,7 +118,7 @@ function checkform(){
       </div>
       <br>
       <input class="btn aqua block full-width m-b" type="submit" value="Register">
-      <a href="${pageContext.request.contextPath}/" class="btn btn-sm btn-white btn-block">Login</a>
+      <a href="javascript:history.back();" class="btn btn-sm btn-white btn-block">Cancel</a>
     </form>
     <p class="top15"> <small>SCIT KYSP &copy; 2017</small> </p>
   </div>

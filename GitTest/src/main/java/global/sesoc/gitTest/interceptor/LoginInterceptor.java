@@ -17,7 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		Member user = (Member) session.getAttribute("user");
 		
 		if (user == null) {
-			session.setAttribute("loginCheck", "세션이 만료되었습니다.");
+			session.setAttribute("loginCheck", "세션이 만료됨.");
 			response.sendRedirect(request.getContextPath() + "/login");	//request.getContextPath()로 루트 경로를 구하여 절대 경로로 처리
 			return false;
 		}

@@ -50,7 +50,7 @@ public class MemberController {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-      return "redirect:/";
+      return "main";
    }
    
    @RequestMapping(value="/login", method=RequestMethod.GET)

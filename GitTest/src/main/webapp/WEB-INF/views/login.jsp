@@ -55,7 +55,10 @@
 </script>
 
 <c:if test="${loginCheck != null}">
-	<script>alert("세션이 만료되었습니다.");</script>
+	<script>
+		alert("세션이 만료되었습니다.");
+		<% session.setAttribute("loginCheck", null); %>
+	</script>
 </c:if>
 
 </head>
