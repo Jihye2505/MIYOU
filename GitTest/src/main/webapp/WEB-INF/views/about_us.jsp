@@ -49,11 +49,11 @@
 						</h3>
 						<br>
 						<h3>
-							モットー : 
+							モットー : 宝の持ち腐れ
 						</h3>
 						<br>
 						<h3>
-							趣味 : 
+							趣味 : サーフィン
 						</h3>
 						<br>
 						<h3>
@@ -70,7 +70,7 @@
 				<div class="middle-box text-center loginscreen   ">
 					<div class="widgets-container">
 						<div>
-							<img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="">
+							<img src="resources/assets/images/teem/Yu.jpg" class="img-circle" alt="">
 						</div>
 						<h2>ユ・ジウン</h2>
 						<br><br>
@@ -79,11 +79,11 @@
 						</h3>
 						<br>
 						<h3>
-							モットー : 
+							モットー : 自分に正直に
 						</h3>
 						<br>
 						<h3>
-							趣味 : 
+							趣味 : 自転車に乗ること
 						</h3>
 						<br>
 						<h3>
