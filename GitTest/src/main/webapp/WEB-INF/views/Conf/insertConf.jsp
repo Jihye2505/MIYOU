@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Insert Conference</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,13 +26,10 @@
 <link href="resources/assets/css/aqua-black.css" rel="stylesheet">
 <!-- media css for responsive  -->
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
 <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
 
-<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
 function frmCheck(){
 	var title = document.getElementById('title').value;
@@ -44,6 +41,12 @@ function frmCheck(){
 	}
 	return true;
 }
+
+function save(obj) {
+    if($("input:checkbox[id='warning']").is(":checked")==true){
+       obj.value = 'N';
+    } 
+ }
 </script>
 
 
@@ -129,48 +132,54 @@ function frmCheck(){
         </div>
 					</div>
 				</div>
+				
 				<!-- start footer -->
 				<%@ include file="../footer.jspf"%>
 			</div>
 		</div>
 	</div>
-	<!-- Go top -->
+	
 	<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
-	<!-- Go top -->
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="resources/assets/js/vendor/jquery.min.js"></script>
-	<!-- bootstrap js -->
 	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
-	<!-- icheck -->
 	<script src="resources/assets/js/vendor/icheck.js"></script>
-	<!-- slimscroll js -->
-	<script type="text/javascript"
-		src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
-	<!-- main js -->
+	<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
 	<script src="resources/assets/js/main.js"></script>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
    	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
    
   	<script src="resources/assets/js/inputosaurus.js"></script>
-   	<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-   	<script src="https://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
    	
 <script>
  $(function () {
   $('#myForm').validator();
-});
+ });
 
-  $(document).ready(function(){
-            var callbacks_list = $('.demo-callbacks ul');
-            $('input.iCheck').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
-              callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
-            }).iCheck({
-               checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue',
-              increaseArea: '20%'
-            });
-          });
+ $(document)
+	.ready(
+			function() {
+				var callbacks_list = $('.demo-callbacks ul');
+				$('input.iCheck')
+						.on(
+								'ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed',
+								function(event) {
+									callbacks_list
+											.prepend('<li><span>#'
+													+ this.id
+													+ '</span> is '
+													+ event.type
+															.replace(
+																	'if',
+																	'')
+															.toLowerCase()
+													+ '</li>');
+								}).iCheck({
+							checkboxClass : 'icheckbox_square-red',
+							radioClass : 'iradio_square-grey',
+							increaseArea : '20%'
+						});
+			});
   
   //추가 버튼
   $(document).on("click","input[name=addButton]",function(){
@@ -206,13 +215,8 @@ function frmCheck(){
    });
 
    $('.markup').on('click', 'a', function(ev){ $(ev.currentTarget).next('div').toggle();});
-   prettyPrint();
    
-   function save(obj) {
-      if($("input:checkbox[id='warning']").is(":checked")==true){
-         obj.value = 'N';
-      } 
-   }
+   
 </script>
 </body>
 </html>

@@ -131,12 +131,6 @@ function countPerPage() {
 	          </div>
 	        </div>
 	       </div>
-	       <%@ include file="../footer.jspf"%>
-	   	</div>
-	   </div> 
-	  </div>
-	  </div>
-	  </div>
 <%-- 
 <div>
 <h2>[ 회의 목록 ]</h2>
@@ -205,21 +199,53 @@ function countPerPage() {
 </div>
  --%>
 
-<!-- Go top -->
-<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
-<!-- Go top -->
-<!-- bootstrap js -->
-<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
-<!-- icheck -->
-<script src="resources/assets/js/vendor/icheck.js"></script>
-<!-- slimscroll js -->
-<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
-<!-- main js -->
-<script src="resources/assets/js/main.js"></script>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/assets/js/vendor/jquery.min.js"></script>
-<script>
-
+<!-- start footer -->
+				<%@ include file="../footer.jspf"%>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<!-- Go top -->
+	<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+	<!-- Go top -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="resources/assets/js/vendor/jquery.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
+	<!-- icheck -->
+	<script src="resources/assets/js/vendor/icheck.js"></script>
+	<!-- slimscroll js -->
+	<script type="text/javascript"
+		src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
+	<!-- main js -->
+	<script src="resources/assets/js/main.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							var callbacks_list = $('.demo-callbacks ul');
+							$('input.iCheck')
+									.on(
+											'ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed',
+											function(event) {
+												callbacks_list
+														.prepend('<li><span>#'
+																+ this.id
+																+ '</span> is '
+																+ event.type
+																		.replace(
+																				'if',
+																				'')
+																		.toLowerCase()
+																+ '</li>');
+											}).iCheck({
+										checkboxClass : 'icheckbox_square-red',
+										radioClass : 'iradio_square-grey',
+										increaseArea : '20%'
+									});
+						});
+		
   $(document).ready(function(){
             var callbacks_list = $('.demo-callbacks ul');
             $('input.iCheck').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
@@ -236,6 +262,7 @@ function countPerPage() {
   		  /* $(this).addClass("active"); */
   		$(this).attr('class','btn btn-white active');
   });
-</script>
+	</script>
 </body>
 </html>
+

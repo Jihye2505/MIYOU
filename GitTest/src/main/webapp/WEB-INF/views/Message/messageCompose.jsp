@@ -305,8 +305,6 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
    
    <script src="resources/assets/js/inputosaurus.js"></script>
-   <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-   <script src="https://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 
    <script>
       $('#widget2').inputosaurus({

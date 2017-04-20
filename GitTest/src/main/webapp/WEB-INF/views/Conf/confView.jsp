@@ -160,48 +160,53 @@ function deleteCheck(){
           
 	        </div>
 	   		</div>
-	        <%@ include file="../footer.jspf"%>
-		</div> 
+	        <!-- start footer -->
+				<%@ include file="../footer.jspf"%>
+			</div>
 		</div>
 	</div>
-<!-- Go top -->
-<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
-<!-- Go top -->
-<!-- bootstrap js -->
-<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
-<!-- icheck -->
-<script src="resources/assets/js/vendor/icheck.js"></script>
-<!-- slimscroll js -->
-<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
-<!-- main js -->
-<script src="resources/assets/js/main.js"></script>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="resources/assets/js/vendor/jquery.min.js"></script>
+	<!-- Go top -->
+	<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+	<!-- Go top -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="resources/assets/js/vendor/jquery.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
+	<!-- icheck -->
+	<script src="resources/assets/js/vendor/icheck.js"></script>
+	<!-- slimscroll js -->
+	<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
+	<!-- main js -->
+	<script src="resources/assets/js/main.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							var callbacks_list = $('.demo-callbacks ul');
+							$('input.iCheck')
+									.on(
+											'ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed',
+											function(event) {
+												callbacks_list
+														.prepend('<li><span>#'
+																+ this.id
+																+ '</span> is '
+																+ event.type
+																		.replace(
+																				'if',
+																				'')
+																		.toLowerCase()
+																+ '</li>');
+											}).iCheck({
+										checkboxClass : 'icheckbox_square-red',
+										radioClass : 'iradio_square-grey',
+										increaseArea : '20%'
+									});
+						});
+	</script>
+</body>
+</html>
 
-<!--  chartJs js  -->
-	<script src="resources/assets/js/vendor/chartJs/Chart.bundle.js"></script>
-<!--easypiechart-->
-	<script src="resources/assets/js/vendor/jquery.easing.min.js"></script>
-	<script src="resources/assets/js/vendor/jquery.easypiechart.min.js"></script>
-<!-- Sparkline -->
-	<script src="resources/assets/js/vendor/jquery.sparkline.min.js"></script>
-	<script src="resources/assets/js/vendor/sparkline-demo.js"></script>
-	<!-- Peity -->
-	<script src="resources/assets/js/vendor/peityJs/jquery.peity.min.js"></script>
-	
-<script>
-
-  $(document).ready(function(){
-            var callbacks_list = $('.demo-callbacks ul');
-            $('input.iCheck').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
-              callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
-            }).iCheck({
-              checkboxClass: 'icheckbox_square-red',
-              radioClass: 'iradio_square-grey',
-              increaseArea: '20%'
-            });
-  });
-</script>
 <%-- 
 	     
 <table border="1">

@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Conference Update</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Join</title>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- icheck -->
@@ -27,15 +26,22 @@
 <link href="resources/assets/css/aqua-black.css" rel="stylesheet">
 <!-- media css for responsive  -->
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
-
+<!-- project -->
+	<link href="resources/assets/css/project.css" rel="stylesheet">
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 
 </script>
 </head>
-<body>
+<body class="page-header-fixed ">
+	<%@ include file="../header.jspf"%>
+	<div class="clearfix"></div>
+	<div class="page-container">
+		<%@ include file="../side.jspf"%>
+	  <div class="page-content-wrapper">
+	    <div class="page-content">
+	    <div class="wrapper-content ">
+	        <div class="row">
 <form action="updateConfs" method="get">
 <table border="1">
 	<tr>
@@ -82,5 +88,52 @@
 		<form action="confList" method="get">
 			<input type="button" onclick="" value="돌아가기">
 		</form>
+		
+		 </div>
+	   		</div>
+	       <!-- start footer -->
+				<%@ include file="../footer.jspf"%>
+			</div>
+		</div>
+	</div>
+	<!-- Go top -->
+	<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+	<!-- Go top -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="resources/assets/js/vendor/jquery.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
+	<!-- icheck -->
+	<script src="resources/assets/js/vendor/icheck.js"></script>
+	<!-- slimscroll js -->
+	<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
+	<!-- main js -->
+	<script src="resources/assets/js/main.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							var callbacks_list = $('.demo-callbacks ul');
+							$('input.iCheck')
+									.on(
+											'ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed',
+											function(event) {
+												callbacks_list
+														.prepend('<li><span>#'
+																+ this.id
+																+ '</span> is '
+																+ event.type
+																		.replace(
+																				'if',
+																				'')
+																		.toLowerCase()
+																+ '</li>');
+											}).iCheck({
+										checkboxClass : 'icheckbox_square-red',
+										radioClass : 'iradio_square-grey',
+										increaseArea : '20%'
+									});
+						});
+	</script>
 </body>
 </html>
