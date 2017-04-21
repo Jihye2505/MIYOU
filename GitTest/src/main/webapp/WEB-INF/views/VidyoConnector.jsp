@@ -344,7 +344,10 @@ to hook up all of the events to elements. -->
 	<div id="toolbar">
 		<span id="participantStatus"></span>
 
-		<!-- 메모장 연결 -->
+		<!-- 안건 요약 보기 -->
+		<input type="button" value="안건 보기" onclick="javascript:window.open('confSummary', 'window', 'width=350,height=350');">
+		
+		<!-- 메모 열기 -->
 		<input type="button" value="메모 열기" onclick="javascript:window.open('memo', 'window', 'width=350,height=350');">
 
 		<!-- This button toggles the camera privacy on or off. -->

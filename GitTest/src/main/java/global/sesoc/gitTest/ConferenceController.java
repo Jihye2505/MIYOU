@@ -277,9 +277,9 @@ public class ConferenceController {
 		return "Conf/memo";
 	}
 	
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String info() {
+	@RequestMapping(value = "/confSummary", method = RequestMethod.GET)
+	public String confSummary() {
 
-		return "Conf/info";
+		return "Conf/confSummary";
 	}
 }
