@@ -249,6 +249,7 @@
 			sendingMSG();
 		});
 	});
+	
 </script>
 
 </head>
@@ -342,6 +343,9 @@ to hook up all of the events to elements. -->
 	<div id="renderer" class="rendererWithOptions pluginOverlay"></div>
 	<div id="toolbar">
 		<span id="participantStatus"></span>
+
+		<!-- 메모장 연결 -->
+		<input type="button" value="메모 열기" onclick="javascript:window.open('memo', 'window', 'width=350,height=350');">
 
 		<!-- This button toggles the camera privacy on or off. -->
 		<button id="cameraButton" title="Camera Privacy"

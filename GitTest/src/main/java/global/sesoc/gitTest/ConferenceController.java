@@ -264,10 +264,16 @@ public class ConferenceController {
 
 			Gson gson = new Gson();
 			String data = gson.toJson(calendarMyList);
-			// System.out.println(data);
 
 			return data;
 		}
 		return null;
+	}
+	
+	
+	@RequestMapping(value = "/memo", method = RequestMethod.GET)
+	public String memo() {
+
+		return "Conf/memo";
 	}
 }
