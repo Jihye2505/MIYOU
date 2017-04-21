@@ -280,30 +280,30 @@ to hook up all of the events to elements. -->
 					<!-- This is the display name that other users will see. -->
 					<label for="displayName">User Name</label>
 							<c:choose>
-							<c:when test="${user.dept_id == 100}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; General Affairs Dept. &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 200}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Personnel Dept. &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 301}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team1 &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 302}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team2 &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 303}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team3 &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 401}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team1 &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 402}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team2 &#41;"> 
-						    </c:when>
-						    <c:when test="${user.dept_id == 403}">
-								<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team3 &#41;"> 
-						    </c:when>
+								<c:when test="${user.dept_id == 100}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; General Affairs Dept. &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 200}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Personnel Dept. &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 301}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team1 &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 302}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team2 &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 303}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; Sales Team3 &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 401}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team1 &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 402}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team2 &#41;"> 
+							    </c:when>
+							    <c:when test="${user.dept_id == 403}">
+									<input id="displayName" type="text" placeholder="Display Name" value="${user.name} &#40; R&D Team3 &#41;"> 
+							    </c:when>
 							</c:choose> 
 				</p>
 				<p>

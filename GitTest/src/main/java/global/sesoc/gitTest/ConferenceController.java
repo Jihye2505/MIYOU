@@ -276,4 +276,10 @@ public class ConferenceController {
 
 		return "Conf/memo";
 	}
+	
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String info() {
+
+		return "Conf/info";
+	}
 }
