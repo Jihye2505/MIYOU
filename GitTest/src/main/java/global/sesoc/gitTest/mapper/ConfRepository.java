@@ -26,20 +26,22 @@ public class ConfRepository {
 	@Autowired
 	SqlSession sqlSession;
 
-	public int insertConf(Conf_mng conf_mng, String conf_date2, String time, List<String> subtitles) {
+	public int insertConf(Conf_mng conf_mng, List<String> subtitles) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
-		String conf_date = conf_date2 + ", " + time + ":00:00";
+		/*
+		String conf_date = conf_mng.getConf_date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
-		Date conf_date3;
 		try {
 			conf_date3 = sdf.parse(conf_date);
-			conf_mng.setConf_date(conf_date3);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
+		Date conf_date3= conf_mng.getConf_date();
+		conf_mng.setConf_date(conf_date3);
 		List<Conf_topic> conf_topics = new ArrayList<>();
 
 		for (int i = 0; i < subtitles.size(); i++) {
@@ -93,12 +95,18 @@ public class ConfRepository {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
-		SimpleDateFormat sdf2 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		
+//		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
 		try {
-			Date conf_date = sdf2.parse(conf_date2);
-			conf_mng.setConf_date(conf_date);
-			Date todate = sdf2.parse(todate2);
+			Date transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(conf_date2);
+			conf_mng.setConf_date(transFormat);
+//			Date conf_date = sdf2.parse(conf_date2);
+//			conf_mng.setConf_date(conf_date);
+			
+			Date todate = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH).parse(todate2);
 			conf_mng.setTodate(todate);
+//			Date todate = sdf2.parse(todate2);
+//			conf_mng.setTodate(todate);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

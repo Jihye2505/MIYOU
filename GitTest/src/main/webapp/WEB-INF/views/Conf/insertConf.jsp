@@ -30,6 +30,12 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
 <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
 
+<!-- datePicker css -->
+<link href="resources/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="resources/assets/css/daterangepicker.css" />
+<link href="resources/assets/css/morris.css" rel="stylesheet">
+<link href="resources/assets/css/simple-line-icons.css" rel="stylesheet">
+
 <script>
 function frmCheck(){
 	var title = document.getElementById('title').value;
@@ -91,6 +97,21 @@ function save(obj) {
                 
               </div>
               <hr>
+              
+              
+              
+		<div class="form-group">
+			<label class="col-sm-2 control-label">회의날짜</label>
+			<div class="col-sm-10">
+			<div class="input-group date form_datetime" data-date="${conf_mng.conf_date }" data-date-format="yyyy-MM-dd - HH:ii p" data-link-field="dtp_input1">
+			<input class="form-control" type="text" value="${conf_date}" readonly>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			<input type="hidden" id="dtp_input1" value="" name="conf_date2"/>
+			</div>
+			</div>
+		</div>
+              
+              <%-- 
               <div class="form-group">
                 <input name="conf_date2" type="hidden" value="${conf_date}" >
                 <label class="col-sm-2 control-label">${conf_date}</label>
@@ -107,6 +128,8 @@ function save(obj) {
                   </select>
                 </div>
               </div>
+               --%>
+              
               <hr>
               <div class="form-group">
                 <label class="col-sm-2 control-label">안건</label>
@@ -150,6 +173,12 @@ function save(obj) {
    	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
    
   	<script src="resources/assets/js/inputosaurus.js"></script>
+  	
+  	<!-- datePicker용 js -->
+	<script src="resources/assets/js/vendor/moment.js"></script>
+	<script src="resources/assets/js/vendor/daterangepicker.js"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/locales/bootstrap-datetimepicker.ko.js" charset="UTF-8"></script>
    	
 <script>
  $(function () {
@@ -216,7 +245,55 @@ function save(obj) {
 
    $('.markup').on('click', 'a', function(ev){ $(ev.currentTarget).next('div').toggle();});
    
-   
+   $('.form_datetime').datetimepicker({
+       //language:  'fr',
+       weekStart: 1,
+       todayBtn:  1,
+   autoclose: 1,
+   todayHighlight: 1,
+   startView: 2,
+   forceParse: 0,
+       showMeridian: 1
+   });
+ $('.form_date').datetimepicker({
+       language:  'fr',
+       weekStart: 1,
+       todayBtn:  1,
+   autoclose: 1,
+   todayHighlight: 1,
+   startView: 2,
+   minView: 2,
+   forceParse: 0
+   });
+ $('.form_time').datetimepicker({
+       language:  'fr',
+       weekStart: 1,
+       todayBtn:  1,
+   autoclose: 1,
+   todayHighlight: 1,
+   startView: 1,
+   minView: 0,
+   maxView: 1,
+   forceParse: 0
+   });
+
+       $(function () {
+           $('#datetimepicker12').datetimepicker({
+               inline: true,
+               sideBySide: true
+           });
+     
+      $('input[name="daterange"]').daterangepicker();       
+
+       $('input[name="dateTimeRange"]').daterangepicker({
+       timePicker: true,
+       timePickerIncrement: 30,
+       locale: {
+           format: 'dd MM yyyy - HH:mm'
+       }
+   });
+
+   });
 </script>
 </body>
 </html>

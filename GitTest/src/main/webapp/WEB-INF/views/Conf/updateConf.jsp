@@ -26,13 +26,17 @@
 <link href="resources/assets/css/aqua-black.css" rel="stylesheet">
 <!-- media css for responsive  -->
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
-<!-- project -->
-	<link href="resources/assets/css/project.css" rel="stylesheet">
-<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
+	
+<!-- datePicker css -->
+<link href="resources/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="resources/assets/css/daterangepicker.css" />
+<link href="resources/assets/css/main.media.css" rel="stylesheet">
+<link href="resources/assets/css/morris.css" rel="stylesheet">
+<link href="resources/assets/css/simple-line-icons.css" rel="stylesheet">
 
-</script>
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 </head>
+
 <body class="page-header-fixed ">
 	<%@ include file="../header.jspf"%>
 	<div class="clearfix"></div>
@@ -54,8 +58,18 @@
 	<tr>
 		<td>${conf_mng.conf_num }</td>
 		<td><input type="text" name="employee_nums" value="${conf_mng.employee_nums }"></td>
+		
 		<td>${conf_mng.todate }</td>
-		<td><input type="text" name="conf_date2" value="${conf_mng.conf_date }"></td><td></td>
+		<%-- <td><input type="text" name="conf_date2" value="${conf_mng.conf_date }"></td> --%>
+		<td>
+			<div class="input-group date form_datetime" data-date="${stringDate}" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
+			<input class="form-control" type="text" value="${stringDate}" readonly>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			<input type="hidden" id="dtp_input1" value="" name="conf_date2"/>
+			</div>
+		</td>
+		
+		<td></td>
 <!-- 		<td><input type="file" name="upload"></td> -->
 	</tr>
 </table>
@@ -90,7 +104,7 @@
 		</form>
 		
 		 </div>
-	   		</div>
+	   	</div>
 	       <!-- start footer -->
 				<%@ include file="../footer.jspf"%>
 			</div>
@@ -109,6 +123,13 @@
 	<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
 	<!-- main js -->
 	<script src="resources/assets/js/main.js"></script>
+	
+	<!-- datePicker용 js -->
+	<script src="resources/assets/js/vendor/moment.js"></script>
+	<script src="resources/assets/js/vendor/daterangepicker.js"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/locales/bootstrap-datetimepicker.ko.js" charset="UTF-8"></script>
+	
 	<script>
 		$(document)
 				.ready(
@@ -134,6 +155,57 @@
 										increaseArea : '20%'
 									});
 						});
+		
+		 $('.form_datetime').datetimepicker({
+		        //language:  'fr',
+		        weekStart: 1,
+		        todayBtn:  1,
+		    autoclose: 1,
+		    todayHighlight: 1,
+		    startView: 2,
+		    forceParse: 0,
+		        showMeridian: 1
+		    });
+		  $('.form_date').datetimepicker({
+		        language:  'ko',
+		        weekStart: 1,
+		        todayBtn:  1,
+		    autoclose: 1,
+		    todayHighlight: 1,
+		    startView: 2,
+		    minView: 2,
+		    forceParse: 0
+		    });
+		  $('.form_time').datetimepicker({
+		        language:  'ko',
+		        weekStart: 1,
+		        todayBtn:  1,
+		    autoclose: 1,
+		    todayHighlight: 1,
+		    startView: 1,
+		    minView: 0,
+		    maxView: 1,
+		    forceParse: 0
+		    });
+
+		        $(function () {
+		            $('#datetimepicker12').datetimepicker({
+		                inline: true,
+		                sideBySide: true
+		            });
+		      
+		       $('input[name="daterange"]').daterangepicker();       
+
+		        $('input[name="dateTimeRange"]').daterangepicker({
+		        timePicker: true,
+		        timePickerIncrement: 30,
+		        locale: {
+		            format: 'MM/DD/YYYY h:mm A'
+		        }
+		    });
+
+		    });
+		        
 	</script>
 </body>
 </html>
