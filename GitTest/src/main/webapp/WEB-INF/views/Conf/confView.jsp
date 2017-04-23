@@ -62,7 +62,7 @@ function deleteCheck(){
                   <div class="panel-body">
               <div class="ibox-content collapse in">
 				<div class="ibox-title">
-					<h5> ${conf_mng.title }</h5>
+					<h5>${conf_mng.title }</h5>
 				</div>
 				
 				<div class="list-widget white-bg borderedTable" >

@@ -1,15 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Team process</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Team Process</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- icheck -->
+<link href="resources/assets/css/skins/all.css" rel="stylesheet">
+<!-- slimscroll -->
+<link href="resources/assets/css/jquery.slimscroll.css" rel="stylesheet">
+<!-- Fontes -->
+<link href="resources/assets/css/font-awesome.min.css" rel="stylesheet">
+<link href="resources/assets/css/simple-line-icons.css" rel="stylesheet">
+<!-- all buttons css -->
+<link href="resources/assets/css/buttons.css" rel="stylesheet">
 <!-- adminbag main css -->
-<link href="assets/css/main.css" rel="stylesheet">
+<link href="resources/assets/css/main.css" rel="stylesheet">
+<!-- aqua black theme css -->
+<link href="resources/assets/css/aqua-black.css" rel="stylesheet">
+<!-- media css for responsive  -->
+<link href="resources/assets/css/main.media.css" rel="stylesheet">
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
+<link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
+
 <style>
 	span {
 		display : inline-block;
@@ -41,13 +61,60 @@
 </script>
 
 </head>
-<body>
-<c:if test="${members == '[]'}">
-	내 부서의 업무 진행사항이 없습니다. <br><br>
-</c:if>
-<c:if test="${members != '[]'}">
-	${members[0].DEPT_NAME} 업무 현황
-	<br><br>
+<body class="page-header-fixed ">
+<%@ include file="../header.jspf"%>
+<div class="clearfix"> </div>
+<div class="page-container">
+	<%@ include file="../side.jspf"%>
+  <!-- Start page content wrapper -->
+  <div class="page-content-wrapper">
+    <div class="page-content" >
+    <div class="wrapper-content ">
+				<c:if test="${members == '[]'}">
+							내 부서의 업무 진행사항이 없습니다. <br><br>
+				</c:if>
+				<c:if test="${members != '[]'}">
+      <div class="row wrapper border-bottom page-heading">
+				      <div class="col-lg-12">
+						<h1>${members[0].DEPT_NAME} 업무 현황</h1>
+				      </div>
+      </div>
+      
+      <div class="wrapper-content ">
+        <div class="row">
+        
+			<div class="list-widget white-bg borderedTable" >
+        			<table class="table table-hover borderedTable">
+                      <thead>
+                        <tr>
+                          <th>이름</th>
+                          <th>부서명</th>
+                          <th>직급</th>
+                          <th>진행상황</th>
+                          <th class="detailJobView" style="display:none"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          	<c:forEach var="i" items="${members}">
+                          	<tr>
+								<td>${i.NAME}</td>
+								<td>${i.DEPT_NAME}</td>
+								<td>${i.JOB_NAME}</td>
+								<td align="right">${i.PROCESS}%
+									<div class="progress progress-striped">
+                    					<div style="width: ${i.PROCESS}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="${i.PROCESS}" role="progressbar" class="progress-bar progress-bar-success">  </div>
+                  					</div>
+								</td>
+								<td class="detailJobView" style="display:none">
+									 <div>제목: ${i.TITLE}</div>
+									 <div>내용: ${i.SUBTITLE}</div>
+								</td>
+							</tr>
+							</c:forEach>
+                      </tbody>
+                    </table>
+        </div>
+<%--         
 	<table border="1">
 		<tr>
 			<td>이름</td><td>부서명</td><td>직급</td><td>진행상황</td>
@@ -70,11 +137,72 @@
 		</c:forEach>
 	</table>
 	<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="javascript:opened();" id="opened">상세업무 보기</a>
-	<a href="javascript:closed();" id="closed">접어두기</a>
-</c:if>
-&nbsp;&nbsp;
-<a href="javascript:history.back();">뒤로가기</a>
+ --%>	
+<div class="pull-right">
+	<br>
+	<a href="javascript:opened();" id="opened" class="btn btn-info">상세업무 보기</a>
+	<a href="javascript:closed();" id="closed" class="btn btn-default">접어두기</a>
+</div>
+				</div>
+				</div>
+	</c:if>
+<!-- 	<a href="javascript:history.back();">뒤로가기</a> -->
+
+				<!-- start footer -->
+				<%@ include file="../footer.jspf"%>
+				</div>
+			</div>
+		</div>
+</div>
+	<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+	<script src="resources/assets/js/vendor/jquery.min.js"></script>
+	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
+	<script src="resources/assets/js/vendor/icheck.js"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/jquery.slimscroll.js"></script>
+	<script src="resources/assets/js/main.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+   
+  	<script src="resources/assets/js/inputosaurus.js"></script>
+  	
+  	<!-- datePicker용 js -->
+	<script src="resources/assets/js/vendor/moment.js"></script>
+	<script src="resources/assets/js/vendor/daterangepicker.js"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="resources/assets/js/vendor/locales/bootstrap-datetimepicker.ko.js" charset="UTF-8"></script>
+   	
+<script>
+ $(function () {
+  $('#myForm').validator();
+ });
+
+ $(document)
+	.ready(
+			function() {
+				var callbacks_list = $('.demo-callbacks ul');
+				$('input.iCheck')
+						.on(
+								'ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed',
+								function(event) {
+									callbacks_list
+											.prepend('<li><span>#'
+													+ this.id
+													+ '</span> is '
+													+ event.type
+															.replace(
+																	'if',
+																	'')
+															.toLowerCase()
+													+ '</li>');
+								}).iCheck({
+							checkboxClass : 'icheckbox_square-red',
+							radioClass : 'iradio_square-grey',
+							increaseArea : '20%'
+						});
+			});
+ 
+ 
+</script>
 </body>
 </html>
