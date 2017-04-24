@@ -102,7 +102,7 @@
 			<div class="input-group date form_datetime" data-date="${stringDate}" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
 			<input class="form-control" type="text" value="${stringDate}" readonly style="z-index: 1;">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-			<input type="hidden" id="dtp_input1" value="" name="conf_date2"/>
+			<input type="hidden" id="dtp_input1" value="${stringDate}" name="conf_date2"/>
 			</div>
 			</div>
 		</div>
