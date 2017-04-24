@@ -383,8 +383,8 @@ public class ConferenceController {
 	public String countDownEndMessage(HttpSession session) {
 		Message message = (Message) session.getAttribute("message");
 //		System.out.println(message.toString());
-		int substringEnd = message.getContent().indexOf("<br>회의 번호 : ");
-		int substringConfDate = message.getContent().indexOf("<br>회의 주제 : ");
+		int substringEnd = message.getContent().indexOf("<br>회의 주제 : ");
+		int substringConfDate = message.getContent().indexOf("<br>회의 번호 : ");
 		String roomNum = message.getContent().substring(substringConfDate-17, substringConfDate).replaceAll("-", "")
 				+message.getContent().substring(substringConfDate+12, substringEnd);
 		roomNum = roomNum.replaceAll(",", "");
