@@ -1,7 +1,10 @@
 package global.sesoc.gitTest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -37,12 +40,25 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			@RequestParam(value = "searchText", defaultValue = "") String searchText,
 			HttpSession session, Model model) {
 
-		Member user = (Member)session.getAttribute("user");
-		List<Message> messageList = msgRepository.messageList(user.getEmployee_num(), searchTitle, searchText);
-		int total = msgRepository.countMessage(user.getEmployee_num());
-
 		
-		model.addAttribute("messageList", messageList);
+		Member user = (Member)session.getAttribute("user");
+		int total = msgRepository.countMessage(user.getEmployee_num());
+		List<Message> messageList = msgRepository.messageList(user.getEmployee_num(), searchTitle, searchText);
+
+		List<Map<String, Object>> messageViewList = new ArrayList<>();
+		for (int i = 0; i < messageList.size(); i++) {
+			Map<String, Object> messageView = new HashMap<>();
+			SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String send_date = viewDate.format(messageList.get(i).getSend_date());
+			messageView.put("send_date", send_date);
+			messageView.put("message_num", messageList.get(i).getMessage_num());
+			messageView.put("checked", messageList.get(i).getChecked());
+			messageView.put("employee_num", messageList.get(i).getEmployee_num());
+			messageView.put("notice", messageList.get(i).getNotice());
+			messageView.put("content", messageList.get(i).getContent());
+			messageViewList.add(messageView);
+		}
+		model.addAttribute("messageList", messageViewList);
 		model.addAttribute("total", total);
 		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("searchText",searchText);
@@ -100,7 +116,17 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		Message message = msgRepository.readMessage(message_num);
 		msgRepository.messageCheck(message_num);
 
-		model.addAttribute("message", message);
+		Map<String, Object> messageView = new HashMap<>();
+		SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String send_date = viewDate.format(message.getSend_date());
+		messageView.put("send_date", send_date);
+		messageView.put("message_num", message.getMessage_num());
+		messageView.put("checked", message.getChecked());
+		messageView.put("employee_num", message.getEmployee_num());
+		messageView.put("notice", message.getNotice());
+		messageView.put("content", message.getContent());
+		
+		model.addAttribute("message", messageView);
 		
 		Member user = (Member)session.getAttribute("user");
 		int total = msgRepository.countMessage(user.getEmployee_num());
@@ -146,8 +172,18 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 
 		Member user = (Member)session.getAttribute("user");
 		List<Message> sentMessageList = msgRepository.sentMessages(user.getEmployee_num());
-		
-		model.addAttribute("sentMessageList", sentMessageList);
+		List<Map<String, Object>> sendMessageViewList = new ArrayList<>();
+		for (int i = 0; i < sentMessageList.size(); i++) {
+			Map<String, Object> messageView = new HashMap<>();
+			SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String send_date = viewDate.format(sentMessageList.get(i).getSend_date());
+			messageView.put("send_date", send_date);
+			messageView.put("receiver_num", sentMessageList.get(i).getReceiver_num());
+			messageView.put("checked", sentMessageList.get(i).getChecked());
+			messageView.put("content", sentMessageList.get(i).getContent());
+			sendMessageViewList.add(messageView);
+		}
+		model.addAttribute("sentMessageList", sendMessageViewList);
 		return "Message/sentMessages";
 	}
 	
