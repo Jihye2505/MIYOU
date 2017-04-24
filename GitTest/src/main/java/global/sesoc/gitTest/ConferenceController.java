@@ -226,7 +226,7 @@ public class ConferenceController {
 			String yyyymmdd = sdf2.format(conf_date2);
 			message.setNotice("CC");
 			String content = 
-					"회의가 취소되었습니다."
+					"회의 취소"
 					+"<br>일시 : "+yyyymmdd
 					+"<br>회의 주제 : "+title;
 //				System.out.println(content);

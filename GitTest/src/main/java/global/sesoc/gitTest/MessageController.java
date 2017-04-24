@@ -53,6 +53,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			messageView.put("send_date", send_date);
 			messageView.put("message_num", messageList.get(i).getMessage_num());
 			messageView.put("checked", messageList.get(i).getChecked());
+			messageView.put("title", messageList.get(i).getContent().substring(0, 5)+"...");
 			messageView.put("employee_num", messageList.get(i).getEmployee_num());
 			messageView.put("notice", messageList.get(i).getNotice());
 			messageView.put("content", messageList.get(i).getContent());
