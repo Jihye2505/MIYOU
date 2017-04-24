@@ -20,5 +20,6 @@ public class VideoController {
 		session.setAttribute("token", token);
 		return "VidyoConnector";
 	}
-			
+	
+	
 }
