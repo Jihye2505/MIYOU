@@ -91,7 +91,7 @@
 		<div class="form-group">
                 <label class="col-sm-2 control-label">작성일</label>
                 <div class="col-sm-10">
-                  <label class="col-sm-6 control-label" style="text-align: left;">${conf_mng.todate }</label>
+                  <label class="col-sm-6 control-label" style="text-align: left;">${viewTodate }</label>
                 </div>
 		</div>              
 		<hr>

@@ -117,7 +117,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			roomNum = roomNum.replaceAll(":", "");
 			System.out.println("countDownEnd======"+roomNum);
 			session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
-			System.out.println("readmessage====="+roomNum);
+			System.out.println("readmessage====="+message.getContent().substring(substringConfDate+12, substringEnd));
 			session.setAttribute("roomNum", roomNum);
 		}
 
