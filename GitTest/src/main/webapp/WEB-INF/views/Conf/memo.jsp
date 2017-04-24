@@ -9,7 +9,7 @@
 <body>
 <h2>Memo</h2>
 <form action="">
-	<textarea rows="15" cols="40"></textarea>
+	<textarea rows="10" cols="30"></textarea>
 	<br>
 	<!-- <input type="submit" value="저장하기"> -->
 	<input type="reset" value="비우기">

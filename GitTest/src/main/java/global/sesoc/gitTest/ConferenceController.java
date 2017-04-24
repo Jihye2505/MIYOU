@@ -350,14 +350,15 @@ public class ConferenceController {
 		session.removeAttribute("list_topicForSummary");
 		
 		String conf_nums = (String) session.getAttribute("conf_num");
-		int conf_num = Integer.parseInt(conf_nums);
-		
-		Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
-		session.setAttribute("conf_mngForSummary", conf_mngForSummary);
-		String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
-		session.setAttribute("employees_numForSummary", employees_numForSummary);
-		List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
-		session.setAttribute("list_topicForSummary", list_topicForSummary);
+		if(conf_nums != null) {
+			int conf_num = Integer.parseInt(conf_nums);
+			Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
+			session.setAttribute("conf_mngForSummary", conf_mngForSummary);
+			String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
+			session.setAttribute("employees_numForSummary", employees_numForSummary);
+			List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
+			session.setAttribute("list_topicForSummary", list_topicForSummary);
+		}
 		
 		return "Conf/confSummary";
 	}

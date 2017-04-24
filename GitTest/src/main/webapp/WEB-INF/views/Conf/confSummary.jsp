@@ -8,27 +8,29 @@
 <title>confSummary</title>
 </head>
 <body>
-<form action="">
-	회의제목: ${conf_mngForSummary.title } <br>
-	참여자 : ${employees_numForSummary}
-		<table>
-			<thead>
-				<tr>
-					<th>안건</th>
-					<th>담당자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="i" items="${list_topicForSummary}">
+<c:if test="${conf_mngForSummary == null}">선택된 회의가 없습니다.</c:if>
+<c:if test="${conf_mngForSummary != null}">
+	<form action="">
+		<h2>회의제목: ${conf_mngForSummary.title }</h2>
+		<h3>참여자 : ${employees_numForSummary}</h3>
+			<table border="1">
+				<thead>
 					<tr>
-						<td>${i.subtitle }</td>
-						<td>${i.employee_num }</td>
+						<th>안건</th>
+						<th>담당자</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
-		<input type="button" value="닫기" onclick="javascript:window.close('this')">
-</form>
+				</thead>
+				<tbody>
+					<c:forEach var="i" items="${list_topicForSummary}">
+						<tr>
+							<td>${i.subtitle }</td>
+							<td>${i.employee_num }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+	</form>
+</c:if> <br>
+<input type="button" value="닫기" onclick="javascript:window.close('this')">
 </body>
 </html>
