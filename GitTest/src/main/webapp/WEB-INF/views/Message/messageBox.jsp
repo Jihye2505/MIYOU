@@ -117,6 +117,8 @@
 												<input type="checkbox" class="iCheck" name="check" value="${m.message_num}"></td>
 												<td class="mail-ontact">${m.employee_num}
 													<c:if test="${m.notice=='N'}"><span class="label label-info pull-right">Notice</span></c:if>
+													<c:if test="${m.notice=='C'}"><span class="label label-success pull-right">Conference</span></c:if>
+													<c:if test="${m.notice=='CC'}"><span class="label label-warning pull-right">Cancel</span></c:if>
 												</td>
 												<td class="mail-subject"><a href="readMessage?message_num=${m.message_num}">${m.content }</a></td>
 												<td></td>

@@ -172,20 +172,23 @@
   <div class="page-content-wrapper">
     <div class="page-content" >
     <div class="wrapper-content ">
+    <!-- 
       <div class="row wrapper border-bottom page-heading">
         <div class="col-lg-12">
           <h1> Calendar </h1>
-          <!-- <ol class="breadcrumb">
+          <ol class="breadcrumb">
             <li> <a href="index.html">Home</a> </li>
             <li> <a> Page Layouts </a> </li>
             <li class="active"> <strong>Calendar</strong> </li>
-          </ol> -->
+          </ol>
         </div>
       </div>
+       -->
       <div class="wrapper-content ">
         <div class="row">
         <!-- 여기는 드래거블이벤트랑 풀캘린더 설명 있던 곳-->
-          <!-- <div class="col-lg-3">
+          <div class="col-lg-3">
+          <!-- 
             <div class="ibox float-e-margins">
               <div class="ibox-title">
                 <h5>Draggable Events </h5>
@@ -234,7 +237,28 @@
                 </div>
               </div>
             </div>
-           --></div>
+             -->
+            
+            <div class="ibox float-e-margins">
+              <div  class="ibox-content collapse in">
+                <div class="demo-container">
+                  <div class="widgets-container">
+                    <div class="ibox-content">
+                      <h2>Next Conference</h2>
+                      <table class="">
+			          		<tr>
+			          			<td><div id="title"></div></td>
+			          		</tr>
+			          		<tr>
+			          			<td><h1><span id="time1"></span></h1></td>
+			          		</tr>
+			          	</table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
           <div class="col-lg-9">
             <div class="ibox float-e-margins">
               <div id="demo2" class="ibox-content collapse in">
@@ -249,6 +273,7 @@
               </div>
             </div>
           </div>
+          <!-- 
           <div>
           <table>
           		<tr>
@@ -259,6 +284,7 @@
           		</tr>
           	</table>
           </div>
+           -->
         </div>
       </div>
       
@@ -267,6 +293,7 @@
       </div>
     </div>
   </div>
+ </div>
 <!-- Go top -->
 <a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
 <!-- Go top -->

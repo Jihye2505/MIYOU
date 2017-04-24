@@ -224,13 +224,13 @@ public class ConferenceController {
 		try {
 			conf_date2 = sdf.parse(conf_date);
 			String yyyymmdd = sdf2.format(conf_date2);
+			message.setNotice("CC");
 			String content = 
 					"회의가 취소되었습니다."
 					+"<br>일시 : "+yyyymmdd
 					+"<br>회의 주제 : "+title;
 //				System.out.println(content);
 				message.setContent(content);
-				message.setNotice("CC");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -238,7 +238,6 @@ public class ConferenceController {
 		
 		Member user = (Member)session.getAttribute("user");
 		message.setEmployee_num(user.getEmployee_num());
-		message.setNotice("C");
 
 		String receivers = employee_nums;
 		String [] toList = receivers.split(",");
