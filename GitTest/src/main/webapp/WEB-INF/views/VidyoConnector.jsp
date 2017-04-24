@@ -11,6 +11,7 @@
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 
+
 <!-- We've provide some simple styling to get you started. -->
 <link href="resources/Vidyo/VidyoConnector.css" rel="stylesheet"
 	type="text/css">
