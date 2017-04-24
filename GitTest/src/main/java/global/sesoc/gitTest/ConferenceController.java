@@ -343,13 +343,13 @@ public class ConferenceController {
 		session.removeAttribute("employee_numsForSummary");
 		session.removeAttribute("list_topicForSummary");
 		
-		int conf_num = (int) session.getAttribute("conf_num");
-		System.out.println(conf_num);
+		String conf_nums = (String) session.getAttribute("conf_num");
+		int conf_num = Integer.parseInt(conf_nums);
+		
 		Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
 		session.setAttribute("conf_mngForSummary", conf_mngForSummary);
 		String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
-		String[] employee_numsForSummary = employees_numForSummary.split(",");
-		session.setAttribute("employee_numsForSummary", employee_numsForSummary);
+		session.setAttribute("employees_numForSummary", employees_numForSummary);
 		List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
 		session.setAttribute("list_topicForSummary", list_topicForSummary);
 		

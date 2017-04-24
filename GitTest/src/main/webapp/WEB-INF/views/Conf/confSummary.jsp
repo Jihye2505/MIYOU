@@ -9,27 +9,26 @@
 </head>
 <body>
 <form action="">
-	회의제목: ${conf_mngForSummary.title }
-	세부내용: 
-	<table class="table table-hover ">
-                      <thead>
-                        <tr>
-                          <th> 안건 </th>
-                          <th> 담당자 </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          	<c:forEach var="i" items="${list_topicForSummary}">
-								<tr>
-									<td></td>
-									<td>${i.subtitle }</td>
-									<td>${i.employee_num }</td>
-								</tr>
-							</c:forEach>
-                      </tbody>
-                    </table>
-                    
-	<input type="button" value="닫기" onclick="javascript:window.close('this')">
+	회의제목: ${conf_mngForSummary.title } <br>
+	참여자 : ${employees_numForSummary}
+		<table>
+			<thead>
+				<tr>
+					<th>안건</th>
+					<th>담당자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="i" items="${list_topicForSummary}">
+					<tr>
+						<td>${i.subtitle }</td>
+						<td>${i.employee_num }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<input type="button" value="닫기" onclick="javascript:window.close('this')">
 </form>
 </body>
 </html>
