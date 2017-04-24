@@ -104,7 +104,7 @@ function save(obj) {
 			<label class="col-sm-2 control-label">회의날짜</label>
 			<div class="col-sm-10">
 			<div class="input-group date form_datetime" data-date="${conf_mng.conf_date }" data-date-format="yyyy-MM-dd - HH:ii p" data-link-field="dtp_input1">
-			<input class="form-control" type="text" value="${conf_date}" readonly>
+			<input class="form-control" type="text" value="${conf_date}" readonly style="z-index: 1;">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 			<input type="hidden" id="dtp_input1" value="" name="conf_date2"/>
 			</div>
