@@ -110,8 +110,8 @@ function countPerPage() {
 									<td>${conf.conf_num }</td>
 									<td><a href="selectConf?conf_num=${conf.conf_num }">${conf.title }</a></td>
 									<td>${conf.employee_nums }</td>
-									<td>${conf.todate }</td>
-									<td>${conf.conf_date }</td>
+									<td>${conf.viewTodate }</td>
+									<td>${conf.viewConf_date }</td>
 								</tr>
 							</c:forEach>
 	                      </tbody>

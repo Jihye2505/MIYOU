@@ -39,10 +39,126 @@
     <!-- END LOGO -->
     <!-- BEGIN TOP NAVIGATION MENU -->
 	<%@ include file="header.jspf"%>
-
+	<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 	<script>
 	function lockscreen() {
 		location.replace("lockscreen.html");
+	}
+	var timerID; // 타이머를 핸들링하기 위한 전역 변수
+
+	var time;
+	
+	var conf_date;
+	
+	var employee_nums;
+	
+	var message;
+
+	/* 타이머를 시작하는 함수 */
+
+	$(function(){
+		$.ajax({
+		  	type : "get"
+		    , url : "countDown"
+		    , success : function(data) {
+		    	if(!data){
+		    		$("#title").html("다음 회의가 없습니다.");
+		    		return false;
+		    	}
+		    	time=data[0];
+// 		    	time=1;
+		    	title=data[1];
+		    	$("#title").html(title);
+		    	conf_date=data[2];
+		    	employee_nums=data[3];
+		    	$.ajax({
+				  	type : "get"
+				    , url : "countDownEndMessage"
+				    , data : {"conf_date":conf_date, "employee_nums":employee_nums}
+				    , success : function(data) {
+				    	if(!data){
+				    		return false;
+				    	}
+				    }
+				});
+		    	start_timer();
+		    }
+		});
+		
+	});
+
+	function start_timer() { 
+
+		timerID = setInterval("decrementTime()", 1000);
+
+	}
+
+
+
+	/* 남은 시간을 감소시키는 함수 */
+
+	function decrementTime() { 
+
+		var x1 = document.getElementById("time1");
+
+		x1.innerHTML = toHourMinSec(time);
+
+		if(time > 0) time--;
+
+		else { 
+
+			// 시간이 0이 되었으므로 타이머를 중지함
+
+			clearInterval(timerID);
+
+
+
+			// 시간이 만료되고 나서 할 작업을 여기에 작성
+
+// 			document.form.submit(); // 예: 강제로 form 실행
+// 			$("#countDownEndMessage").html(time);
+			window.open("countDownEnd", "", "width=200, height=120, left=700, top=300");
+			
+		}
+
+	}
+
+
+
+	/* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
+
+	function toHourMinSec(t) { 
+
+		var hour;
+
+		var min;
+
+		var sec;
+
+
+
+		// 정수로부터 남은 시, 분, 초 단위 계산
+
+		hour = Math.floor(t / 3600);
+
+		min = Math.floor( (t-(hour*3600)) / 60 );
+
+		sec = t - (hour*3600) - (min*60);
+
+
+
+		// hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+
+		if(hour < 10) hour = "0" + hour;
+
+		if(min < 10) min = "0" + min;
+
+		if(sec < 10) sec = "0" + sec;
+
+
+
+		return(hour + ":" + min + ":" + sec);
+
 	}
 	</script>
     <!-- END TOP NAVIGATION MENU -->
@@ -132,6 +248,16 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+          <table>
+          		<tr>
+          			<td><div id="title"></div></td>
+          		</tr>
+          		<tr>
+          			<td><span id="time1"></span></td>
+          		</tr>
+          	</table>
           </div>
         </div>
       </div>

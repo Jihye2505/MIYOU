@@ -1,6 +1,7 @@
 package global.sesoc.gitTest.DAO;
 
 import java.util.List;
+import java.util.Map;
 
 import global.sesoc.gitTest.vo.Message;
 
@@ -19,7 +20,7 @@ public interface MessageDAO {
 	public Message readMessage(int message_num) throws Exception;
 	
 	//메시지 전체 리스트
-	public List<Message> messageList(String user) throws Exception;
+	public List<Message> messageList(Map<String, String> search) throws Exception;
 	
 	//메시지 삭제
 	public int deleteMessage(int message_num) throws Exception;
@@ -38,4 +39,7 @@ public interface MessageDAO {
 	
 	//notice 리스트
 	public List<Message> notice(String user) throws Exception;
+
+	//회의 시작 카운트다운 끝나면 뜨는 메시지
+	public Message countDownEndMessage(Map<String, String> search) throws Exception;
 }

@@ -34,6 +34,12 @@
 function deleteCheck(){
 	var check = confirm("삭제");
 	if(check) alert("삭제완료");
+	$.ajax({
+	  	type : "get"
+	    , url : "countDown"
+	    , success : function(data) {
+	    }
+	});}
 	else alert("취소");
 	return;
 }	
@@ -68,8 +74,8 @@ function deleteCheck(){
 				<div class="list-widget white-bg borderedTable" >
 					<ul class="list-unstyled clearfix">
 						<li> <i class="fa fa-users"></i> <span class="text">참여자</span> <span class="right">${conf_mng.employee_nums }</span> </li>
-						<li> <i class="fa fa-pencil-square-o"></i> <span class="text">작성일</span> <span class="right">${conf_mng.todate }</span> </li>
-						<li> <i class="fa fa-calendar"></i> <span class="text">회의날짜</span> <span class="right">${conf_mng.conf_date }</span> </li>
+						<li> <i class="fa fa-pencil-square-o"></i> <span class="text">작성일</span> <span class="right">${viewTodate }</span> </li>
+						<li> <i class="fa fa-calendar"></i> <span class="text">회의날짜</span> <span class="right">${viewConf_date }</span> </li>
 						<li style="border-bottom: none;"> <i class="fa fa-sticky-note-o"></i> <span class="text">첨부파일</span> 
 							<span class="right">
 								<c:if test="${conf_mng.originalfile != null}">
@@ -148,6 +154,9 @@ function deleteCheck(){
 			<td>
 			<form action="deleteConf" method="post" onclick="deleteCheck()">
 				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
+				<input type="hidden" name="title" value="${conf_mng.title }">
+				<input type="hidden" name="conf_date" value="${conf_mng.conf_date }">
+				<input type="hidden" name="employee_nums" value="${conf_mng.employee_nums }">
 				<input class="btn default btn-sm" type="submit" value="삭제">
 			</form>
 			</td>

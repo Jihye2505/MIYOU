@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Messages</title>
@@ -53,7 +53,28 @@
 					<div class="row">
 						<%@ include file="messageSide.jspf"%>
 						<div class="col-lg-10 animated fadeInRight">
-						
+						<form  id="pagingForm" action="messages" method="get">
+		                  <table class="table">
+		                  <tr>
+		                  <td style="border-top: none;">
+		                  <div class="col-md-3 input-group">
+							<select class=" _select js-states form-control" name="searchTitle">
+	                        	<option value="content" ${searchTitle == 'content' ? 'selected':''}>content</option>
+								<option value="employee_num" ${searchTitle == 'employee_num' ? 'selected':''}>sender</option>
+	                        </select>
+						  </div>
+						  </td>
+						  <td style="border-top: none;">
+		                <div class="col-md-6 input-group pull-right">
+		                  <input class="form-control input-sm" name="searchText" value="${searchText }" placeholder="Search Text" type="text">
+		                  <div class="input-group-btn">
+		                    <input class="btn btn-sm aqua" type="submit" value="Search">
+		                  </div>
+	                  	</div>
+	                  	</td>
+	                  	</tr>
+	                  	</table>
+              		</form>
 						<form method="post" name="submitForm">
 							<div class="mail-box-header">
 								<!-- <form class="pull-right mail-search" method="get"
@@ -67,6 +88,7 @@
 										</div>
 									</div>
 								</form> -->
+								
 								<h2>Inbox (${unread} New Messages)</h2>
 								<div class="mail-tools tooltip-demo ">
 									<a href="messages" data-placement="left" data-toggle="tooltip"

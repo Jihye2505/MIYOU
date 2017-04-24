@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -38,257 +40,341 @@ import global.sesoc.gitTest.vo.Message;
 @Controller
 public class ConferenceController {
 
-   @Autowired
-   ConfRepository repository;
-   
-   //jh
-   @Autowired
-   MemberRepository mRepository;
+	@Autowired
+	ConfRepository repository;
 
-   @Autowired
-   MessageRepository msgRepository;
-   
-   @Autowired
-   HttpSession session;
+	// jh
+	@Autowired
+	MemberRepository mRepository;
 
-   int countPerPage = 10;
-   int pagePerGroup = 5;
+	@Autowired
+	MessageRepository msgRepository;
 
-   final String uploadPath = "D:\\";
+	@Autowired
+	HttpSession session;
 
-   @RequestMapping(value = "/insertConf", method = RequestMethod.GET)
-   public String insertConf(String conf_date, Model model) {
+	int countPerPage = 10;
+	int pagePerGroup = 5;
 
-      //jh
-      List<String> toList = null;
-      ArrayList<String> toList2 = new ArrayList<>();
-      try {
-         toList = mRepository.toList();
-         for (String empNum : toList) {
-            toList2.add("'"+empNum+"'");
-         }
-         toList = toList2;
-         } catch (Exception e) {
-            e.printStackTrace();
-         }
-      session.setAttribute("toList", toList);
-      //end Jh
-      
-      String conf_date2 = conf_date.substring(0,10);
-//      System.out.println(conf_date2);
-      model.addAttribute("conf_date", conf_date2);
+	final String uploadPath = "D:\\";
 
-      return "Conf/insertConf";
-   }
+	@RequestMapping(value = "/insertConf", method = RequestMethod.GET)
+	public String insertConf(String conf_date, Model model) {
 
-   @RequestMapping(value = "/insertConf", method = RequestMethod.POST)
-   public String insertConf(Conf_mng conf_mng, String conf_date2,
-         @RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles
-         ,HttpSession session) {
-      
-      System.out.println(conf_date2);
-      try {
-         Date transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(conf_date2);
-         conf_mng.setConf_date(transFormat);
-      } catch (ParseException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+		// jh
+		List<String> toList = null;
+		ArrayList<String> toList2 = new ArrayList<>();
+		try {
+			toList = mRepository.toList();
+			for (String empNum : toList) {
+				toList2.add("'" + empNum + "'");
+			}
+			toList = toList2;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("toList", toList);
+		// end Jh
 
-      Message message = new Message();
-      
-      String content = 
-         "회의가 등록되었습니다."
-         +"<br>일시 : "+conf_mng.getConf_date()
-         +"<br>회의 주제 : "+conf_mng.getTitle()
-         +"<br>참여자 명단 : "+conf_mng.getEmployee_nums();
-      System.out.println(content);
-      message.setContent(content);
-      
-      Member user = (Member)session.getAttribute("user");
-      message.setEmployee_num(user.getEmployee_num());
-      message.setNotice("R");
+		String conf_date2 = conf_date.substring(0, 10);
+		// System.out.println(conf_date2);
+		model.addAttribute("conf_date", conf_date2);
 
-      String receivers = conf_mng.getEmployee_nums();
-      String [] toList = receivers.split(",");
-      for (String receiver : toList) {
-         message.setReceiver_num(receiver);
-         int result = msgRepository.sendMessage(message);
-      }
-      
-      int result2 = repository.insertConf(conf_mng, subtitles);
+		return "Conf/insertConf";
+	}
 
-      return "redirect:/confList";
-   }
+	@RequestMapping(value = "/insertConf", method = RequestMethod.POST)
+	public String insertConf(Conf_mng conf_mng, String conf_date2,
+			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles,
+			HttpSession session) {
 
-   @RequestMapping(value = "/confList", method = RequestMethod.GET)
-   public String serch(@RequestParam(value = "searchTitle", defaultValue = "") String searchTitle,
-         @RequestParam(value = "countPerPage", defaultValue = "10") int countPerPage,
-         @RequestParam(value = "searchText", defaultValue = "") String searchText,
-         @RequestParam(value = "page", defaultValue = "1") int currentPage, Model model) {
-      this.countPerPage = countPerPage;
-      int totalRecordsCount = 0;
-      totalRecordsCount = repository.getTotal(searchTitle, searchText);
-      PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, currentPage, totalRecordsCount);
-      int start = navi.getStartRecord() + 1;
-      int end = navi.getStartRecord() + countPerPage;
-      List<Conf_mng> confList = repository.confList(searchTitle, searchText, start, end);
-      model.addAttribute("confList", confList);
-      model.addAttribute("total", totalRecordsCount);
-      model.addAttribute("searchTitle", searchTitle);
-      model.addAttribute("searchText", searchText);
-      model.addAttribute("navi", navi);
+		System.out.println(conf_date2);
+		try {
+			Date transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(conf_date2);
+			conf_mng.setConf_date(transFormat);
+			int conf_num = repository.insertConf(conf_mng, subtitles);
+			if (conf_num != 0) {
+				conf_date2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm").format(transFormat);
+				Member user = (Member) session.getAttribute("user");
+				String employee_num = user.getEmployee_num();
 
-      return "Conf/confList";
-   }
+				msgRepository.sendConfMessage(conf_mng, conf_date2, employee_num);
+			}
 
-   @RequestMapping(value = "/selectConf", method = RequestMethod.GET)
-   public String confView(int conf_num, Model model) {
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-      session.removeAttribute("conf_mng");
-      session.removeAttribute("employee_nums");
-      session.removeAttribute("list_topic");
+		return "redirect:/confList";
+	}
 
-      Conf_mng conf_mng = repository.selectConf(conf_num);
-      session.setAttribute("conf_mng", conf_mng);
-      String employees_num = conf_mng.getEmployee_nums();
-      String[] employee_nums = employees_num.split(",");
-      session.setAttribute("employee_nums", employee_nums);
-      List<Conf_topic> list_topic = repository.selectConf_topic(conf_num);
-      session.setAttribute("list_topic", list_topic);
+	@RequestMapping(value = "/confList", method = RequestMethod.GET)
+	public String serch(@RequestParam(value = "searchTitle", defaultValue = "") String searchTitle,
+			@RequestParam(value = "countPerPage", defaultValue = "10") int countPerPage,
+			@RequestParam(value = "searchText", defaultValue = "") String searchText,
+			@RequestParam(value = "page", defaultValue = "1") int currentPage, Model model) {
+		this.countPerPage = countPerPage;
+		int totalRecordsCount = 0;
+		totalRecordsCount = repository.getTotal(searchTitle, searchText);
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, currentPage, totalRecordsCount);
+		int start = navi.getStartRecord() + 1;
+		int end = navi.getStartRecord() + countPerPage;
+		List<Map<String, Object>> confList = repository.confList(searchTitle, searchText, start, end);
+		model.addAttribute("confList", confList);
+		model.addAttribute("total", totalRecordsCount);
+		model.addAttribute("searchTitle", searchTitle);
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("navi", navi);
 
-      return "Conf/confView";
-   }
+		return "Conf/confList";
+	}
 
-   @RequestMapping(value = "/updateConf", method = RequestMethod.GET)
-   public String updateConf(Model model, HttpSession session) {
-      Conf_mng conf_mng = (Conf_mng) session.getAttribute("conf_mng");
-      Date date1 = conf_mng.getConf_date();
-      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-      String to = transFormat.format(date1);
-      
-      model.addAttribute("stringDate", to);
+	@RequestMapping(value = "/selectConf", method = RequestMethod.GET)
+	public String confView(int conf_num, Model model) {
 
-      return "Conf/updateConf";
-   }
+		session.removeAttribute("conf_mng");
+		session.removeAttribute("employee_nums");
+		session.removeAttribute("list_topic");
 
-   @RequestMapping(value = "/updateConfs", method = RequestMethod.GET)
-   public String updateConf(Conf_mng conf_mng, String conf_date2, String todate2,
-         @RequestParam(value = "subtitle_id", required = true) List<Integer> subtitle_ids,
-         @RequestParam(value = "subtitle", required = true) List<String> subtitles,
-         @RequestParam(value = "employee_num", required = true) List<String> employee_nums,
-         @RequestParam(value = "process", required = true) List<Integer> processes) {
+		Conf_mng conf_mng = repository.selectConf(conf_num);
+		SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String viewConf_date = viewDate.format(conf_mng.getConf_date());
+		String viewTodate = viewDate.format(conf_mng.getTodate());
+		session.setAttribute("viewConf_date", viewConf_date);
+		session.setAttribute("viewTodate", viewTodate);
+		session.setAttribute("conf_mng", conf_mng);
+		String employees_num = conf_mng.getEmployee_nums();
+		String[] employee_nums = employees_num.split(",");
+		session.setAttribute("employee_nums", employee_nums);
+		List<Conf_topic> list_topic = repository.selectConf_topic(conf_num);
+		session.setAttribute("list_topic", list_topic);
 
-      
-//      date를 string으로 줘야 거기에 이상한 날짜 안뜨고 제대로????
-      
-      int result = repository.updateConf(conf_mng, conf_date2, todate2, subtitle_ids, subtitles, employee_nums, processes);
+		return "Conf/confView";
+	}
 
-      return "redirect:/selectConf?conf_num=" + conf_mng.getConf_num();
-   }
+	@RequestMapping(value = "/updateConf", method = RequestMethod.GET)
+	public String updateConf(Model model, HttpSession session) {
+		Conf_mng conf_mng = (Conf_mng) session.getAttribute("conf_mng");
+		Date date1 = conf_mng.getConf_date();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String to = transFormat.format(date1);
 
-   @RequestMapping(value = "/deleteConf", method = RequestMethod.POST)
-   public String deleteConf(int conf_num, Model model) {
+		model.addAttribute("stringDate", to);
 
-      int result = repository.deleteConf(conf_num);
+		return "Conf/updateConf";
+	}
 
-      return "redirect:/confList";
-   }
+	@RequestMapping(value = "/updateConfs", method = RequestMethod.GET)
+	public String updateConf(Conf_mng conf_mng, String conf_date2, String todate2,
+			@RequestParam(value = "subtitle_id", required = true) List<Integer> subtitle_ids,
+			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles,
+			@RequestParam(value = "employee_num", required = true, defaultValue = "null") List<String> employee_nums,
+			@RequestParam(value = "process", required = true) List<Integer> processes) {
 
-   @RequestMapping(value = "/insertTextFile", method = RequestMethod.POST)
-   public String insertTextFile(Conf_mng conf_mng, String stringText) {
-      
-      int result = repository.insertTextFile(conf_mng, stringText);
+		// date를 string으로 줘야 거기에 이상한 날짜 안뜨고 제대로????
+		
+		System.out.println(conf_date2);
+		System.out.println(todate2);
+		SimpleDateFormat transTodate = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		SimpleDateFormat transStringDate = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+		SimpleDateFormat transConf_date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String conf_date3 = null;
+		try {
+			Date conf_date = transConf_date2.parse(conf_date2);
+			conf_date3 = transStringDate.format(conf_date);
+			conf_mng.setConf_date(conf_date);
+			Date todate = transTodate.parse(todate2);
+			conf_mng.setTodate(todate);
+			System.out.println(conf_date.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-      return "redirect:/confList";
-   }
+		int result = repository.updateConf(conf_mng, subtitle_ids, subtitles, employee_nums, processes);
+		if (result != 0) {
 
-   @RequestMapping(value = "download", method = RequestMethod.GET)
-   public String download(int conf_num, String savedfile, HttpServletResponse response) {
+			Member user = (Member) session.getAttribute("user");
+			String employee_num = user.getEmployee_num();
 
-      Conf_mng conf_mng = repository.selectConf(conf_num);
+			msgRepository.sendConfMessage(conf_mng, conf_date3, employee_num);
 
-      String originalfile = conf_mng.getOriginalfile();
+		}
 
-      // 사용자 쪽에서 다운로드 받도록 response 객체의 헤드를 조작
+		return "redirect:/selectConf?conf_num=" + conf_mng.getConf_num();
+	}
 
-      try {
-         response.setHeader("Content-Disposition",
-               "attachment;filename=" + URLEncoder.encode(originalfile, "UTF-8"));
-      } catch (UnsupportedEncodingException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+	@RequestMapping(value = "/deleteConf", method = RequestMethod.POST)
+	public String deleteConf(int conf_num, String title, String conf_date, String employee_nums, Model model,
+			HttpSession session) {
 
-      String fullpath = uploadPath + conf_mng.getSavedfile();
-//      System.out.println(fullpath+"==========다운로드 경로");
+		Message message = new Message();
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+		
+		Date conf_date2;
+		try {
+			conf_date2 = sdf.parse(conf_date);
+			String yyyymmdd = sdf2.format(conf_date2);
+			String content = 
+					"회의가 취소되었습니다."
+					+"<br>일시 : "+yyyymmdd
+					+"<br>회의 주제 : "+title;
+//				System.out.println(content);
+				message.setContent(content);
+				message.setNotice("CC");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Member user = (Member)session.getAttribute("user");
+		message.setEmployee_num(user.getEmployee_num());
+		message.setNotice("C");
 
-      ServletOutputStream fileout = null;
-      FileInputStream filein = null;
+		String receivers = employee_nums;
+		String [] toList = receivers.split(",");
+		for (String receiver : toList) {
+			message.setReceiver_num(receiver);
+			int result = msgRepository.sendMessage(message);
+		}
+		
+		int result = repository.deleteConf(conf_num);
 
-      try {
-         filein = new FileInputStream(fullpath);
-         fileout = response.getOutputStream();
+		return "redirect:/confList";
+	}
 
-         // spring 에서 제공하는 유틸리티
-         FileCopyUtils.copy(filein, fileout);
+	@RequestMapping(value = "/insertTextFile", method = RequestMethod.POST)
+	public String insertTextFile(Conf_mng conf_mng, String stringText) {
 
-      } catch (IOException e) {
-         e.printStackTrace();
-      } finally {
-         try {
-            if (filein != null)
-               filein.close();
-            if (fileout != null)
-               fileout.close();
-         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-      }
-      return null;
-   }
+		int result = repository.insertTextFile(conf_mng, stringText);
 
-   @RequestMapping(produces = "text/plain;charset=UTF-8", value = "/calendarMyList", method = RequestMethod.POST)
-   public @ResponseBody String calendarMyList(HttpSession session, Model model) {
+		return "redirect:/confList";
+	}
 
-      Member member = (Member) session.getAttribute("user");
-      if (member != null) {
-         String employee_num = member.getEmployee_num();
-         List<Conf_mng> list = repository.calendarMyList(employee_num);
+	@RequestMapping(value = "download", method = RequestMethod.GET)
+	public String download(int conf_num, String savedfile, HttpServletResponse response) {
 
-         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-         List<HashMap<String, Object>> calendarMyList = new ArrayList<>();
-         for (int i = 0; i < list.size(); i++) {
-            HashMap<String, Object> myList = new HashMap<>();
-            myList.put("conf_num", list.get(i).getConf_num());
-            myList.put("title", list.get(i).getTitle());
-            String conf_date2 = sdf2.format(list.get(i).getConf_date());
-            // System.out.println("conf_date2====="+conf_date2);
-            myList.put("start", conf_date2);
-            calendarMyList.add(myList);
+		Conf_mng conf_mng = repository.selectConf(conf_num);
 
-         }
+		String originalfile = conf_mng.getOriginalfile();
 
-         Gson gson = new Gson();
-         String data = gson.toJson(calendarMyList);
-         // System.out.println(data);
+		// 사용자 쪽에서 다운로드 받도록 response 객체의 헤드를 조작
 
-         return data;
-      }
-      return null;
-   }
-   
-   @RequestMapping(value = "/memo", method = RequestMethod.GET)
+		try {
+			response.setHeader("Content-Disposition",
+					"attachment;filename=" + URLEncoder.encode(originalfile, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String fullpath = uploadPath + conf_mng.getSavedfile();
+		// System.out.println(fullpath+"==========다운로드 경로");
+
+		ServletOutputStream fileout = null;
+		FileInputStream filein = null;
+
+		try {
+			filein = new FileInputStream(fullpath);
+			fileout = response.getOutputStream();
+
+			// spring 에서 제공하는 유틸리티
+			FileCopyUtils.copy(filein, fileout);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (filein != null)
+					filein.close();
+				if (fileout != null)
+					fileout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	@RequestMapping(produces = "text/plain;charset=UTF-8", value = "/calendarMyList", method = RequestMethod.POST)
+	public @ResponseBody String calendarMyList(HttpSession session, Model model) {
+
+		Member member = (Member) session.getAttribute("user");
+		if (member != null) {
+			String employee_num = member.getEmployee_num();
+			List<Conf_mng> list = repository.calendarMyList(employee_num);
+
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			List<HashMap<String, Object>> calendarMyList = new ArrayList<>();
+			for (int i = 0; i < list.size(); i++) {
+				HashMap<String, Object> myList = new HashMap<>();
+				myList.put("conf_num", list.get(i).getConf_num());
+				myList.put("title", list.get(i).getTitle());
+				String conf_date2 = sdf2.format(list.get(i).getConf_date());
+				// System.out.println("conf_date2====="+conf_date2);
+				myList.put("start", conf_date2);
+				calendarMyList.add(myList);
+
+			}
+
+			Gson gson = new Gson();
+			String data = gson.toJson(calendarMyList);
+			// System.out.println(data);
+
+			return data;
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/memo", method = RequestMethod.GET)
 	public String memo() {
 
 		return "Conf/memo";
 	}
-	
+
 	@RequestMapping(value = "/confSummary", method = RequestMethod.GET)
 	public String confSummary() {
 
 		return "Conf/confSummary";
 	}
 	
+	@RequestMapping(value = "/countDown", method = RequestMethod.GET)
+	public @ResponseBody Object[] countDown(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("user");
+		Conf_mng conf_mng = repository.countDown(member.getEmployee_num());
+		Date todate = new Date();
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+		if(conf_mng!=null){
+			String conf_date = sdf2.format(conf_mng.getConf_date());
+			Object countDown = (conf_mng.getConf_date().getTime()-todate.getTime())/1000;
+			Object [] count = {countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums() };
+//			System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
+			return count;
+		}
+
+		return null;
+	}
+	
+	@RequestMapping(value = "/countDownEnd", method = RequestMethod.GET)
+	public String countDownEndMessage(HttpSession session) {
+		Message message = (Message) session.getAttribute("message");
+//		System.out.println(message.toString());
+		int substringEnd = message.getContent().indexOf("<br>회의 번호 : ");
+		int substringConfDate = message.getContent().indexOf("<br>회의 주제 : ");
+		String roomNum = message.getContent().substring(substringConfDate-17, substringConfDate).replaceAll("-", "")
+				+message.getContent().substring(substringConfDate+12, substringEnd);
+		roomNum = roomNum.replaceAll(",", "");
+		roomNum = roomNum.replaceAll(" ", "");
+		roomNum = roomNum.replaceAll(":", "");
+//		System.out.println("countDownEnd======"+roomNum);
+		session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
+//		System.out.println(message.getContent().substring(substringConfDate+12, substringEnd));
+		session.setAttribute("roomNum", roomNum);
+		return "Message/countDownEndMessage";
+	}
+
+
 }

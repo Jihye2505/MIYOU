@@ -29,7 +29,7 @@ public class ConfRepository {
 	public int insertConf(Conf_mng conf_mng, List<String> subtitles) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
-
+		System.out.println(conf_mng.getConf_date().toString());
 		/*
 		String conf_date = conf_mng.getConf_date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
@@ -57,9 +57,10 @@ public class ConfRepository {
 		
 //		System.out.println(conf_mng);
 		int result = 0;
+		int conf_num = 0;
 		try {
 			result = dao.insertConf_mng(conf_mng);
-			int conf_num = dao.selectInsert(conf_mng);
+			conf_num = dao.selectInsert(conf_mng);
 //			System.out.println(conf_num);
 			for (int i = 0; i < conf_topics.size(); i++) {
 				conf_topics.get(i).setConf_num(conf_num);
@@ -74,7 +75,7 @@ public class ConfRepository {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return result;
+		return conf_num;
 	}
 
 	public int deleteConf(int conf_num) {
@@ -91,26 +92,9 @@ public class ConfRepository {
 		return result;
 	}
 
-	public int updateConf(Conf_mng conf_mng, String conf_date2, String todate2, List<Integer> subtitle_ids, List<String> subtitles, List<String> employee_nums, List<Integer> processes) {
+	public int updateConf(Conf_mng conf_mng, List<Integer> subtitle_ids, List<String> subtitles, List<String> employee_nums, List<Integer> processes) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
-
-		
-//		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
-		try {
-			Date transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(conf_date2);
-			conf_mng.setConf_date(transFormat);
-//			Date conf_date = sdf2.parse(conf_date2);
-//			conf_mng.setConf_date(conf_date);
-			
-			Date todate = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH).parse(todate2);
-			conf_mng.setTodate(todate);
-//			Date todate = sdf2.parse(todate2);
-//			conf_mng.setTodate(todate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		ArrayList<Conf_topic> conf_topics = new ArrayList<>();
 
 		for (int i = 0; i < subtitle_ids.size(); i++) {
@@ -169,7 +153,7 @@ public class ConfRepository {
 		return list_topic;
 	}
 
-	public List<Conf_mng> confList(String searchTitle, String searchText, int start, int end) {
+	public List<Map<String, Object>> confList(String searchTitle, String searchText, int start, int end) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
@@ -181,14 +165,27 @@ public class ConfRepository {
 		search.put("endnum", end+"");
 		
 		List<Conf_mng> list = null;
+		List<Map<String, Object>> confList = new ArrayList<Map<String,Object>>();
 		
 		try {
 			list = dao.confList(search);
+			for (int i = 0; i < list.size(); i++) {
+				Map<String, Object> conf_mng = new HashMap<>();
+				conf_mng.put("conf_num", list.get(i).getConf_num());
+				conf_mng.put("title", list.get(i).getTitle());
+				conf_mng.put("employee_nums", list.get(i).getEmployee_nums());
+				SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				String viewConf_date = viewDate.format(list.get(i).getConf_date());
+				conf_mng.put("viewConf_date", viewConf_date);
+				String viewTodate = viewDate.format(list.get(i).getTodate());
+				conf_mng.put("viewTodate", viewTodate);
+				confList.add(conf_mng);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return confList;
 	}
 	
 	public int getTotal(String searchTitle, String searchText){
@@ -262,5 +259,27 @@ public class ConfRepository {
 		
 		return result;
 		
+	}
+	
+	public Conf_mng countDown(String employee_num) {
+		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
+		Conf_mng conf_mng = null;
+		try {
+			List<Conf_mng> conf_mngs = dao.countDown(employee_num);
+			for (int i = 0; i < conf_mngs.size(); i++) {
+				String[] employee_nums = conf_mngs.get(i).getEmployee_nums().split(",");
+				for (int j = 0; j < employee_nums.length; j++) {
+					if(employee_nums[j].equals(employee_num)){
+						conf_mng = conf_mngs.get(i);
+						return conf_mng;
+					};
+				}
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

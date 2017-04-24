@@ -147,4 +147,16 @@
 		originalfile = #{originalfile}, savedfile = #{savedfile}
 		where conf_num = #{conf_num}
 	</update>
+	
+	<select id="countDown" parameterType="String" resultType="Conf_mng">
+		select * from conf_mng 
+		where deletecheck='0' 
+		and conf_date = 
+		(select min(conf_date) 
+		from (select * 
+		from conf_mng 
+		where DELETECHECK='0'
+		and employee_nums like '%'||#{searchText}||'%')
+		where conf_date - sysdate > 0)
+	</select>
 </mapper>

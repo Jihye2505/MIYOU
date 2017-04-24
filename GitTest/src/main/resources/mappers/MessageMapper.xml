@@ -18,22 +18,31 @@
 		#{notice}
 		)
 	</insert>
-	
+
 	<!-- 메시지 체크시 체크 변경 -->
 	<update id="messageCheck" parameterType="int">
 		UPDATE e_message
-		SET checked = 'read'
+		SET
+		checked = 'read'
 		WHERE message_num = #{message_num}
 	</update>
-	
+
 	<!-- 메시지 리스트를 가져와보자 -->
-	<select id="messageList" resultType="Message" parameterType="String">
-		SELECT * FROM e_message
-		WHERE receiver_num = #{user}
-		AND trash = 0
-		ORDER BY send_date DESC
+	<select id="messageList" resultType="Message" parameterType="map">
+		SELECT * FROM e_message WHERE receiver_num = #{user}
+		<if test="searchTitle != null and searchText != null">
+			<choose>
+				<when test="searchTitle == 'content'"> 
+					and content like '%'||#{searchText}||'%' 
+				</when>
+				<when test="searchTitle == 'employee_num'"> 
+					and employee_num like '%'||#{searchText}||'%' 
+				</when>
+			</choose>
+		</if>
+		AND trash = 0 ORDER BY send_date DESC
 	</select>
-	
+
 	<!-- 내가 보낸 메시지리스트 -->
 	<select id="sentMessages" resultType="Message" parameterType="String">
 		SELECT * FROM e_message
@@ -42,53 +51,75 @@
 
 	<!-- 나에게 온 "모든" 메시지 개수 확인 -->
 	<select id="countMessage" resultType="int" parameterType="String">
-		SELECT count(*) FROM e_message
+		SELECT
+		count(*) FROM e_message
 		WHERE receiver_num = #{user}
 		AND trash = 0
 	</select>
-	
+
 	<!-- 나에게 온 "안읽은" 메시지 개수 확인 -->
 	<select id="countNotRead" resultType="int" parameterType="String">
-		SELECT count(*) FROM e_message
+		SELECT
+		count(*) FROM e_message
 		WHERE receiver_num = #{user}
-		AND checked = 'unread'
+		AND checked =
+		'unread'
 	</select>
-	
+
 	<!-- 메시지 하나 읽어오기 -->
 	<select id="readMessage" resultType="Message" parameterType="int">
-		SELECT * 
+		SELECT *
 		FROM e_message
 		WHERE message_num = #{message_num}
 	</select>
-	
+
 	<!-- 메시지 하나 지우기 -->
 	<delete id="deleteMessage" parameterType="int">
 		DELETE e_message
-		WHERE message_num = #{message_num}
+		WHERE
+		message_num = #{message_num}
 	</delete>
-	
+
 	<!-- 메시지 하나 trash로 옮기기 -->
 	<update id="trashMessage" parameterType="int">
 		UPDATE e_message
-		SET trash = 1
+		SET
+		trash = 1
 		WHERE message_num = #{message_num}
 	</update>
-	
+
 	<!-- 쓰레기 메시지리스트 -->
 	<select id="trashMessages" resultType="Message" parameterType="String">
 		SELECT * FROM e_message
 		WHERE receiver_num = #{user}
 		AND trash = 1
-		ORDER BY send_date DESC
+		ORDER
+		BY send_date DESC
 	</select>
-	
-		<!-- 공지메시지리스트 -->
+
+	<!-- 공지메시지리스트 -->
 	<select id="notice" resultType="Message" parameterType="String">
-		SELECT * FROM e_message
+		SELECT *
+		FROM e_message
 		WHERE receiver_num = #{user}
 		AND notice = 'N'
-		AND trash = 0
+		AND trash =
+		0
 		ORDER BY send_date DESC
 	</select>
-	
+
+	<select id="countDownEndMessage" resultType="Message"
+		parameterType="map">
+		select * from e_message where message_num = (
+		SELECT
+		max(message_num) max FROM e_message
+		WHERE receiver_num = #{user}
+		and
+		content like '%'||#{conf_date}||'%'
+		and content like
+		'%'||#{employee_nums}||'%'
+		AND notice = 'C'
+		AND trash = 0)
+	</select>
+
 </mapper>

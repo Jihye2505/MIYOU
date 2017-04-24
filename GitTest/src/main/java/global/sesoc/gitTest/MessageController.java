@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.gitTest.mapper.MemberRepository;
@@ -32,15 +33,19 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	
 	//메시지함
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
-	public String messageList(HttpSession session, Model model) {
+	public String messageList(@RequestParam(value = "searchTitle", defaultValue = "") String searchTitle,
+			@RequestParam(value = "searchText", defaultValue = "") String searchText,
+			HttpSession session, Model model) {
 
 		Member user = (Member)session.getAttribute("user");
-		List<Message> messageList = msgRepository.messageList(user.getEmployee_num());
+		List<Message> messageList = msgRepository.messageList(user.getEmployee_num(), searchTitle, searchText);
 		int total = msgRepository.countMessage(user.getEmployee_num());
 
 		
 		model.addAttribute("messageList", messageList);
 		model.addAttribute("total", total);
+		model.addAttribute("searchTitle", searchTitle);
+		model.addAttribute("searchText",searchText);
 		return "Message/messageBox";
 	}
 	
@@ -76,7 +81,6 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 
 		String receivers = message.getReceiver_num();
 		String [] toList = receivers.split(",");
-		System.out.println(message.toString());
 		for (String receiver : toList) {
 			message.setReceiver_num(receiver);
 			int result = msgRepository.sendMessage(message);
@@ -103,6 +107,19 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		int unread = msgRepository.countNotRead(user.getEmployee_num());
 		session.setAttribute("total", total);
 		session.setAttribute("unread", unread);
+		if(message.getNotice().equals("C")){
+			int substringEnd = message.getContent().indexOf("<br>회의 주제 : ");
+			int substringConfDate = message.getContent().indexOf("<br>회의 번호 : ");
+			String roomNum = message.getContent().substring(substringConfDate-17, substringConfDate).replaceAll("-", "")
+					+message.getContent().substring(substringConfDate+12, substringEnd);
+			roomNum = roomNum.replaceAll(",", "");
+			roomNum = roomNum.replaceAll(" ", "");
+			roomNum = roomNum.replaceAll(":", "");
+			System.out.println("countDownEnd======"+roomNum);
+			session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
+			System.out.println("readmessage====="+roomNum);
+			session.setAttribute("roomNum", roomNum);
+		}
 
 		return "Message/message";
 	}
@@ -218,6 +235,16 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		model.addAttribute("noticeList", noticeList);
 		
 		return "Message/notice";
+	}
+	
+	//카운트다운용 메시지
+	@RequestMapping(value = "/countDownEndMessage", method = RequestMethod.GET)
+	public @ResponseBody Message countDownEndMessage(String conf_date, String employee_nums, HttpSession session, Model model) {
+		Member user = (Member)session.getAttribute("user");
+		Message message = msgRepository.countDownEndMessage(conf_date, employee_nums, user.getEmployee_num());
+		session.setAttribute("message", message);
+//		System.out.println("countdownendmessage"+message.getContent().toString());
+		return message;
 	}
 
 }
