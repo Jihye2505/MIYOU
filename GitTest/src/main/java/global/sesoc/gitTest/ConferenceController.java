@@ -96,6 +96,7 @@ public class ConferenceController {
 			if (conf_num != 0) {
 				conf_date2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm").format(transFormat);
 				Member user = (Member) session.getAttribute("user");
+				conf_mng.setConf_num(conf_num);
 				String employee_num = user.getEmployee_num();
 
 				msgRepository.sendConfMessage(conf_mng, conf_date2, employee_num);
