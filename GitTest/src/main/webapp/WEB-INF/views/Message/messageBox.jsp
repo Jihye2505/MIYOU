@@ -57,7 +57,7 @@
 		                  <table class="table">
 		                  <tr>
 		                  <td style="border-top: none;">
-		                  <div class="col-md-3 input-group">
+		                  <div class="col-md-4 input-group">
 							<select class=" _select js-states form-control" name="searchTitle">
 	                        	<option value="content" ${searchTitle == 'content' ? 'selected':''}>content</option>
 								<option value="employee_num" ${searchTitle == 'employee_num' ? 'selected':''}>sender</option>
