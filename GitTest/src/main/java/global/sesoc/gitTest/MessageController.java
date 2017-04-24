@@ -115,9 +115,9 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			roomNum = roomNum.replaceAll(",", "");
 			roomNum = roomNum.replaceAll(" ", "");
 			roomNum = roomNum.replaceAll(":", "");
-			System.out.println("countDownEnd======"+roomNum);
+//			System.out.println("countDownEnd======"+roomNum);
 			session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
-			System.out.println("readmessage====="+message.getContent().substring(substringConfDate+12, substringEnd));
+//			System.out.println("readmessage====="+message.getContent().substring(substringConfDate+12, substringEnd));
 			session.setAttribute("roomNum", roomNum);
 		}
 
@@ -172,7 +172,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		   s = s + memberList.get(i).getEmployee_num() + "\n";
 	   }
 	   session.setAttribute("memberList", memberList);
-	   System.out.println(memberList);
+//	   System.out.println(memberList);
 	   return s;
 	}
 	

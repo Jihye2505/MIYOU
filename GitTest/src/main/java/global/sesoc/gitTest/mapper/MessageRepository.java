@@ -25,7 +25,7 @@ public class MessageRepository {
 	
 	public int sendMessage(Message message){
 		int result=0;
-		System.out.println(message);
+//		System.out.println(message);
 		MessageDAO msgDAO = sqlsession.getMapper(MessageDAO.class);
 		try {
 			result = msgDAO.sendMessage(message);
