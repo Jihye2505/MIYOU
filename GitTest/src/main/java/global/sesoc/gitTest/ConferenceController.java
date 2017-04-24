@@ -88,7 +88,6 @@ public class ConferenceController {
 			@RequestParam(value = "subtitle", required = true, defaultValue = "null") List<String> subtitles,
 			HttpSession session) {
 
-		System.out.println(conf_date2);
 		try {
 			Date transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(conf_date2);
 			conf_mng.setConf_date(transFormat);
@@ -100,6 +99,11 @@ public class ConferenceController {
 				String employee_num = user.getEmployee_num();
 
 				msgRepository.sendConfMessage(conf_mng, conf_date2, employee_num);
+				
+				int total = msgRepository.countMessage(user.getEmployee_num());
+				int unread = msgRepository.countNotRead(user.getEmployee_num());
+				session.setAttribute("total", total);
+				session.setAttribute("unread", unread);
 			}
 
 		} catch (ParseException e) {
@@ -175,8 +179,6 @@ public class ConferenceController {
 
 		// date를 string으로 줘야 거기에 이상한 날짜 안뜨고 제대로????
 		
-		System.out.println(conf_date2);
-		System.out.println(todate2);
 		SimpleDateFormat transTodate = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		SimpleDateFormat transStringDate = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		SimpleDateFormat transConf_date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -187,7 +189,6 @@ public class ConferenceController {
 			conf_mng.setConf_date(conf_date);
 			Date todate = transTodate.parse(todate2);
 			conf_mng.setTodate(todate);
-			System.out.println(conf_date.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -200,6 +201,11 @@ public class ConferenceController {
 			String employee_num = user.getEmployee_num();
 
 			msgRepository.sendConfMessage(conf_mng, conf_date3, employee_num);
+			
+			int total = msgRepository.countMessage(user.getEmployee_num());
+			int unread = msgRepository.countNotRead(user.getEmployee_num());
+			session.setAttribute("total", total);
+			session.setAttribute("unread", unread);
 
 		}
 

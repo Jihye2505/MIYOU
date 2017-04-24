@@ -29,7 +29,6 @@ public class ConfRepository {
 	public int insertConf(Conf_mng conf_mng, List<String> subtitles) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
-		System.out.println(conf_mng.getConf_date().toString());
 		/*
 		String conf_date = conf_mng.getConf_date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss");
