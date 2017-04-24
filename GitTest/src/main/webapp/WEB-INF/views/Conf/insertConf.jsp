@@ -147,7 +147,7 @@ function save(obj) {
               <div class="form-group">
                 <div align="right"> <!-- <div class="col-sm-4 col-sm-offset-2" align="right"> -->
                   <button class="btn aqua" type="submit" onclick="return frmCheck();">Register</button>&nbsp;
-                  <button class="btn btn-white" type="reset">Cancel</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-white" onclick="history.back()">Cancel</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
               </div>
             </form>
