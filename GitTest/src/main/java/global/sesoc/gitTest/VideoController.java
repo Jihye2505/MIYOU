@@ -16,10 +16,7 @@ public class VideoController {
 	@RequestMapping(value="/videocall",method = RequestMethod.GET)
 	public String videocall(HttpSession session){
 		
-		String token = "cHJvdmlzaW9uAG1peW91QDkyYzZlNi52aWR5by5pbwAxMDYzNjU4M"
-				+ "jMxMTk1AAA5ODA1NzVkYTljYjJmNDhkOTY5ZTc1YzkyMDQzN2FhNjg1YjA3"
-				+ "NmIzNGVmNTUwODRiYThjY2JmNmFjMDRjZjYzZjRiMjYxM2NjMDFmYzAwZjg"
-				+ "0NDA1NmQ3MjE0MjMwMzg=";
+		String token = "cHJvdmlzaW9uAEpIQGZjOTgzNC52aWR5by5pbwA2MzY2MDIzMzMyNAAAOWM1ZTMzMTBlZDJlMjczY2EyZTllYTcxMzJhOWFmNTZlOGFlZWIxODAyNGY4MGJkMTFjZTliNmM1NGI2ZDAxMjczZGQwOGFiMGIyMTM2NzEwODlhMzRlMjdhMDUyNGQ5";
 		session.setAttribute("token", token);
 		return "VidyoConnector";
 	}
