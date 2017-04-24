@@ -9,28 +9,21 @@
 </head>
 <body>
 <form action="">
-	회의제목: ${conf_mng.title }
+	회의제목: ${conf_mngForSummary.title }
 	세부내용: 
 	<table class="table table-hover ">
                       <thead>
                         <tr>
-                          <th>  </th>
                           <th> 안건 </th>
                           <th> 담당자 </th>
-                          <th> 진행상황 </th>
                         </tr>
                       </thead>
                       <tbody>
-                          	<c:forEach var="conf_topic" items="${list_topic }">
+                          	<c:forEach var="i" items="${list_topicForSummary}">
 								<tr>
 									<td></td>
-									<td>${conf_topic.subtitle }</td>
-									<td>${conf_topic.employee_num }</td>
-									<td>
-									<div class="progress progress-striped">
-                    					<div style="width: ${conf_topic.process }%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="${conf_topic.process }" role="progressbar" class="progress-bar progress-bar-success"> <span class="sr-only"> 40% Complete (success) </span> </div>
-                  					</div>
-									</td>
+									<td>${i.subtitle }</td>
+									<td>${i.employee_num }</td>
 								</tr>
 							</c:forEach>
                       </tbody>
