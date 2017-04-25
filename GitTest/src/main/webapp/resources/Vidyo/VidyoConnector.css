@@ -165,6 +165,10 @@ html, body {
 .microphoneOff { background-image: url(Images/microphoneOff.png); }
 .callStart     { background-image: url(Images/callStart.png); }
 .callEnd       { background-image: url(Images/callEnd.png); }
+.topic       { background-image: url(Images/schedule.png); }
+.chatMessage       { background-image: url(Images/message.png); }
+.memo       { background-image: url(Images/memo.png); }
+.translate       { background-image: url(Images/translate.png); }
 
 /* Renderer Layout CSS */
 .pluginOverlay .videoContainer .frame video {

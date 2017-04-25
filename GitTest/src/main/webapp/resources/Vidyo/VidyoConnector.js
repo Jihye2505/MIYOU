@@ -8,11 +8,15 @@ function StartVidyoConnector(VC) {
     var microphonePrivacy = false;
     var configParams = {};
 
+    $("#options").removeClass("hidden");
+    $("#optionsVisibilityButton").removeClass("hidden");
+    $("#renderer").removeClass("hidden");
+    
     VC.CreateVidyoConnector({
         viewId: "renderer", // Div ID where the composited video will be rendered, see VidyoConnectorSample.html
         viewStyle: "VIDYO_CONNECTORVIEWSTYLE_Default", // Visual style of the composited renderer
-        remoteParticipants: 4,     // Maximum number of participants
-        logFileFilter: "warning all@VidyoConnector info@VidyoClient",
+        remoteParticipants: 16,     // Maximum number of participants
+        logFileFilter: "warning info@VidyoClient info@VidyoConnector",
         logFileName:"",
         userData:""
     }).then(function(vc) {
@@ -22,7 +26,7 @@ function StartVidyoConnector(VC) {
         handleDeviceChange(vidyoConnector, cameras, microphones, speakers);
         handleParticipantChange(vidyoConnector);
 
-        // Populate the connectionStatus with the client version
+     // Populate the connectionStatus with the client version
         vidyoConnector.GetVersion().then(function(version) {
             $("#clientVersion").html("v " + version);
         }).catch(function() {
@@ -31,7 +35,7 @@ function StartVidyoConnector(VC) {
 
         // If enableDebug is configured then enable debugging
         if (configParams.enableDebug === "1") {
-            vidyoConnector.EnableDebug({port:7776, logFilter: "warning all@VidyoClient all@VidyoConnector"}).then(function() {
+            vidyoConnector.EnableDebug({port:7776, logFilter: "warning info@VidyoClient info@VidyoConnector"}).then(function() {
                 console.log("EnableDebug success");
             }).catch(function() {
                 console.error("EnableDebug failed");
@@ -85,6 +89,20 @@ function StartVidyoConnector(VC) {
         });
     });
 
+    // Handle the options visibility button, toggle between show and hide options.
+    $("#optionsVisibilityButton").click(function() {
+        // OptionsVisibility button clicked
+        if ($("#optionsVisibilityButton").hasClass("hideOptions")) {
+            $("#options").addClass("hidden");
+            $("#optionsVisibilityButton").addClass("showOptions").removeClass("hideOptions");
+            $("#renderer").addClass("rendererFullScreen").removeClass("rendererWithOptions");
+        } else {
+            $("#options").removeClass("hidden");
+            $("#optionsVisibilityButton").addClass("hideOptions").removeClass("showOptions");
+            $("#renderer").removeClass("rendererFullScreen").addClass("rendererWithOptions");
+        }
+    });
+    
     function joinLeave() {
         // join or leave dependent on the joinLeaveButton, whether it
         // contains the class callStart of callEnd.
@@ -103,8 +121,6 @@ function StartVidyoConnector(VC) {
         }
         $("#joinLeaveButton").one("click", joinLeave);
     }
-
-    $("#options").removeClass("optionsHide");
 }
 
 function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers) {
@@ -141,7 +157,7 @@ function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers)
         console.error("RegisterLocalCameraEventListener Failed");
     });
 
-    // Handle appearance and disappearance of microphone devices in the system
+ // Handle appearance and disappearance of microphone devices in the system
     vidyoConnector.RegisterLocalMicrophoneEventListener({
         onAdded: function(localMicrophone) {
             // New microphone is available
@@ -167,7 +183,7 @@ function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers)
         console.error("RegisterLocalMicrophoneEventListener Failed");
     });
 
-    // Handle appearance and disappearance of speaker devices in the system
+ // Handle appearance and disappearance of speaker devices in the system
     vidyoConnector.RegisterLocalSpeakerEventListener({
         onAdded: function(localSpeaker) {
             // New speaker is available
@@ -279,12 +295,20 @@ function handleParticipantChange(vidyoConnector) {
 						,url:"translate"
 						,data:myData
 						,success:function(resp){
-							$("#participantStatus").html(" "+name + " : "+resp);
+							var yy = $(".guest").attr("id");
+							var head = yy.split("_",1);
+							for (var i=0; i<9 ; i++) {
+								var divId = head+"_renderer_vidyoRemoteName"+String(i);
+								var userId = $("#"+divId).html();
+								var head2 = userId.split(":",1);
+								if(head2 == name){
+									$("#"+divId).html(name+":"+resp);
+									break;
+								};
+							}
 						}
 					});
-				  
 	            });
-			  
 		  }
 		}).then(function() {
 		  console.log("RegisterParticipantEventListener Success");
@@ -293,7 +317,7 @@ function handleParticipantChange(vidyoConnector) {
 		});
     
 	
-    vidyoConnector.RegisterParticipantEventListener({
+	vidyoConnector.RegisterParticipantEventListener({
         onJoined: function(participant) {
             getParticipantName(participant, function(name) {
                 $("#participantStatus").html("" + name + " Joined");
@@ -337,14 +361,14 @@ function parseUrlParameters(configParams) {
     configParams.enableDebug = getUrlParameterByName("enableDebug");
     var hideConfig = getUrlParameterByName("hideConfig");
 
-    // If the parameters are passed in the URI, do not display options dialog,
-    // and automatically connect.
+    // If the parameters are passed in the URI, do not display options dialog
     if (host && token && displayName && resourceId) {
-        $("#optionsParameters").addClass("optionsHidePermanent");
+        $("#optionsParameters").addClass("hiddenPermanent");
     }
 
     if (hideConfig=="1") {
-        $("#options").addClass("optionsHidePermanent");
+        $("#options").addClass("hiddenPermanent");
+        $("#optionsVisibilityButton").addClass("hiddenPermanent");
         $("#renderer").addClass("rendererFullScreenPermanent");
     }
 
@@ -371,7 +395,8 @@ function connectToConference(vidyoConnector) {
             // Connected
             console.log("vidyoConnector.Connect : onSuccess callback received");
             $("#connectionStatus").html("Connected");
-            $("#options").addClass("optionsHide");
+            $("#options").addClass("hidden");
+            $("#optionsVisibilityButton").addClass("showOptions").removeClass("hideOptions");
             $("#renderer").addClass("rendererFullScreen").removeClass("rendererWithOptions");
             $("#message").html("");
         },
@@ -386,7 +411,8 @@ function connectToConference(vidyoConnector) {
             console.log("vidyoConnector.Connect : onDisconnected callback received");
             connectorDisconnected("Disconnected", "Call Disconnected: " + reason);
 
-            $("#options").removeClass("optionsHide");
+            $("#options").removeClass("hidden");
+            $("#optionsVisibilityButton").addClass("hideOptions").removeClass("showOptions");
             $("#renderer").removeClass("rendererFullScreen").addClass("rendererWithOptions");
         }
     }).then(function(status) {

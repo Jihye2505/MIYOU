@@ -18,7 +18,13 @@ public class VideoController {
 		
 		String token = "cHJvdmlzaW9uAEpIQGZjOTgzNC52aWR5by5pbwA2MzY2OTI0MTAyMgAAMTM4Y2NlY2JmOTViMWMwMzYzYzliYTVjMjI5MTIzMWI5YmE3MDlmOThhYjA2OWU5MDA5YTBmMmY4ZWY1ODc0YzU4NDRjMjdlOWRjZGExMWYzYzk0YjQyOTlhYzliOWYx";
 		session.setAttribute("token", token);
-		return "VidyoConnector";
+		return "videocall";
+	}
+	
+	@RequestMapping(value="/chat",method = RequestMethod.GET)
+	public String chat(HttpSession session){
+		
+		return "chat";
 	}
 	
 	
