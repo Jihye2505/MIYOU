@@ -45,7 +45,7 @@
             <div class="mail-box-header">
               <h2> View Message </h2>
               <div class="mail-tools tooltip-demo ">
-                <h3> <span class="font-noraml">Subject: </span>${message.content } </h3>
+<%--                 <h3> <span class="font-noraml">Subject: </span>${message.content } </h3> --%>
                 <h5> <span class="pull-right font-noraml">${message.send_date }</span> <span class="font-noraml">From: </span>${message.employee_num }</h5>
               </div>
             </div>
