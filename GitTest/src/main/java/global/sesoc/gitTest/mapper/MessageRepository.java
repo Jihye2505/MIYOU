@@ -206,7 +206,7 @@ public class MessageRepository {
 				+"<br>회의 번호 : "+conf_mng.getConf_num()
 				+"<br>회의 주제 : "+conf_mng.getTitle()
 				+"<br>참여자 명단 : "+conf_mng.getEmployee_nums()
-				+"<br><form action='videocall'><input type='submit' value='회의 참여'></form>";
+				+"<br><br><form action='videocall'><input type='submit' value='회의 참여' class='btn purple btn-outline btn-sm'></form>";
 //		System.out.println(content);
 		message.setContent(content);
 		message.setEmployee_num(employee_num);
