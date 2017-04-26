@@ -57,10 +57,10 @@
 			</a>
 				<ul class="sub-menu">
 					<li class="nav-item"><a class="nav-link" href="my_dept">
-							<span class="title">My dept</span>
+							<span class="title">My department</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="whole_dept"> <span class="title">Whole dept</span>
+						href="whole_dept"> <span class="title">Whole department</span>
 					</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link nav-toggle"
@@ -69,10 +69,10 @@
 			</a>
 				<ul class="sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="confList"> <span class="title">Conf list</span>
+						href="confList"> <span class="title">Conference list</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="javascript:alert('Choose specific date from calendar.');javascript:location.href='main';"> <span class="title">Conf registration</span>
+						href="javascript:alert('Choose specific date from calendar.');javascript:location.href='main';"> <span class="title">Conference registration</span>
 					</a></li>
 					
 				</ul></li>
