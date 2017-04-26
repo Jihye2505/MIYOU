@@ -7,6 +7,8 @@ function StartVidyoConnector(VC) {
     var cameraPrivacy = false;
     var microphonePrivacy = false;
     var configParams = {};
+    
+    
 
     $("#options").removeClass("hidden");
     $("#optionsVisibilityButton").removeClass("hidden");
@@ -110,11 +112,14 @@ function StartVidyoConnector(VC) {
             $("#connectionStatus").html("Connecting...");
             $("#joinLeaveButton").removeClass("callStart").addClass("callEnd");
             $('#joinLeaveButton').prop('title', 'Leave Conference');
+            
+            startButton(event);
             connectToConference(vidyoConnector);
         } else {
             $("#connectionStatus").html("Disconnecting...");
             vidyoConnector.Disconnect().then(function() {
                 console.log("Disconnect Success");
+                saveText();
             }).catch(function() {
                 console.error("Disconnect Failure");
             });
@@ -275,11 +280,43 @@ function getParticipantName(participant, cb) {
     });
 }
 
+
+var confText='';
+function myText(id, myText){
+	
+	var selectLang;
+	var userLang = $("#language").val();
+	if(userLang=="ko"){
+	  selectLang="ko";
+	}else if(userLang=="ja"){
+	  selectLang="ja";
+	}
+	var myData = {userLanguage:userLang, inputText:myText};
+	$.ajax({
+		method:"get"
+		,url:"translate"
+		,data:myData
+		,success:function(resp){
+			confText = confText+"!@#$"+id+":"+myText;
+			confText = confText+"!@#$"+id+":"+resp;			
+		}
+	});
+}
+
+function saveText(){
+	$.ajax({
+		method:"post"
+		,url:"saveText"
+		,data:confText
+	});
+}
+
 function handleParticipantChange(vidyoConnector) {
 	
 	// message
 	vidyoConnector.RegisterMessageEventListener({
 		  onChatMessageReceived: function(participant, chatMessage) { /*Message received from other participant */ 
+			  startButton(event);
 			  getParticipantName(participant, function(name) {
 				  var selectLang;
 				  var userLang = $("#language").val();
@@ -303,6 +340,11 @@ function handleParticipantChange(vidyoConnector) {
 								var head2 = userId.split(":",1);
 								if(head2 == name){
 									$("#"+divId).html(name+":"+resp);
+									
+									confText = confText+"!@#$"+name+":"+originalText;
+									confText = confText+"!@#$"+name+":"+resp;
+									
+									
 									break;
 								};
 							}
@@ -429,7 +471,7 @@ function connectToConference(vidyoConnector) {
         $("#error").html("<h3>Call Failed" + "</h3>");
     });
 }
-
+ 
 // Connector either fails to connect or a disconnect completed, update UI elements
 function connectorDisconnected(connectionStatus, message) {
     $("#connectionStatus").html(connectionStatus);
