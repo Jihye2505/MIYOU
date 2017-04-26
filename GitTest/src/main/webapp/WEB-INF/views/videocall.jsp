@@ -164,54 +164,68 @@
 	}
 	
 	 // Get voice
-	var final_transcript = '';
-	var recognizing = false;
-	var ignore_onend;
-	var start_timestamp;
-	var recognition;
+	var transcriptSent = '';
+   var transcriptOld = '';
+   var transcriptNew = '';
+   var recognizing = false;
+   var ignore_onend;
+   var start_timestamp;
+   var recognition;
 
-	if (!('webkitSpeechRecognition' in window)) {
-		//upgrade();
-	} else {
-		recognition = new webkitSpeechRecognition();
-		recognition.continuous = true;
-		recognition.interimResults = true;
-		recognition.onstart = function() {
-			recognizing = true;
-			$("#messages").html("speaking now");
-		};
-		recognition.onerror = function(event) {
-			if (event.error == 'no-speech') {
-				$("#messages").html("no-speech");
-			}
-			if (event.error == 'audio-capture') {
-				$("#messages").html("no microphone");
-			}
-		};
-		recognition.onend = function() {
-			recognizing = false;
-			if (ignore_onend) {
-				return;
-			}
-			if (!final_transcript) {
-				return;
-			}
-		};
-		recognition.onresult = function(event) {
-			var interim_transcript = '';
-			for (var i = event.resultIndex; i < event.results.length; ++i) {
-				if (event.results[i].isFinal) {
-					final_transcript = event.results[i][0].transcript;
-				} else {
-					final_transcript = event.results[i][0].transcript;
-				}
-			}
-			final_transcript = capitalize(final_transcript);
-			myText($("#displayName").val(), final_transcript)
-			vidyoConnector.SendChatMessage(final_transcript);
-			final_transcript='';
-		};
-	}
+   if (!('webkitSpeechRecognition' in window)) {
+      //upgrade();
+   } else {
+      recognition = new webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.onstart = function() {
+         recognizing = true;
+         $("#messages").html("speaking now");
+      };
+      recognition.onerror = function(event) {
+         if (event.error == 'no-speech') {
+            $("#messages").html("no-speech");
+         }
+         if (event.error == 'audio-capture') {
+            $("#messages").html("no microphone");
+         }
+      };
+      recognition.onend = function() {
+         recognizing = false;
+         if (ignore_onend) {
+            return;
+         }
+         if (!transcriptNew) {
+            return;
+         }
+      };
+      recognition.onresult = function(event) {
+         var interim_transcript = '';
+         for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+               transcriptNew = event.results[i][0].transcript;
+            } else {
+               transcriptNew = event.results[i][0].transcript;
+            }
+         }
+         transcriptNew = capitalize(transcriptNew);
+      };
+      
+   }
+   function filter(){
+      if(transcriptOld == transcriptNew){
+         if(transcriptSent == transcriptOld){
+            return
+         }else{
+            myText($("#displayName").val(), transcriptOld);
+            vidyoConnector.SendChatMessage(transcriptOld);
+            transcriptSent = transcriptOld;
+            alert(transcriptSent);
+         }
+      }else{
+         transcriptOld = transcriptNew;
+      }
+   }
 	var two_line = /\n\n/g;
 	var one_line = /\n/g;
 	function linebreak(s) {
@@ -402,12 +416,10 @@ to hook up all of the events to elements. -->
 		<input type="button" title="Topic List" class="toolbarButton topic" onclick="javascript:window.open('confSummary', 'window', 'width=350,height=350');">
 		
 		<!-- 메모 열기 -->
-		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', 'window', 'width=350,height=350');">
-
-		<!-- sending message -->
-		<input type="text" id="msg" name="msg"  onkeypress="if(event.keyCode==13) {sendingMSG();}">
+		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', 'window', 'width=350,height=340,resizable=no');">
 		
-		<input type="button" title="Chat" id="chatMessage" class="toolbarButton chatMessage" onclick="javascript:window.open('chat', 'window', 'width=350,height=350');"> 
+		<!-- 채팅창 열기 -->
+		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="javascript:window.open('chat', 'window', 'width=350,height=350,resizable=no');">
 		
 		<input type="button" title="Translate" id="translate" class="toolbarButton translate" onclick="startButton(event)">
 

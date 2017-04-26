@@ -112,8 +112,8 @@ function StartVidyoConnector(VC) {
             $("#connectionStatus").html("Connecting...");
             $("#joinLeaveButton").removeClass("callStart").addClass("callEnd");
             $('#joinLeaveButton').prop('title', 'Leave Conference');
-            
-            startButton(event);
+            setInterval(filter,1000);
+            setInterval(startButton(event),10000);
             connectToConference(vidyoConnector);
         } else {
             $("#connectionStatus").html("Disconnecting...");
@@ -282,8 +282,8 @@ function getParticipantName(participant, cb) {
 
 
 var confText='Conference Start';
+
 function myText(id, myText){
-	
 	var selectLang;
 	var userLang = $("#language").val();
 	if(userLang=="ko"){
@@ -298,9 +298,14 @@ function myText(id, myText){
 		,data:myData
 		,success:function(resp){
 			confText = confText+"<br>"+id+":"+myText;
-			confText = confText+"<br>"+id+":"+resp;			
+			confText = confText+"<br>"+id+":"+resp;
 		}
 	});
+}
+
+
+function chat(){
+	$("#chatArea").html(confText);
 }
 
 function saveText(){
