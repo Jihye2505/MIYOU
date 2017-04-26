@@ -471,7 +471,7 @@ function connectToConference(vidyoConnector) {
         $("#error").html("<h3>Call Failed" + "</h3>");
     });
 }
- 
+  
 // Connector either fails to connect or a disconnect completed, update UI elements
 function connectorDisconnected(connectionStatus, message) {
     $("#connectionStatus").html(connectionStatus);
