@@ -257,7 +257,7 @@
 
                                  <!-- <div id="editor">hi hello it's me</div> -->
                                  <!-- <input type="text" name="content" id="editor"> -->
-                                 <textarea rows="100" cols="147" name="content" id="editor"></textarea>
+                                 <textarea rows="100" cols="147" name="content" id="editor" style="resize: none;"></textarea>
                               </div>
 
                            </div>
