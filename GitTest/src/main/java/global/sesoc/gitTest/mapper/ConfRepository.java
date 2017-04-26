@@ -25,6 +25,9 @@ public class ConfRepository {
 
 	@Autowired
 	SqlSession sqlSession;
+	
+	List<Map<String, Object>> stringTextList = new ArrayList<>();
+	Map<String, Object> stringTextMap = new HashMap<>();
 
 	public int insertConf(Conf_mng conf_mng, List<String> subtitles) {
 
@@ -226,17 +229,51 @@ public class ConfRepository {
 		
 	}
 	
-	public int insertTextFile(Conf_mng conf_mng, String stringText){
+//	public void saveText(String conf_num, String stringText){
+//		
+//		for (int i = 0; i < stringTextList.size(); i++) {
+//			if(stringTextList.get(i).get("conf_num").equals(conf_num)){
+//				stringText = stringTextList.get(i).get("stringText") + " <br><br> " + stringText;
+//				stringTextList.get(i).put("stringText", stringText);
+//				System.out.println("cunf_num"+conf_num+"text==="+stringText);
+//			}
+//		}
+//		stringTextMap.put("conf_num", conf_num);
+//		stringTextMap.put("stringText", stringText);
+//		stringTextList.add(stringTextMap);
+//		System.out.println("newCunf_num"+conf_num+"text==="+stringText);
+//	}
+//	
+	public int insertTextFile(int conf_num, String stringText){
 		
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
-		
+		Conf_mng conf_mng = null;
+		try {
+			conf_mng = dao.selectConf(conf_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		String conf_num2 = conf_num+"";
+//		String stringText = null;
+//		System.out.println(stringTextList.size());
+//		for (int i = 0; i < stringTextList.size(); i++) {
+//			if(stringTextList.get(i).get("conf_num").equals(conf_num2)){
+//				stringText = (String) stringTextList.get(i).get("stringText");
+//				System.out.println("save===="+stringText);
+//				stringTextList.get(i).remove("conf_num");
+//				stringTextList.get(i).remove("stringText");
+//			}
+//		}
+//		
 //		System.out.println(stringText);
-		String[] s = stringText.split("[\r\n\t]");
+		
+		String[] s = stringText.split("!@#$");
 		BufferedWriter out;
 		try {
 			out = new BufferedWriter(new FileWriter("D:\\"+conf_mng.getConf_num()+".txt"));
-			for (int i = 0; i < s.length; i++) {
-				out.write(s[i]);
+			for (int j = 0; j < s.length; j++) {
+				out.write(s[j]);
 				out.newLine();
 			}
 			out.close();

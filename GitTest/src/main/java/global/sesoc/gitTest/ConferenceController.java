@@ -17,6 +17,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
 import global.sesoc.gitTest.vo.Member;
 import global.sesoc.gitTest.vo.Message;
+import global.sesoc.gitTest.vo.MiyouTranslate;
 
 @Controller
 public class ConferenceController {
@@ -55,7 +57,7 @@ public class ConferenceController {
 
 	int countPerPage = 10;
 	int pagePerGroup = 5;
-
+	
 	final String uploadPath = "D:\\";
 
 	@RequestMapping(value = "/insertConf", method = RequestMethod.GET)
@@ -250,13 +252,26 @@ public class ConferenceController {
 
 		return "redirect:/confList";
 	}
+	
+//	@RequestMapping(value = "/saveText", method = RequestMethod.POST)
+//	public String saveText(String conf_num, String stirngText, HttpSession session) {
+//		
+//			repository.saveText(conf_num, stringText);
+//
+//		return "";
+//	}
 
-	@RequestMapping(value = "/insertTextFile", method = RequestMethod.POST)
-	public String insertTextFile(Conf_mng conf_mng, String stringText) {
+	
 
-		int result = repository.insertTextFile(conf_mng, stringText);
+	@RequestMapping(value = "/saveText", method = RequestMethod.POST)
+	public String saveText(String confText, HttpSession session) {
+		
+		String conf_num2 = (String)session.getAttribute("conf_num");
+		int conf_num = Integer.parseInt(conf_num2);
+		
+		int result = repository.insertTextFile(conf_num, confText);
 
-		return "redirect:/confList";
+		return "";
 	}
 
 	@RequestMapping(value = "download", method = RequestMethod.GET)

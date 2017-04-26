@@ -207,15 +207,6 @@
 				}
 			}
 			final_transcript = capitalize(final_transcript);
-			$.ajax({
-			  	type : "post"
-			    , url : "saveText"
-			    , data : {"final_transcript":final_transcript}
-			    , success : function(data) {
-			    	alert(final_transcript);
-					$("#message").html(final_transcript);
-			    }
-			});
 			vidyoConnector.SendChatMessage(final_transcript);
 			final_transcript='';
 		};
@@ -267,7 +258,6 @@
 	// Runs when the page loads
 	$(function() {
 			joinViaBrowser();
-			startButton(event);
 			
 			$("#chatMessage").on('click', function() {
 				sendingMSG();
