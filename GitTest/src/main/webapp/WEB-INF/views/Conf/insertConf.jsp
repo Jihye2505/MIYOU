@@ -142,7 +142,7 @@ function save(obj) {
                   <input class="form-control" type="text" name="subtitle">
                 <div id="parah"></div>
                 <br>
-				<input class="btn aqua btn-outline btn-block sbold uppercase" name="addButton" type="button" value="Add subtitle">
+				<input class="btn aqua btn-outline btn-block" name="addButton" type="button" value="Add subtitle">
 				<input class="btn  red btn-outline btn-block" value="Delete subtitle" type="button" name="delInput">
 				
 				<input type="hidden" name="writer" value="${user.employee_num }">
