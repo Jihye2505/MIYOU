@@ -5,7 +5,6 @@
 <html>
 <head>
 
-
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <title>VidyoConnector</title>
 
@@ -208,7 +207,15 @@
 				}
 			}
 			final_transcript = capitalize(final_transcript);
-			$("#message").html(final_transcript);
+			$.ajax({
+			  	type : "post"
+			    , url : "saveText"
+			    , data : {"final_transcript":final_transcript}
+			    , success : function(data) {
+			    	alert(final_transcript);
+					$("#message").html(final_transcript);
+			    }
+			});
 			vidyoConnector.SendChatMessage(final_transcript);
 			final_transcript='';
 		};
@@ -278,6 +285,16 @@
 			loadHelperOptions();
 		} */
 	});
+	
+	function insertTextFile(){
+		$.ajax({
+		  	type : "post"
+		    , url : "insertTextFile"
+		    , success : function(data) {
+		    	alert("complete");
+		    }
+		});
+	}
 	</script>
 </head>
 
@@ -402,6 +419,8 @@ to hook up all of the events to elements. -->
 		
 		<input type="button" title="Translate" id="translate" class="toolbarButton translate" onclick="startButton(event)">
 
+		<input type="button" title="saveConf" id="saveConf" class="toolbarButton saveConf" onclick="insertTextFile()">
+		
 		<input type="hidden" id="language" value="${user.language}">
 		
 		<span id="connectionStatus">Initializing</span>
