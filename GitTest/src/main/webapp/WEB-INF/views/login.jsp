@@ -38,7 +38,7 @@
 				},
 			success: function(data) {
 				 if(data == "false"){
-					 alert("잘못입력하셨습니다.");
+					 alert("Incorrect input");
 					 $("#password").val("");
 				 }
 				 else {
@@ -56,7 +56,7 @@
 
 <c:if test="${loginCheck != null}">
 	<script>
-		alert("세션이 만료되었습니다.");
+		alert("Your session has expired.");
 		<% session.setAttribute("loginCheck", null); %>
 	</script>
 </c:if>

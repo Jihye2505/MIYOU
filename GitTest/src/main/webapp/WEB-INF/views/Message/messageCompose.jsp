@@ -114,7 +114,7 @@
 		var to = document.getElementById('widget2').value;
 		var content = document.getElementById('editor').value;
 		if(to == '' || content == ''){
-			alert("보낼사람 혹은 메세지 내용을 정확히 입력해주세요.");
+			alert("Please input appropriately.");
 			
 			return false;
 		}

@@ -43,7 +43,7 @@
 				<div class="wrapper-content ">
 			<div class="row wrapper border-bottom page-heading">
 				      <div class="col-lg-12">
-						<h1>전체 부서 업무 현황</h1>
+						<h1>Progress of whole department</h1>
 				      </div>
      		 </div>
 					<div class="row">
@@ -71,14 +71,14 @@
         			<table class="table table-hover borderedTable">
                       <thead>
                         <tr>
-                          <th>부서</th>
-                          <th>진행상황</th>
+                          <th>Department</th>
+                          <th>Progress</th>
                         </tr>
                       </thead>
                       <tbody>
                           	<c:forEach var="i" items="${whole}">
                           	<tr>
-                          	<td><a href="selected_team_process?dept_id=${i.DEPT_ID}">${i.DEPT_NAME}</a></td>
+                          	<td><a href="selected_team_progress?dept_id=${i.DEPT_ID}">${i.DEPT_NAME}</a></td>
 							<td align="right">${i.AVER}%
 								<div class="progress progress-striped">
                     				<div style="width: ${i.AVER}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="${i.AVER}" role="progressbar" class="progress-bar progress-bar-success">  </div>

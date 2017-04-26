@@ -38,29 +38,29 @@
 			</a>
 				<ul class="sub-menu">
 				<li class="nav-item"><a class="nav-link" href="myInfo">
-							<span class="title">내 정보</span>
+							<span class="title">My info</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="confList?searchTitle=employee_num&page=1&searchText=${user.employee_num }">
-							<span class="title">내 업무 관리</span>
+							<span class="title">My conference</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="update"> <span class="title">정보수정</span>
+						href="update"> <span class="title">Update info</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="messages">
-							<span class="title">메시지함</span><span
+							<span class="title">Message box</span><span
 							class="label label-warning pull-right">${unread }/${total }</span>
 					</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link nav-toggle"
 				href="javascript:;"> <i class="fa fa-diamond"></i> <span
-					class="title">Team</span> <span class="arrow"></span>
+					class="title">Progress</span> <span class="arrow"></span>
 			</a>
 				<ul class="sub-menu">
-					<li class="nav-item"><a class="nav-link" href="team_process">
-							<span class="title">팀 업무</span>
+					<li class="nav-item"><a class="nav-link" href="my_dept">
+							<span class="title">My dept</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="whole_process"> <span class="title">전체 업무 흐름 확인</span>
+						href="whole_dept"> <span class="title">Whole dept</span>
 					</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link nav-toggle"
@@ -69,12 +69,10 @@
 			</a>
 				<ul class="sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="confList"> <span class="title">회의
-								일정</span>
+						href="confList"> <span class="title">Conf list</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="javascript:alert('달력에서 날짜를 선택해주세요.');javascript:location.href='main';"> <span class="title">회의
-								기획</span>
+						href="javascript:alert('Choose specific date from calendar.');javascript:location.href='main';"> <span class="title">Conf registration</span>
 					</a></li>
 					
 				</ul></li>
@@ -88,12 +86,10 @@
 				</a>
 					<ul class="sub-menu">
 						<li class="nav-item"><a class="nav-link nav-toggle"
-							href="join"> <span class="title">사원
-									등록</span>
+							href="join"> <span class="title">Member registration</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link nav-toggle"
-							href="memberUpdate"> <span class="title">사원 정보
-									수정</span>
+							href="memberUpdate"> <span class="title">Update member info</span>
 						</a></li>
 					</ul></li>
 			</c:if>

@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav pull-right">
         <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle count-info" > <i class="fa fa-envelope"></i> <span class="badge badge-info">${unread}</span> </a>
           <ul class="dropdown-menu dropdown-messages menuBig">
-          <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${unread} 개의 읽지 않은 메세지가 있습니다.</li>
+          <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You have ${unread} unread messages.</li>
             <!-- <li>
               <div class="dropdown-messages-box"> <a class="pull-left" href="profile.html"> <img src="resources/assets/images/teem/placeholders.jpg" class="img-circle" alt="image"> </a>
                 <div class="media-body"> <small class="pull-right">46h ago</small> <strong>Mike Loreipsum</strong> started following <strong>Olivia Wenscombe</strong>. <br>

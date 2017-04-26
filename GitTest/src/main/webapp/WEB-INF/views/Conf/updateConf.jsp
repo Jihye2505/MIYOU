@@ -64,7 +64,7 @@
 				<br><br>
             <form action="updateConfs" method="get" class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">제목</label>
+                <label class="col-sm-2 control-label">Title</label>
                 <div class="col-sm-10">
                   <!-- <input class="form-control input-lg bottom15" type="text" name="title" id="title"> -->
                   <label class="col-sm-2 control-label"  style="text-align: left;">${conf_mng.title }</label>
@@ -72,7 +72,7 @@
               </div>
               <hr>
               <div class="form-group">
-                <label class="col-sm-2 control-label">참여자</label>
+                <label class="col-sm-2 control-label">Participant</label>
                 <div class="col-sm-10">
 			       <article>
 			         <input type="text" value="${conf_mng.employee_nums }" id="widget2" name="employee_nums"/>
@@ -89,7 +89,7 @@
               <hr>
 
 		<div class="form-group">
-                <label class="col-sm-2 control-label">작성일</label>
+                <label class="col-sm-2 control-label">Created date</label>
                 <div class="col-sm-10">
                   <label class="col-sm-6 control-label" style="text-align: left;">${viewTodate }</label>
                 </div>
@@ -97,7 +97,7 @@
 		<hr>
 
 		<div class="form-group">
-			<label class="col-sm-2 control-label">회의날짜</label>
+			<label class="col-sm-2 control-label">Conf date</label>
 			<div class="col-sm-10">
 			<div class="input-group date form_datetime" data-date="${stringDate}" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
 			<input class="form-control" type="text" value="${stringDate}" readonly style="z-index: 1;">
@@ -110,14 +110,14 @@
               <hr>
               
 		<div class="form-group">
-			<label class="col-sm-2 control-label">안건</label>
+			<label class="col-sm-2 control-label">Subtitle</label>
 			<div class="col-sm-10">
 			<table class="table table-hover ">
                       <thead>
                         <tr>
-                          <th> 내용 </th>
-                          <th> 담당자 </th>
-                          <th> 진행상황 </th>
+                          <th> Content </th>
+                          <th> Manager </th>
+                          <th> Progress </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -128,7 +128,7 @@
 										<input type="hidden" name="subtitle" value="${conf_topic.subtitle }">
 									</td>
 									<td><input class="form-control col-sm-3" type="text" name="employee_num" value="${conf_topic.employee_num }"></td>
-									<td><input class="form-control col-sm-3" type="text" name="process" placeholder="진행정도를 0~100의 숫자로 입력하세요." value="${conf_topic.process }"></td>
+									<td><input class="form-control col-sm-3" type="text" name="process" placeholder="Progress can be input between 0~100." value="${conf_topic.process }"></td>
 								</tr>
 							</c:forEach>
                       </tbody>
@@ -140,7 +140,7 @@
 			<input type="hidden" name="todate2" value="${conf_mng.todate }">
 			<input type="hidden" name="writer" value="${conf_mng.writer }">
 			<div align="right">
-				<input class="btn aqua" type="submit" value="수정">
+				<input class="btn aqua" type="submit" value="Update">
 				<button class="btn btn-white" type="button" onclick="location.href='selectConf?conf_num=${conf_mng.conf_num }'">cancel</button>
 			</div>
             </form>

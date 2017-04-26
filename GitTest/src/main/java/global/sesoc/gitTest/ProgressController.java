@@ -14,34 +14,34 @@ import global.sesoc.gitTest.mapper.TeamRepository;
 import global.sesoc.gitTest.vo.Member;
 
 @Controller
-public class TeamController {
+public class ProgressController {
 
 	@Autowired
 	TeamRepository tRepository;
 	
-	@RequestMapping(value="/team_process", method=RequestMethod.GET)
-	public String team_process(HttpSession session){
+	@RequestMapping(value="/my_dept", method=RequestMethod.GET)
+	public String my_dept(HttpSession session){
 		
 		Member user = (Member) session.getAttribute("user");
 		
 		ArrayList<HashMap<String, Object>> members = tRepository.getMembers(user.getDept_id());
 		session.setAttribute("members", members);
-	    return "Team/team_process";
+	    return "Progress/my_dept";
 	}
 	
-	@RequestMapping(value="/selected_team_process", method=RequestMethod.GET)
-	public String team_process(HttpSession session, String dept_id){
+	@RequestMapping(value="/selected_team_progress", method=RequestMethod.GET)
+	public String team_progress(HttpSession session, String dept_id){
 		
 		ArrayList<HashMap<String, Object>> members = tRepository.getMembers(dept_id);
 		session.setAttribute("members", members);
-	    return "Team/team_process";
+	    return "Progress/my_dept";
 	}
 	
-	@RequestMapping(value="/whole_process", method=RequestMethod.GET)
-	public String whole_process(HttpSession session){
+	@RequestMapping(value="/whole_dept", method=RequestMethod.GET)
+	public String whole_dept(HttpSession session){
 		
 		ArrayList<HashMap<String, Object>> whole = tRepository.getWhole();
 		session.setAttribute("whole", whole);
-	    return "Team/whole_process";
+	    return "Progress/whole_dept";
 	}
 }

@@ -84,7 +84,7 @@ function checkForm(){
 	var check1 = document.getElementById("check1").value;
 	var check2 = document.getElementById("check2").value;
 	if(check1 == "false" || check2 == "false"){
-		alert("존재하지 않는 ID 입니다.");
+		alert("ID not found");
 		return false;
 	}
 	

@@ -41,12 +41,12 @@ function frmCheck(){
 	var title = document.getElementById('title').value;
 	var member = document.getElementById('widget2').value;
 	if(title == '' || member == '') {
-		alert("제목 혹은 참여자를 정확히 입력해주세요.");
+		alert("Please input appropriate title or participant.");
 		return false;
 	}
 	var changed = document.getElementById('changed').value;
 	if(changed.length < 15){
-		alert('시간까지 정확히 설정해주세요.');
+		alert('Select appropriate time');
 		return false;
 	}
 	
@@ -79,14 +79,14 @@ function save(obj) {
             <br>
             <form action="insertConf" method="post" class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">제목</label>
+                <label class="col-sm-2 control-label">Title</label>
                 <div class="col-sm-10">
                   <input class="form-control input-lg bottom15" type="text" name="title" id="title">
                 </div>
               </div>
               <hr>
               <div class="form-group">
-                <label class="col-sm-2 control-label">참여자</label>
+                <label class="col-sm-2 control-label">Participant</label>
                 <div class="col-sm-10">
 			       <article>
 			         <input type="text" value="" id="widget2" />
@@ -106,7 +106,7 @@ function save(obj) {
               
               
 		<div class="form-group">
-			<label class="col-sm-2 control-label">회의날짜</label>
+			<label class="col-sm-2 control-label">Conf date</label>
 			<div class="col-sm-10">
 			<div class="input-group date form_datetime" data-date="${conf_mng.conf_date }" data-date-format="yyyy-MM-dd - HH:ii p" data-link-field="dtp_input1">
 			<input class="form-control" id="changed" type="text" value="${conf_date}" readonly style="z-index: 1;">
@@ -137,13 +137,13 @@ function save(obj) {
               
               <hr>
               <div class="form-group">
-                <label class="col-sm-2 control-label">안건</label>
+                <label class="col-sm-2 control-label">Subtitle</label>
                 <div class="col-sm-10">
                   <input class="form-control" type="text" name="subtitle">
                 <div id="parah"></div>
                 <br>
-				<input class="btn aqua btn-outline btn-block sbold uppercase" name="addButton" type="button" value="안건 추가">
-				<input class="btn  red btn-outline btn-block" value="안건삭제" type="button" name="delInput">
+				<input class="btn aqua btn-outline btn-block sbold uppercase" name="addButton" type="button" value="Add subtitle">
+				<input class="btn  red btn-outline btn-block" value="Delete subtitle" type="button" name="delInput">
 				
 				<input type="hidden" name="writer" value="${user.employee_num }">
                 </div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Team Process</title>
+<title>Progress of my dept</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,12 +71,12 @@
     <div class="page-content" >
     <div class="wrapper-content ">
 				<c:if test="${members == '[]'}">
-							내 부서의 업무 진행사항이 없습니다. <br><br>
+							Nothing found. <br><br>
 				</c:if>
 				<c:if test="${members != '[]'}">
       <div class="row wrapper border-bottom page-heading">
 				      <div class="col-lg-12">
-						<h1>${members[0].DEPT_NAME} 업무 현황</h1>
+						<h1>${members[0].DEPT_NAME} progress status</h1>
 				      </div>
       </div>
       
@@ -87,10 +87,10 @@
         			<table class="table table-hover borderedTable">
                       <thead>
                         <tr>
-                          <th>이름</th>
-                          <th>부서명</th>
-                          <th>직급</th>
-                          <th>진행상황</th>
+                          <th>Name</th>
+                          <th>Dept</th>
+                          <th>Position</th>
+                          <th>Progress</th>
                           <th class="detailJobView" style="display:none"></th>
                         </tr>
                       </thead>
@@ -106,8 +106,8 @@
                   					</div>
 								</td>
 								<td class="detailJobView" style="display:none">
-									 <div>제목: ${i.TITLE}</div>
-									 <div>내용: ${i.SUBTITLE}</div>
+									 <div>Title: ${i.TITLE}</div>
+									 <div>Content: ${i.SUBTITLE}</div>
 								</td>
 							</tr>
 							</c:forEach>
@@ -140,8 +140,8 @@
  --%>	
 <div class="pull-right">
 	<br>
-	<a href="javascript:opened();" id="opened" class="btn btn-info">상세업무 보기</a>
-	<a href="javascript:closed();" id="closed" class="btn btn-default">접어두기</a>
+	<a href="javascript:opened();" id="opened" class="btn btn-info">Detail view</a>
+	<a href="javascript:closed();" id="closed" class="btn btn-default">To fold</a>
 </div>
 				</div>
 				</div>
