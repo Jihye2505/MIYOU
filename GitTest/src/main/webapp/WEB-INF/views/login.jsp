@@ -77,7 +77,7 @@
   <p>Now, don't panic even when you meet foreign fellows.</p>
   <!-- <form action="login"  class="top15" method="post"> -->
     <div class="form-group">
-      <input required="" placeholder="Username" class="form-control" type="text" name="employee_num" id="employee_num" onkeypress="if(event.keyCode==13) {login();}">
+      <input required="" placeholder="Username" class="form-control" type="text" name="employee_num" id="employee_num" onkeypress="if(event.keyCode==13) {login();}" autofocus="autofocus">
     </div>
     <div class="form-group">
       <input required="" placeholder="Password" class="form-control" type="password" name="password" id="password" onkeypress="if(event.keyCode==13) {login();}">
