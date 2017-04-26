@@ -207,6 +207,7 @@
 				}
 			}
 			final_transcript = capitalize(final_transcript);
+			myText($("#displayName").val(), final_transcript)
 			vidyoConnector.SendChatMessage(final_transcript);
 			final_transcript='';
 		};
@@ -250,6 +251,7 @@
 	//Sending Message
 	function sendingMSG(){
 			var mesg = $("#msg").val();
+			myText($("#displayName").val(), mesg)
 			vidyoConnector.SendChatMessage(mesg);
 			$("#msg").val("");
 	}; 
@@ -348,7 +350,7 @@ to hook up all of the events to elements. -->
 			the user. Other users who join this same Resource will be able to see and hear each other.
 			-->
 			<label for="resourceId">Conference ID</label>
-			<input id="resourceId" type="text" placeholder="Conference Reference" value="Miyou">
+			<input id="resourceId" type="text" placeholder="Conference Reference" value="${roomNum}">
 		</p>
 		</div>
 		<p>

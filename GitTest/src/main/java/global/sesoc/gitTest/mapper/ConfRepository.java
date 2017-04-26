@@ -268,7 +268,7 @@ public class ConfRepository {
 //		
 //		System.out.println(stringText);
 		
-		String[] confTextList = confText.split("!@#$");
+		String[] confTextList = confText.split("<br>");
 		BufferedWriter out;
 		try {
 			out = new BufferedWriter(new FileWriter("D:\\"+conf_mng.getConf_num()+".txt"));

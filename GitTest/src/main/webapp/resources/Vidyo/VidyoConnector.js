@@ -281,33 +281,34 @@ function getParticipantName(participant, cb) {
 }
 
 
-var confText='';
+var confText='Conference Start';
 function myText(id, myText){
 	
 	var selectLang;
 	var userLang = $("#language").val();
 	if(userLang=="ko"){
-	  selectLang="ko";
-	}else if(userLang=="ja"){
 	  selectLang="ja";
+	}else if(userLang=="ja"){
+	  selectLang="ko";
 	}
-	var myData = {userLanguage:userLang, inputText:myText};
+	var myData = {userLanguage:selectLang, inputText:myText};
 	$.ajax({
 		method:"get"
 		,url:"translate"
 		,data:myData
 		,success:function(resp){
-			confText = confText+"!@#$"+id+":"+myText;
-			confText = confText+"!@#$"+id+":"+resp;			
+			confText = confText+"<br>"+id+":"+myText;
+			confText = confText+"<br>"+id+":"+resp;			
 		}
 	});
 }
 
 function saveText(){
+	alert(confText);
 	$.ajax({
 		method:"post"
 		,url:"saveText"
-		,data:confText
+		,data:{"confText":confText}
 	});
 }
 
@@ -332,6 +333,8 @@ function handleParticipantChange(vidyoConnector) {
 						,url:"translate"
 						,data:myData
 						,success:function(resp){
+							confText = confText+"<br>"+name+":"+originalText;
+							confText = confText+"<br>"+name+":"+resp;
 							var yy = $(".guest").attr("id");
 							var head = yy.split("_",1);
 							for (var i=0; i<9 ; i++) {
@@ -340,11 +343,6 @@ function handleParticipantChange(vidyoConnector) {
 								var head2 = userId.split(":",1);
 								if(head2 == name){
 									$("#"+divId).html(name+":"+resp);
-									
-									confText = confText+"!@#$"+name+":"+originalText;
-									confText = confText+"!@#$"+name+":"+resp;
-									
-									
 									break;
 								};
 							}

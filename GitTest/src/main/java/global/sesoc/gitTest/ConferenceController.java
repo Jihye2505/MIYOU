@@ -246,6 +246,10 @@ public class ConferenceController {
 		for (String receiver : toList) {
 			message.setReceiver_num(receiver);
 			int result = msgRepository.sendMessage(message);
+			int total = msgRepository.countMessage(user.getEmployee_num());
+			int unread = msgRepository.countNotRead(user.getEmployee_num());
+			session.setAttribute("total", total);
+			session.setAttribute("unread", unread);
 		}
 		
 		int result = repository.deleteConf(conf_num);
@@ -268,7 +272,7 @@ public class ConferenceController {
 		
 		String conf_num2 = (String)session.getAttribute("conf_num");
 		int conf_num = Integer.parseInt(conf_num2);
-		System.out.println();
+		System.out.println(confText);
 		
 		int result = repository.insertTextFile(conf_num, confText);
 
