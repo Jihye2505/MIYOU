@@ -244,7 +244,7 @@ public class ConfRepository {
 //		System.out.println("newCunf_num"+conf_num+"text==="+stringText);
 //	}
 //	
-	public int insertTextFile(int conf_num, String stringText){
+	public int insertTextFile(int conf_num, String confText){
 		
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 		Conf_mng conf_mng = null;
@@ -268,12 +268,12 @@ public class ConfRepository {
 //		
 //		System.out.println(stringText);
 		
-		String[] s = stringText.split("!@#$");
+		String[] confTextList = confText.split("!@#$");
 		BufferedWriter out;
 		try {
 			out = new BufferedWriter(new FileWriter("D:\\"+conf_mng.getConf_num()+".txt"));
-			for (int j = 0; j < s.length; j++) {
-				out.write(s[j]);
+			for (int j = 0; j < confTextList.length; j++) {
+				out.write(confTextList[j]);
 				out.newLine();
 			}
 			out.close();

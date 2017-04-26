@@ -268,6 +268,7 @@ public class ConferenceController {
 		
 		String conf_num2 = (String)session.getAttribute("conf_num");
 		int conf_num = Integer.parseInt(conf_num2);
+		System.out.println();
 		
 		int result = repository.insertTextFile(conf_num, confText);
 
