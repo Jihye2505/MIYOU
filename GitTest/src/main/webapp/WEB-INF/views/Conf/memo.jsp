@@ -12,8 +12,8 @@
 	<textarea rows="10" cols="30"></textarea>
 	<br>
 	<!-- <input type="submit" value="저장하기"> -->
-	<input type="reset" value="비우기">
-	<input type="button" value="닫기" onclick="javascript:window.close('this')">
+	<input type="reset" value="Flush">
+	<input type="button" value="Close" onclick="javascript:window.close('this')">
 </form>
 </body>
 </html>

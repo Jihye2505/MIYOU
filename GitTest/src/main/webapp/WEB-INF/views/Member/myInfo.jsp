@@ -41,28 +41,28 @@
     <form action="javascript:history.back();" class="m-t" method="POST">
     <input type="hidden" id="h" name="h" value="${user.password}">
       <div class="form-group">
-        아이디: ${user.employee_num}
+        ID: ${user.employee_num}
       </div>
       <div class="form-group">
-        이름: ${user.name}
+        Name: ${user.name}
       </div>
       <div class="form-group">
-        매니저아이디: ${user.manager_num}
+        Manager: ${user.manager_num}
       </div>
       <div class="form-group">
-       이메일: ${user.email}
+       E-mail: ${user.email}
       </div>
       <div class="form-group">
-        언어: ${user.language}
+        Language: ${user.language}
       </div>
       <div class="form-group">
-        전화번호: ${user.phone}
+        Tel: ${user.phone}
       </div>
       <div class="form-group">
-       부서번호: ${user.dept_id}
+       Dept number: ${user.dept_id}
       </div>
       <div class="form-group">
-        직무번호: ${user.job_id}
+        Job number: ${user.job_id}
       </div>
       
       <button class="btn aqua block full-width m-b" type="submit">Back to main</button>

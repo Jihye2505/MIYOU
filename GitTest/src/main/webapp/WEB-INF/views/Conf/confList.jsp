@@ -70,10 +70,10 @@ function countPerPage() {
 		                  <td style="border-top: none;">
 		                  <div class="col-md-3 input-group">
 							<select class=" _select js-states form-control" name="searchTitle">
-	                        	<option value="title" ${searchTitle == 'title' ? 'selected':''}>제목</option>
-								<option value="subtitle" ${searchTitle == 'subtitle' ? 'selected':''}>내용</option>
-								<option value="employee_nums" ${searchTitle == 'employee_nums' ? 'selected':''}>참여자</option>
-								<option value="employee_num" ${searchTitle == 'employee_num' ? 'selected':''}>담당자</option>
+	                        	<option value="title" ${searchTitle == 'title' ? 'selected':''}>Title</option>
+								<option value="subtitle" ${searchTitle == 'subtitle' ? 'selected':''}>Contents</option>
+								<option value="employee_nums" ${searchTitle == 'employee_nums' ? 'selected':''}>Participant</option>
+								<option value="employee_num" ${searchTitle == 'employee_num' ? 'selected':''}>Manager</option>
 	                        </select>
 						  </div>
 						  </td>
@@ -98,10 +98,10 @@ function countPerPage() {
 	                      <thead>
 	                        <tr>
 	                          <th>&ensp;&ensp;&ensp;#&ensp;&ensp;&ensp;</th>
-							  <th>제목</th>
-							  <th>참여자</th>
-							  <th>작성일</th>
-							  <th>회의날짜</th>
+							  <th>Title</th>
+							  <th>Participant</th>
+							  <th>Created date</th>
+							  <th>Conf date</th>
 	                        </tr>
 	                      </thead>
 	                      <tbody>
