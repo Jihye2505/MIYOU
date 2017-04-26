@@ -31,13 +31,13 @@
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 </head>
 <body class="aqua-bg login">
-	<table>
+	<table style="text-align: center;">
 		<tr>
 			<td colspan="4" align="center"><h1>Team KYSP</h1></td>
 		</tr>
 		<tr>
 			<td>
-				<div class="middle-box text-center loginscreen   ">
+				<div class="middle-box text-center loginscreen">
 					<div class="widgets-container">
 						<div>
 							<img src="resources/assets/images/teem/Kang.jpg" class="img-circle" alt="">
@@ -117,7 +117,7 @@
 						</h3>
 						<br>
 						<h3>
-							担当したパート : Team/Manager
+							担当したパート : Progress/Manager
 						</h3>
 						<br>
 						<p class="top15">

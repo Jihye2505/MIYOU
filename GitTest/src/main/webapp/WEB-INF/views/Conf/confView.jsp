@@ -32,15 +32,13 @@
 <script type="text/javascript">
 
 function deleteCheck(){
-	var check = confirm("삭제");
-	if(check) alert("삭제완료");
+	var check = confirm("Are you sure?");
+	if(check){ alert("Deleted!");
 	$.ajax({
 	  	type : "get"
 	    , url : "countDown"
-	    , success : function(data) {
-	    }
 	});}
-	else alert("취소");
+	else alert("Cancel");
 	return;
 }	
 
@@ -96,9 +94,9 @@ function deleteCheck(){
                       <thead>
                         <tr>
                           <th>  </th>
-                          <th> 안건 </th>
-                          <th> 담당자 </th>
-                          <th> 진행상황 </th>
+                          <th> Subtitle </th>
+                          <th> Manager </th>
+                          <th> Progress </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -107,7 +105,7 @@ function deleteCheck(){
 									<td></td>
 									<td>${conf_topic.subtitle }</td>
 									<td>${conf_topic.employee_num }</td>
-									<td>
+									<td align="right">${conf_topic.process}%
 									<div class="progress progress-striped">
                     					<div style="width: ${conf_topic.process }%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="${conf_topic.process }" role="progressbar" class="progress-bar progress-bar-success"> <span class="sr-only"> 40% Complete (success) </span> </div>
                   					</div>
@@ -120,7 +118,9 @@ function deleteCheck(){
 		                </div>
 		              </div>
 		              <br>
+		        <%-- 
 				<hr>
+				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Text</label>
 					<div class="col-sm-10">
@@ -131,7 +131,33 @@ function deleteCheck(){
 						</form> 
 					</div>
 				</div>
-				
+				 --%>
+				 
+				 <div class="pull-right">
+		<c:if test="${user.employee_num == conf_mng.writer}">
+			<table style="margin-right: 10px;">
+			<tr>
+			<td  style="padding: 10px;">
+			<form action="updateConf" method="get">
+				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
+				<input class="btn btn-default btn-sm" type="submit" value="Update">
+			</form>
+			</td>
+			<td>
+			<form action="deleteConf" method="post" onclick="deleteCheck()">
+				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
+				<input type="hidden" name="title" value="${conf_mng.title }">
+				<input type="hidden" name="conf_date" value="${conf_mng.conf_date }">
+				<input type="hidden" name="employee_nums" value="${conf_mng.employee_nums }">
+				<input class="btn default btn-sm" type="submit" value="Delete">
+			</form>
+			</td>
+			</tr>
+			</table>
+		</c:if>
+		
+		</div>
+				 
 				</div>
               </div>
 				
@@ -141,32 +167,6 @@ function deleteCheck(){
               
             </div>
           </div>
-        <div class="pull-right">
-		<c:if test="${user.employee_num == conf_mng.writer}">
-			<table style="margin-right: 10px;">
-			<tr>
-			<td  style="padding: 10px;">
-			<form action="updateConf" method="get">
-				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-				<input class="btn white btn-sm" type="submit" value="수정">
-			</form>
-			</td>
-			<td>
-			<form action="deleteConf" method="post" onclick="deleteCheck()">
-				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-				<input type="hidden" name="title" value="${conf_mng.title }">
-				<input type="hidden" name="conf_date" value="${conf_mng.conf_date }">
-				<input type="hidden" name="employee_nums" value="${conf_mng.employee_nums }">
-				<input class="btn default btn-sm" type="submit" value="삭제">
-			</form>
-			</td>
-			</tr>
-			</table>
-		</c:if>
-		
-		</div>
-          
-          
 	        </div>
 	   		</div>
 	        <!-- start footer -->

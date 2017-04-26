@@ -62,7 +62,7 @@
 		    , url : "countDown"
 		    , success : function(data) {
 		    	if(!data){
-		    		$("#title").html("다음 회의가 없습니다.");
+		    		$("#title").html("Next conference not found.");
 		    		return false;
 		    	}
 		    	time=data[0];
@@ -238,14 +238,14 @@
               </div>
             </div>
              -->
-            
+            <!-- 
             <div class="ibox float-e-margins">
               <div  class="ibox-content collapse in">
                 <div class="demo-container">
                   <div class="widgets-container">
                     <div class="ibox-content">
                       <h2>Next Conference</h2>
-                      <table class="">
+                      <table class="table table-hover">
 			          		<tr>
 			          			<td><div id="title"></div></td>
 			          		</tr>
@@ -258,6 +258,36 @@
                 </div>
               </div>
             </div>
+             -->
+            <div class="ibox float-e-margins">
+                    <div class="panel panel-info">
+                      <div class="panel-heading"><h2>Next Conference</h2></div>
+                      <div class="panel-body">
+                      	<table class="table table-hover">
+			          		<tr>
+			          			<td><div id="title"></div></td>
+			          		</tr>
+			          		<tr>
+			          			<td><h1><span id="time1"></span></h1></td>
+			          		</tr>
+			          	</table>
+                      </div>
+                    </div>
+                  </div>
+            
+            
+            <div class="ibox float-e-margins">
+              <div  class="ibox-content collapse in">
+                <div class="demo-container">
+                  <div class="widgets-container">
+                    <div class="ibox-content">
+                      <h2>여기에 뭘 할까?</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
          </div>
           <div class="col-lg-9">
             <div class="ibox float-e-margins">
@@ -311,6 +341,7 @@
 <script src='resources/assets/js/vendor/fullcalendar.min.js'></script>
 <!-- main js -->
 <script src="resources/assets/js/main.js"></script>
+
 <script>
 
   $(document).ready(function() {
