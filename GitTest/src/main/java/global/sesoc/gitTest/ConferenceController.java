@@ -360,6 +360,12 @@ public class ConferenceController {
 
 		return "Conf/memo";
 	}
+	
+	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
+	public String chatting() {
+
+		return "Conf/chatting";
+	}
 
 	@RequestMapping(value = "/confSummary", method = RequestMethod.GET)
 	public String confSummary() {

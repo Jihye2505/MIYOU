@@ -419,7 +419,7 @@ to hook up all of the events to elements. -->
 		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', 'window', 'width=350,height=340,resizable=no');">
 		
 		<!-- 채팅창 열기 -->
-		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="javascript:window.open('chat', 'window', 'width=350,height=350,resizable=no');">
+		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="javascript:window.open('chatting', 'window', 'width=350,height=350,resizable=no');">
 		
 		<input type="button" title="Translate" id="translate" class="toolbarButton translate" onclick="startButton(event)">
 
