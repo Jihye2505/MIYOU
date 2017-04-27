@@ -30,23 +30,42 @@ body{
     overflow:hidden;
 }
 </style>
+<script src="resources/Vidyo/VidyoConnector.js"></script>
+<script type="text/javascript">
+
+ 
+function sendingMSG(){
+	var mesg = $("#msg").val();
+	myText($("#displayName").val(), mesg)
+	vidyoConnector.SendChatMessage(mesg);
+	$("#record").val(mesg);
+	$("#msg").val("");
+};
+
+$(document).ready(function(){
+	
+});
+ 
+ 
+</script>
 </head>
 <body>
-<form action="">
+
+<input id="displayName" type="hidden" value="${user.name}"> 
+
 	<div class="ibox float-e-margins">
 		<div class="panel panel-success">
 			<div class="panel-heading"><h2>CHAT</h2></div>
 			<div class="panel-body">
-				<textarea rows="10" cols="40" style="resize: none;" readonly="readonly"></textarea>
-				<input type="text" id="" class="" size="41" autofocus="autofocus">
+				<textarea id="record" rows="10" cols="40" style="resize: none;" readonly="readonly"></textarea>
+				<input type="text" id="msg" class="" size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
 					<br>
 					<br>
 					<div class="pull-right">
-					<input type="button" value="Close" class="btn  btn-round green btn-outline" onclick="javascript:window.close('this')">
+						<input type="button" value="Close" class="btn  btn-round green btn-outline" onclick="javascript:window.close('this')">
 					</div>
 			</div>
 		</div>
 	</div>
-</form>
 </body>
 </html>

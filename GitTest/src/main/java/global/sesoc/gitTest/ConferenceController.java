@@ -253,6 +253,7 @@ public class ConferenceController {
 		}
 		
 		int result = repository.deleteConf(conf_num);
+		session.removeAttribute("conf_num");
 
 		return "redirect:/confList";
 	}
@@ -368,25 +369,42 @@ public class ConferenceController {
 	}
 
 	@RequestMapping(value = "/confSummary", method = RequestMethod.GET)
-	public String confSummary() {
+	   public String confSummary() {
 
-		session.removeAttribute("conf_mngForSummary");
-		session.removeAttribute("employee_numsForSummary");
-		session.removeAttribute("list_topicForSummary");
-		
-		String conf_nums = (String) session.getAttribute("conf_num");
-		if(conf_nums != null) {
-			int conf_num = Integer.parseInt(conf_nums);
-			Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
-			session.setAttribute("conf_mngForSummary", conf_mngForSummary);
-			String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
-			session.setAttribute("employees_numForSummary", employees_numForSummary);
-			List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
-			session.setAttribute("list_topicForSummary", list_topicForSummary);
-		}
-		
-		return "Conf/confSummary";
-	}
+	      session.removeAttribute("conf_mngForSummary");
+	      session.removeAttribute("employee_numsForSummary");
+	      session.removeAttribute("list_topicForSummary");
+
+	      if (session.getAttribute("conf_num") != null) {
+	         String conf_nums = (String) session.getAttribute("conf_num");
+	         int conf_num = Integer.parseInt(conf_nums);
+	         Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
+	         if (conf_mngForSummary.getDeleteCheck() == 0) {
+	            session.setAttribute("conf_mngForSummary", conf_mngForSummary);
+	            String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
+	            session.setAttribute("employees_numForSummary", employees_numForSummary);
+	            List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
+	            session.setAttribute("list_topicForSummary", list_topicForSummary);
+	         }
+	      }
+	      return "Conf/confSummary";
+	   }
+
+	   @RequestMapping(value = "/deleteCheck", method = RequestMethod.GET)
+	   public @ResponseBody String deleteCheck() {
+		   System.out.println("들어옴0");
+		   String result = null;
+	      if (session.getAttribute("conf_num") != null) {
+	         String conf_nums = (String) session.getAttribute("conf_num");
+	         int conf_num = Integer.parseInt(conf_nums);
+	         Conf_mng conf_mng = repository.selectConf(conf_num);
+	         if (conf_mng.getDeleteCheck() == 1) {
+	        	 System.out.println(conf_mng.getDeleteCheck());
+	            return "1";
+	         }
+	      }
+	      return result;
+	   }
 	
 	@RequestMapping(value = "/countDown", method = RequestMethod.GET)
 	public @ResponseBody Object[] countDown(Model model, HttpSession session) {

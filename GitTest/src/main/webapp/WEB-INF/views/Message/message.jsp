@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +64,7 @@
           </div>
         </div>
       </div>
+      <input type="hidden" value="${conf_num}" id="conf_num"> 
       
 <!-- start footer -->
 <%@ include file="../footer.jspf"%>
@@ -92,6 +95,23 @@
               radioClass: 'iradio_square-grey',
               increaseArea: '20%'
             });
+            
+            
+            
+            $('input[type="submit"]').on('click',function(){
+					$.ajax({
+						method:"get",
+						url:"deleteCheck",
+						success:function(resp){
+							alert("1111Conference Canceled");
+							if(resp=="1"){
+								alert("Conference Canceled");
+								history.go(-1);
+							}
+						}
+					})
+            });
+            
           });
 
 </script>
