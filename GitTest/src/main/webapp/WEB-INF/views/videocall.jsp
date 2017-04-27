@@ -413,13 +413,13 @@ to hook up all of the events to elements. -->
 		<button id="microphoneButton" title="Microphone Privacy" class="toolbarButton microphoneOn"></button>
 
 		<!-- 안건 요약 보기 -->
-		<input type="button" title="Topic List" class="toolbarButton topic" onclick="javascript:window.open('confSummary', 'window', 'width=350,height=350');">
+		<input type="button" title="Topic List" class="toolbarButton topic" onclick="javascript:window.open('confSummary', '', 'width=350,height=350');">
 		
 		<!-- 메모 열기 -->
-		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', 'window', 'width=350,height=340,resizable=no');">
+		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=350,height=340,resizable=no');">
 		
 		<!-- 채팅창 열기 -->
-		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="javascript:window.open('chatting', 'window', 'width=350,height=350,resizable=no');">
+		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="javascript:window.open('chatting', '', 'width=350,height=350,resizable=no');">
 		
 		<input type="button" title="Translate" id="translate" class="toolbarButton translate" onclick="startButton(event)">
 
