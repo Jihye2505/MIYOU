@@ -11,7 +11,7 @@ body {background-color: #292929}
 
 .page-header.navbar {
     background-color: #49b6d6;
-    border-bottom: 1px solid #49b6d6;
+    border-bottom: 65px solid #49b6d6;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 2px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
