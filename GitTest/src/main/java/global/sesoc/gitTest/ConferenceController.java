@@ -411,8 +411,9 @@ public class ConferenceController {
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		if (conf_mng != null) {
 			String conf_date = sdf2.format(conf_mng.getConf_date());
+			List<Conf_topic> conf_topicList = repository.selectConf_topic(conf_mng.getConf_num());
 			Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
-			Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums() };
+			Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums(), conf_topicList };
 			// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
 			return count;
 		}

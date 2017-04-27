@@ -2,6 +2,113 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Start page sidebar wrapper -->
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+	<script>
+	var timerID1; // 타이머를 핸들링하기 위한 전역 변수
+
+	var time1;
+
+	var conf_date1;
+	
+	var employee_nums1;
+	
+	var message1;
+	/* 타이머를 시작하는 함수 */
+
+	$(function(){
+		$.ajax({
+		  	type : "get"
+		    , url : "countDown"
+		    , success : function(data) {
+		    	if(!data){
+// 		    		$("#title").html("Next conference not found.");
+		    		return false;
+		    	}
+		    	time1=data[0];
+// 		    	time1=1;
+		    	conf_date1=data[2];
+		    	employee_nums1=data[3];
+		    	$.ajax({
+				  	type : "get"
+				    , url : "countDownEndMessage"
+				    , data : {"conf_date":conf_date1, "employee_nums":employee_nums1}
+				    , success : function(data) {
+				    	if(!data){
+				    		return false;
+				    	}
+				    }
+				});
+		    	start_timer1();
+		    }
+		});
+		
+	});
+
+	function start_timer1() { 
+
+		timerID1 = setInterval("decrementTime1()", 1000);
+
+	}
+
+
+
+	/* 남은 시간을 감소시키는 함수 */
+
+	function decrementTime1() { 
+		
+		if(time1 > 0) time1--;
+
+		else { 
+
+			// 시간이 0이 되었으므로 타이머를 중지함
+			clearInterval(timerID1);
+
+
+
+			// 시간이 만료되고 나서 할 작업을 여기에 작성
+
+// 			document.form.submit(); // 예: 강제로 form 실행
+// 			$("#countDownEndMessage").html(time);
+			window.open("countDownEnd", "", "width=200, height=120, left=700, top=300");
+			
+		}
+
+	}
+	
+// 	function toHourMinSec(t) { 
+
+// 		var hour;
+
+// 		var min;
+
+// 		var sec;
+
+
+
+// 		// 정수로부터 남은 시, 분, 초 단위 계산
+
+// 		hour = Math.floor(t / 3600);
+
+// 		min = Math.floor( (t-(hour*3600)) / 60 );
+
+// 		sec = t - (hour*3600) - (min*60);
+
+
+
+// 		// hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
+
+// 		if(hour < 10) hour = "0" + hour;
+
+// 		if(min < 10) min = "0" + min;
+
+// 		if(sec < 10) sec = "0" + sec;
+
+
+
+// 		return(hour + ":" + min + ":" + sec);
+
+// 	}
+	</script>
 <div class="page-sidebar-wrapper">
 	<div class="page-sidebar">
 		<ul class="page-sidebar-menu  page-header-fixed ">
