@@ -201,12 +201,12 @@ public class MessageRepository {
 		Message message = new Message();
 		
 		String content = 
-				"회의 공지"
-				+"<br>일시 : "+conf_date2
-				+"<br>회의 번호 : "+conf_mng.getConf_num()
-				+"<br>회의 주제 : "+conf_mng.getTitle()
-				+"<br>참여자 명단 : "+conf_mng.getEmployee_nums()
-				+"<br><br><form action='videocall'><input type='submit' value='회의 참여' class='btn purple btn-outline btn-sm'></form>";
+				"Conference Notice"
+				+"<br>Date : "+conf_date2
+				+"<br>Conf Num : "+conf_mng.getConf_num()
+				+"<br>Conf Topic : "+conf_mng.getTitle()
+				+"<br>Participant : "+conf_mng.getEmployee_nums()
+				+"<br><br><form action='videocall'><input type='submit' value='MIYOU!' class='btn purple btn-outline btn-sm'></form>";
 //		System.out.println(content);
 		message.setContent(content);
 		message.setEmployee_num(employee_num);
