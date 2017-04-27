@@ -103,10 +103,11 @@
 						method:"get",
 						url:"deleteCheck",
 						success:function(resp){
-							alert("1111Conference Canceled");
-							if(resp=="1"){
+//     						alert(resp);
+							if(resp==""){
 								alert("Conference Canceled");
 								history.go(-1);
+								return false;
 							}
 						}
 					})

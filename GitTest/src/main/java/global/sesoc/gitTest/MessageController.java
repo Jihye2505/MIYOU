@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import global.sesoc.gitTest.mapper.ConfRepository;
 import global.sesoc.gitTest.mapper.MemberRepository;
 import global.sesoc.gitTest.mapper.MessageRepository;
+import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Member;
 import global.sesoc.gitTest.vo.Message;
 
@@ -32,7 +34,8 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	MessageRepository msgRepository;
 	@Autowired
 	MemberRepository mRepository;
-
+	@Autowired
+	ConfRepository ConfRepository;
 	
 	//메시지함
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
@@ -118,6 +121,8 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	@RequestMapping(value = "/readMessage", method = RequestMethod.GET)
 	public String readMessage(int message_num, Model model, HttpSession session) {
 
+		session.removeAttribute("conf_num");
+//		System.out.println("removeConf_num==="+session.getAttribute("conf_num"));
 		Message message = msgRepository.readMessage(message_num);
 		msgRepository.messageCheck(message_num);
 
@@ -146,10 +151,15 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			roomNum = roomNum.replaceAll(",", "");
 			roomNum = roomNum.replaceAll(" ", "");
 			roomNum = roomNum.replaceAll(":", "");
-//			System.out.println("countDownEnd======"+roomNum);
-			session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
-//			System.out.println("readmessage====="+message.getContent().substring(substringConfDate+12, substringEnd));
-			session.setAttribute("roomNum", roomNum);
+			int conf_num = Integer.parseInt(message.getContent().substring(substringConfDate+12, substringEnd));
+			Conf_mng conf_mng = ConfRepository.selectConf(conf_num);
+			if(conf_mng.getDeleteCheck()==0){
+	//			System.out.println("countDownEnd======"+roomNum);
+				session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
+	//			System.out.println("readmessage====="+message.getContent().substring(substringConfDate+12, substringEnd));
+				session.setAttribute("roomNum", roomNum);
+//				System.out.println("session.conf_num"+session.getAttribute("conf_num"));
+			}
 		}
 
 		return "Message/message";

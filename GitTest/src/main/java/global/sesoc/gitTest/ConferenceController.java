@@ -57,7 +57,7 @@ public class ConferenceController {
 
 	int countPerPage = 10;
 	int pagePerGroup = 5;
-	
+
 	final String uploadPath = "D:\\";
 
 	@RequestMapping(value = "/insertConf", method = RequestMethod.GET)
@@ -101,7 +101,7 @@ public class ConferenceController {
 				String employee_num = user.getEmployee_num();
 
 				msgRepository.sendConfMessage(conf_mng, conf_date2, employee_num);
-				
+
 				int total = msgRepository.countMessage(user.getEmployee_num());
 				int unread = msgRepository.countNotRead(user.getEmployee_num());
 				session.setAttribute("total", total);
@@ -180,7 +180,7 @@ public class ConferenceController {
 			@RequestParam(value = "process", required = true) List<Integer> processes) {
 
 		// date를 string으로 줘야 거기에 이상한 날짜 안뜨고 제대로????
-		
+
 		SimpleDateFormat transTodate = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		SimpleDateFormat transStringDate = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		SimpleDateFormat transConf_date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -203,7 +203,7 @@ public class ConferenceController {
 			String employee_num = user.getEmployee_num();
 
 			msgRepository.sendConfMessage(conf_mng, conf_date3, employee_num);
-			
+
 			int total = msgRepository.countMessage(user.getEmployee_num());
 			int unread = msgRepository.countNotRead(user.getEmployee_num());
 			session.setAttribute("total", total);
@@ -221,28 +221,25 @@ public class ConferenceController {
 		Message message = new Message();
 		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
-		
+
 		Date conf_date2;
 		try {
 			conf_date2 = sdf.parse(conf_date);
 			String yyyymmdd = sdf2.format(conf_date2);
 			message.setNotice("CC");
-			String content = 
-					"회의 취소"
-					+"<br>일시 : "+yyyymmdd
-					+"<br>회의 주제 : "+title;
-//				System.out.println(content);
-				message.setContent(content);
+			String content = "회의 취소" + "<br>일시 : " + yyyymmdd + "<br>회의 주제 : " + title;
+			// System.out.println(content);
+			message.setContent(content);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Member user = (Member)session.getAttribute("user");
+
+		Member user = (Member) session.getAttribute("user");
 		message.setEmployee_num(user.getEmployee_num());
 
 		String receivers = employee_nums;
-		String [] toList = receivers.split(",");
+		String[] toList = receivers.split(",");
 		for (String receiver : toList) {
 			message.setReceiver_num(receiver);
 			int result = msgRepository.sendMessage(message);
@@ -251,30 +248,29 @@ public class ConferenceController {
 			session.setAttribute("total", total);
 			session.setAttribute("unread", unread);
 		}
-		
+
 		int result = repository.deleteConf(conf_num);
 		session.removeAttribute("conf_num");
 
 		return "redirect:/confList";
 	}
-	
-//	@RequestMapping(value = "/saveText", method = RequestMethod.POST)
-//	public String saveText(String conf_num, String stirngText, HttpSession session) {
-//		
-//			repository.saveText(conf_num, stringText);
-//
-//		return "";
-//	}
 
-	
+	// @RequestMapping(value = "/saveText", method = RequestMethod.POST)
+	// public String saveText(String conf_num, String stirngText, HttpSession
+	// session) {
+	//
+	// repository.saveText(conf_num, stringText);
+	//
+	// return "";
+	// }
 
 	@RequestMapping(value = "/saveText", method = RequestMethod.POST)
 	public String saveText(String confText, HttpSession session) {
-		
-		String conf_num2 = (String)session.getAttribute("conf_num");
+
+		String conf_num2 = (String) session.getAttribute("conf_num");
 		int conf_num = Integer.parseInt(conf_num2);
 		System.out.println(confText);
-		
+
 		int result = repository.insertTextFile(conf_num, confText);
 
 		return "";
@@ -361,7 +357,7 @@ public class ConferenceController {
 
 		return "Conf/memo";
 	}
-	
+
 	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
 	public String chatting() {
 
@@ -369,77 +365,83 @@ public class ConferenceController {
 	}
 
 	@RequestMapping(value = "/confSummary", method = RequestMethod.GET)
-	   public String confSummary() {
+	public String confSummary() {
 
-	      session.removeAttribute("conf_mngForSummary");
-	      session.removeAttribute("employee_numsForSummary");
-	      session.removeAttribute("list_topicForSummary");
+		session.removeAttribute("conf_mngForSummary");
+		session.removeAttribute("employee_numsForSummary");
+		session.removeAttribute("list_topicForSummary");
 
-	      if (session.getAttribute("conf_num") != null) {
-	         String conf_nums = (String) session.getAttribute("conf_num");
-	         int conf_num = Integer.parseInt(conf_nums);
-	         Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
-	         if (conf_mngForSummary.getDeleteCheck() == 0) {
-	            session.setAttribute("conf_mngForSummary", conf_mngForSummary);
-	            String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
-	            session.setAttribute("employees_numForSummary", employees_numForSummary);
-	            List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
-	            session.setAttribute("list_topicForSummary", list_topicForSummary);
-	         }
-	      }
-	      return "Conf/confSummary";
-	   }
+		if (session.getAttribute("conf_num") != null) {
+			String conf_nums = (String) session.getAttribute("conf_num");
+			int conf_num = Integer.parseInt(conf_nums);
+			Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
+			if (conf_mngForSummary.getDeleteCheck() == 0) {
+				session.setAttribute("conf_mngForSummary", conf_mngForSummary);
+				String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
+				session.setAttribute("employees_numForSummary", employees_numForSummary);
+				List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
+				session.setAttribute("list_topicForSummary", list_topicForSummary);
+			}
+		}
+		return "Conf/confSummary";
+	}
 
-	   @RequestMapping(value = "/deleteCheck", method = RequestMethod.GET)
-	   public @ResponseBody String deleteCheck() {
-		   System.out.println("들어옴0");
-		   String result = null;
-	      if (session.getAttribute("conf_num") != null) {
-	         String conf_nums = (String) session.getAttribute("conf_num");
-	         int conf_num = Integer.parseInt(conf_nums);
-	         Conf_mng conf_mng = repository.selectConf(conf_num);
-	         if (conf_mng.getDeleteCheck() == 1) {
-	        	 System.out.println(conf_mng.getDeleteCheck());
-	            return "1";
-	         }
-	      }
-	      return result;
-	   }
-	
+	@RequestMapping(value = "/deleteCheck", method = RequestMethod.GET)
+	public @ResponseBody String deleteCheck() {
+//		session.removeAttribute("conf_num");
+//		System.out.println(session.getAttribute("conf_num"));
+		String result = null;
+		if (session.getAttribute("conf_num")!=null) {
+			String conf_nums = (String) (session.getAttribute("conf_num")+"");
+			int conf_num = Integer.parseInt(conf_nums);
+			Conf_mng conf_mng = repository.selectConf(conf_num);
+			System.out.println(conf_mng.getDeleteCheck());
+			if (conf_mng.getDeleteCheck() == 0) {
+				return conf_mng.getConf_num() + "";
+			}
+		}
+		return "";
+	}
+
 	@RequestMapping(value = "/countDown", method = RequestMethod.GET)
 	public @ResponseBody Object[] countDown(Model model, HttpSession session) {
 		Member member = (Member) session.getAttribute("user");
 		Conf_mng conf_mng = repository.countDown(member.getEmployee_num());
 		Date todate = new Date();
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
-		if(conf_mng!=null){
+		if (conf_mng != null) {
 			String conf_date = sdf2.format(conf_mng.getConf_date());
-			Object countDown = (conf_mng.getConf_date().getTime()-todate.getTime())/1000;
-			Object [] count = {countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums() };
-//			System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
+			Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
+			Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums() };
+			// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
 			return count;
 		}
 
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/countDownEnd", method = RequestMethod.GET)
 	public String countDownEndMessage(HttpSession session) {
+		session.removeAttribute("conf_num");
 		Message message = (Message) session.getAttribute("message");
-//		System.out.println(message.toString());
+		// System.out.println(message.toString());
 		int substringEnd = message.getContent().indexOf("<br>회의 주제 : ");
 		int substringConfDate = message.getContent().indexOf("<br>회의 번호 : ");
-		String roomNum = message.getContent().substring(substringConfDate-17, substringConfDate).replaceAll("-", "")
-				+message.getContent().substring(substringConfDate+12, substringEnd);
+		String roomNum = message.getContent().substring(substringConfDate - 17, substringConfDate).replaceAll("-", "")
+				+ message.getContent().substring(substringConfDate + 12, substringEnd);
 		roomNum = roomNum.replaceAll(",", "");
 		roomNum = roomNum.replaceAll(" ", "");
 		roomNum = roomNum.replaceAll(":", "");
-//		System.out.println("countDownEnd======"+roomNum);
-		session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
-//		System.out.println(message.getContent().substring(substringConfDate+12, substringEnd));
-		session.setAttribute("roomNum", roomNum);
+		int conf_num = Integer.parseInt(message.getContent().substring(substringConfDate + 12, substringEnd));
+		Conf_mng conf_mng = repository.selectConf(conf_num);
+		if (conf_mng.getDeleteCheck() == 0) {
+			// System.out.println("countDownEnd======"+roomNum);
+			session.setAttribute("conf_num", conf_num);
+			// System.out.println(message.getContent().substring(substringConfDate+12,
+			// substringEnd));
+			session.setAttribute("roomNum", roomNum);
+		}
 		return "Message/countDownEndMessage";
 	}
-
 
 }

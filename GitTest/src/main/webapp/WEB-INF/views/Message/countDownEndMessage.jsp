@@ -32,10 +32,43 @@
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('input[type="submit"]').on("click",function start(){
-		window.opener.location.href="videocall";
-		window.close();
-	})
+// 	$('input[type="submit"]').on("click",function start(){
+// 		var conf_num = document.getElementById("conf_num").value;
+// 		$.ajax({
+// 			method:"get",
+// 			url:"deleteCheck",
+// 			success:function(resp){
+// 					alert(resp);
+// 				if(resp==""){
+// 					alert("Conference Canceled");
+// 					history.go(-1);
+// 					return false;
+// 				}else{
+// 					alert(conf_num);
+// 					window.opener.location.href="videocall";
+// 					window.close();
+// 				}
+// 			}
+// 		})
+// 	})
+	$('input[type="submit"]').on('click',function(){
+		$.ajax({
+			method:"get",
+			url:"deleteCheck",
+			success:function(resp){
+					alert(resp);
+				if(resp==""){
+					alert("Conference Canceled");
+					window.close();
+					return false;
+				}else{
+					alert(resp);
+					window.opener.location.href="videocall";
+					window.close();
+				}
+			}
+		})
+	});
 })
 
 </script>
@@ -45,6 +78,7 @@ $(document).ready(function(){
 <!-- 		<form action='videocall'> -->
 <!-- 			<input type="button" value='회의 참여' onclick="start()"> -->
 <!-- 		</form> -->
+	<input type="hidden" value="${conf_num}" id="conf_num"> 
 	</div>
 </body>
 <!-- Go top -->
