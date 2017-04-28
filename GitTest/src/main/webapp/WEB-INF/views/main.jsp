@@ -41,9 +41,7 @@
 	<%@ include file="header.jspf"%>
 	<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 	<script>
-	function lockscreen() {
-		location.replace("lockscreen.html");
-	}
+	
 	var timerID; // 타이머를 핸들링하기 위한 전역 변수
 
 	var time;
@@ -57,35 +55,31 @@
 	/* 타이머를 시작하는 함수 */
 
 	$(function(){
-		$.ajax({
-		  	type : "get"
-		    , url : "countDown"
-		    , success : function(data) {
-		    	if(!data){
-		    		$("#title").html("Next conference not found.");
-		    		return false;
-		    	}
-		    	time=data[0];
-// 		    	time=1;
-		    	title=data[1];
-		    	$("#title").html(title);
-		    	conf_date=data[2];
-		    	employee_nums=data[3];
-		    	$.ajax({
-				  	type : "get"
-				    , url : "countDownEndMessage"
-				    , data : {"conf_date":conf_date, "employee_nums":employee_nums}
-				    , success : function(data) {
-				    	if(!data){
-				    		return false;
-				    	}
-				    }
-				});
-		    	start_timer();
-		    }
-		});
-		
-	});
+      $.ajax({
+           type : "get"
+          , url : "countDown"
+          , success : function(data) {
+             if(!data){
+                $("#title").html("Next conference not found.");
+                return false;
+             }
+             time=data[0];
+//              time=1;
+             title=data[1];
+             $("#title").html(title);
+             /* conf_date=data[2];
+             employee_nums=data[3]; */
+             conf_topicList=data[4];
+             var ss = '안건<br>';
+             for (var i = 0; i < conf_topicList.length; i++) {
+                ss += "     - "+conf_topicList[i].subtitle+"<br>";
+            }
+             $("#conf_topic").html(ss);
+             start_timer();
+          }
+      });
+      
+   });
 
 	function start_timer() { 
 
