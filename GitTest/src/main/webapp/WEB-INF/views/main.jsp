@@ -41,9 +41,7 @@
 	<%@ include file="header.jspf"%>
 	<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 	<script>
-	function lockscreen() {
-		location.replace("lockscreen.html");
-	}
+	
 	var timerID; // 타이머를 핸들링하기 위한 전역 변수
 
 	var time;
