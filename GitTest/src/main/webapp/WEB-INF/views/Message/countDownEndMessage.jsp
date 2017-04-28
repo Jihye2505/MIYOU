@@ -31,45 +31,24 @@
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-// 	$('input[type="submit"]').on("click",function start(){
-// 		var conf_num = document.getElementById("conf_num").value;
-// 		$.ajax({
-// 			method:"get",
-// 			url:"deleteCheck",
-// 			success:function(resp){
-// 					alert(resp);
-// 				if(resp==""){
-// 					alert("Conference Canceled");
-// 					history.go(-1);
-// 					return false;
-// 				}else{
-// 					alert(conf_num);
-// 					window.opener.location.href="videocall";
-// 					window.close();
-// 				}
-// 			}
-// 		})
-// 	})
-	$('input[type="submit"]').on('click',function(){
-		$.ajax({
-			method:"get",
-			url:"deleteCheck",
-			success:function(resp){
-					alert(resp);
-				if(resp==""){
-					alert("Conference Canceled");
-					window.close();
-					return false;
-				}else{
-					alert(resp);
-					window.opener.location.href="videocall";
-					window.close();
-				}
+function deleteCheck(){
+	$.ajax({
+		method:"get",
+		url:"deleteCheck",
+		success:function(resp){
+				alert(resp);
+			if(resp==""){
+				alert("Conference Canceled");
+				window.close();
+				return false;
+			}else{
+				alert(resp);
+				window.opener.location.href="videocall";
+				window.close();
 			}
-		})
-	});
-})
+		}
+	})
+}
 
 </script>
 </head>

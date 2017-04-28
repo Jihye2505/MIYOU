@@ -34,12 +34,14 @@
 function deleteCheck(){
 	var check = confirm("Are you sure?");
 	if(check){ alert("Deleted!");
-	$.ajax({
-	  	type : "get"
-	    , url : "countDown"
-	});}
-	else alert("Cancel");
-	return;
+		$.ajax({
+		  	type : "get"
+		    , url : "countDown"
+		});
+	}else{
+		alert("Cancel");
+		return false;
+	}
 }	
 
 </script>
@@ -144,7 +146,7 @@ function deleteCheck(){
 			</form>
 			</td>
 			<td>
-			<form action="deleteConf" method="post" onclick="deleteCheck()">
+			<form action="deleteConf" method="post" onsubmit="return deleteCheck()">
 				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
 				<input type="hidden" name="title" value="${conf_mng.title }">
 				<input type="hidden" name="conf_date" value="${conf_mng.conf_date }">

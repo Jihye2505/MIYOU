@@ -43,7 +43,7 @@ import global.sesoc.gitTest.vo.MiyouTranslate;
 public class ConferenceController {
 
 	@Autowired
-	ConfRepository repository;
+	ConfRepository confRepository;
 
 	// jh
 	@Autowired
@@ -93,7 +93,7 @@ public class ConferenceController {
 		try {
 			Date transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(conf_date2);
 			conf_mng.setConf_date(transFormat);
-			int conf_num = repository.insertConf(conf_mng, subtitles);
+			int conf_num = confRepository.insertConf(conf_mng, subtitles);
 			if (conf_num != 0) {
 				conf_date2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm").format(transFormat);
 				Member user = (Member) session.getAttribute("user");
@@ -123,13 +123,13 @@ public class ConferenceController {
 			@RequestParam(value = "page", defaultValue = "1") int currentPage, Model model) {
 		this.countPerPage = countPerPage;
 		int totalRecordsCount = 0;
-		totalRecordsCount = repository.getTotal(searchTitle, searchText);
+		totalRecordsCount = confRepository.getTotal(searchTitle, searchText);
 		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, currentPage, totalRecordsCount);
 		int start = navi.getStartRecord() + 1;
 		int end = navi.getStartRecord() + countPerPage;
-		List<Map<String, Object>> confList = repository.confList(searchTitle, searchText, start, end);
+		List<Map<String, Object>> confList = confRepository.confList(searchTitle, searchText, start, end);
 		model.addAttribute("confList", confList);
-		model.addAttribute("total", totalRecordsCount);
+		model.addAttribute("totalRecordsCount", totalRecordsCount);
 		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("navi", navi);
@@ -144,7 +144,7 @@ public class ConferenceController {
 		session.removeAttribute("employee_nums");
 		session.removeAttribute("list_topic");
 
-		Conf_mng conf_mng = repository.selectConf(conf_num);
+		Conf_mng conf_mng = confRepository.selectConf(conf_num);
 		SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String viewConf_date = viewDate.format(conf_mng.getConf_date());
 		String viewTodate = viewDate.format(conf_mng.getTodate());
@@ -154,7 +154,7 @@ public class ConferenceController {
 		String employees_num = conf_mng.getEmployee_nums();
 		String[] employee_nums = employees_num.split(",");
 		session.setAttribute("employee_nums", employee_nums);
-		List<Conf_topic> list_topic = repository.selectConf_topic(conf_num);
+		List<Conf_topic> list_topic = confRepository.selectConf_topic(conf_num);
 		session.setAttribute("list_topic", list_topic);
 
 		return "Conf/confView";
@@ -196,7 +196,7 @@ public class ConferenceController {
 			e.printStackTrace();
 		}
 
-		int result = repository.updateConf(conf_mng, subtitle_ids, subtitles, employee_nums, processes);
+		int result = confRepository.updateConf(conf_mng, subtitle_ids, subtitles, employee_nums, processes);
 		if (result != 0) {
 
 			Member user = (Member) session.getAttribute("user");
@@ -227,7 +227,7 @@ public class ConferenceController {
 			conf_date2 = sdf.parse(conf_date);
 			String yyyymmdd = sdf2.format(conf_date2);
 			message.setNotice("CC");
-			String content = "회의 취소" + "<br>일시 : " + yyyymmdd + "<br>회의 주제 : " + title;
+			String content = "Conference Cancel" + "<br>Date : " + yyyymmdd + "<br>Conf Title : " + title;
 			// System.out.println(content);
 			message.setContent(content);
 		} catch (ParseException e) {
@@ -249,7 +249,7 @@ public class ConferenceController {
 			session.setAttribute("unread", unread);
 		}
 
-		int result = repository.deleteConf(conf_num);
+		int result = confRepository.deleteConf(conf_num);
 		session.removeAttribute("conf_num");
 
 		return "redirect:/confList";
@@ -259,7 +259,7 @@ public class ConferenceController {
 	// public String saveText(String conf_num, String stirngText, HttpSession
 	// session) {
 	//
-	// repository.saveText(conf_num, stringText);
+	// confRepository.saveText(conf_num, stringText);
 	//
 	// return "";
 	// }
@@ -271,7 +271,7 @@ public class ConferenceController {
 		int conf_num = Integer.parseInt(conf_num2);
 		System.out.println(confText);
 
-		int result = repository.insertTextFile(conf_num, confText);
+		int result = confRepository.insertTextFile(conf_num, confText);
 
 		return "";
 	}
@@ -279,7 +279,7 @@ public class ConferenceController {
 	@RequestMapping(value = "download", method = RequestMethod.GET)
 	public String download(int conf_num, String savedfile, HttpServletResponse response) {
 
-		Conf_mng conf_mng = repository.selectConf(conf_num);
+		Conf_mng conf_mng = confRepository.selectConf(conf_num);
 
 		String originalfile = conf_mng.getOriginalfile();
 
@@ -328,7 +328,7 @@ public class ConferenceController {
 		Member member = (Member) session.getAttribute("user");
 		if (member != null) {
 			String employee_num = member.getEmployee_num();
-			List<Conf_mng> list = repository.calendarMyList(employee_num);
+			List<Conf_mng> list = confRepository.calendarMyList(employee_num);
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			List<HashMap<String, Object>> calendarMyList = new ArrayList<>();
@@ -374,12 +374,12 @@ public class ConferenceController {
 		if (session.getAttribute("conf_num") != null) {
 			String conf_nums = (String) session.getAttribute("conf_num");
 			int conf_num = Integer.parseInt(conf_nums);
-			Conf_mng conf_mngForSummary = repository.selectConf(conf_num);
+			Conf_mng conf_mngForSummary = confRepository.selectConf(conf_num);
 			if (conf_mngForSummary.getDeleteCheck() == 0) {
 				session.setAttribute("conf_mngForSummary", conf_mngForSummary);
 				String employees_numForSummary = conf_mngForSummary.getEmployee_nums();
 				session.setAttribute("employees_numForSummary", employees_numForSummary);
-				List<Conf_topic> list_topicForSummary = repository.selectConf_topic(conf_num);
+				List<Conf_topic> list_topicForSummary = confRepository.selectConf_topic(conf_num);
 				session.setAttribute("list_topicForSummary", list_topicForSummary);
 			}
 		}
@@ -394,7 +394,7 @@ public class ConferenceController {
 		if (session.getAttribute("conf_num")!=null) {
 			String conf_nums = (String) (session.getAttribute("conf_num")+"");
 			int conf_num = Integer.parseInt(conf_nums);
-			Conf_mng conf_mng = repository.selectConf(conf_num);
+			Conf_mng conf_mng = confRepository.selectConf(conf_num);
 			System.out.println(conf_mng.getDeleteCheck());
 			if (conf_mng.getDeleteCheck() == 0) {
 				return conf_mng.getConf_num() + "";
@@ -406,16 +406,15 @@ public class ConferenceController {
 	@RequestMapping(value = "/countDown", method = RequestMethod.GET)
 	public @ResponseBody Object[] countDown(Model model, HttpSession session) {
 		Member member = (Member) session.getAttribute("user");
-		Conf_mng conf_mng = repository.countDown(member.getEmployee_num());
+		Conf_mng conf_mng = confRepository.countDown(member.getEmployee_num());
 		Date todate = new Date();
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		if (conf_mng != null) {
 			String conf_date = sdf2.format(conf_mng.getConf_date());
-			List<Conf_topic> conf_topicList = repository.selectConf_topic(conf_mng.getConf_num());
+			List<Conf_topic> conf_topicList = confRepository.selectConf_topic(conf_mng.getConf_num());
 			Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
 			Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums(), conf_topicList };
 			// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
-			session.setAttribute("conf_topicList", conf_topicList);
 			return count;
 		}
 
@@ -424,24 +423,9 @@ public class ConferenceController {
 
 	@RequestMapping(value = "/countDownEnd", method = RequestMethod.GET)
 	public String countDownEndMessage(HttpSession session) {
-		session.removeAttribute("conf_num");
 		Message message = (Message) session.getAttribute("message");
-		// System.out.println(message.toString());
-		int substringEnd = message.getContent().indexOf("<br>회의 주제 : ");
-		int substringConfDate = message.getContent().indexOf("<br>회의 번호 : ");
-		String roomNum = message.getContent().substring(substringConfDate - 17, substringConfDate).replaceAll("-", "")
-				+ message.getContent().substring(substringConfDate + 12, substringEnd);
-		roomNum = roomNum.replaceAll(",", "");
-		roomNum = roomNum.replaceAll(" ", "");
-		roomNum = roomNum.replaceAll(":", "");
-		int conf_num = Integer.parseInt(message.getContent().substring(substringConfDate + 12, substringEnd));
-		Conf_mng conf_mng = repository.selectConf(conf_num);
-		if (conf_mng.getDeleteCheck() == 0) {
-			// System.out.println("countDownEnd======"+roomNum);
-			session.setAttribute("conf_num", conf_num);
-			// System.out.println(message.getContent().substring(substringConfDate+12,
-			// substringEnd));
-			session.setAttribute("roomNum", roomNum);
+		if (message.getNotice().equals("C")) {
+			confRepository.searchRoomNum(message);
 		}
 		return "Message/countDownEndMessage";
 	}

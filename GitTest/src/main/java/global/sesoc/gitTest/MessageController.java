@@ -35,7 +35,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	@Autowired
 	MemberRepository mRepository;
 	@Autowired
-	ConfRepository ConfRepository;
+	ConfRepository confRepository;
 	
 	//메시지함
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			messageView.put("message_num", messageList.get(i).getMessage_num());
 			messageView.put("checked", messageList.get(i).getChecked());
 			if(messageList.get(i).getContent().length()>4){
-				messageView.put("title", messageList.get(i).getContent().substring(0, 5)+"...");
+				messageView.put("title", messageList.get(i).getContent().substring(0, 10)+"...");
 			}else{
 				messageView.put("title", messageList.get(i).getContent());
 			}
@@ -143,25 +143,9 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		int unread = msgRepository.countNotRead(user.getEmployee_num());
 		session.setAttribute("total", total);
 		session.setAttribute("unread", unread);
-		if(message.getNotice().equals("C")){
-			int substringEnd = message.getContent().indexOf("<br>회의 주제 : ");
-			int substringConfDate = message.getContent().indexOf("<br>회의 번호 : ");
-			String roomNum = message.getContent().substring(substringConfDate-17, substringConfDate).replaceAll("-", "")
-					+message.getContent().substring(substringConfDate+12, substringEnd);
-			roomNum = roomNum.replaceAll(",", "");
-			roomNum = roomNum.replaceAll(" ", "");
-			roomNum = roomNum.replaceAll(":", "");
-			int conf_num = Integer.parseInt(message.getContent().substring(substringConfDate+12, substringEnd));
-			Conf_mng conf_mng = ConfRepository.selectConf(conf_num);
-			if(conf_mng.getDeleteCheck()==0){
-	//			System.out.println("countDownEnd======"+roomNum);
-				session.setAttribute("conf_num", message.getContent().substring(substringConfDate+12, substringEnd));
-	//			System.out.println("readmessage====="+message.getContent().substring(substringConfDate+12, substringEnd));
-				session.setAttribute("roomNum", roomNum);
-//				System.out.println("session.conf_num"+session.getAttribute("conf_num"));
-			}
+		if (message.getNotice().equals("C")) {
+			confRepository.searchRoomNum(message);
 		}
-
 		return "Message/message";
 	}
 	

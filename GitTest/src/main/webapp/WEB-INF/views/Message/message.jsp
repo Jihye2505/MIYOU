@@ -85,7 +85,21 @@
 <!-- main js -->
 <script src="resources/assets/js/main.js"></script>
 <script>
-
+function deleteCheck(){
+// 	alert("delete?");
+	$.ajax({
+		method:"get",
+		url:"deleteCheck",
+		success:function(resp){
+			if(resp==""){
+				alert("Conference Canceled");
+				history.go(-1);
+				return false;
+			}
+		}
+	})
+// 	alert("");
+}
   $(document).ready(function(){
             var callbacks_list = $('.demo-callbacks ul');
             $('input.iCheck').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
@@ -95,24 +109,6 @@
               radioClass: 'iradio_square-grey',
               increaseArea: '20%'
             });
-            
-            
-            
-            $('input[type="submit"]').on('click',function(){
-					$.ajax({
-						method:"get",
-						url:"deleteCheck",
-						success:function(resp){
-//     						alert(resp);
-							if(resp==""){
-								alert("Conference Canceled");
-								history.go(-1);
-								return false;
-							}
-						}
-					})
-            });
-            
           });
 
 </script>

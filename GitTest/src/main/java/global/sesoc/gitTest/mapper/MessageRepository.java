@@ -204,9 +204,9 @@ public class MessageRepository {
 				"Conference Notice"
 				+"<br>Date : "+conf_date2
 				+"<br>Conf Num : "+conf_mng.getConf_num()
-				+"<br>Conf Topic : "+conf_mng.getTitle()
+				+"<br>Conf Title : "+conf_mng.getTitle()
 				+"<br>Participant : "+conf_mng.getEmployee_nums()
-				+"<br><br><form action='videocall'><input type='submit' value='MIYOU!' class='btn purple btn-outline btn-sm'></form>";
+				+"<br><br><form action='videocall'><input type='submit' value='MIYOU!' class='btn purple btn-outline btn-sm' onsubmit='return deleteCheck()'></form>";
 //		System.out.println(content);
 		message.setContent(content);
 		message.setEmployee_num(employee_num);
