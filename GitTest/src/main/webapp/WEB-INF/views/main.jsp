@@ -275,7 +275,9 @@
                 <div class="demo-container">
                   <div class="widgets-container">
                     <div class="ibox-content">
-                      <h2>여기에 뭘 할까?</h2>
+                    
+                      <div id="conf_topic"></div>
+                      
                     </div>
                   </div>
                 </div>
