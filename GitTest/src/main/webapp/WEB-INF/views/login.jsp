@@ -27,6 +27,19 @@
 	<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 	<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 <script src="resources/jquery-3.1.1.min.js"></script>
+
+<c:if test="${loginCheck != null}">
+	<script>
+		alert("Your session has expired.");
+		$(function(){
+			$.ajax({
+				method: "GET",
+				url: "loginCheck"
+			});
+		});
+	</script>
+</c:if>
+
 <script>
  	function login(){
  		$.ajax({
@@ -53,18 +66,6 @@
 	});
 	
 </script>
-
-<c:if test="${loginCheck != null}">
-	<script>
-		alert("Your session has expired.");
-		$(function(){
-			$.ajax({
-				method: "GET",
-				url: "loginCheck"
-			});
-		});
-	</script>
-</c:if>
 
 </head>
 
