@@ -11,7 +11,7 @@ function lockscreen() {
   <div class="page-header-inner ">
     <!-- BEGIN LOGO -->
     <div class="page-logo"> <a href="main"> <img class="logo-default" alt="logo" src="resources/assets/images/miyou_main.png"> </a> </div>
-    <div class="library-menu"> <span class="one">-</span> <span class="two">-</span> <span class="three">-</span> </div>
+    <div class="library-menu"> <span class="one" style="margin-top: 10px;">-</span> <span class="two">-</span> <span class="three">-</span> </div>
     <!-- END LOGO -->
     <!-- BEGIN TOP NAVIGATION MENU -->
     <div class="top-menu">
