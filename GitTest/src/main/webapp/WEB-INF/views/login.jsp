@@ -57,7 +57,12 @@
 <c:if test="${loginCheck != null}">
 	<script>
 		alert("Your session has expired.");
-		<% session.setAttribute("loginCheck", null); %>
+		$(function(){
+			$.ajax({
+				method: "GET",
+				url: "loginCheck"
+			});
+		});
 	</script>
 </c:if>
 

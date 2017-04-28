@@ -166,5 +166,11 @@ public class MemberController {
 	   else	return "true";
 	}
    
+   @RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
+	public @ResponseBody String loginCheck(HttpSession session) {
+	   session.setAttribute("loginCheck", null);
+	   return "true";
+	}
+   
    
 }

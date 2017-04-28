@@ -255,19 +255,11 @@ public class ConferenceController {
 		return "redirect:/confList";
 	}
 
-	// @RequestMapping(value = "/saveText", method = RequestMethod.POST)
-	// public String saveText(String conf_num, String stirngText, HttpSession
-	// session) {
-	//
-	// confRepository.saveText(conf_num, stringText);
-	//
-	// return "";
-	// }
 
 	@RequestMapping(value = "/saveText", method = RequestMethod.POST)
 	public String saveText(String confText, HttpSession session) {
 
-		String conf_num2 = (String) session.getAttribute("conf_num");
+		String conf_num2 = (String) (session.getAttribute("conf_num") + "");
 		int conf_num = Integer.parseInt(conf_num2);
 		System.out.println(confText);
 
