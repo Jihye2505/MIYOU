@@ -56,7 +56,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 			messageView.put("send_date", send_date);
 			messageView.put("message_num", messageList.get(i).getMessage_num());
 			messageView.put("checked", messageList.get(i).getChecked());
-			if(messageList.get(i).getContent().length()>4){
+			if(messageList.get(i).getContent().length()>9){
 				messageView.put("title", messageList.get(i).getContent().substring(0, 10)+"...");
 			}else{
 				messageView.put("title", messageList.get(i).getContent());
@@ -75,7 +75,7 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 	
 	//메시지 쓰기화면전환
 	@RequestMapping(value = "/messageCompose", method = RequestMethod.GET)
-	public String messageWrite(HttpSession session) {
+	public String messageWrite(String toUser, HttpSession session, Model model) {
 		
 		List<String> toList = null;
 		ArrayList<String> toList2 = new ArrayList<>();
@@ -89,6 +89,11 @@ private static final Logger logger = LoggerFactory.getLogger(MessageController.c
 		      e.printStackTrace();
 		   }
 		session.setAttribute("toList", toList);
+		if (toUser==null) {
+			model.addAttribute("toUser", null);
+		} else {
+			model.addAttribute("toUser", toUser);
+		}
 		
 		return "Message/messageCompose";
 	}

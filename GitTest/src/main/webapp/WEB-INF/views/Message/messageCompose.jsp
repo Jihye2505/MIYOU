@@ -151,10 +151,17 @@
                                   
                                  <div class="col-sm-10">
       <article>
-         <input type="text" value="" id="widget2" />
+      <c:choose>
+	      <c:when test="${toUser == null}">
+	      	<input type="text" id="widget2" />
+	      </c:when>
+	      <c:otherwise>
+	      	<input type="text" value="${toUser}" id="widget2"  name='receiver_num'/>
+	      </c:otherwise>
+      </c:choose>
          <div class="markup">
             <div>
-               <input type="text" id="widget2_reflect" class="original" disabled="disabled" />
+               <input type="text" id="widget2_reflect" class="original" value="${toUser}" disabled="disabled" />
                <div id="forToList"></div>
             </div>
          </div>
@@ -314,12 +321,11 @@
          change : function(ev){
             $('#widget2_reflect').val(ev.target.value);
             var forToList = document.getElementById("forToList");
-            forToList.innerHTML="<input type='text' name='receiver_num' hidden='hidden' value="+ev.target.value+">";
+            forToList.innerHTML="<input type='text' hidden='hidden' value="+ev.target.value+">";
          }
       });
    
       $('.markup').on('click', 'a', function(ev){ $(ev.currentTarget).next('div').toggle();});
-      prettyPrint();
       
       function save(obj) {
          if($("input:checkbox[id='warning']").is(":checked")==true){

@@ -56,7 +56,7 @@
                   <br>
                   ${message.content }
               </div>
-              <div class="mail-body text-right tooltip-demo"> <a href="mail_compose.html" class="btn btn-sm btn-white"><i class="fa fa-reply"></i> Reply</a> 
+              <div class="mail-body text-right tooltip-demo"> <a href="messageCompose?toUser=${message.employee_num }" class="btn btn-sm btn-white"><i class="fa fa-reply"></i> Reply</a> 
                 <a href="toTrash?message_num=${message.message_num }" class="btn btn-sm btn-white" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash-o"></i> Remove</a>
               </div>
               <div class="clearfix"></div>
