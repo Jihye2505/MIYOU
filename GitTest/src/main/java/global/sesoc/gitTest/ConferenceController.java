@@ -415,6 +415,7 @@ public class ConferenceController {
 			Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
 			Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums(), conf_topicList };
 			// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
+			session.setAttribute("conf_topicList", conf_topicList);
 			return count;
 		}
 
