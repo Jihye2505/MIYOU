@@ -51,7 +51,7 @@
 				},
 			success: function(data) {
 				 if(data == "false"){
-					 alert("Incorrect input");
+					 alert("Incorrect password");
 					 $("#password").val("");
 				 }
 				 else {
