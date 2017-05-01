@@ -6,12 +6,24 @@
 <head>
 
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<title>VidyoConnector</title>
+<title>Conference</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
+	<script>
+		$(function(){
+			$.ajax({
+				 type : "get"
+			     , url : "lockCheck"
+			     , success : function(data) {
+			    	 if(data != "true") {
+			    		 location.href = "lockscreen";
+			    	 }
+			     }
+			});
+		});
+	</script>
 	<!-- We've provide some simple styling to get you started. -->
 	<link   href="resources/Vidyo/VidyoConnector.css" rel="stylesheet" type="text/css" >
 
@@ -215,17 +227,17 @@
    function filter(){
       if(transcriptOld == transcriptNew){
          if(transcriptSent == transcriptOld){
-            return
+            return;
          }else{
-            myText($("#displayName").val(), transcriptOld);
+        	myMic($("#displayName").val(), transcriptOld);
             vidyoConnector.SendChatMessage(transcriptOld);
             transcriptSent = transcriptOld;
-            alert(transcriptSent);
          }
       }else{
          transcriptOld = transcriptNew;
       }
    }
+   
 	var two_line = /\n\n/g;
 	var one_line = /\n/g;
 	function linebreak(s) {
@@ -238,6 +250,10 @@
 		});
 	}
 
+	function startB(){
+		startButton(event);
+	}
+	
 	function startButton(event) {
 		var userLanguage = $("#language").val();
 		if (recognizing) {
@@ -275,21 +291,6 @@
 	$(function() {
 			joinViaBrowser();
 			
-			$("#chatMessage").on('click', function() {
-				sendingMSG();
-			});
-		
-			/* var connectorType = getUrlParameterByName("connectorType");
-		if (connectorType == "app") {
-			joinViaApp();
-		} else if (connectorType == "browser") {
-		} else if (connectorType == "plugin") {
-			joinViaPlugIn();
-		} else if (connectorType == "other") {
-			joinViaOtherApp();
-		} else {
-			loadHelperOptions();
-		} */
 	});
 	
 	function insertTextFile(){
@@ -300,6 +301,10 @@
 		    	alert("complete");
 		    }
 		});
+	}
+	
+	function chat(){
+		window.open('chatting', '', 'width=350,height=500,resizable=no');
 	}
 	</script>
 </head>
@@ -332,32 +337,7 @@ to hook up all of the events to elements. -->
 			<!-- This is the display name that other users will see.
 			-->
 			<label for="displayName">User Name</label>
-			<c:choose>
-								<c:when test="${user.dept_id == 100}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 200}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 301}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 302}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 303}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 401}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 402}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							    <c:when test="${user.dept_id == 403}">
-									<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
-							    </c:when>
-							</c:choose>
+			<input id="displayName" type="text" placeholder="Display Name" value="${user.name}"> 
 		</p>
 		<p>
 			<!-- This is the "room" or "space" to which you're connecting
@@ -416,14 +396,10 @@ to hook up all of the events to elements. -->
 		<input type="button" title="Topic List" class="toolbarButton topic" onclick="javascript:window.open('confSummary', '', 'width=350,height=350');">
 		
 		<!-- 메모 열기 -->
-		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=350,height=340,resizable=no');">
+		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=400,height=430,resizable=no');">
 		
 		<!-- 채팅창 열기 -->
-		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="javascript:window.open('chatting', '', 'width=350,height=350,resizable=no');">
-		
-		<input type="button" title="Translate" id="translate" class="toolbarButton translate" onclick="startButton(event)">
-
-		<input type="button" title="saveConf" id="saveConf" class="toolbarButton saveConf" onclick="insertTextFile()">
+		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="chat()">
 		
 		<input type="hidden" id="language" value="${user.language}">
 		
