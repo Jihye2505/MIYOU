@@ -414,7 +414,7 @@ to hook up all of the events to elements. -->
 		<button id="microphoneButton" title="Microphone Privacy" class="toolbarButton microphoneOn"></button>
 
 		<!-- 안건 요약 보기 -->
-		<input type="button" title="Topic List" class="toolbarButton topic" onclick="javascript:window.open('confSummary', '', 'width=350,height=350');">
+		<input type="button" title="Topic List" class="toolbarButton topic" onclick="<c:if test="${conf_num == null}">javascript:alert('Nothing found.');</c:if><c:if test="${conf_num != null}">javascript:window.open('confSummary', '', 'width=350,height=350');</c:if>">
 		
 		<!-- 메모 열기 -->
 		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=400,height=430,resizable=no');">

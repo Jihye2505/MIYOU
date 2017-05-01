@@ -60,37 +60,33 @@ $(function(){
 </script>
 </head>
 <body>
-
 <div class="ibox float-e-margins">
 	<div class="panel panel-success">
 		<div class="panel-heading">
 				<h2>confSummary</h2>
 		</div>
 		<div class="panel-body">
-			<c:if test="${conf_mngForSummary == null}">Nothing found.</c:if>
-			<c:if test="${conf_mngForSummary != null}">
-				<form action="">
-					<h2>Title: ${conf_mngForSummary.title }</h2>
-					<h3>Participant : ${employees_numForSummary}</h3>
-					<br>
-						<table class="table table-hover">
-							<thead>
+			<form action="">
+				<h2>Title: ${conf_mngForSummary.title }</h2>
+				<h3>Participant : ${employees_numForSummary}</h3>
+				<br>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Subtitle</th>
+								<th>Manager</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="i" items="${list_topicForSummary}">
 								<tr>
-									<th>Subtitle</th>
-									<th>Manager</th>
+									<td>${i.subtitle }</td>
+									<td>${i.employee_num }</td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="i" items="${list_topicForSummary}">
-									<tr>
-										<td>${i.subtitle }</td>
-										<td>${i.employee_num }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-				</form>
-			</c:if>
+							</c:forEach>
+						</tbody>
+					</table>
+			</form>
 			<br>
 			<div class="pull-right">
 				<input type="button" value="Close" onclick="javascript:window.close('this')" class="btn  btn-round green btn-outline">	
@@ -98,31 +94,5 @@ $(function(){
 		</div>
 	</div>
 </div>
-<%-- 
-<c:if test="${conf_mngForSummary == null}">Nothing found.</c:if>
-<c:if test="${conf_mngForSummary != null}">
-	<form action="">
-		<h2>Title: ${conf_mngForSummary.title }</h2>
-		<h3>Participant : ${employees_numForSummary}</h3>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Subtitle</th>
-						<th>Manager</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="i" items="${list_topicForSummary}">
-						<tr>
-							<td>${i.subtitle }</td>
-							<td>${i.employee_num }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-	</form>
-</c:if> <br>
-<input type="button" value="Close" onclick="javascript:window.close('this')">
- --%>
 </body>
 </html>
