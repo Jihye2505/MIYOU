@@ -38,7 +38,6 @@ public class HomeController {
 	public String lockscreen(HttpServletRequest request, HttpSession session){
 		String lastRequest = request.getHeader("referer");
 		session.setAttribute("lastRequest", lastRequest);
-		System.out.println(lastRequest);
 	    return "Member/lockscreen";
 	}
 	   
