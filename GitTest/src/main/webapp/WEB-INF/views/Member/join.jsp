@@ -33,17 +33,29 @@
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
 
-	$(function(){
-		$.ajax({
-			 type : "get"
-		     , url : "lockCheck"
-		     , success : function(data) {
-		    	 if(data != "true") {
-		    		 location.href = "lockscreen";
-		    	 }
-		     }
-		});
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "logoutCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "login";
+	    	 }
+	     }
 	});
+});
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "lockCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "lockscreen";
+	    	 }
+	     }
+	});
+});
 
 function checkform(){
 	var employee_num = document.getElementById("employee_num");

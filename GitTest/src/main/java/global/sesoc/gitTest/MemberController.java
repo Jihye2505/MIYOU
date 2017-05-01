@@ -138,7 +138,7 @@ public class MemberController {
 	      
 	     return "main";
    }
-   
+
    @RequestMapping(value = "/idCheck", method = RequestMethod.GET)
 	public @ResponseBody String idCheck(String employee_num) {
 	   
@@ -158,5 +158,16 @@ public class MemberController {
 	   return "true";
 	}
    
+   @RequestMapping(value = "/logoutCheck", method = RequestMethod.GET)
+	public @ResponseBody String logoutCheck(HttpSession session) {
+		
+		Member logoutCheck =  (Member) session.getAttribute("user");
+		
+		if(logoutCheck == null) {
+			return "false";
+		}
+		
+		return "true";
+	}
    
 }

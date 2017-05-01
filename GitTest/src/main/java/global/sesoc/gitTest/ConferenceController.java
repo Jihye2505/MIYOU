@@ -398,18 +398,19 @@ public class ConferenceController {
 	@RequestMapping(value = "/countDown", method = RequestMethod.GET)
 	public @ResponseBody Object[] countDown(Model model, HttpSession session) {
 		Member member = (Member) session.getAttribute("user");
-		Conf_mng conf_mng = confRepository.countDown(member.getEmployee_num());
-		Date todate = new Date();
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
-		if (conf_mng != null) {
-			String conf_date = sdf2.format(conf_mng.getConf_date());
-			List<Conf_topic> conf_topicList = confRepository.selectConf_topic(conf_mng.getConf_num());
-			Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
-			Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums(), conf_topicList };
-			// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
-			return count;
+		if(member != null) {
+			Conf_mng conf_mng = confRepository.countDown(member.getEmployee_num());
+			Date todate = new Date();
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+			if (conf_mng != null) {
+				String conf_date = sdf2.format(conf_mng.getConf_date());
+				List<Conf_topic> conf_topicList = confRepository.selectConf_topic(conf_mng.getConf_num());
+				Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
+				Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums(), conf_topicList };
+				// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
+				return count;
+			}
 		}
-
 		return null;
 	}
 

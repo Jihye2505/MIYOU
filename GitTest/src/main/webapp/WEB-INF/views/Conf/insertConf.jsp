@@ -42,6 +42,18 @@
 $(function(){
 	$.ajax({
 		 type : "get"
+	     , url : "logoutCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "login";
+	    	 }
+	     }
+	});
+});
+
+$(function(){
+	$.ajax({
+		 type : "get"
 	     , url : "lockCheck"
 	     , success : function(data) {
 	    	 if(data != "true") {

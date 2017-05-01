@@ -35,9 +35,23 @@
 $(function(){
 	$.ajax({
 		 type : "get"
-	     , url : "getlastRequest"
+	     , url : "logoutCheck"
 	     , success : function(data) {
-	    	 location.href = data;
+	    	 if(data != "true") {
+	    		 location.href = "login";
+	    	 }
+	     }
+	});
+});
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "lockCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "lockscreen";
+	    	 }
 	     }
 	});
 });
