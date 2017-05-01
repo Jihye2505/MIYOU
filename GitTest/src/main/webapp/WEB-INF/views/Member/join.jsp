@@ -31,7 +31,20 @@
 
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
+<script>
+
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
+
 function checkform(){
 	var employee_num = document.getElementById("employee_num");
 	var password = document.getElementById("password");

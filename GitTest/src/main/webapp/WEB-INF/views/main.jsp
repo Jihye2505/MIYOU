@@ -51,6 +51,18 @@
 	var employee_nums;
 	
 	var message;
+	
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
 
 	/* 타이머를 시작하는 함수 */
 

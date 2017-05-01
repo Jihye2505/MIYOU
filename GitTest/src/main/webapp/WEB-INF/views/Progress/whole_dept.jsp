@@ -30,6 +30,22 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
 <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
 
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+<script>
+
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
+</script>
+
 </head>
 <body class="page-header-fixed ">
 	<%@ include file="../header.jspf"%>

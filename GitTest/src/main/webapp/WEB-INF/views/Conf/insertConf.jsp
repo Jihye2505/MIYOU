@@ -36,7 +36,21 @@
 <link href="resources/assets/css/morris.css" rel="stylesheet">
 <link href="resources/assets/css/simple-line-icons.css" rel="stylesheet">
 
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "lockCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "lockscreen";
+	    	 }
+	     }
+	});
+});
+
 function frmCheck(){
 	var title = document.getElementById('title').value;
 	var member = document.getElementById('widget2').value;
