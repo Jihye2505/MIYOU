@@ -47,6 +47,7 @@
 	<select id="sentMessages" resultType="Message" parameterType="String">
 		SELECT * FROM e_message
 		WHERE employee_num = #{user}
+		ORDER BY send_date DESC
 	</select>
 
 	<!-- 나에게 온 "모든" 메시지 개수 확인 -->
