@@ -7,10 +7,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>deleteMember</title>
+
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
+	
 	function check() {
 		window.open("check", "window", "width=500,height=300");
 	}
+	
 </script>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">

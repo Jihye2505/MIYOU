@@ -56,6 +56,7 @@ public class MemberController {
    @RequestMapping(value="/login", method=RequestMethod.GET)
    public String login(HttpSession session){
       session.removeAttribute("user");
+      session.removeAttribute("lockCheck");
       return "login";
    }
    
@@ -106,21 +107,6 @@ public class MemberController {
    public String check(){
       
       return "Member/check";
-   }
-   
-   @RequestMapping(value="/lockscreen", method=RequestMethod.GET)
-   public String lockscreen(){
-      
-      return "Member/lockscreen";
-   }
-   
-   @RequestMapping(value="/lockscreen", method=RequestMethod.POST)
-   public String lockscreen(Member member, HttpSession session){
-	   String loginNum = member.getEmployee_num();
-	   Member user = mRepository.selectOne(loginNum);
-	   session.setAttribute("user", user);
-	   
-	   return "main";
    }
    
    @RequestMapping(value="/myInfo", method=RequestMethod.GET)

@@ -50,7 +50,7 @@ CREATE TABLE conf_mng
 	-- 회의 참석자
 	-- 다국적, 우리회사, 다른회사
 	employee_nums varchar2(1000) NOT NULL,
-	title varchar2(20) NOT NULL,
+	title varchar2(1000) NOT NULL,
 	writer varchar2(20) NOT NULL,
 	deleteCheck number default 0 NOT NULL,
 	savedfile varchar2(30),
@@ -136,21 +136,21 @@ COMMENT ON COLUMN e_message.checkm IS '0 안읽음
 
 
 /* insert jobs */
-insert into e_dept (dept_id, dept_name) values (100,'관리팀');
-insert into e_dept (dept_id, dept_name) values (200,'인사팀');
-insert into e_dept (dept_id, dept_name) values (301,'영업1팀');
-insert into e_dept (dept_id, dept_name) values (302,'영업2팀');
-insert into e_dept (dept_id, dept_name) values (303,'영업3팀');
-insert into e_dept (dept_id, dept_name) values (401,'개발1팀');
-insert into e_dept (dept_id, dept_name) values (402,'개발2팀');
-insert into e_dept (dept_id, dept_name) values (403,'개발3팀');
+insert into e_dept (dept_id, dept_name) values (100,'General Affairs'); --관리팀
+insert into e_dept (dept_id, dept_name) values (200,'Personnel Dept');	--인사팀
+insert into e_dept (dept_id, dept_name) values (301,'Sales Team1');		--영업1팀
+insert into e_dept (dept_id, dept_name) values (302,'Sales Team2');		--영업2팀
+insert into e_dept (dept_id, dept_name) values (303,'Sales Team3');		--영업3팀
+insert into e_dept (dept_id, dept_name) values (401,'R&D Team1');		--개발1팀
+insert into e_dept (dept_id, dept_name) values (402,'R&D Team2');		--개발2팀
+insert into e_dept (dept_id, dept_name) values (403,'R&D Team3');		--개발3팀
 
-insert into e_position (job_id, job_name) values (10,'사장');
-insert into e_position (job_id, job_name) values (20,'전무');
-insert into e_position (job_id, job_name) values (30,'이사');
-insert into e_position (job_id, job_name) values (40,'부장');
-insert into e_position (job_id, job_name) values (50,'차장');
-insert into e_position (job_id, job_name) values (60,'과장');
-insert into e_position (job_id, job_name) values (70,'대리');
-insert into e_position (job_id, job_name) values (80,'사원');
+insert into e_position (job_id, job_name) values (10,'CEO'); 				--사장
+insert into e_position (job_id, job_name) values (20,'Executive Director'); --전무
+insert into e_position (job_id, job_name) values (30,'Director');			--이사
+insert into e_position (job_id, job_name) values (40,'Head of Department'); --부장
+insert into e_position (job_id, job_name) values (50,'Deputy Director');	--차장
+insert into e_position (job_id, job_name) values (60,'Section Chief');		--과장
+insert into e_position (job_id, job_name) values (70,'Asst Manager');		--대리
+insert into e_position (job_id, job_name) values (80,'Employee');			--사원
 

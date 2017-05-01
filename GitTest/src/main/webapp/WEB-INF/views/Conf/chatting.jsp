@@ -30,35 +30,58 @@ body{
     overflow:hidden;
 }
 </style>
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+<script>
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "lockCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "lockscreen";
+	    	 }
+	     }
+	});
+});
+</script>
+
 <script src="resources/Vidyo/VidyoConnector.js"></script>
 <script type="text/javascript">
+var vidyoConnector = opener.vidyoConnector;
 
- 
 function sendingMSG(){
-	var mesg = $("#msg").val();
-	myText($("#displayName").val(), mesg)
-	vidyoConnector.SendChatMessage(mesg);
-	$("#record").val(mesg);
-	$("#msg").val("");
+	var userN = $("#displayName").val();
+	var lang = $("#language1").val();
+	var msg = $("#sentMSG").val();
+	myText(userN, lang, msg);
+	vidyoConnector.SendChatMessage(msg);
+	
+	$.ajax({
+		method:"get",
+		url:"saveChat",
+		success:function(resp){
+			$("#record").html(resp);	
+		}
+	});
+	
+	$("#sentMSG").val("");
 };
 
-$(document).ready(function(){
-	
-});
- 
- 
+
+
 </script>
 </head>
 <body>
 
-<input id="displayName" type="hidden" value="${user.name}"> 
+<input id="displayName" type="hidden" value="${user.name}">
+<input type="hidden" id="language1" value="${user.language}"> 
 
 	<div class="ibox float-e-margins">
 		<div class="panel panel-success">
 			<div class="panel-heading"><h2>CHAT</h2></div>
 			<div class="panel-body">
-				<textarea id="record" rows="10" cols="40" style="resize: none;" readonly="readonly"></textarea>
-				<input type="text" id="msg" class="" size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
+				<div id="record" style="overflow:scroll; width:290px ; height:250px; padding:20px">${saveChat}</div>
+				<input type="text" id="sentMSG" class="" size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
 					<br>
 					<br>
 					<div class="pull-right">

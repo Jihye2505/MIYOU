@@ -364,7 +364,7 @@ public class ConferenceController {
 		session.removeAttribute("list_topicForSummary");
 
 		if (session.getAttribute("conf_num") != null) {
-			String conf_nums = (String) session.getAttribute("conf_num");
+			String conf_nums = (String) (session.getAttribute("conf_num")+"");
 			int conf_num = Integer.parseInt(conf_nums);
 			Conf_mng conf_mngForSummary = confRepository.selectConf(conf_num);
 			if (conf_mngForSummary.getDeleteCheck() == 0) {

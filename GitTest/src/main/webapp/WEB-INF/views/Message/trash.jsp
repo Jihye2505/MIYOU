@@ -27,6 +27,23 @@
 <link href="resources/assets/css/skins/all.css" rel="stylesheet">
 <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
+
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+<script>
+
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
+</script>
+
 </head>
 <body class="page-header-fixed ">
 	<%@ include file="../header.jspf"%>

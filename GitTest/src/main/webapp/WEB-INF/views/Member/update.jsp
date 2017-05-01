@@ -30,7 +30,18 @@
 
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
+<script>
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "getlastRequest"
+	     , success : function(data) {
+	    	 location.href = data;
+	     }
+	});
+});
+
 function checkform(){
 	  var password1 = document.getElementById("password1");	//기존 비번
       var password = document.getElementById("password");	//바꿀 비번

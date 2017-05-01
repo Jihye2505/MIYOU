@@ -30,6 +30,23 @@ body{
     overflow:hidden;
 }
 </style>
+
+<script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+<script>
+
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
+</script>
+
 </head>
 <body>
 <form action="">

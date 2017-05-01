@@ -30,7 +30,18 @@
 <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 <!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
+<script>
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "getlastRequest"
+	     , success : function(data) {
+	    	 location.href = data;
+	     }
+	});
+});
+
 function deleteCheck(){
 	$.ajax({
 		method:"get",
