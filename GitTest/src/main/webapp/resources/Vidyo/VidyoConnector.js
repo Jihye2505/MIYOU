@@ -370,7 +370,20 @@ function handleParticipantChange(vidyoConnector) {
 				}else if(userLang=="ja"){
 				  selectLang="ja";
 				}
-				var originalText=chatMessage.body;
+								
+				var sum="";
+			    var res = chatMessage.body.split(" ");
+			    
+			    for(var i=0; i<res.length;i++){
+			    	var strs = res[i].substr(0,3);
+			    	if(strs=="www"){
+			            res[i] = "<a href='https://"+res[i]+"' target='_blank'>"+res[i]+"</a>"
+			        };
+			        sum += res[i]+" ";
+			    }
+				
+			    var originalText=sum;
+//				var originalText=chatMessage.body;
 				var header = originalText.split("<mmm>",2);
 				var myData = {userLanguage:userLang, inputText:header[1]};					
 				$.ajax({
@@ -382,6 +395,15 @@ function handleParticipantChange(vidyoConnector) {
 						confText = confText+"<br>"+name+":"+resp;
 						//$("#record").html(confText);
 						if(header[0]=="msg"){
+//							var sum="";
+//						    var res = resp.split(" ");
+//						    for(var i=0; i<res.length;i++){
+//						    	var strs = res[i].substr(0,3);
+//						    	if(strs=="www"){
+//						            res[i] = "<a href='https://"+res[i]+"' target='_blank'>"+res[i]+"</a>"
+//						        };
+//						        sum += res[i]+" ";
+//						    }
 							$("#connectionStatus").html(name+":"+resp);
 						}else{
 							var yy = $(".guest").attr("id");
