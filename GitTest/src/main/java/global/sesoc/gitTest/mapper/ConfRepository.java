@@ -326,6 +326,10 @@ public class ConfRepository {
 
 		int substringConfTitle = message.getContent().indexOf("<br>Conf Title : ");
 		int substringConfNum = message.getContent().indexOf("<br>Conf Num : ");
+		
+		System.out.println(substringConfTitle);
+		System.out.println(substringConfNum);
+		
 		// System.out.println(message.getContent().substring(substringConfNum+15,
 		// substringConfTitle));
 		int conf_num = Integer.parseInt(message.getContent().substring(substringConfNum + 15, substringConfTitle));
@@ -340,7 +344,7 @@ public class ConfRepository {
 			conf_mng = dao.selectConf(conf_num);
 			if (conf_mng.getDeleteCheck() == 0) {
 				session.setAttribute("conf_num", conf_num);
-				// System.out.println("readmessage====="+conf_num);
+				 System.out.println("readmessage====="+conf_num);
 				session.setAttribute("roomNum", roomNum);
 				// System.out.println("session.conf_num"+session.getAttribute("conf_num"));
 			}
