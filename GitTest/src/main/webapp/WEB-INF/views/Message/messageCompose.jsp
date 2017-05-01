@@ -170,7 +170,7 @@ $(function(){
 	      	<input type="text" id="widget2" />
 	      </c:when>
 	      <c:otherwise>
-	      	<input type="text" value="${toUser}" id="widget2"  name='receiver_num'/>
+	      	<input type="text" value="${toUser}" id="widget2" name='receiver_num' />
 	      </c:otherwise>
       </c:choose>
          <div class="markup">
@@ -335,7 +335,7 @@ $(function(){
          change : function(ev){
             $('#widget2_reflect').val(ev.target.value);
             var forToList = document.getElementById("forToList");
-            forToList.innerHTML="<input type='text' hidden='hidden' value="+ev.target.value+">";
+            forToList.innerHTML="<input type='text' hidden='hidden' name='receiver_num' value="+ev.target.value+">";
          }
       });
    
