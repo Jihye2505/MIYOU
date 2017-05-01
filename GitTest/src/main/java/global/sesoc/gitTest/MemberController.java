@@ -56,6 +56,7 @@ public class MemberController {
    @RequestMapping(value="/login", method=RequestMethod.GET)
    public String login(HttpSession session){
       session.removeAttribute("user");
+      session.removeAttribute("loginCheck");
       session.removeAttribute("lockCheck");
       return "login";
    }
