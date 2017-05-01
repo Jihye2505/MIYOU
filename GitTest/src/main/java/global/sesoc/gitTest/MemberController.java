@@ -58,6 +58,8 @@ public class MemberController {
       session.removeAttribute("user");
       session.removeAttribute("loginCheck");
       session.removeAttribute("lockCheck");
+      session.removeAttribute("saveMemo");
+      
       return "login";
    }
    

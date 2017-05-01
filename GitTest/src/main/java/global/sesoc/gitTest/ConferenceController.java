@@ -349,6 +349,21 @@ public class ConferenceController {
 
 		return "Conf/memo";
 	}
+	
+	@RequestMapping(value = "/setMemo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String setMemo(HttpSession session) {
+		
+		String saveMemo = (String) (session.getAttribute("saveMemo") + "");
+		
+		return saveMemo;
+	}
+	
+	@RequestMapping(value = "/saveMemo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String saveText(HttpSession session, String saveMemo) {
+		session.setAttribute("saveMemo", saveMemo);
+		
+		return saveMemo;
+	}
 
 	@RequestMapping(value = "/chatting", method = RequestMethod.GET)
 	public String chatting() {

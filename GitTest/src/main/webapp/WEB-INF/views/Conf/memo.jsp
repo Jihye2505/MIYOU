@@ -34,17 +34,55 @@ body{
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
 
-	$(function(){
-		$.ajax({
-			 type : "get"
-		     , url : "lockCheck"
-		     , success : function(data) {
-		    	 if(data != "true") {
-		    		 location.href = "lockscreen";
-		    	 }
-		     }
-		});
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "logoutCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "login";
+	    	 }
+	     }
 	});
+});
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "lockCheck"
+	     , success : function(data) {
+	    	 if(data != "true") {
+	    		 location.href = "lockscreen";
+	    	 }
+	     }
+	});
+});
+
+$(function(){
+	$.ajax({
+		 type : "get"
+	     , url : "setMemo"
+	     , success : function(data) {
+	    	 if(data != "null") {
+		    	 $("#saveMemo").val(data);
+	    	 }
+	     }
+	});
+});
+
+function saving() {
+	var saveMemo = $("#saveMemo").val();
+	$.ajax({
+		 type : "get"
+	     , url : "saveMemo"
+	     , data : {"saveMemo":saveMemo}
+	     , success : function(data) {
+	    	 alert("saved!");
+	    	 $("#saveMemo").val(data);
+	     }
+	});
+}
+	
 </script>
 
 </head>
@@ -54,10 +92,11 @@ body{
 		<div class="panel panel-success">
 			<div class="panel-heading"><h2>MEMO</h2></div>
 			<div class="panel-body">
-				<textarea rows="10" cols="47" style="resize: none;"></textarea>
+				<textarea rows="10" cols="47" style="resize: none;" id="saveMemo"></textarea>
 					<br>
 					<br>
 					<div class="pull-right">
+					<input type="button" value="Save" class="btn btn-round btn-default" onclick="saving();">
 					<input type="reset" value="Flush" class="btn btn-round btn-default">
 					<input type="button" value="Close" class="btn  btn-round green btn-outline" onclick="javascript:window.close('this')">
 					</div>
@@ -65,15 +104,5 @@ body{
 		</div>
 	</div>
 </form>
-<!-- 
-<h2>Memo</h2>
-<form action="">
-	<textarea rows="10" cols="30"></textarea>
-	<br>
-	<input type="submit" value="저장하기">
-	<input type="reset" value="Flush">
-	<input type="button" value="Close" onclick="javascript:window.close('this')">
-</form>
- -->
 </body>
 </html>
