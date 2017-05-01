@@ -254,20 +254,20 @@
             </div>
              -->
             <div class="ibox float-e-margins">
-                    <div class="panel panel-info">
-                      <div class="panel-heading"><h2>Next Conference</h2></div>
-                      <div class="panel-body">
-                      	<table class="table table-hover">
-			          		<tr>
-			          			<td><div id="title"></div><div id="conf_topic"></div></td>
-			          		</tr>
-			          		<tr>
-			          			<td><h1><span id="time1"></span></h1></td>
+				<div class="panel panel-info">
+					<div class="panel-heading"><h2>Next Conference</h2></div>
+					<div class="panel-body">
+						<table class="table table-hover" style="margin-bottom: 0px;">
+							<tr>
+								<td style="border-top: none;"><div id="title"></div><div id="conf_topic"></div></td>
+							</tr>
+							<tr>
+			          			<td><h2><span id="time1"></span></h2></td>
 			          		</tr>
 			          	</table>
-                      </div>
-                    </div>
-                  </div>
+					</div>
+				</div>
+			</div>
             
             
            <!--  <div class="ibox float-e-margins">
