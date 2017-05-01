@@ -134,7 +134,7 @@ function checkform(){
        <div class="form-group">
         <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone">
       </div>
-       <div class="form-group">
+      <div class="form-group">
        	<select class="form-control" name="language" id="language">
 	        <option value="" selected="selected">Language</option>
 	        <option value="ko">Korean</option>

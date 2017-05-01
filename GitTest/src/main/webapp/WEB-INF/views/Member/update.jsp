@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -114,8 +115,12 @@ function checkform(){
        <div class="form-group">
         <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email" value="${user.email}">
       </div>
-       <div class="form-group">
-        <input type="text" required="" placeholder="Language" class="form-control" name="language" id="language" value="${user.language}">
+      <div class="form-group">
+        <select class="form-control" name="language" id="language">
+	        <option value="" disabled="disabled" selected="selected">Language (You are now: <c:if test="${user.language == 'ko'}">Korean</c:if><c:if test="${user.language == 'ja'}">Japanese</c:if>)</option>
+	        	<option value="ko">Korean</option>
+		        <option value="ja">Japanese</option>
+       	</select>
       </div>
        <div class="form-group">
         <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone" value="${user.phone}">
