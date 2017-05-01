@@ -118,8 +118,8 @@ function checkform(){
       <div class="form-group">
         <select class="form-control" name="language" id="language">
 	        <option value="" disabled="disabled" selected="selected">Language (You are now: <c:if test="${user.language == 'ko'}">Korean</c:if><c:if test="${user.language == 'ja'}">Japanese</c:if>)</option>
-	        	<option value="ko">Korean</option>
-		        <option value="ja">Japanese</option>
+	        <option value="ko">Korean</option>
+		    <option value="ja">Japanese</option>
        	</select>
       </div>
        <div class="form-group">
