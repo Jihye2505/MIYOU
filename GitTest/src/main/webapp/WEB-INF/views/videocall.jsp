@@ -12,17 +12,29 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script>
-		$(function(){
-			$.ajax({
-				 type : "get"
-			     , url : "lockCheck"
-			     , success : function(data) {
-			    	 if(data != "true") {
-			    		 location.href = "lockscreen";
-			    	 }
-			     }
-			});
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "logoutCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "login";
+		    	 }
+		     }
 		});
+	});
+
+	$(function(){
+		$.ajax({
+			 type : "get"
+		     , url : "lockCheck"
+		     , success : function(data) {
+		    	 if(data != "true") {
+		    		 location.href = "lockscreen";
+		    	 }
+		     }
+		});
+	});
 	</script>
 	<!-- We've provide some simple styling to get you started. -->
 	<link   href="resources/Vidyo/VidyoConnector.css" rel="stylesheet" type="text/css" >
@@ -35,27 +47,27 @@
 		console.log("Status: " + status.state + "Description: " + status.description);
 		switch (status.state) {
 			case "READY":    // The library is operating normally
-				$("#connectionStatus").html("Ready to Connect");
+				$("#clientVersion").html("Ready to Connect");
 				$("#helper").addClass("hidden");
 				// After the VidyoClient is successfully initialized a global VC object will become available
 				// All of the VidyoConnector gui and logic is implemented in VidyoConnector.js
 				StartVidyoConnector(VC);
 				break;
 			case "RETRYING": // The library operating is temporarily paused
-				$("#connectionStatus").html("Temporarily unavailable retrying in " + status.nextTimeout/1000 + " seconds");
+				$("#clientVersion").html("Temporarily unavailable retrying in " + status.nextTimeout/1000 + " seconds");
 				break;
 			case "FAILED":   // The library operating has stopped
 				ShowFailed(status);
-				$("#connectionStatus").html("Failed: " + status.description);
+				$("#clientVersion").html("Failed: " + status.description);
 				break;
 			case "FAILEDVERSION":   // The library operating has stopped
 				UpdateHelperPaths(status);
 				ShowFailedVersion(status);
-				$("#connectionStatus").html("Failed: " + status.description);
+				$("#clientVersion").html("Failed: " + status.description);
 				break;
 			case "NOTAVAILABLE": // The library is not available
 				UpdateHelperPaths(status);
-				$("#connectionStatus").html(status.description);
+				$("#clientVersion").html(status.description);
 				break;
 		}
 		return true; // Return true to reload the plugins if not available
@@ -230,7 +242,7 @@
             return;
          }else{
         	myMic($("#displayName").val(), transcriptOld);
-            vidyoConnector.SendChatMessage(transcriptOld);
+            vidyoConnector.SendChatMessage("voice<mmm>"+transcriptOld);
             transcriptSent = transcriptOld;
          }
       }else{
@@ -278,19 +290,9 @@
 		current_style = style;
 	}
 	
-	//Sending Message
-	function sendingMSG(){
-			var mesg = $("#msg").val();
-			myText($("#displayName").val(), mesg)
-			vidyoConnector.SendChatMessage(mesg);
-			$("#msg").val("");
-	}; 
-	
-	
 	// Runs when the page loads
 	$(function() {
 			joinViaBrowser();
-			
 	});
 	
 	function insertTextFile(){
@@ -302,10 +304,29 @@
 		    }
 		});
 	}
+
+	//Sending Message
+	function sendingMSG(){
+		var userN = $("#displayName").val();
+		var lang = $("#language1").val();
+		var msg = $("#sentMSG").val();
+		myText(userN, lang, msg);
+		vidyoConnector.SendChatMessage("msg<mmm>"+msg);
+		
+		/* $.ajax({
+			method:"get",
+			url:"saveChat",
+			success:function(resp){
+				$("#record").html(resp);	
+			}
+		}); */
+		
+		$("#sentMSG").val("");
+	};
 	
-	function chat(){
+	/* function chat(){
 		window.open('chatting', '', 'width=350,height=500,resizable=no');
-	}
+	} */
 	</script>
 </head>
 
@@ -399,11 +420,12 @@ to hook up all of the events to elements. -->
 		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=400,height=430,resizable=no');">
 		
 		<!-- 채팅창 열기 -->
-		<input type="button" title="Chat" class="toolbarButton chatMessage" onclick="chat()">
+		<input type="text" id="sentMSG" class="" size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
+		<!-- <input type="button" title="Chat" class="toolbarButton chatMessage" onclick="chat()"> -->
 		
 		<input type="hidden" id="language" value="${user.language}">
 		
-		<span id="connectionStatus">Initializing</span>
+		<span id="connectionStatus"></span>
 
 		<span id="clientVersion"></span>
 	</div>
