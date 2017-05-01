@@ -101,7 +101,7 @@
 				</when>
 			</choose>
 		</if>
-		) )n )con, conf_mng cmm
+		) order by conf_num desc)n )con, conf_mng cmm
 		where con.conf_num = cmm.conf_num
 		order by cmm.todate desc)
 	</select>
@@ -132,7 +132,7 @@
 				</when>
 			</choose>
 		</if>
-		) )n )con, conf_mng cmm
+		) order by conf_num desc)n )con, conf_mng cmm
 		where con.conf_num = cmm.conf_num
 		and rnum between #{firstnum} and #{endnum}
 		order by cmm.todate desc
