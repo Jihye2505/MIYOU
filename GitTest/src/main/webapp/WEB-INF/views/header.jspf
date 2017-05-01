@@ -3,13 +3,13 @@
 <!-- bar시작 -->
 <div class="page-header navbar navbar-fixed-top">
   <!-- BEGIN HEADER INNER -->
-  <div class="page-header-inner ">
+  <div class="page-header-inner " >
     <!-- BEGIN LOGO -->
-    <div class="page-logo"> <a href="main"> <img class="logo-default" alt="logo" src="resources/assets/images/miyou_main.png"> </a> </div>
-    <div class="library-menu"> <span class="one" style="margin-top: 10px;">-</span> <span class="two">-</span> <span class="three">-</span> </div>
+    <div class="page-logo"> <a href="main"> <img  style="margin-top: 9px;" class="logo-default" alt="logo" src="resources/assets/images/miyou_main.png"> </a> </div>
+    <div class="library-menu"> <span class="one">-</span> <span class="two">-</span> <span class="three">-</span> </div>
     <!-- END LOGO -->
     <!-- BEGIN TOP NAVIGATION MENU -->
-    <div class="top-menu">
+    <div class="top-menu" style="margin-top: 8px;">
       <ul class="nav navbar-nav pull-right">
         <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle count-info" > <i class="fa fa-envelope"></i> <span class="badge badge-info">${unread}</span> </a>
           <ul class="dropdown-menu dropdown-messages menuBig">
