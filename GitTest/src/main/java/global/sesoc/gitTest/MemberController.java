@@ -82,7 +82,6 @@ public class MemberController {
    
    @RequestMapping(value="/update", method=RequestMethod.GET)
    public String update(){
-      
       return "Member/update";
    }
    

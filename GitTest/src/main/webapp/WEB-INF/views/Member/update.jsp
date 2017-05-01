@@ -99,6 +99,9 @@ function checkform(){
     <p>Update your personal information</p>
     <form action="update"  class="m-t" method="POST" onsubmit="return checkform()">
     <input type="hidden" id="h" name="h" value="${user.password}">
+ 	  <div class="form-group">
+        <input type="text" class="form-control" name="employee_num" id="employee_num" value="${user.employee_num}" readonly="readonly">
+      </div>
       <div class="form-group">
         <input type="password" required="" placeholder="Password" class="form-control" name="password1" id="password1">
       </div>
@@ -109,13 +112,13 @@ function checkform(){
         <input type="password" required="" placeholder="new Password check" class="form-control" name="password3" id="password3">
       </div>
        <div class="form-group">
-        <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email">
+        <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email" value="${user.email}">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Language" class="form-control" name="language" id="language">
+        <input type="text" required="" placeholder="Language" class="form-control" name="language" id="language" value="${user.language}">
       </div>
        <div class="form-group">
-        <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone">
+        <input type="text" required="" placeholder="Phone" class="form-control" name="phone" id="phone" value="${user.phone}">
       </div>
       
       

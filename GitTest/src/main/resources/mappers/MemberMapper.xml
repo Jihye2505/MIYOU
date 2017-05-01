@@ -18,7 +18,7 @@
 	
 	<!-- 회원정보 업데이트 -->
 	<update id="update" parameterType="Member" >
-		update e_member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone}
+		update e_member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone} where employee_num=#{employee_num}
 	</update>
    
    <!-- 관리자모드 회원정보 업데이트 -->
