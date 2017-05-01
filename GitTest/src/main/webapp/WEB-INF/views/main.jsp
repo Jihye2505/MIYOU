@@ -65,14 +65,14 @@
              }
              time=data[0];
 //              time=1;
-             title=data[1];
+             title="<h3>" + data[1] + "</h3>";
              $("#title").html(title);
              /* conf_date=data[2];
              employee_nums=data[3]; */
              conf_topicList=data[4];
-             var ss = '안건<br>';
+             var ss = '';
              for (var i = 0; i < conf_topicList.length; i++) {
-                ss += "     - "+conf_topicList[i].subtitle+"<br>";
+                ss += "&nbsp;- "+conf_topicList[i].subtitle+"<br>";
             }
              $("#conf_topic").html(ss);
              start_timer();
@@ -259,7 +259,7 @@
                       <div class="panel-body">
                       	<table class="table table-hover">
 			          		<tr>
-			          			<td><div id="title"></div></td>
+			          			<td><div id="title"></div><div id="conf_topic"></div></td>
 			          		</tr>
 			          		<tr>
 			          			<td><h1><span id="time1"></span></h1></td>
@@ -270,19 +270,19 @@
                   </div>
             
             
-            <div class="ibox float-e-margins">
+           <!--  <div class="ibox float-e-margins">
               <div  class="ibox-content collapse in">
                 <div class="demo-container">
                   <div class="widgets-container">
                     <div class="ibox-content">
                     
-                      <div id="conf_topic"></div>
+                      
                       
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             
          </div>
           <div class="col-lg-9">
