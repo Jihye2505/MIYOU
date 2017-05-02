@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -85,10 +86,27 @@ $(function(){
         Tel: ${user.phone}
       </div>
       <div class="form-group">
-       Dept number: ${user.dept_id}
+       Department: 
+       <c:if test="${user.dept_id==100}">General Affairs</c:if>
+       <c:if test="${user.dept_id==200}">Personnel Dept</c:if>
+       <c:if test="${user.dept_id==301}">Sales Team1</c:if>
+       <c:if test="${user.dept_id==302}">Sales Team2</c:if>
+       <c:if test="${user.dept_id==303}">Sales Team3</c:if>
+       <c:if test="${user.dept_id==401}">R&D Team1</c:if>
+       <c:if test="${user.dept_id==402}">R&D Team2</c:if>
+       <c:if test="${user.dept_id==403}">R&D Team33</c:if>
+       
       </div>
       <div class="form-group">
-        Job number: ${user.job_id}
+        Position: 
+        <c:if test="${user.job_id==10}">CEO</c:if>
+        <c:if test="${user.job_id==20}">Executive Director</c:if>
+        <c:if test="${user.job_id==30}">Director</c:if>
+        <c:if test="${user.job_id==40}">Head of Department</c:if>
+        <c:if test="${user.job_id==50}">Deputy Director</c:if>
+        <c:if test="${user.job_id==60}">Section Chief</c:if>
+        <c:if test="${user.job_id==70}">Asst Manager</c:if>
+        <c:if test="${user.job_id==80}">Employee</c:if>
       </div>
       
       <button class="btn aqua block full-width m-b" type="submit">Back to main</button>
