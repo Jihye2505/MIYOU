@@ -141,7 +141,7 @@ function checkForm(){
       </div>
       <div class="form-group">
         <select required="" placeholder="Job" class="form-control" name="job_id" id="job_id">
-        <option selected="selected">Job</option>
+        <option selected="selected" disabled="disabled">Job</option>
         <c:forEach var="i" items="${jobList}">
         		<option value="${i.job_id}">${i.job_name}</option>     
         </c:forEach>
@@ -149,7 +149,7 @@ function checkForm(){
       </div>
        <div class="form-group">
         <select required="" placeholder="Department" class="form-control" name="dept_id" id="dept_id">
-        <option selected="selected">Department</option>
+        <option selected="selected" disabled="disabled">Department</option>
         <c:forEach var="i" items="${deptList}">
         		<option value="${i.dept_id}">${i.dept_name}</option>     
         </c:forEach>
