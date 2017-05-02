@@ -40,7 +40,7 @@
 				<div class="middle-box text-center loginscreen">
 					<div class="widgets-container">
 						<div>
-							<img src="resources/assets/images/teem/Kang.jpg" class="img-circle" alt="">
+							<img src="resources/assets/images/teem/Kang.JPG" class="img-circle" alt="">
 						</div>
 						<h2>カン・ジュンテ</h2>
 						<br><br>
