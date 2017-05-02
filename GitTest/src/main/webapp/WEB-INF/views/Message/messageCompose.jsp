@@ -209,6 +209,7 @@ $(function(){
                               <!-- <form class="form-horizontal form-bordered"
                               action="sendMessage" method="post"> -->
                               <div class="note-editor   panel-default">
+                              <!-- 
                                  <div class="btn-toolbar note-toolbar panel-heading"
                                     data-role="editor-toolbar" data-target="#editor">
                                     <div class="btn-group">
@@ -290,7 +291,8 @@ $(function(){
                                     </div>
                                     <input type="text" data-edit="inserttext" id="voiceBtn"
                                        x-webkit-speech="">
-                                 </div>
+                                 </div> 
+                                 -->
 
                                  <!-- <div id="editor">hi hello it's me</div> -->
                                  <!-- <input type="text" name="content" id="editor"> -->
