@@ -97,10 +97,10 @@ function deleteCheck(){
 				
 				<div class="list-widget white-bg borderedTable" >
 					<ul class="list-unstyled clearfix">
-						<li> <i class="fa fa-users"></i> <span class="text">참여자</span> <span class="right">${conf_mng.employee_nums }</span> </li>
-						<li> <i class="fa fa-pencil-square-o"></i> <span class="text">작성일</span> <span class="right">${viewTodate }</span> </li>
-						<li> <i class="fa fa-calendar"></i> <span class="text">회의날짜</span> <span class="right">${viewConf_date }</span> </li>
-						<li style="border-bottom: none;"> <i class="fa fa-sticky-note-o"></i> <span class="text">첨부파일</span> 
+						<li> <i class="fa fa-users"></i> <span class="text">Participant</span> <span class="right">${conf_mng.employee_nums }</span> </li>
+						<li> <i class="fa fa-pencil-square-o"></i> <span class="text">Date</span> <span class="right">${viewTodate }</span> </li>
+						<li> <i class="fa fa-calendar"></i> <span class="text">Conf date</span> <span class="right">${viewConf_date }</span> </li>
+						<li style="border-bottom: none;"> <i class="fa fa-sticky-note-o"></i> <span class="text">Attached file</span> 
 							<span class="right">
 								<c:if test="${conf_mng.originalfile != null}">
 									${conf_mng.originalfile} &nbsp;	
