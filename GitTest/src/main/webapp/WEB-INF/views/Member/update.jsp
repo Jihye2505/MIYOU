@@ -104,13 +104,13 @@ function checkform(){
         <input type="text" class="form-control" name="employee_num" id="employee_num" value="${user.employee_num}" readonly="readonly">
       </div>
       <div class="form-group">
-        <input type="password" required="" placeholder="Password" class="form-control" name="password1" id="password1">
+        <input type="password" required="" placeholder="Current password" class="form-control" name="password1" id="password1">
       </div>
       <div class="form-group">
-        <input type="password" required="" placeholder="new Password" class="form-control" name="password" id="password">
+        <input type="password" required="" placeholder="New password" class="form-control" name="password" id="password">
       </div>
        <div class="form-group">
-        <input type="password" required="" placeholder="new Password check" class="form-control" name="password3" id="password3">
+        <input type="password" required="" placeholder="New password check" class="form-control" name="password3" id="password3">
       </div>
        <div class="form-group">
         <input type="email" required="" placeholder="Email" class="form-control" name="email" id="email" value="${user.email}">
