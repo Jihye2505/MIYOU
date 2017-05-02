@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
 import global.sesoc.gitTest.DAO.ConfDAO;
 import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
+import global.sesoc.gitTest.vo.Member;
 import global.sesoc.gitTest.vo.Message;
 
 @Repository
@@ -161,27 +162,36 @@ public class ConfRepository {
 
 		Map<String, String> search = new HashMap<>();
 
+		Member user = (Member) session.getAttribute("user");
+
 		search.put("searchTitle", searchTitle);
 		search.put("searchText", searchText);
 		search.put("firstnum", start + "");
 		search.put("endnum", end + "");
 
-		List<Conf_mng> list = null;
+		List<Conf_mng> searchConfList = null;
 		List<Map<String, Object>> confList = new ArrayList<Map<String, Object>>();
 
 		try {
-			list = dao.confList(search);
-			for (int i = 0; i < list.size(); i++) {
-				Map<String, Object> conf_mng = new HashMap<>();
-				conf_mng.put("conf_num", list.get(i).getConf_num());
-				conf_mng.put("title", list.get(i).getTitle());
-				conf_mng.put("employee_nums", list.get(i).getEmployee_nums());
-				SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				String viewConf_date = viewDate.format(list.get(i).getConf_date());
-				conf_mng.put("viewConf_date", viewConf_date);
-				String viewTodate = viewDate.format(list.get(i).getTodate());
-				conf_mng.put("viewTodate", viewTodate);
-				confList.add(conf_mng);
+			searchConfList = dao.confList(search);
+			for (int i = 0; i < searchConfList.size(); i++) {
+				String[] employee_num = searchConfList.get(i).getEmployee_nums().split(",");
+				for (int j = 0; j < employee_num.length; j++) {
+					if (user.getEmployee_num().equals(employee_num[j])) {
+						for (int a = 0; a < searchConfList.size(); a++) {
+							Map<String, Object> conf_mng = new HashMap<>();
+							conf_mng.put("conf_num", searchConfList.get(a).getConf_num());
+							conf_mng.put("title", searchConfList.get(a).getTitle());
+							conf_mng.put("employee_nums", searchConfList.get(a).getEmployee_nums());
+							SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+							String viewConf_date = viewDate.format(searchConfList.get(a).getConf_date());
+							conf_mng.put("viewConf_date", viewConf_date);
+							String viewTodate = viewDate.format(searchConfList.get(a).getTodate());
+							conf_mng.put("viewTodate", viewTodate);
+							confList.add(conf_mng);
+						}
+					}
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -217,9 +227,22 @@ public class ConfRepository {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 
-		List<Conf_mng> calendarMyList = null;
+		Member user = (Member) session.getAttribute("user");
+
+		List<Conf_mng> calendarMyList = new ArrayList<>();
+		List<Conf_mng> searchCalendarMyList = new ArrayList<>();
 		try {
-			calendarMyList = dao.calendarMyList(employee_num);
+			searchCalendarMyList = dao.calendarMyList(employee_num);
+			System.out.println(searchCalendarMyList);
+			for (int i = 0; i < searchCalendarMyList.size(); i++) {
+				String[] employee_nums = searchCalendarMyList.get(i).getEmployee_nums().split(",");
+				for (int j = 0; j < employee_nums.length; j++) {
+					if (user.getEmployee_num().equals(employee_nums[j])) {
+						calendarMyList.add(searchCalendarMyList.get(i));
+					}
+				}
+
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -326,10 +349,10 @@ public class ConfRepository {
 
 		int substringConfTitle = message.getContent().indexOf("<br>Conf Title : ");
 		int substringConfNum = message.getContent().indexOf("<br>Conf Num : ");
-		
+
 		System.out.println(substringConfTitle);
 		System.out.println(substringConfNum);
-		
+
 		// System.out.println(message.getContent().substring(substringConfNum+15,
 		// substringConfTitle));
 		int conf_num = Integer.parseInt(message.getContent().substring(substringConfNum + 15, substringConfTitle));
@@ -344,7 +367,7 @@ public class ConfRepository {
 			conf_mng = dao.selectConf(conf_num);
 			if (conf_mng.getDeleteCheck() == 0) {
 				session.setAttribute("conf_num", conf_num);
-				 System.out.println("readmessage====="+conf_num);
+				System.out.println("readmessage=====" + conf_num);
 				session.setAttribute("roomNum", roomNum);
 				// System.out.println("session.conf_num"+session.getAttribute("conf_num"));
 			}

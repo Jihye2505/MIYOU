@@ -69,7 +69,7 @@
 	</select>
 	
 	<select id="calendarMyList" parameterType="String" resultType="Conf_mng">
-		select title, conf_date, conf_num
+		select title, conf_date, conf_num, employee_nums
 		from conf_mng 
 		where deleteCheck = 0 and employee_nums like '%'||#{employee_num}||'%'
 	</select>
