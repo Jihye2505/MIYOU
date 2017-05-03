@@ -135,7 +135,7 @@
 
 // 			document.form.submit(); // 예: 강제로 form 실행
 // 			$("#countDownEndMessage").html(time);
-			window.open("countDownEnd", "", "width=200, height=120, left=700, top=300");
+//			window.open("countDownEnd", "", "width=200, height=120, left=700, top=300");
 			
 		}
 
