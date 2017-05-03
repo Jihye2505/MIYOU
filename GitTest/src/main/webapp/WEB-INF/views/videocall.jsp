@@ -8,6 +8,15 @@
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <title>Conference</title>
 
+<style>
+#sentMSG{
+	position:absolute;
+	bottom:3px;
+	text-align:left;
+	width:145px;
+}
+</style>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -414,15 +423,15 @@ to hook up all of the events to elements. -->
 		<button id="microphoneButton" title="Microphone Privacy" class="toolbarButton microphoneOn"></button>
 
 		<!-- 안건 요약 보기 -->
-		<input type="button" title="Topic List" class="toolbarButton topic" onclick="<c:if test="${conf_num == null}">javascript:alert('Nothing found.');</c:if><c:if test="${conf_num != null}">javascript:window.open('confSummary', '', 'width=350,height=350');</c:if>">
+		<input type="button" title="Topic List" class="toolbarButton topic" onclick="<c:if test="${conf_num == null}">javascript:alert('Nothing found.');</c:if><c:if test="${conf_num != null}">javascript:window.open('confSummary', '', 'width=355,height=420');</c:if>">
 		
 		<!-- 메모 열기 -->
-		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=400,height=430,resizable=no');">
+		<input type="button" title="Memo" class="toolbarButton memo" onclick="javascript:window.open('memo', '', 'width=400,height=390,resizable=no');">
 		
 		<!-- 채팅창 열기 -->
-		<input type="text" id="sentMSG" class="" size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
+		<input type="text" id="sentMSG" placeholder="Sending message..." size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
 		<!-- <input type="button" title="Chat" class="toolbarButton chatMessage" onclick="chat()"> -->
-		
+
 		<input type="hidden" id="language" value="${user.language}">
 		
 		<span id="connectionStatus"></span>

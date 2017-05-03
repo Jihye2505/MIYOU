@@ -158,7 +158,6 @@ $(function(){
 								<tr>
 									<td><input class="form-control col-sm-3" type="text" name="subtitle" value="${conf_topic.subtitle }">
 										<input type="hidden" name="subtitle_id" value="${conf_topic.subtitle_id }">
-										<input type="hidden" name="subtitle" value="${conf_topic.subtitle }">
 									</td>
 									<td><input class="form-control col-sm-3" type="text" name="employee_num" value="${conf_topic.employee_num }"></td>
 									<td><input class="form-control col-sm-3" type="text" name="process" placeholder="Progress can be input between 0~100." value="${conf_topic.process }"></td>

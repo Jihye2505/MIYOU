@@ -68,7 +68,14 @@ $(function(){
 	    	 }
 	     }
 	});
+	
+	
 });
+
+function closeWin(){
+	saving();
+	window.close(this);
+};
 
 function saving() {
 	var saveMemo = $("#saveMemo").val();
@@ -82,7 +89,7 @@ function saving() {
 	     }
 	});
 }
-	
+
 </script>
 
 </head>
@@ -98,7 +105,7 @@ function saving() {
 					<div class="pull-right">
 					<input type="button" value="Save" class="btn btn-round btn-default" onclick="saving();">
 					<input type="reset" value="Flush" class="btn btn-round btn-default">
-					<input type="button" value="Close" class="btn  btn-round green btn-outline" onclick="javascript:window.close('this')">
+					<input type="button" value="Close" class="btn  btn-round green btn-outline" onclick="closeWin();">
 					</div>
 			</div>
 		</div>

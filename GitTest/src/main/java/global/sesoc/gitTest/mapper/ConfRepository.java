@@ -178,18 +178,16 @@ public class ConfRepository {
 				String[] employee_num = searchConfList.get(i).getEmployee_nums().split(",");
 				for (int j = 0; j < employee_num.length; j++) {
 					if (user.getEmployee_num().equals(employee_num[j])) {
-						for (int a = 0; a < searchConfList.size(); a++) {
-							Map<String, Object> conf_mng = new HashMap<>();
-							conf_mng.put("conf_num", searchConfList.get(a).getConf_num());
-							conf_mng.put("title", searchConfList.get(a).getTitle());
-							conf_mng.put("employee_nums", searchConfList.get(a).getEmployee_nums());
-							SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-							String viewConf_date = viewDate.format(searchConfList.get(a).getConf_date());
-							conf_mng.put("viewConf_date", viewConf_date);
-							String viewTodate = viewDate.format(searchConfList.get(a).getTodate());
-							conf_mng.put("viewTodate", viewTodate);
-							confList.add(conf_mng);
-						}
+						Map<String, Object> conf_mng = new HashMap<>();
+						conf_mng.put("conf_num", searchConfList.get(i).getConf_num());
+						conf_mng.put("title", searchConfList.get(i).getTitle());
+						conf_mng.put("employee_nums", searchConfList.get(i).getEmployee_nums());
+						SimpleDateFormat viewDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+						String viewConf_date = viewDate.format(searchConfList.get(i).getConf_date());
+						conf_mng.put("viewConf_date", viewConf_date);
+						String viewTodate = viewDate.format(searchConfList.get(i).getTodate());
+						conf_mng.put("viewTodate", viewTodate);
+						confList.add(conf_mng);
 					}
 				}
 			}
