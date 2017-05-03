@@ -398,6 +398,22 @@ to hook up all of the events to elements. -->
 				<option value='0'>None</option>
 			</select>
 		</p>
+		
+		<p>
+         <label for="windowShares">Window Share</label>
+         <select id="windowShares">
+            <option value='0'>None</option>
+         </select>
+      	</p>
+      	
+      	<p id="monitorShareParagraph">
+         <!-- On page load, this input is filled with a list of all the available monitor shares on the user's system. -->
+         <label for="monitorShares">Monitor Share</label>
+         <select id="monitorShares">
+            <option value='0'>None</option>
+         </select>
+      	</p>
+		
 		</form>
 		<div id="messages">
 			<!-- All Vidyo-related messages will be inserted into these spans. -->
