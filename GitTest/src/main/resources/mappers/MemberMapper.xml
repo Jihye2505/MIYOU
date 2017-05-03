@@ -34,7 +34,11 @@
    
    <!-- 메세지 보낼때 아이디 검색하기 -->
    <select id="search" resultType="Member">
-   		select employee_num from e_member where employee_num like #{param1}||'%'
+   		select employee_num e_member where employee_num like #{param1}||'%'
+   </select>
+   
+   <select id="searchall" resultType="Member">
+   		select employee_num, language from e_member
    </select>
 	
 	<!-- jobList 받기 -->

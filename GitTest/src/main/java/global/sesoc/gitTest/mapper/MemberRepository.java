@@ -72,6 +72,18 @@ public class MemberRepository {
 		return result;
 	}
 	
+	
+	public List<Member> searchall(){
+		List<Member> result = null;
+		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		try {
+			result=mDAO.searchall();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public List<JobList> jobList(){
 		List<JobList> jobList=null;
 		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);

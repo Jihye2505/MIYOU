@@ -22,16 +22,17 @@ public class APITranslate {
 	// parameter : user_language, original_text
 	@RequestMapping(value = "translate", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String translate(MiyouTranslate translate) throws Exception {
-
+		
+		System.out.println("api"+translate.toString());
 		JSONObject jsonObj = new JSONObject();
 
-		String clientId = "53qFovEVhAv3YKHIXzSb";// 애플리케이션 클라이언트 아이디값 - kang";
+//		String clientId = "53qFovEVhAv3YKHIXzSb";// 애플리케이션 클라이언트 아이디값 - kang";
 //		String clientId = "DrRA07vw4POxK36bbFT9"; //애플리케이션 클라이언트 아이디값 - park";
-//		String clientId = "cfDOAMsYHh6bi4z3LXzK"; //애플리케이션 클라이언트 아이디값  - yu";
+		String clientId = "cfDOAMsYHh6bi4z3LXzK"; //애플리케이션 클라이언트 아이디값  - yu";
 		
-		String clientSecret = "8O1EqXN2yH";// 애플리케이션 클라이언트 시크릿값  - kang";
+//		String clientSecret = "8O1EqXN2yH";// 애플리케이션 클라이언트 시크릿값  - kang";
 //		String clientSecret = "gMAc9r8rAt";// 애플리케이션 클라이언트 시크릿값  - park";
-//		String clientSecret = "EQUhA7xySH";// 애플리케이션 클라이언트 시크릿값  - yu";
+		String clientSecret = "EQUhA7xySH";// 애플리케이션 클라이언트 시크릿값  - yu";
 		StringBuffer response = null;
 
 		
@@ -78,6 +79,7 @@ public class APITranslate {
 			System.out.println(e);
 		}
 
+		System.out.println(response.toString());
 		String result = "";
 		JSONParser jsonparser = new JSONParser();
 		JSONObject jsonobject = (JSONObject) jsonparser.parse(""+response);
