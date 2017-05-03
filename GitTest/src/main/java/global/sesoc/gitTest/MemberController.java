@@ -56,9 +56,9 @@ public class MemberController {
    @RequestMapping(value="/login", method=RequestMethod.GET)
    public String login(HttpSession session){
       session.removeAttribute("user");
-      session.removeAttribute("loginCheck");
       session.removeAttribute("lockCheck");
       session.removeAttribute("saveMemo");
+      //session.removeAttribute("loginCheck");	//여기는 세션만료 알람이 바로 안뜨고 정보가 보일경우에만 주석해제하면됨
       
       return "login";
    }
