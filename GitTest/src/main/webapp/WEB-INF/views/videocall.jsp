@@ -298,17 +298,18 @@
 		}
 		current_style = style;
 	}
-	function startSpeech(){
-		alert(1);
-		startButton(event);
-	};
+	
 	
 	// Runs when the page loads
 	$(function() {
 			joinViaBrowser();
 	});
 	
-	
+	function keydown(){
+		if(event.keyCode=="107"){
+			startButton(event);
+		}
+	};
 	
 	function insertTextFile(){
 		$.ajax({
@@ -347,7 +348,8 @@
 
 <!-- We execute the VidyoConnectorApp library on page load
 to hook up all of the events to elements. -->
-<body id="vidyoConnector">
+<body id="vidyoConnector" onkeydown="keydown()">
+
 	<!-- This button toggles the visibility of the options. -->
 	<button id="optionsVisibilityButton" title="Toggle Options" class="optionsVisibiliyButtonElements hideOptions hidden"></button>
 
