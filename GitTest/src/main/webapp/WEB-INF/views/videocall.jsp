@@ -271,9 +271,9 @@
 		});
 	}
 
-	function startB(){
+	/* function startB(){
 		startButton(event);
-	}
+	} */
 	
 	function startButton(event) {
 		var userLanguage = $("#language").val();
@@ -298,11 +298,17 @@
 		}
 		current_style = style;
 	}
+	function startSpeech(){
+		alert(1);
+		startButton(event);
+	};
 	
 	// Runs when the page loads
 	$(function() {
 			joinViaBrowser();
 	});
+	
+	
 	
 	function insertTextFile(){
 		$.ajax({
@@ -398,22 +404,6 @@ to hook up all of the events to elements. -->
 				<option value='0'>None</option>
 			</select>
 		</p>
-		
-		<p>
-         <label for="windowShares">Window Share</label>
-         <select id="windowShares">
-            <option value='0'>None</option>
-         </select>
-      	</p>
-      	
-      	<p id="monitorShareParagraph">
-         <!-- On page load, this input is filled with a list of all the available monitor shares on the user's system. -->
-         <label for="monitorShares">Monitor Share</label>
-         <select id="monitorShares">
-            <option value='0'>None</option>
-         </select>
-      	</p>
-		
 		</form>
 		<div id="messages">
 			<!-- All Vidyo-related messages will be inserted into these spans. -->
@@ -447,6 +437,8 @@ to hook up all of the events to elements. -->
 		<!-- 채팅창 열기 -->
 		<input type="text" id="sentMSG" placeholder="Sending message..." size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
 		<!-- <input type="button" title="Chat" class="toolbarButton chatMessage" onclick="chat()"> -->
+
+		<input type="button" class="toolbarButton yy" title="speech" onclick="startSpeech()">
 
 		<input type="hidden" id="language" value="${user.language}">
 		

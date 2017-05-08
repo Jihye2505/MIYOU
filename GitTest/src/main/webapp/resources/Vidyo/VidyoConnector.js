@@ -1,5 +1,9 @@
 // Run StartVidyoConnector when the VidyoClient is successfully loaded
-function StartVidyoConnector(VC, webrtc) {
+//var iStartB;
+var iFilter;
+var iSave;
+
+function StartVidyoConnector(VC) {
     var vidyoConnector;
     var cameras = {};
     var microphones = {};
@@ -11,11 +15,11 @@ function StartVidyoConnector(VC, webrtc) {
     $("#options").removeClass("hidden");
     $("#optionsVisibilityButton").removeClass("hidden");
     $("#renderer").removeClass("hidden");
-
+    
     VC.CreateVidyoConnector({
-        viewId: "renderer", // Div ID where the composited video will be rendered, see VidyoConnector.html
+        viewId: "renderer", // Div ID where the composited video will be rendered, see VidyoConnectorSample.html
         viewStyle: "VIDYO_CONNECTORVIEWSTYLE_Default", // Visual style of the composited renderer
-        remoteParticipants: 16,     // Maximum number of participants to render
+        remoteParticipants: 16,     // Maximum number of participants
         logFileFilter: "warning info@VidyoClient info@VidyoConnector",
         logFileName:"",
         userData:""
@@ -25,11 +29,10 @@ function StartVidyoConnector(VC, webrtc) {
         registerDeviceListeners(vidyoConnector, cameras, microphones, speakers);
         handleDeviceChange(vidyoConnector, cameras, microphones, speakers);
         handleParticipantChange(vidyoConnector);
-        handleSharing(vidyoConnector, webrtc);
 
-        // Populate the connectionStatus with the client version
+     // Populate the connectionStatus with the client version
         vidyoConnector.GetVersion().then(function(version) {
-            $("#clientVersion").html("v " + version);
+            //$("#clientVersion").html("v " + version);
         }).catch(function() {
             console.error("GetVersion failed");
         });
@@ -103,26 +106,35 @@ function StartVidyoConnector(VC, webrtc) {
             $("#renderer").removeClass("rendererFullScreen").addClass("rendererWithOptions");
         }
     });
-
+    
     function joinLeave() {
         // join or leave dependent on the joinLeaveButton, whether it
         // contains the class callStart of callEnd.
         if ($("#joinLeaveButton").hasClass("callStart")) {
-            $("#connectionStatus").html("Connecting...");
+        	//$("#clientVersion").html("v " + version);
+        	//$("#connectionStatus").html("Connecting...");
+            $("#clientVersion").html("Connecting...");
+            
             $("#joinLeaveButton").removeClass("callStart").addClass("callEnd");
             $('#joinLeaveButton').prop('title', 'Leave Conference');
+            //iStartB = setInterval(startB,10000);
+            iFilter = setInterval(filter,500);
+            iSave = setInterval(saveText,600000);
             connectToConference(vidyoConnector);
         } else {
-            $("#connectionStatus").html("Disconnecting...");
+            $("#clientVersion").html("Disconnecting...");
             vidyoConnector.Disconnect().then(function() {
                 console.log("Disconnect Success");
+                //clearInterval(iStartB);
+                clearInterval(iFilter);
+                clearInterval(iSave);
+                saveText();
             }).catch(function() {
                 console.error("Disconnect Failure");
             });
         }
         $("#joinLeaveButton").one("click", joinLeave);
     }
-
 }
 
 function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers) {
@@ -159,7 +171,7 @@ function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers)
         console.error("RegisterLocalCameraEventListener Failed");
     });
 
-    // Handle appearance and disappearance of microphone devices in the system
+ // Handle appearance and disappearance of microphone devices in the system
     vidyoConnector.RegisterLocalMicrophoneEventListener({
         onAdded: function(localMicrophone) {
             // New microphone is available
@@ -185,7 +197,7 @@ function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers)
         console.error("RegisterLocalMicrophoneEventListener Failed");
     });
 
-    // Handle appearance and disappearance of speaker devices in the system
+ // Handle appearance and disappearance of speaker devices in the system
     vidyoConnector.RegisterLocalSpeakerEventListener({
         onAdded: function(localSpeaker) {
             // New speaker is available
@@ -259,176 +271,6 @@ function handleDeviceChange(vidyoConnector, cameras, microphones, speakers) {
     });
 }
 
-function handleSharing(vidyoConnector, webrtc) {
-    var monitorShares = {};
-    var windowShares  = {};
-    var isSharingWindow = false;          // Flag indicating whether a window is currently being shared
-    var webrtcMode = (webrtc === "true"); // Whether the app is running in plugin or webrtc mode
-
-    // The monitorShares & windowShares associative arrays hold a handle to each window/monitor that are available for sharing.
-    // The element with key "0" contains a value of null, which is used to stop sharing.
-    monitorShares[0] = null;
-    windowShares[0]  = null;
-
-    // Check if app is running in plugin or webrtc mode
-//    if (webrtcMode === false) {
-//        // In plugin mode, start window and monitor sharing
-//        StartWindowShare();
-//        StartMonitorShare();
-//    } else {
-        // In webrtc mode, start window sharing only.
-        // StartWindowShare needs to be called each time a new share is initiated
-        // so perform this action when the "Window Share" drop-down list is clicked.
-        $("#windowShares").click(function() {
-            console.log("*** Window Share drop-down clicked. isSharingWindow = " + isSharingWindow);
-
-            // Initiate the share selection process only if not already sharing
-            if (isSharingWindow === false) {
-                // Re-initialize the windowShares array
-                windowShares = {};
-                windowShares[0] = null;
-
-                // Clear all of the drop-down items other than the first ("None"), which is used to stop sharing
-                $("#windowShares").find('option').not(':first').remove();
-
-                // Start window sharing (in WebRTC mode, this includes monitors)
-                StartWindowShare();
-            }
-        });
-//    }
-
-    function StartWindowShare() {
-        // Register for window share status updates, which operates differently in plugin vs webrtc:
-        //    plugin: onAdded and onRemoved callbacks are received for each available window
-        //    webrtc: a popup is displayed (an extension to Firefox/Chrome) which allows the user to
-        //            select a share; once selected, that share will trigger an onAdded event
-        vidyoConnector.RegisterLocalWindowShareEventListener({
-            onAdded: function(localWindowShare) {
-                // In webrtc mode, select the share which triggered this callback
-//                if (webrtcMode) {
-                    vidyoConnector.SelectLocalWindowShare({
-                        localWindowShare: localWindowShare
-                    }).then(function() {
-                        console.log("SelectLocalWindowShare Success");
-                    }).catch(function() {
-                        console.error("SelectLocalWindowShare Failed");
-                    });
-//                }
-
-                // New share is available so add it to the windowShares array and the drop-down list
-                if (localWindowShare.name != "") {
-                	alert('vidyo conn 320 : ' + localWindowShare.name);
-                	alert('vidyo conn 321 : ' + Promise.resolve(localWindowShare.GetName()));
-                    var shareVal;
-                    if (webrtcMode) {
-                        shareVal = "Selected Share";
-                    } else {
-                        shareVal = localWindowShare.applicationName + " : " + localWindowShare.name;
-                    }
-                    $("#windowShares").append("<option value='" + window.btoa(localWindowShare.id) + "'>" + shareVal + "</option>");
-                    windowShares[window.btoa(localWindowShare.id)] = localWindowShare;
-                    console.log("Window share added, name : " + localWindowShare.name + " | id : " + window.btoa(localWindowShare.id));
-                }
-            },
-            onRemoved: function(localWindowShare) {
-                // Existing share became unavailable
-                $("#windowShares option[value='" + window.btoa(localWindowShare.id) + "']").remove();
-                delete windowShares[window.btoa(localWindowShare.id)];
-            },
-            onSelected: function(localWindowShare) {
-                // Share was selected/unselected by you or automatically
-                if (localWindowShare) {
-                    $("#windowShares option[value='" + window.btoa(localWindowShare.id) + "']").prop('selected', true);
-                    isSharingWindow = true;
-                    console.log("Window share selected : " + localWindowShare.name);
-                } else {
-                    isSharingWindow = false;
-                }
-            },
-            onStateUpdated: function(localWindowShare, state) {
-                // localWindowShare state was updated
-            }
-        }).then(function() {
-            console.log("RegisterLocalWindowShareEventListener Success");
-        }).catch(function() {
-            console.error("RegisterLocalWindowShareEventListener Failed");
-        });
-    }
-
-    function StartMonitorShare() {
-        // Register for monitor share status updates
-        vidyoConnector.RegisterLocalMonitorEventListener({
-            onAdded: function(localMonitorShare) {
-                // New share is available so add it to the monitorShares array and the drop-down list
-                if (localMonitorShare.name != "") {
-                    $("#monitorShares").append("<option value='" + window.btoa(localMonitorShare.id) + "'>" + localMonitorShare.name + "</option>");
-                    monitorShares[window.btoa(localMonitorShare.id)] = localMonitorShare;
-                    console.log("Monitor share added, name : " + localMonitorShare.name + " | id : " + window.btoa(localMonitorShare.id));
-                }
-            },
-            onRemoved: function(localMonitorShare) {
-                // Existing share became unavailable
-                $("#monitorShares option[value='" + window.btoa(localMonitorShare.id) + "']").remove();
-                delete monitorShares[window.btoa(localMonitorShare.id)];
-            },
-            onSelected: function(localMonitorShare) {
-                // Share was selected/unselected by you or automatically
-                if (localMonitorShare) {
-                    $("#monitorShares option[value='" + window.btoa(localMonitorShare.id) + "']").prop('selected', true);
-                    console.log("Monitor share selected : " + localMonitorShare.name);
-                }
-            },
-            onStateUpdated: function(localMonitorShare, state) {
-                // localMonitorShare state was updated
-            }
-        }).then(function() {
-            console.log("RegisterLocalMonitorShareEventListener Success");
-        }).catch(function() {
-            console.error("RegisterLocalMonitorShareEventListener Failed");
-        });
-    }
-
-    // A monitor was selected from the "Monitor Share" drop-down list (plugin mode only).
-    $("#monitorShares").change(function() {
-        console.log("*** Monitor shares change called");
-
-        // Find the share selected from the drop-down list
-        $("#monitorShares option:selected").each(function() {
-            share = monitorShares[$(this).val()];
-
-            // Select the local monitor
-            vidyoConnector.SelectLocalMonitor({
-                localMonitor: share
-            }).then(function() {
-                console.log("SelectLocalMonitor Success");
-            }).catch(function() {
-                console.error("SelectLocalMonitor Failed");
-            });
-        });
-    });
-
-    // A window was selected from the "Window Share" drop-down list.
-    // Note: in webrtc mode, this is only called for the "None" option (to stop the share) since
-    //       the share is selected in the onAdded callback of the LocalWindowShareEventListener.
-    $("#windowShares").change(function() {
-        console.log("*** Window shares change called");
-
-        // Find the share selected from the drop-down list
-        $("#windowShares option:selected").each(function() {
-            share = windowShares[$(this).val()];
-
-            // Select the local window share
-            vidyoConnector.SelectLocalWindowShare({
-                localWindowShare: share
-            }).then(function() {
-                console.log("SelectLocalWindowShare Success");
-            }).catch(function() {
-                console.error("SelectLocalWindowShare Failed");
-            });
-        });
-    });
-}
-
 function getParticipantName(participant, cb) {
     if (!participant) {
         cb("Undefined");
@@ -447,8 +289,147 @@ function getParticipantName(participant, cb) {
     });
 }
 
+var confText='Conference Start';
+
+function myText(id, lang, myTexts){
+	var userid = id;
+	var original = myTexts;
+	var selectLang;
+	var userLang = lang;
+	if(userLang=="ko"){
+	  selectLang="ja";
+	}else if(userLang=="ja"){
+	  selectLang="ko";
+	}
+	var myData = {"userLanguage":selectLang, "inputText":original};
+	$.ajax({
+		method:"get"
+		,url:"translate"
+		,data:myData
+		,success:function(resp){
+			confText = confText+"<br>"+id+":"+myText;
+			confText = confText+"<br>"+id+":"+resp;
+			//readMSG();
+		}
+	});
+}
+
+function myMic(id, myText){
+	var selectLang;
+	var userLang = $("#language").val();
+	if(userLang=="ko"){
+	  selectLang="ja";
+	}else if(userLang=="ja"){
+	  selectLang="ko";
+	}
+	var myData = {"userLanguage":selectLang, "inputText":myText};
+	$.ajax({
+		method:"get"
+		,url:"translate"
+		,data:myData
+		,success:function(resp){
+			confText = confText+"<br>"+id+":"+myText;
+			confText = confText+"<br>"+id+":"+resp;
+			//readMSG();
+		}
+	});
+}
+
+function readMSG(){
+//	$.ajax({
+//		method:"get"
+//		,url:"saveChat"
+//		,data:{"saveChat":confText,"sw":"0"}
+//	});
+//	$("#record").html(confText);
+	//chat();
+}
+
+
+function saveText(){
+	$.ajax({
+		method:"post"
+		,url:"saveText"
+		,data:{"confText":confText}
+	});
+}
+
+
+
 function handleParticipantChange(vidyoConnector) {
-    vidyoConnector.RegisterParticipantEventListener({
+	
+	// message
+	vidyoConnector.RegisterMessageEventListener({
+		  onChatMessageReceived: function(participant, chatMessage) { /*Message received from other participant */ 
+			  //startButton(event);
+			  getParticipantName(participant, function(name) {
+				var selectLang;
+				var userLang = $("#language").val();
+				if(userLang=="ko"){
+				  selectLang="ko";
+				}else if(userLang=="ja"){
+				  selectLang="ja";
+				}
+								
+				var sum="";
+			    var res = chatMessage.body.split(" ");
+			    
+			    for(var i=0; i<res.length;i++){
+			    	var strs = res[i].substr(0,3);
+			    	if(strs=="www"){
+			            res[i] = "<a href='https://"+res[i]+"' target='_blank'>"+res[i]+"</a>"
+			        };
+			        sum += res[i]+" ";
+			    }
+				
+			    var originalText=sum;
+//				var originalText=chatMessage.body;
+				var header = originalText.split("<mmm>",2);
+				var myData = {userLanguage:userLang, inputText:header[1]};					
+				$.ajax({
+					method:"get"
+					,url:"translate"
+					,data:myData
+					,success:function(resp){
+						confText = confText+"<br>"+name+":"+originalText;
+						confText = confText+"<br>"+name+":"+resp;
+						//$("#record").html(confText);
+						if(header[0]=="msg"){
+//							var sum="";
+//						    var res = resp.split(" ");
+//						    for(var i=0; i<res.length;i++){
+//						    	var strs = res[i].substr(0,3);
+//						    	if(strs=="www"){
+//						            res[i] = "<a href='https://"+res[i]+"' target='_blank'>"+res[i]+"</a>"
+//						        };
+//						        sum += res[i]+" ";
+//						    }
+							$("#connectionStatus").html(name+":"+resp);
+						}else{
+							var yy = $(".guest").attr("id");
+							var head = yy.split("_",1);
+							for (var i=0; i<9 ; i++) {
+								var divId = head+"_renderer_vidyoRemoteName"+String(i);
+								var userId = $("#"+divId).html();
+								var head2 = userId.split(":",1);
+								if(head2 == name){
+									$("#"+divId).html(name+":"+resp);
+									break;
+								};
+							}
+						}
+					}
+				});
+		      });
+		  }
+		}).then(function() {
+		  console.log("RegisterParticipantEventListener Success");
+		}).catch(function() {
+		  console.err("RegisterParticipantEventListener Failed");
+		});
+    
+	
+	vidyoConnector.RegisterParticipantEventListener({
         onJoined: function(participant) {
             getParticipantName(participant, function(name) {
                 $("#participantStatus").html("" + name + " Joined");
@@ -525,7 +506,7 @@ function connectToConference(vidyoConnector) {
         onSuccess: function() {
             // Connected
             console.log("vidyoConnector.Connect : onSuccess callback received");
-            $("#connectionStatus").html("Connected");
+            $("#clientVersion").html("Connected");
             $("#options").addClass("hidden");
             $("#optionsVisibilityButton").addClass("showOptions").removeClass("hideOptions");
             $("#renderer").addClass("rendererFullScreen").removeClass("rendererWithOptions");
@@ -560,10 +541,10 @@ function connectToConference(vidyoConnector) {
         $("#error").html("<h3>Call Failed" + "</h3>");
     });
 }
-
+  
 // Connector either fails to connect or a disconnect completed, update UI elements
 function connectorDisconnected(connectionStatus, message) {
-    $("#connectionStatus").html(connectionStatus);
+    $("#clientVersion").html(connectionStatus);
     $("#message").html(message);
     $("#participantStatus").html("");
     $("#joinLeaveButton").removeClass("callEnd").addClass("callStart");
