@@ -57,22 +57,22 @@ $(function(){
 });
 
 function deleteCheck(){
-	$.ajax({
-		method:"get",
-		url:"deleteCheck",
-		success:function(resp){
-				alert(resp);
-			if(resp==""){
-				alert("Conference Canceled");
-				window.close();
-				return false;
-			}else{
-				alert(resp);
+// 	$.ajax({
+// 		method:"get",
+// 		url:"deleteCheck",
+// 		success:function(resp){
+// 				alert(resp);
+// 			if(resp==""){
+// 				alert("Conference Canceled");
+// 				window.close();
+// 				return false;
+// 			}else{
+// 				alert(resp);
 				window.opener.location.href="videocall";
 				window.close();
-			}
-		}
-	})
+// 			}
+// 		}
+// 	})
 }
 
 </script>

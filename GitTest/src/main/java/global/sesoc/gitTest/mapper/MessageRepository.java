@@ -206,7 +206,7 @@ public class MessageRepository {
 				+"<br>Conf Num : "+conf_mng.getConf_num()
 				+"<br>Conf Title : "+conf_mng.getTitle()
 				+"<br>Participant : "+conf_mng.getEmployee_nums()
-				+"<br><br><form action='videocall'><input type='submit' value='MIYOU!' class='btn purple btn-outline btn-sm' onsubmit='return deleteCheck()'></form>";
+				+"<br><br><form action='videocall' onsubmit='return deleteCheck()'><input type='submit' value='MIYOU!' class='btn purple btn-outline btn-sm' ></form>";
 //		System.out.println(content);
 		message.setContent(content);
 		message.setEmployee_num(employee_num);
