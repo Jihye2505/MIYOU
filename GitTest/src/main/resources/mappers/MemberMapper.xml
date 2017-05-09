@@ -6,54 +6,69 @@
 <mapper namespace="global.sesoc.gitTest.DAO.MemberDAO">
 	<!-- 회원등록 -->
 	<insert id="join" parameterType="Member">
-		insert into e_member 
+		insert into e_member
 		(
-			employee_num, password,name,email,language,phone,dept_id,job_id
+		employee_num, password,name,email,language,phone,dept_id,job_id
 		)
 		values
 		(
-			#{employee_num},#{password},#{name},#{email},#{language},#{phone},#{dept_id},#{job_id}
+		#{employee_num},#{password},#{name},#{email},#{language},#{phone},#{dept_id},#{job_id}
 		)
 	</insert>
-	
+
 	<!-- 회원정보 업데이트 -->
-	<update id="update" parameterType="Member" >
-		update e_member set password=#{password}, email=#{email}, language=#{language}, phone=#{phone} where employee_num=#{employee_num}
+	<update id="update" parameterType="Member">
+		update e_member set
+		password=#{password}, email=#{email}, language=#{language},
+		phone=#{phone} where employee_num=#{employee_num}
 	</update>
-   
-   <!-- 관리자모드 회원정보 업데이트 -->
-	<update id="memberUpdate" parameterType="Member" >
-		update e_member set name=#{name}, manager_num=#{manager_num}, job_id=#{job_id}, dept_id=#{dept_id} where employee_num=#{employee_num}
+
+	<!-- 관리자모드 회원정보 업데이트 -->
+	<update id="memberUpdate" parameterType="Member">
+		update e_member
+		set
+		name=#{name}, manager_num=#{manager_num}, job_id=#{job_id},
+		dept_id=#{dept_id} where employee_num=#{employee_num}
 	</update>
-   
-   
-   <!-- (로그인) 1명 선택하기 -->
-   <select id="selectOne" resultType="Member">
-   		select * from e_member where employee_num=#{param1}
-   </select>
-   
-   <!-- 메세지 보낼때 아이디 검색하기 -->
-   <select id="search" resultType="Member">
-   		select employee_num e_member where employee_num like #{param1}||'%'
-   </select>
-   
-   <select id="searchall" resultType="Member">
-   		select employee_num, language from e_member
-   </select>
-	
+
+	<!-- 관리자모드 회원탈퇴 -->
+	<delete id="memberDelete" parameterType="String">
+		delete from e_member where
+		employee_num=#{employee_num}
+	</delete>
+
+	<!-- (로그인) 1명 선택하기 -->
+	<select id="selectOne" resultType="Member">
+		select * from e_member where
+		employee_num=#{param1}
+	</select>
+
+	<!-- 메세지 보낼때 아이디 검색하기 -->
+	<select id="search" resultType="Member">
+		select employee_num e_member
+		where employee_num like #{param1}||'%'
+	</select>
+
+	<select id="searchall" resultType="Member">
+		select employee_num, language
+		from e_member
+	</select>
+
 	<!-- jobList 받기 -->
 	<select id="jobList" resultType="JobList">
-		select * from e_position order by job_id
+		select * from e_position order
+		by job_id
 	</select>
-	
+
 	<!-- DeptList 받기 -->
 	<select id="deptList" resultType="DeptList">
-		select * from e_dept order by dept_id
+		select * from e_dept order by
+		dept_id
 	</select>
-	
+
 	<select id="toList" resultType="String">
-   		select employee_num from e_member
-   </select>
-	
-	
+		select employee_num from e_member
+	</select>
+
+
 </mapper>

@@ -48,7 +48,7 @@ public class MemberRepository {
 		      
 		   return result;
 	}
-
+	
 	public Member selectOne(String loginNum){
 		Member result = null;
 		MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
@@ -114,6 +114,20 @@ public class MemberRepository {
 		   MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
 		   try {
 		      result = mDAO.memberUpdate(member);
+		   } catch (Exception e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		   }
+		      
+		   return result;
+	}
+	
+	public int memberDelete(String employee_num){
+		   int result=0;
+		      
+		   MemberDAO mDAO = sqlsession.getMapper(MemberDAO.class);
+		   try {
+		      result = mDAO.memberDelete(employee_num);
 		   } catch (Exception e) {
 		      // TODO Auto-generated catch block
 		      e.printStackTrace();

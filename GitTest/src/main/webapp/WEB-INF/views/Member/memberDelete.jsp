@@ -10,34 +10,72 @@
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
-$(function(){
-	$.ajax({
-		 type : "get"
-	     , url : "logoutCheck"
-	     , success : function(data) {
-	    	 if(data != "true") {
-	    		 location.href = "login";
-	    	 }
-	     }
+	$(function() {
+		$.ajax({
+			type : "get",
+			url : "logoutCheck",
+			success : function(data) {
+				if (data != "true") {
+					location.href = "login";
+				}
+			}
+		});
 	});
-});
 
-$(function(){
-	$.ajax({
-		 type : "get"
-	     , url : "lockCheck"
-	     , success : function(data) {
-	    	 if(data != "true") {
-	    		 location.href = "lockscreen";
-	    	 }
-	     }
+	$(function() {
+		$.ajax({
+			type : "get",
+			url : "lockCheck",
+			success : function(data) {
+				if (data != "true") {
+					location.href = "lockscreen";
+				}
+			}
+		});
 	});
-});
-	
+
 	function check() {
 		window.open("check", "window", "width=500,height=300");
 	}
-	
+
+	function checkForm() {
+		var check1 = document.getElementById("check1").value;
+		if (check1 == "false"||check1 == null) {
+			alert("ID not found");
+			return false;
+		}
+		var check = confirm("Are you sure?");
+		if (check) {
+			alert("Deleted!");
+			return true;
+		} else {
+			alert("Cancel");
+			return false;
+		}
+	}
+	$(function() {
+		$("#employee_num").keyup(function(event) {
+			$.ajax({
+				type : "GET",
+				url : "idCheck",
+				data : {
+					"employee_num" : $("#employee_num").val()
+				},
+				success : function(data) {
+
+					if (data == "false") {
+						$("#check1").text("invalid ID");
+						document.getElementById("check1").value = "false";
+					} else {
+						$("#check1").text("valid ID");
+						document.getElementById("check1").value = "true";
+					}
+				}
+			});
+
+		});
+		//다른부분에 입력하지 않을경우 입력된 부분만 갱신되도록 조건문 걸자!!
+	});
 </script>
 <!-- Bootstrap -->
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -64,22 +102,13 @@ $(function(){
 			<div>
 				<h1 class="logo-name">DELETE</h1>
 			</div>
-			<h3>GET OUT OF HERE</h3>
 			<p>Delete a member..</p>
-			<p>byebye-.</p>
-			<form action="" class="top15" method="get">
+			<form action="memberDelete" class="m-t" method="POST"
+				onsubmit="return checkForm();">
 				<div class="form-group">
-					<input type="text" required="" placeholder="UserID"
-						class="form-control" name="id">
-				</div>
-				
-				<div class="form-group">
-					<button class="btn aqua block full-width bottom15" type="submit" onclick="return check();">Search</button>
-				</div>
-				
-				<div class="form-group">
-					<input type="password" required="" placeholder="Password"
-						class="form-control">
+					<input type="text" placeholder="employee_num" class="form-control"
+						name="employee_num" id="employee_num">
+					<div id="check1"></div>
 				</div>
 				<button class="btn aqua block full-width bottom15" type="submit">Delete</button>
 			</form>
