@@ -88,7 +88,7 @@
                 return false;
              }
               time=data[0];
-//             time=10;
+//             time=15;
              title="<h3>" + data[1] + "</h3>";
              $("#title").html(title);
              /* conf_date=data[2];

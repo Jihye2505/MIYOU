@@ -25,7 +25,7 @@
 		    		return false;
 		    	}
  		    	time1=data[0];
-// 		    	time1=10;
+//  		    	time1=15;
 		    	conf_date1=data[2];
 		    	employee_nums1=data[3];
 		    	$.ajax({
