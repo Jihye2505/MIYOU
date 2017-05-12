@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
-<configuration>		<!-- 나중에 고칩시다. -->
+<configuration>
 	<!-- 타입 별칭 설정 -->
 	<typeAliases>
 		<typeAlias type="global.sesoc.gitTest.vo.Conf_mng" alias="Conf_mng" />

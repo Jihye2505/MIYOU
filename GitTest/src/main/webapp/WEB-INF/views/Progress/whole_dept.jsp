@@ -75,26 +75,7 @@ $(function(){
 				      </div>
      		 </div>
 					<div class="row">
-<%-- 					
-<table border="1">
-	<tr>
-		<td>부서</td><td>진행상황</td>
-	</tr>
-	<c:forEach var="i" items="${whole}">
-		<tr>
-			<td><a href="selected_team_process?dept_id=${i.DEPT_ID}">${i.DEPT_NAME}</a></td>
-			<td align="right">${i.AVER}%
-				<div class="progress progress-mini">
-					<div class="progress-bar" style="width: ${i.AVER}%;">
-					</div>
-				</div> 
-			</td>
-		</tr>
-	</c:forEach>
-</table>
-&nbsp;&nbsp;
-<a href="javascript:history.back();">뒤로가기</a>
- --%>
+					
  		<div class="list-widget white-bg borderedTable" >
         			<table class="table table-hover borderedTable">
                       <thead>

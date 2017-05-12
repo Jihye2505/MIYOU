@@ -13,7 +13,6 @@ public class Message {
 	private String checked;
 
 	public Message() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Message(int message_num, String employee_num, Date send_date, String receiver_num, String content,

@@ -17,7 +17,5 @@ public interface MemberDAO {
 	public List<DeptList> deptList() throws Exception;
 	public int memberUpdate(Member member) throws Exception;
 	public int memberDelete(String employee_num) throws Exception;
-	
-	//전체 멤버의 사원번호 가져오기
 	public List<String> toList() throws Exception;
 }

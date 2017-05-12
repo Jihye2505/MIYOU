@@ -7,6 +7,7 @@ import global.sesoc.gitTest.vo.Conf_mng;
 import global.sesoc.gitTest.vo.Conf_topic;
 
 public interface ConfDAO {
+	
    public int insertConf_mng(Conf_mng conf_mng) throws Exception;
    public int insertConf_topic(Conf_topic conf_topic) throws Exception;
    public int updateConf_mng(Conf_mng conf_mng) throws Exception;

@@ -156,73 +156,7 @@ function countPerPage() {
 	          </div>
 	        </div>
 	       </div>
-<%-- 
-<div>
-<h2>[ 회의 목록 ]</h2>
-<a href="main">처음으로</a>
-<!-- 검색 -->
-<form id="pagingForm" action="confList" method="get">
-	<select name="searchTitle">
-		<option value="title" ${searchTitle == 'title' ? 'selected':''}>제목</option>
-		<option value="subtitle" ${searchTitle == 'subtitle' ? 'selected':''}>내용</option>
-		<option value="employee_nums" ${searchTitle == 'employee_nums' ? 'selected':''}>참여자</option>
-		<option value="employee_num" ${searchTitle == 'employee_num' ? 'selected':''}>담당자</option>
-	</select> 
-	<input type="hidden" name="page" id="page">
-	<input type="text" name="searchText" value="${searchText }"> 
-	<input type="button" onclick="pagingForSubmit(1)" value="검색">
-</form>
-<br />
-<table border="1">
-	<tr>
-		<th>회의번호</th>
-		<th>제목</th>
-		<th>참여자</th>
-		<th>작성일</th>
-		<th>회의날짜</th>
-	</tr>
-	<c:forEach var="conf" items="${confList }">
-		<tr>
-			<td>${conf.conf_num }</td>
-			<td><a href="selectConf?conf_num=${conf.conf_num }">${conf.title }</a></td>
-			<td>${conf.employee_nums }</td>
-			<td>${conf.todate }</td>
-			<td>${conf.conf_date }</td>
-		</tr>
-	</c:forEach>
-</table>
-</div>
 
-<div class="mail-tools tooltip-demo ">
-	<div class="btn-group pull-right">
-		<button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
-		<button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
-	</div>
-	<button title="" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm" data-original-title="Refresh inbox"><i class="fa fa-refresh"></i> Refresh</button>
-	<button title="" data-placement="top" data-toggle="tooltip" class="btn btn-white btn-sm" data-original-title="Mark as read"><i class="fa fa-eye"></i> </button>
-	<button title="" data-placement="top" data-toggle="tooltip" class="btn btn-white btn-sm" data-original-title="Mark as important"><i class="fa fa-exclamation"></i> </button>
-	<button title="" data-placement="top" data-toggle="tooltip" class="btn btn-white btn-sm" data-original-title="Move to trash"><i class="fa fa-trash-o"></i> </button>
-</div>
-
-
-<div>
-<c:if test="${navi.startPageGroup != 1 }" >
-	<a href="javascript:pagingForSubmit(${navi.startPageGroup-1 })" >◁◁</a>
-</c:if>
-<c:if test="${navi.currentPage > 1 }" >
-	<a href="javascript:pagingForSubmit(${navi.currentPage-1 })" >◀</a>
-</c:if>
-<c:forEach var="page" begin="${navi.startPageGroup }" end="${navi.endPageGroup }">
-	<a href="javascript:pagingForSubmit(${page })">${page }</a>
-</c:forEach>
-<c:if test="${navi.currentPage<navi.totalPageCount }" >
-	<a href="javascript:pagingForSubmit(${navi.currentPage+1 })" >▶</a>
-</c:if>
-<c:if test="${navi.endPageGroup<navi.totalPageCount }" >
-	<a href="javascript:pagingForSubmit(${navi.endPageGroup+1 })" >▷▷</a>
-</c:if>
-</div>
- --%>
 
 <!-- start footer -->
 				<%@ include file="../footer.jspf"%>
@@ -284,7 +218,6 @@ function countPerPage() {
   
   
   $(document).on("click","a[name=btn1]",function(){
-  		  /* $(this).addClass("active"); */
   		$(this).attr('class','btn btn-white active');
   });
 	</script>

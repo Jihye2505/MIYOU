@@ -27,8 +27,7 @@
 <link href="resources/assets/css/aqua-black.css" rel="stylesheet">
 <!-- media css for responsive  -->
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
+
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
 
@@ -57,31 +56,14 @@ $(function(){
 });
 
 function deleteCheck(){
-// 	$.ajax({
-// 		method:"get",
-// 		url:"deleteCheck",
-// 		success:function(resp){
-// 				alert(resp);
-// 			if(resp==""){
-// 				alert("Conference Canceled");
-// 				window.close();
-// 				return false;
-// 			}else{
-// 				alert(resp);
-				window.opener.location.href="videocall";
-				window.close();
-// 			}
-// 		}
-// 	})
+	window.opener.location.href="videocall";
+	window.close();
 }
 
 </script>
 </head>
 <body class="aqua-bg login">
 	<div>${message.content }
-<!-- 		<form action='videocall'> -->
-<!-- 			<input type="button" value='회의 참여' onclick="start()"> -->
-<!-- 		</form> -->
 	<input type="hidden" value="${conf_num}" id="conf_num"> 
 	</div>
 </body>

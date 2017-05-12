@@ -25,8 +25,6 @@
 <link href="resources/assets/css/aqua-black.css" rel="stylesheet">
 <!-- media css for responsive  -->
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
 
 <script src="resources/jquery-3.1.1.min.js"></script>

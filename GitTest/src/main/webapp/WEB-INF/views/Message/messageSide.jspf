@@ -44,7 +44,6 @@ $(function(){
 							Sent Message
 					</a></li>
 					<li><a href="trash"> <i class="fa fa-trash-o"></i> Trash</a></li>
-					<!--  <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger pull-right">50</span></a></li> -->
 				</ul>
 				<div class="clearfix"></div>
 			</div>

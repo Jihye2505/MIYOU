@@ -39,12 +39,6 @@ public class ConfRepository {
 	public int insertConf(Conf_mng conf_mng, List<String> subtitles) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
-		/*
-		 * String conf_date = conf_mng.getConf_date(); SimpleDateFormat sdf =
-		 * new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss"); try { conf_date3 =
-		 * sdf.parse(conf_date); } catch (ParseException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
 		Date conf_date3 = conf_mng.getConf_date();
 		conf_mng.setConf_date(conf_date3);
 		List<Conf_topic> conf_topics = new ArrayList<>();
@@ -53,19 +47,16 @@ public class ConfRepository {
 			Conf_topic conf_topic = new Conf_topic();
 			conf_topic.setSubtitle(subtitles.get(i));
 			conf_topics.add(conf_topic);
-			// System.out.println("subtitle========" + conf_topics);
 		}
 
 		Date todate = new Date();
 		conf_mng.setTodate(todate);
 
-		// System.out.println(conf_mng);
 		int result = 0;
 		int conf_num = 0;
 		try {
 			result = dao.insertConf_mng(conf_mng);
 			conf_num = dao.selectInsert(conf_mng);
-			// System.out.println(conf_num);
 			for (int i = 0; i < conf_topics.size(); i++) {
 				conf_topics.get(i).setConf_num(conf_num);
 			}
@@ -76,7 +67,6 @@ public class ConfRepository {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conf_num;
@@ -90,7 +80,6 @@ public class ConfRepository {
 		try {
 			result = dao.deleteConf(conf_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -122,7 +111,6 @@ public class ConfRepository {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -136,7 +124,6 @@ public class ConfRepository {
 		try {
 			conf_mng = dao.selectConf(conf_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conf_mng;
@@ -150,7 +137,6 @@ public class ConfRepository {
 		try {
 			list_topic = dao.selectConf_topic(conf_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list_topic;
@@ -192,7 +178,6 @@ public class ConfRepository {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return confList;
@@ -211,9 +196,7 @@ public class ConfRepository {
 
 		try {
 			total = dao.getTotal(search);
-			// System.out.println("total============"+total);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -231,7 +214,6 @@ public class ConfRepository {
 		List<Conf_mng> searchCalendarMyList = new ArrayList<>();
 		try {
 			searchCalendarMyList = dao.calendarMyList(employee_num);
-			System.out.println(searchCalendarMyList);
 			for (int i = 0; i < searchCalendarMyList.size(); i++) {
 				String[] employee_nums = searchCalendarMyList.get(i).getEmployee_nums().split(",");
 				for (int j = 0; j < employee_nums.length; j++) {
@@ -242,7 +224,6 @@ public class ConfRepository {
 
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -250,22 +231,6 @@ public class ConfRepository {
 
 	}
 
-	// public void saveText(String conf_num, String stringText){
-	//
-	// for (int i = 0; i < stringTextList.size(); i++) {
-	// if(stringTextList.get(i).get("conf_num").equals(conf_num)){
-	// stringText = stringTextList.get(i).get("stringText") + " <br><br> " +
-	// stringText;
-	// stringTextList.get(i).put("stringText", stringText);
-	// System.out.println("cunf_num"+conf_num+"text==="+stringText);
-	// }
-	// }
-	// stringTextMap.put("conf_num", conf_num);
-	// stringTextMap.put("stringText", stringText);
-	// stringTextList.add(stringTextMap);
-	// System.out.println("newCunf_num"+conf_num+"text==="+stringText);
-	// }
-	//
 	public int insertTextFile(int conf_num, String confText) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
@@ -273,22 +238,8 @@ public class ConfRepository {
 		try {
 			conf_mng = dao.selectConf(conf_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// String conf_num2 = conf_num+"";
-		// String stringText = null;
-		// System.out.println(stringTextList.size());
-		// for (int i = 0; i < stringTextList.size(); i++) {
-		// if(stringTextList.get(i).get("conf_num").equals(conf_num2)){
-		// stringText = (String) stringTextList.get(i).get("stringText");
-		// System.out.println("save===="+stringText);
-		// stringTextList.get(i).remove("conf_num");
-		// stringTextList.get(i).remove("stringText");
-		// }
-		// }
-		//
-		// System.out.println(stringText);
 
 		String[] confTextList = confText.split("<br>");
 		BufferedWriter out;
@@ -300,7 +251,6 @@ public class ConfRepository {
 			}
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -311,7 +261,6 @@ public class ConfRepository {
 		try {
 			result = dao.insertTextFile(conf_mng);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -336,7 +285,6 @@ public class ConfRepository {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -348,15 +296,10 @@ public class ConfRepository {
 		int substringConfTitle = message.getContent().indexOf("<br>Conf Title : ");
 		int substringConfNum = message.getContent().indexOf("<br>Conf Num : ");
 
-		System.out.println(substringConfTitle);
-		System.out.println(substringConfNum);
 
-		// System.out.println(message.getContent().substring(substringConfNum+15,
-		// substringConfTitle));
 		int conf_num = Integer.parseInt(message.getContent().substring(substringConfNum + 15, substringConfTitle));
 		String roomNum = message.getContent().substring(substringConfNum - 17, substringConfNum).replaceAll("-", "")
 				+ conf_num;
-		// System.out.println("countDownEnd======"+roomNum);
 		roomNum = roomNum.replaceAll(",", "");
 		roomNum = roomNum.replaceAll(" ", "");
 		roomNum = roomNum.replaceAll(":", "");
@@ -365,12 +308,9 @@ public class ConfRepository {
 			conf_mng = dao.selectConf(conf_num);
 			if (conf_mng.getDeleteCheck() == 0) {
 				session.setAttribute("conf_num", conf_num);
-				System.out.println("readmessage=====" + conf_num);
 				session.setAttribute("roomNum", roomNum);
-				// System.out.println("session.conf_num"+session.getAttribute("conf_num"));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -144,20 +144,6 @@ function deleteCheck(){
 		                </div>
 		              </div>
 		              <br>
-		        <%-- 
-				<hr>
-				
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Text</label>
-					<div class="col-sm-10">
-						<form action="insertTextFile" method="post">
-							<textarea rows="10" cols="154" name="stringText" style="resize: none;"></textarea>
-							<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-							<input class="btn btn-info pull-right" type="submit" value="저장">
-						</form> 
-					</div>
-				</div>
-				 --%>
 				 
 				 <div class="pull-right">
 		<c:if test="${user.employee_num == conf_mng.writer}">
@@ -242,64 +228,5 @@ function deleteCheck(){
 </body>
 </html>
 
-<%-- 
-	     
-<table border="1">
-	<tr>
-		<td>회의 번호</td>
-		<td>참여자</td>
-		<td>작성일</td>
-		<td>회의날짜</td>
-		<td>첨부파일</td>
-	</tr>
-	<tr>
-		<td>${conf_mng.conf_num }</td>
-		<td>${conf_mng.employee_nums }</td>
-		<td>${conf_mng.todate }</td>
-		<td>${conf_mng.conf_date }</td>
-		<td>
-			<c:if test="${conf_mng.originalfile != null}">
-				<a href="download?conf_num=${conf_mng.conf_num }">${conf_mng.originalfile}</a>
-				<img src="download?conf_num=${conf_mng.conf_num }">
-			</c:if>
-		</td>
-	</tr>
-</table>
-<br>
-제목 : ${conf_mng.title }
-<br>
-<table border="1">	
-	<tr>
-		<td>안건</td>
-		<td>담당자</td>
-		<td>진행상황</td>
-	</tr>
-
-	<c:forEach var="conf_topic" items="${list_topic }">
-		<tr>
-			<td>${conf_topic.subtitle }</td>
-			<td>${conf_topic.employee_num }</td>
-			<td>${conf_topic.process }</td>
-		</tr>
-	</c:forEach>
-</table>
-	<c:if test="${user.employee_num == conf_mng.writer}">
-		<form action="updateConf" method="get">
-			<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-			<input class="btn btn-warning" type="button" type="submit" value="수정">
-		</form>
-		<form action="deleteConf" method="post" onclick="deleteCheck()">
-			<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-			<input class="btn btn-danger" type="button" type="submit" value="삭제">
-		</form>
-	</c:if>
-	
-	
-	<form action="insertTextFile" method="post">
-	<textarea rows="10" cols="50" name="stringText"></textarea>
-	<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-	<input type="submit" value="ㄱㄱ">
-	</form> 
---%>
 </body>
 </html>

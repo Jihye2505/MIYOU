@@ -46,7 +46,6 @@ public class MemberController {
 		try {
 			result = mRepository.join(member);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "main";
@@ -57,8 +56,7 @@ public class MemberController {
 		session.removeAttribute("user");
 		session.removeAttribute("lockCheck");
 		session.removeAttribute("saveMemo");
-		// session.removeAttribute("loginCheck"); //여기는 세션만료 알람이 바로 안뜨고 정보가
-		// 보일경우에만 주석해제하면됨
+		// session.removeAttribute("loginCheck"); //여기는 세션만료 알람이 바로 안뜨고 정보가 보일경우에만 주석해제하면됨
 
 		return "login";
 	}
@@ -105,10 +103,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
 	public String myInfo(Member member, HttpSession session) {
-		/*
-		 * String loginNum = member.getEmployee_num(); Member user =
-		 * mRepository.selectOne(loginNum); session.setAttribute("user", user);
-		 */
 
 		return "Member/myInfo";
 	}
@@ -127,7 +121,6 @@ public class MemberController {
 		try {
 			int result = mRepository.memberUpdate(member);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -145,7 +138,6 @@ public class MemberController {
 		try {
 			int result = mRepository.memberDelete(employee_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

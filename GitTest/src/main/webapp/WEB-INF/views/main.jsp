@@ -26,9 +26,8 @@
 <link href="resources/assets/css/aqua-black.css" rel="stylesheet">
 <!-- media css for responsive  -->
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 </head>
+
 <body class="page-header-fixed ">
 <div class="page-header navbar navbar-fixed-top">
   <!-- BEGIN HEADER INNER -->
@@ -88,11 +87,9 @@
                 return false;
              }
               time=data[0];
-//             time=15;
+			  //time=15;	//임시 자동 팝업을 위한 변수
              title="<h3>" + data[1] + "</h3>";
              $("#title").html(title);
-             /* conf_date=data[2];
-             employee_nums=data[3]; */
              conf_topicList=data[4];
              var ss = '';
              for (var i = 0; i < conf_topicList.length; i++) {
@@ -126,17 +123,7 @@
 		else { 
 
 			// 시간이 0이 되었으므로 타이머를 중지함
-
 			clearInterval(timerID);
-
-
-
-			// 시간이 만료되고 나서 할 작업을 여기에 작성
-
-// 			document.form.submit(); // 예: 강제로 form 실행
-// 			$("#countDownEndMessage").html(time);
-//			window.open("countDownEnd", "", "width=200, height=120, left=700, top=300");
-			
 		}
 
 	}
@@ -190,93 +177,9 @@
   <div class="page-content-wrapper">
     <div class="page-content" >
     <div class="wrapper-content ">
-    <!-- 
-      <div class="row wrapper border-bottom page-heading">
-        <div class="col-lg-12">
-          <h1> Calendar </h1>
-          <ol class="breadcrumb">
-            <li> <a href="index.html">Home</a> </li>
-            <li> <a> Page Layouts </a> </li>
-            <li class="active"> <strong>Calendar</strong> </li>
-          </ol>
-        </div>
-      </div>
-       -->
       <div class="wrapper-content ">
         <div class="row">
-        <!-- 여기는 드래거블이벤트랑 풀캘린더 설명 있던 곳-->
           <div class="col-lg-3">
-          <!-- 
-            <div class="ibox float-e-margins">
-              <div class="ibox-title">
-                <h5>Draggable Events </h5>
-                <div class="ibox-tools"> <a data-target="#demo1"  data-toggle="collapse" class="collapse-link"> <i class="fa fa-chevron-up"></i> <i class="fa fa-chevron-down"></i> </a> <a  class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
-                  <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#">Config option 1</a> </li>
-                    <li><a href="#">Config option 2</a> </li>
-                  </ul>
-                  /dropdown-menu
-                  <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
-                  ibox-tools
-              </div>
-              / ibox-title
-              <div id="demo1" class="ibox-content collapse in">
-                <div class="demo-container">
-                  <div class="widgets-container">
-                    <p>Drag a event and drop into callendar.</p>
-                                      
-                  Drag a event list
-                    <div id='external-events'>
-                      <div class='fc-event'>My Event 1</div>
-                      <div class='fc-event'>My Event 2</div>
-                      <div class='fc-event'>My Event 3</div>
-                      <div class='fc-event'>My Event 4</div>
-                      <div class='fc-event'>My Event 5</div>
-                      <p>
-                        <input type='checkbox' id='drop-remove' />
-                        <label for='drop-remove'>remove after drop</label>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ibox float-e-margins">
-              <div  class="ibox-content collapse in">
-                <div class="demo-container">
-                  <div class="widgets-container">
-                    <div class="ibox-content">
-                      <h2>FullCalendar</h2>
-                      is a jQuery plugin that provides a full-sized, drag &amp; drop calendar like the one below. It uses AJAX to fetch events on-the-fly for each month and is
-                      easily configured to use your own feed format (an extension is provided for Google Calendar).
-                      <p> <a target="_blank" href="http://arshaw.com/fullcalendar/">FullCalendar documentation</a> </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-             -->
-            <!-- 
-            <div class="ibox float-e-margins">
-              <div  class="ibox-content collapse in">
-                <div class="demo-container">
-                  <div class="widgets-container">
-                    <div class="ibox-content">
-                      <h2>Next Conference</h2>
-                      <table class="table table-hover">
-			          		<tr>
-			          			<td><div id="title"></div></td>
-			          		</tr>
-			          		<tr>
-			          			<td><h1><span id="time1"></span></h1></td>
-			          		</tr>
-			          	</table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-             -->
             <div class="ibox float-e-margins">
 				<div class="panel panel-info">
 					<div class="panel-heading"><h2>Next Conference</h2></div>
@@ -293,21 +196,6 @@
 				</div>
 			</div>
             
-            
-           <!--  <div class="ibox float-e-margins">
-              <div  class="ibox-content collapse in">
-                <div class="demo-container">
-                  <div class="widgets-container">
-                    <div class="ibox-content">
-                    
-                      
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            
          </div>
           <div class="col-lg-9">
             <div class="ibox float-e-margins">
@@ -323,18 +211,6 @@
               </div>
             </div>
           </div>
-          <!-- 
-          <div>
-          <table>
-          		<tr>
-          			<td><div id="title"></div></td>
-          		</tr>
-          		<tr>
-          			<td><span id="time1"></span></td>
-          		</tr>
-          	</table>
-          </div>
-           -->
         </div>
       </div>
       
@@ -365,9 +241,6 @@
 <script>
 
   $(document).ready(function() {
-	  
-	    /* $(this).toggleClass("active");
-		$('body').toggleClass('page-sidebar-closed');   */
 	  
 	  	$.ajax({
 		  	type : "post"
@@ -445,7 +318,6 @@ function setCalendar(data){
         
     });
 };       
-  
   
 </script>
 </body>

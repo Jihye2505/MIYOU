@@ -16,7 +16,6 @@ public class TeamRepository {
 	@Autowired
 	SqlSession sqlsession;
 	
-	
 	public Member getManager(String manager_num){
 		Member result = null;
 		TeamDAO tDAO = sqlsession.getMapper(TeamDAO.class);

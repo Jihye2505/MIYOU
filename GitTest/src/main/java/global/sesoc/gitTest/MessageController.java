@@ -25,7 +25,6 @@ import global.sesoc.gitTest.videocall.APITranslate;
 import global.sesoc.gitTest.vo.Member;
 import global.sesoc.gitTest.vo.Message;
 import global.sesoc.gitTest.vo.MiyouTranslate;
-import global.sesoc.gitTest.vo.MiyouTranslate;
 
 @Controller
 public class MessageController {
@@ -34,10 +33,13 @@ public class MessageController {
 
 	@Autowired
 	APITranslate apit;
+	
 	@Autowired
 	MessageRepository msgRepository;
+	
 	@Autowired
 	MemberRepository mRepository;
+	
 	@Autowired
 	ConfRepository confRepository;
 
@@ -74,14 +76,12 @@ public class MessageController {
 									
 									content = content + "<br><br>" + messageList.get(i).getContent();
 									messageView.put("content", content);
-									System.out.println(content);
 									if (content.length() > 9) {
 										messageView.put("title", content.substring(0, 10) + "...");
 									} else {
 										messageView.put("title", content);
 									}
 								} catch (Exception e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							} else {
@@ -178,7 +178,6 @@ public class MessageController {
 		Member user = (Member) session.getAttribute("user");
 		
 		session.removeAttribute("conf_num");
-		// System.out.println("removeConf_num==="+session.getAttribute("conf_num"));
 		Message message = msgRepository.readMessage(message_num);
 		msgRepository.messageCheck(message_num);
 
@@ -204,7 +203,6 @@ public class MessageController {
 								content = content + "<br><br>" + message.getContent();
 								messageView.put("content", content);
 							} catch (Exception e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						} else {
@@ -288,7 +286,6 @@ public class MessageController {
 			s = s + memberList.get(i).getEmployee_num() + "\n";
 		}
 		session.setAttribute("memberList", memberList);
-		// System.out.println(memberList);
 		return s;
 	}
 
@@ -359,7 +356,6 @@ public class MessageController {
 		Member user = (Member) session.getAttribute("user");
 		Message message = msgRepository.countDownEndMessage(conf_date, employee_nums, user.getEmployee_num());
 		session.setAttribute("message", message);
-		// System.out.println("countdownendmessage"+message.getContent().toString());
 		return message;
 	}
 

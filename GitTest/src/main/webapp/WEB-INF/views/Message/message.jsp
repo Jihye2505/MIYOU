@@ -26,8 +26,6 @@
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
 <!-- icheck -->
 <link href="resources/assets/css/skins/all.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
@@ -75,7 +73,6 @@ $(function(){
             <div class="mail-box-header">
               <h2> View Message </h2>
               <div class="mail-tools tooltip-demo ">
-<%--                 <h3> <span class="font-noraml">Subject: </span>${message.content } </h3> --%>
                 <h5> <span class="pull-right font-noraml">${message.send_date }</span> <span class="font-noraml">From : </span>${message.employee_num }</h5>
               </div>
             </div>

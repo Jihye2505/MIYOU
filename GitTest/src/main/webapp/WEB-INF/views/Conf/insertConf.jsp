@@ -147,25 +147,6 @@ function save(obj) {
 			</div>
 		</div>
               
-              <%-- 
-              <div class="form-group">
-                <input name="conf_date2" type="hidden" value="${conf_date}" >
-                <label class="col-sm-2 control-label">${conf_date}</label>
-                <div class="col-sm-10">
-                  <select class="form-control bottom15" name="time">
-                    <option value="9" >9시</option>
-					<option value="10" >10시</option>
-					<option value="11" >11시</option>
-					<option value="13" >13시</option>
-					<option value="14" >14시</option>
-					<option value="15" >15시</option>
-					<option value="16" >16시</option>
-					<option value="17" >17시</option>
-                  </select>
-                </div>
-              </div>
-               --%>
-              
               <hr>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Subtitle</label>

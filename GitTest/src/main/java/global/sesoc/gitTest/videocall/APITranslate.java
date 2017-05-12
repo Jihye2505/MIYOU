@@ -23,7 +23,6 @@ public class APITranslate {
 	@RequestMapping(value = "translate", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String translate(MiyouTranslate translate) throws Exception {
 		
-		System.out.println("api"+translate.toString());
 		JSONObject jsonObj = new JSONObject();
 
 //		String clientId = "53qFovEVhAv3YKHIXzSb";// 애플리케이션 클라이언트 아이디값 - kang";
@@ -79,7 +78,6 @@ public class APITranslate {
 			System.out.println(e);
 		}
 
-		System.out.println(response.toString());
 		String result = "";
 		JSONParser jsonparser = new JSONParser();
 		JSONObject jsonobject = (JSONObject) jsonparser.parse(""+response);

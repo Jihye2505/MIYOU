@@ -17,9 +17,10 @@ import global.sesoc.gitTest.vo.Member;
 @Repository
 public class MemberRepository {
 
-	final static Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Autowired
 	SqlSession sqlsession;
+	
+	final static Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	public int join(Member member){
 		int result=0;
@@ -28,7 +29,6 @@ public class MemberRepository {
 		try {
 			result = mDAO.join(member);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -42,7 +42,6 @@ public class MemberRepository {
 		   try {
 		      result = mDAO.update(member);
 		   } catch (Exception e) {
-		      // TODO Auto-generated catch block
 		      e.printStackTrace();
 		   }
 		      
@@ -55,7 +54,6 @@ public class MemberRepository {
 		try {
 			result=mDAO.selectOne(loginNum);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -90,7 +88,6 @@ public class MemberRepository {
 		try {
 			jobList = mDAO.jobList();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return jobList;
@@ -102,7 +99,6 @@ public class MemberRepository {
 		try {
 			deptList = mDAO.deptList();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return deptList;
@@ -115,7 +111,6 @@ public class MemberRepository {
 		   try {
 		      result = mDAO.memberUpdate(member);
 		   } catch (Exception e) {
-		      // TODO Auto-generated catch block
 		      e.printStackTrace();
 		   }
 		      
@@ -129,7 +124,6 @@ public class MemberRepository {
 		   try {
 		      result = mDAO.memberDelete(employee_num);
 		   } catch (Exception e) {
-		      // TODO Auto-generated catch block
 		      e.printStackTrace();
 		   }
 		      
@@ -142,7 +136,6 @@ public class MemberRepository {
 		try {
 			toList = mDAO.toList();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return toList;

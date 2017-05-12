@@ -1,57 +1,39 @@
 package global.sesoc.gitTest.util;
 
-/**
- * 寃뚯떆�뙋 �럹�씠吏� 泥섎━ �겢�옒�뒪
- */
 public class PageNavigator {
-	//�럹�씠吏� 愿��젴 �젙蹂� 
-	private int countPerPage;		//�럹�씠吏��떦 湲�紐⑸줉 �닔
-	private int pagePerGroup;		//洹몃９�떦 �럹�씠吏� �닔 
-	private int currentPage;		//�쁽�옱 �럹�씠吏� (理쒓렐 湲��씠 1遺��꽣 �떆�옉)
-	private int totalRecordsCount;	//�쟾泥� 湲� �닔
-	private int totalPageCount;		//�쟾泥� �럹�씠吏� �닔
-	private int currentGroup;		//�쁽�옱 洹몃９ (理쒓렐 洹몃９�씠 0遺��꽣 �떆�옉)
-	private int startPageGroup;		//�쁽�옱 洹몃９�쓽 泥� �럹�씠吏�
-	private int endPageGroup;		//�쁽�옱 洹몃９�쓽 留덉�留� �럹�씠吏�
-	private int startRecord;		//�쟾泥� �젅肄붾뱶 以� �쁽�옱 �럹�씠吏� 泥� 湲��쓽 �쐞移� (0遺��꽣 �떆�옉)
 	
-	/*
-	 * �깮�꽦�옄
-	 */
+	private int countPerPage;
+	private int pagePerGroup;
+	private int currentPage;
+	private int totalRecordsCount;
+	private int totalPageCount;
+	private int currentGroup;
+	private int startPageGroup;
+	private int endPageGroup;
+	private int startRecord;
+	
 	public PageNavigator(int countPerPage, int pagePerGroup, int currentPage, int totalRecordsCount) {
-		//�럹�씠吏��떦 湲� �닔, 洹몃９�떦 �럹�씠吏� �닔, �쁽�옱 �럹�씠吏�, �쟾泥� 湲� �닔瑜� �쟾�떖諛쏆쓬
+
 		this.countPerPage = countPerPage;		this.pagePerGroup = pagePerGroup;
 		this.totalRecordsCount = totalRecordsCount;
 		
-		//�쟾泥� �럹�씠吏� �닔
 		totalPageCount = (totalRecordsCount + countPerPage - 1) / countPerPage;
 
-		//�쟾�떖�맂 �쁽�옱 �럹�씠吏�媛� 1蹂대떎 �옉�쑝硫� �쁽�옱�럹�씠吏�瑜� 1�럹�씠吏�濡� 吏��젙
 		if (currentPage < 1)	currentPage = 1;
-		//�쟾�떖�맂 �쁽�옱 �럹�씠吏�媛� 留덉�留� �럹�씠吏�蹂대떎 �겕硫� �쁽�옱�럹�씠吏�瑜� 留덉�留� �럹�씠吏�濡� 吏��젙
 		if (currentPage > totalPageCount)	currentPage = totalPageCount;
 		
 		this.currentPage = currentPage;
 
-		//�쁽�옱 洹몃９
 		currentGroup = (currentPage - 1) / pagePerGroup;
 		
-		//�쁽�옱 洹몃９�쓽 泥� �럹�씠吏�
 		startPageGroup = currentGroup * pagePerGroup + 1;
-		//�쁽�옱 洹몃９�쓽 泥� �럹�씠吏�媛� 1蹂대떎 �옉�쑝硫� 1濡� 泥섎━
 		startPageGroup = startPageGroup < 1 ? 1 : startPageGroup;
-		//�쁽�옱 洹몃９�쓽 留덉�留� �럹�씠吏�
 		endPageGroup = startPageGroup + pagePerGroup - 1;
-		//�쁽�옱 洹몃９�쓽 留덉�留� �럹�씠吏�媛� �쟾泥� �럹�씠吏� �닔蹂대떎 �옉�쑝硫� �쟾泥댄럹�씠吏� �닔瑜� 留덉�留됱쑝濡�.
 		endPageGroup = endPageGroup < totalPageCount ? endPageGroup : totalPageCount;
 
-		//�쟾泥� �젅肄붾뱶 以� �쁽�옱 �럹�씠吏� 泥� 湲��쓽 �쐞移�
 		startRecord = (currentPage - 1) * countPerPage;			
 	}
 
-	/*
-	 * Getters and Setters
-	 */
 	public int getCountPerPage() {
 		return countPerPage;
 	}

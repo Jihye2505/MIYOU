@@ -21,11 +21,10 @@
 		    , url : "countDown"
 		    , success : function(data) {
 		    	if(!data){
-// 		    		$("#title").html("Next conference not found.");
 		    		return false;
 		    	}
  		    	time1=data[0];
-//  		    	time1=15;
+				//time1=15;	//임시 자동 팝업을 위한 변수
 		    	conf_date1=data[2];
 		    	employee_nums1=data[3];
 		    	$.ajax({
@@ -63,69 +62,18 @@
 			// 시간이 0이 되었으므로 타이머를 중지함
 			clearInterval(timerID1);
 
-
-
 			// 시간이 만료되고 나서 할 작업을 여기에 작성
-
-// 			document.form.submit(); // 예: 강제로 form 실행
-// 			$("#countDownEndMessage").html(time);
 			window.open("countDownEnd", "", "width=200, height=170, left=700, top=300");
-			
 		}
 
 	}
 	
-// 	function toHourMinSec(t) { 
-
-// 		var hour;
-
-// 		var min;
-
-// 		var sec;
-
-
-
-// 		// 정수로부터 남은 시, 분, 초 단위 계산
-
-// 		hour = Math.floor(t / 3600);
-
-// 		min = Math.floor( (t-(hour*3600)) / 60 );
-
-// 		sec = t - (hour*3600) - (min*60);
-
-
-
-// 		// hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
-
-// 		if(hour < 10) hour = "0" + hour;
-
-// 		if(min < 10) min = "0" + min;
-
-// 		if(sec < 10) sec = "0" + sec;
-
-
-
-// 		return(hour + ":" + min + ":" + sec);
-
-// 	}
 	</script>
+	
 <div class="page-sidebar-wrapper">
 	<div class="page-sidebar">
 		<ul class="page-sidebar-menu  page-header-fixed ">
 			 <li class="sidebar-search-wrapper">
-				<!-- START RESPONSIVE SEARCH FORM -->
-				<!-- <form class="sidebar-search  " action="search_results.html"
-					method="POST">
-					<a href="javascript:;" class="remove"> <i class="icon-close"></i>
-					</a>
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search...">
-						<span class="input-group-btn"> <a href="javascript:;"
-							class="btn submit"> <i class="icon-magnifier"></i>
-						</a>
-						</span>
-					</div>
-				</form> --> <!-- END RESPONSIVE SEARCH FORM -->
 			</li> 
 			<li>&nbsp;</li><li>&nbsp;</li>
 			

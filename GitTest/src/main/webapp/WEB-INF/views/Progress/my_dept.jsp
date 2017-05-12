@@ -139,30 +139,7 @@ $(function(){
                       </tbody>
                     </table>
         </div>
-<%--         
-	<table border="1">
-		<tr>
-			<td>이름</td><td>부서명</td><td>직급</td><td>진행상황</td>
-		</tr>
-		<c:forEach var="i" items="${members}">
-			<tr>
-				<td>${i.NAME}</td>
-				<td>${i.DEPT_NAME}</td>
-				<td>${i.JOB_NAME}</td>
-				<td align="right">${i.PROCESS}%
-					<div class="progress progress-mini">
-						<div class="progress-bar" style="width: ${i.PROCESS}%;"></div>
-					</div>
-				</td>
-				<td class="detailJobView" style="display:none">
-					 <div>제목: ${i.TITLE}</div>
-					 <div>내용: ${i.SUBTITLE}</div>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<br>
- --%>	
+        
 <div class="pull-right">
 	<br>
 	<a href="javascript:opened();" id="opened" class="btn btn-info">Detail view</a>
@@ -171,7 +148,6 @@ $(function(){
 				</div>
 				</div>
 	</c:if>
-<!-- 	<a href="javascript:history.back();">뒤로가기</a> -->
 
 				<!-- start footer -->
 				<%@ include file="../footer.jspf"%>

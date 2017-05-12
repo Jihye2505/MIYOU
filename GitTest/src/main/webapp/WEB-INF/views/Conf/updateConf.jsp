@@ -184,64 +184,9 @@ $(function(){
 				</div>
 				</div>
 	        
-<%-- 	        
-<form action="updateConfs" method="get">
-<table border="1">
-	<tr>
-		<td>회의 번호</td>
-		<td>참여자</td>
-		<td>작성일</td>
-		<td>회의날짜</td>
-		<td>첨부파일</td>
-	</tr>
-	<tr>
-		<td>${conf_mng.conf_num }</td>
-		<td><input type="text" name="employee_nums" value="${conf_mng.employee_nums }"></td>
-		
-		<td>${conf_mng.todate }</td>
-		<td>
-			<div class="input-group date form_datetime" data-date="${stringDate}" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
-			<input class="form-control" type="text" value="${stringDate}" readonly>
-			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-			<input type="hidden" id="dtp_input1" value="" name="conf_date2"/>
-			</div>
-		</td>
-		
-		<td></td>
-	</tr>
-</table>
-<br>
-제목 : ${conf_mng.title }
-<br>
-<table border="1">	
-	<tr>
-		<td>안건</td>
-		<td>담당자</td>
-		<td>진행상황</td>
-	</tr>
-	
-	<c:forEach var="conf_topic" items="${list_topic }">
-		<tr>
-			<td><textarea cols="30" rows="5" name="subtitle" >${conf_topic.subtitle }</textarea>
-			<input type="hidden" name="subtitle_id" value="${conf_topic.subtitle_id }">
-			<input type="hidden" name="subtitle" value="${conf_topic.subtitle }"></td>
-			<td><input type="text" name="employee_num" value="${conf_topic.employee_num }"></td>
-			<td><input type="text" name="process" value="${conf_topic.process }"></td>
-		</tr>
-	</c:forEach>
-</table>
-			<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
-			<input type="hidden" name="title" value="${conf_mng.title }">
-			<input type="hidden" name="todate2" value="${conf_mng.todate }">
-			<input type="hidden" name="writer" value="${conf_mng.writer }">
-			<input type="submit" value="수정">
-		</form>
-		<form action="confList" method="get">
-			<input type="button" onclick="" value="돌아가기">
-		</form>
- --%>
 		 </div>
 	   	</div>
+	   	
 	       <!-- start footer -->
 				<%@ include file="../footer.jspf"%>
 			</div>

@@ -19,18 +19,17 @@ import global.sesoc.gitTest.vo.Message;
 @Repository
 public class MessageRepository {
 
-	final static Logger logger = LoggerFactory.getLogger(MessageController.class);
 	@Autowired
 	SqlSession sqlsession;
 	
+	final static Logger logger = LoggerFactory.getLogger(MessageController.class);
+	
 	public int sendMessage(Message message){
 		int result=0;
-//		System.out.println(message);
 		MessageDAO msgDAO = sqlsession.getMapper(MessageDAO.class);
 		try {
 			result = msgDAO.sendMessage(message);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -49,7 +48,6 @@ public class MessageRepository {
 		try {
 			messageList = msgDAO.messageList(search);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return messageList;
@@ -61,7 +59,6 @@ public class MessageRepository {
 		try {
 			sentMessages = msgDAO.sentMessages(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return sentMessages;
@@ -74,7 +71,6 @@ public class MessageRepository {
 		try {
 			result = msgDAO.countMessage(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -87,7 +83,6 @@ public class MessageRepository {
 		try {
 			message = msgDAO.readMessage(message_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return message;
@@ -100,7 +95,6 @@ public class MessageRepository {
 		try {
 			result = msgDAO.messageCheck(message_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -113,7 +107,6 @@ public class MessageRepository {
 		try {
 			result = msgDAO.deleteMessage(message_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
@@ -126,7 +119,6 @@ public class MessageRepository {
 		try {
 			result = msgDAO.countNotRead(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -140,7 +132,6 @@ public class MessageRepository {
 		try {
 			result = msgDAO.trashMessage(message_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -153,7 +144,6 @@ public class MessageRepository {
 		try {
 			trashMessages = msgDAO.trashMessages(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trashMessages;
@@ -165,7 +155,6 @@ public class MessageRepository {
 		try {
 			noticeList = msgDAO.notice(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return noticeList;
@@ -185,7 +174,6 @@ public class MessageRepository {
 		try {
 			message = msgDAO.countDownEndMessage(search);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -207,7 +195,6 @@ public class MessageRepository {
 				+"<br>Conf Title : "+conf_mng.getTitle()
 				+"<br>Participant : "+conf_mng.getEmployee_nums()
 				+"<br><br><form action='videocall' onsubmit='return deleteCheck()'><input type='submit' value='MIYOU!' class='btn purple btn-outline btn-sm' ></form>";
-//		System.out.println(content);
 		message.setContent(content);
 		message.setEmployee_num(employee_num);
 		message.setNotice("C");

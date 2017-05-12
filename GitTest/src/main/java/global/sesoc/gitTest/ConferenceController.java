@@ -45,7 +45,6 @@ public class ConferenceController {
 	@Autowired
 	ConfRepository confRepository;
 
-	// jh
 	@Autowired
 	MemberRepository mRepository;
 
@@ -63,7 +62,6 @@ public class ConferenceController {
 	@RequestMapping(value = "/insertConf", method = RequestMethod.GET)
 	public String insertConf(String conf_date, Model model) {
 
-		// jh
 		List<String> toList = null;
 		ArrayList<String> toList2 = new ArrayList<>();
 		try {
@@ -76,10 +74,8 @@ public class ConferenceController {
 			e.printStackTrace();
 		}
 		session.setAttribute("toList", toList);
-		// end Jh
 
 		String conf_date2 = conf_date.substring(0, 10);
-		// System.out.println(conf_date2);
 		model.addAttribute("conf_date", conf_date2);
 
 		return "Conf/insertConf";
@@ -109,7 +105,6 @@ public class ConferenceController {
 			}
 
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -179,8 +174,6 @@ public class ConferenceController {
 			@RequestParam(value = "employee_num", required = true, defaultValue = "null") List<String> employee_nums,
 			@RequestParam(value = "process", required = true) List<Integer> processes) {
 
-		// date를 string으로 줘야 거기에 이상한 날짜 안뜨고 제대로????
-
 		SimpleDateFormat transTodate = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		SimpleDateFormat transStringDate = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		SimpleDateFormat transConf_date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -192,7 +185,6 @@ public class ConferenceController {
 			Date todate = transTodate.parse(todate2);
 			conf_mng.setTodate(todate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -228,10 +220,8 @@ public class ConferenceController {
 			String yyyymmdd = sdf2.format(conf_date2);
 			message.setNotice("CC");
 			String content = "Conference Cancel" + "<br>Date : " + yyyymmdd + "<br>Conf Title : " + title;
-			// System.out.println(content);
 			message.setContent(content);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -261,7 +251,6 @@ public class ConferenceController {
 
 		String conf_num2 = (String) (session.getAttribute("conf_num") + "");
 		int conf_num = Integer.parseInt(conf_num2);
-		System.out.println(confText);
 
 		int result = confRepository.insertTextFile(conf_num, confText);
 
@@ -281,12 +270,10 @@ public class ConferenceController {
 			response.setHeader("Content-Disposition",
 					"attachment;filename=" + URLEncoder.encode(originalfile, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		String fullpath = uploadPath + conf_mng.getSavedfile();
-		// System.out.println(fullpath+"==========다운로드 경로");
 
 		ServletOutputStream fileout = null;
 		FileInputStream filein = null;
@@ -307,7 +294,6 @@ public class ConferenceController {
 				if (fileout != null)
 					fileout.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -329,7 +315,6 @@ public class ConferenceController {
 				myList.put("conf_num", list.get(i).getConf_num());
 				myList.put("title", list.get(i).getTitle());
 				String conf_date2 = sdf2.format(list.get(i).getConf_date());
-				// System.out.println("conf_date2====="+conf_date2);
 				myList.put("start", conf_date2);
 				calendarMyList.add(myList);
 
@@ -337,7 +322,6 @@ public class ConferenceController {
 
 			Gson gson = new Gson();
 			String data = gson.toJson(calendarMyList);
-			// System.out.println(data);
 
 			return data;
 		}
@@ -395,14 +379,11 @@ public class ConferenceController {
 
 	@RequestMapping(value = "/deleteCheck", method = RequestMethod.GET)
 	public @ResponseBody String deleteCheck() {
-//		session.removeAttribute("conf_num");
-//		System.out.println(session.getAttribute("conf_num"));
 		String result = null;
 		if (session.getAttribute("conf_num")!=null) {
 			String conf_nums = (String) (session.getAttribute("conf_num")+"");
 			int conf_num = Integer.parseInt(conf_nums);
 			Conf_mng conf_mng = confRepository.selectConf(conf_num);
-			System.out.println(conf_mng.getDeleteCheck());
 			if (conf_mng.getDeleteCheck() == 0) {
 				return conf_mng.getConf_num() + "";
 			}
@@ -422,7 +403,6 @@ public class ConferenceController {
 				List<Conf_topic> conf_topicList = confRepository.selectConf_topic(conf_mng.getConf_num());
 				Object countDown = (conf_mng.getConf_date().getTime() - todate.getTime()) / 1000;
 				Object[] count = { countDown, conf_mng.getTitle(), conf_date, conf_mng.getEmployee_nums(), conf_topicList };
-				// System.out.println("1"+count[0]+count[1]+count[2]+count[3]);
 				return count;
 			}
 		}

@@ -28,18 +28,11 @@
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
 <!-- icheck -->
 <link href="resources/assets/css/skins/all.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
 <!-- Le styles -->
-   <!-- <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-responsive.no-icons.min.css" rel="stylesheet"> -->
    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/cupertino/jquery-ui.css" rel="stylesheet">
-    <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
-   <!-- <link href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" rel="stylesheet"> -->
+   <link href="resources/assets/css/inputosaurus.css" rel="stylesheet">
     <style>
-      /* body {
-        padding-top: 60px; 
-      }*/
      h2, h3{
         margin : 40px 0 5px;
      }
@@ -47,14 +40,11 @@
         border-bottom : 1px solid #ddd;
         color : #655;
         line-height : 30px;
-     } */
+     }
      .muted.text-right{
         padding-right : 16%;
         text-align : right;
      }
-    /*  section{
-        margin-left : 20px;
-     } */
      .markup a{
         text-decoration : none;
      }
@@ -84,29 +74,24 @@
       input.original{
          width : 350px;
       }
-      
-      
-.badgebox
-{
-    opacity: 0;
-}
-
-.badgebox + .badge
-{
-    text-indent: -999999px;
-    width: 27px;
-}
-
-.badgebox:focus + .badge
-{
-    box-shadow: inset 0px 0px 5px;
-}
-
-.badgebox:checked + .badge
-{
-   text-indent: 0;
-}
-   
+      .badgebox
+      {
+         opacity: 0;
+      }
+      .badgebox + .badge
+	  {
+    	 text-indent: -999999px;
+    	 width: 27px;
+	  }
+	  .badgebox:focus + .badge
+	  {
+    	 box-shadow: inset 0px 0px 5px;
+	  }
+	  .badgebox:checked + .badge
+	  {
+  		 text-indent: 0;
+	  }
+	
 </style>
 
 
@@ -206,102 +191,12 @@ $(function(){
 
                            <div class="mail-text">
 
-                              <!-- <form class="form-horizontal form-bordered"
-                              action="sendMessage" method="post"> -->
                               <div class="note-editor   panel-default">
-                              <!-- 
-                                 <div class="btn-toolbar note-toolbar panel-heading"
-                                    data-role="editor-toolbar" data-target="#editor">
-                                    <div class="btn-group">
-                                       <a class="btn dropdown-toggle btn-default"
-                                          data-toggle="dropdown" title="Font"><i
-                                          class="fa fa-font"></i><b class="caret"></b></a>
-                                       <ul class="dropdown-menu">
-                                       </ul>
-                                    </div>
-                                    <div class="btn-group">
-                                       <a class="btn dropdown-toggle btn-default"
-                                          data-toggle="dropdown" title="Font Size"><i
-                                          class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-                                       <ul class="dropdown-menu">
-                                          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
-                                          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
-                                          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
-                                       </ul>
-                                    </div>
-                                    <div class="btn-group">
-                                       <a class="btn btn-default" data-edit="bold"
-                                          title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a> <a
-                                          class="btn btn-default" data-edit="italic"
-                                          title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-                                       <a class="btn btn-default" data-edit="strikethrough"
-                                          title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-                                       <a class="btn btn-default" data-edit="underline"
-                                          title="Underline (Ctrl/Cmd+U)"><i
-                                          class="fa fa-underline"></i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                       <a class="btn btn-default" data-edit="insertunorderedlist"
-                                          title="Bullet list"><i class="fa fa-list-ul"></i></a> <a
-                                          class="btn btn-default" data-edit="insertorderedlist"
-                                          title="Number list"><i class="fa fa-list-ol"></i></a> <a
-                                          class="btn btn-default" data-edit="outdent"
-                                          title="Reduce indent (Shift+Tab)"><i
-                                          class="fa fa-outdent"></i></a> <a class="btn btn-default"
-                                          data-edit="indent" title="Indent (Tab)"><i
-                                          class="fa fa-indent"></i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                       <a class="btn btn-default" data-edit="justifyleft"
-                                          title="Align Left (Ctrl/Cmd+L)"><i
-                                          class="fa fa-align-left"></i></a> <a class="btn btn-default"
-                                          data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i
-                                          class="fa fa-align-center"></i></a> <a class="btn btn-default"
-                                          data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i
-                                          class="fa fa-align-right"></i></a> <a class="btn btn-default"
-                                          data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
-                                          class="fa fa-align-justify"></i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                       <a class="btn dropdown-toggle btn-default"
-                                          data-toggle="dropdown" title="Hyperlink"><i
-                                          class="fa fa-link"></i></a>
-                                       <div class="dropdown-menu input-append">
-                                          <input class="span2" placeholder="URL" type="text"
-                                             data-edit="createLink" />
-                                          <button class="btn btn-default" type="button">Add</button>
-                                       </div>
-                                       <a class="btn btn-default" data-edit="unlink"
-                                          title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
-
-                                    </div>
-
-                                    <div class="btn-group">
-                                       <a class="btn btn-default"
-                                          title="Insert picture (or just drag & drop)"
-                                          id="pictureBtn"><i class="fa fa-picture-o"></i></a> <input
-                                          type="file" data-role="magic-overlay"
-                                          data-target="#pictureBtn" data-edit="insertImage" />
-                                    </div>
-                                    <div class="btn-group">
-                                       <a class="btn btn-default" data-edit="undo"
-                                          title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a> <a
-                                          class="btn btn-default" data-edit="redo"
-                                          title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-                                    </div>
-                                    <input type="text" data-edit="inserttext" id="voiceBtn"
-                                       x-webkit-speech="">
-                                 </div> 
-                                 -->
-
-                                 <!-- <div id="editor">hi hello it's me</div> -->
-                                 <!-- <input type="text" name="content" id="editor"> -->
                                  <textarea rows="100" cols="147" name="content" id="editor" style="resize: none; width: 95%;"></textarea>
                               </div>
 
                            </div>
                         <div class="mail-body text-right tooltip-demo">
-                              <!-- <i class="fa fa-reply"></i> -->
                               <label for="warning" class="btn btn-warning">Notice <input type="checkbox" id="warning" class="badgebox" value="R" name="notice" onclick="save(this)"><span class="badge">&check;</span></label>
                               <input type="submit" value="Send" class="btn aqua btn-primary" onclick="return formCheck();">
                         </div>
@@ -312,7 +207,6 @@ $(function(){
                   </div>
                </div>
             </div>
-
          </div>
       </div>
    </div>

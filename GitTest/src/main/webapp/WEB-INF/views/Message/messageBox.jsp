@@ -25,8 +25,6 @@
 <link href="resources/assets/css/main.media.css" rel="stylesheet">
 <!-- icheck -->
 <link href="resources/assets/css/skins/all.css" rel="stylesheet">
-<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
-<!--[if lt IE 9]> <script src="dist/html5shiv.js"></script> <![endif]-->
 
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script>
@@ -103,18 +101,6 @@ $(function(){
               		</form>
 						<form method="post" name="submitForm">
 							<div class="mail-box-header">
-								<!-- <form class="pull-right mail-search" method="get"
-									action="index.html">
-									<div class="input-group">
-										<input class="form-control input-sm" name="search"
-											placeholder="Search email" type="text">
-										<div class="input-group-btn">
-											<button class="btn btn-sm aqua" type="submit">
-												Search</button>
-										</div>
-									</div>
-								</form> -->
-								
 								<h2>Inbox (${unread} New Messages)</h2>
 								<div class="mail-tools tooltip-demo ">
 									<a href="messages" data-placement="left" data-toggle="tooltip"

@@ -5,7 +5,6 @@
 <html>
 <head>
 
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <title>Conference</title>
 
 <style>
@@ -271,10 +270,6 @@
 		});
 	}
 
-	/* function startB(){
-		startButton(event);
-	} */
-	
 	function startButton(event) {
 		var userLanguage = $("#language").val();
 		if (recognizing) {
@@ -329,20 +324,9 @@
 		myText(userN, lang, msg);
 		vidyoConnector.SendChatMessage("msg<mmm>"+msg);
 		
-		/* $.ajax({
-			method:"get",
-			url:"saveChat",
-			success:function(resp){
-				$("#record").html(resp);	
-			}
-		}); */
-		
 		$("#sentMSG").val("");
 	};
 	
-	/* function chat(){
-		window.open('chatting', '', 'width=350,height=500,resizable=no');
-	} */
 	</script>
 </head>
 
