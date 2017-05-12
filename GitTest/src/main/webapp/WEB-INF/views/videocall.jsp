@@ -300,6 +300,11 @@
 			joinViaBrowser();
 	});
 	
+	function startB(){
+		startButton(event);
+	};
+	
+	
 	function keydown(){
 		if(event.keyCode=="107"){
 			startButton(event);
