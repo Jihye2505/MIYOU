@@ -429,8 +429,6 @@ to hook up all of the events to elements. -->
 		<input type="text" id="sentMSG" placeholder="Sending message..." size="41" autofocus="autofocus" onkeypress="if(event.keyCode==13) {sendingMSG();}">
 		<!-- <input type="button" title="Chat" class="toolbarButton chatMessage" onclick="chat()"> -->
 
-		<input type="button" class="toolbarButton yy" title="speech" onclick="startSpeech()">
-
 		<input type="hidden" id="language" value="${user.language}">
 		
 		<span id="connectionStatus"></span>
