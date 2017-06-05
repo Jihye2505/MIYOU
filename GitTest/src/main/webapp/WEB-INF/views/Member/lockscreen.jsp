@@ -40,18 +40,6 @@ $(function(){
 	});
 });
 
-$(function(){
-	$.ajax({
-		 type : "get"
-	     , url : "lockCheck"
-	     , success : function(data) {
-	    	 if(data != "true") {
-	    		 location.href = "lockscreen";
-	    	 }
-	     }
-	});
-});
-
 	$(function(){
 		$.ajax({
 			 type : "get", 
