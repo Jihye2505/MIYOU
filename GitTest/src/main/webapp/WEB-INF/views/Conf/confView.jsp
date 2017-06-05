@@ -146,7 +146,7 @@ function deleteCheck(){
 		              <br>
 				 
 				 <div class="pull-right">
-		<c:if test="${user.employee_num == conf_mng.writer}">
+		<c:if test="${user.employee_num == conf_mng.writer||user.employee_num == conf_topic.employee_num}">
 			<table style="margin-right: 10px;">
 			<tr>
 			<td  style="padding: 10px;">

@@ -117,7 +117,7 @@ function StartVidyoConnector(VC) {
             
             $("#joinLeaveButton").removeClass("callStart").addClass("callEnd");
             $('#joinLeaveButton').prop('title', 'Leave Conference');
-            iStartB = setInterval(startB,10000);
+//            iStartB = setInterval(startB,10000);
             iFilter = setInterval(filter,500);
             iSave = setInterval(saveText,600000);
             connectToConference(vidyoConnector);
@@ -125,7 +125,7 @@ function StartVidyoConnector(VC) {
             $("#clientVersion").html("Disconnecting...");
             vidyoConnector.Disconnect().then(function() {
                 console.log("Disconnect Success");
-                clearInterval(iStartB);
+//                clearInterval(iStartB);
                 clearInterval(iFilter);
                 clearInterval(iSave);
                 saveText();
