@@ -149,7 +149,7 @@ $(function(){
                       <thead>
                         <tr>
                           <th> Content </th>
-                          <th> Manager </th>
+                          <th style="width: 200px"> Manager </th>
                           <th> Progress </th>
                         </tr>
                       </thead>
@@ -159,7 +159,22 @@ $(function(){
 									<td><input class="form-control col-sm-3" type="text" name="subtitle" value="${conf_topic.subtitle }">
 										<input type="hidden" name="subtitle_id" value="${conf_topic.subtitle_id }">
 									</td>
-									<td><input class="form-control col-sm-3" type="text" name="employee_num" value="${conf_topic.employee_num }"></td>
+									
+									<td>
+									<%-- <input class="form-control col-sm-3" type="text" name="employee_num" value="${conf_topic.employee_num }"> --%>
+									<div class="col-sm-12">
+								       <article>
+								         <input type="text" value="${conf_topic.employee_num }" id="widget3" name="employee_num" class="form-control col-sm-3"/>
+								         <div class="markup">
+								            <div>
+								               <input type="text" id="widget3_reflect" class="original" disabled="disabled" hidden="hidden">
+								               <div id="forToList"></div>
+								            </div>
+								         </div>
+								      </article>
+					                </div>
+									</td>
+									
 									<td><input class="form-control col-sm-3" type="text" name="process" placeholder="Progress can be input between 0~100." value="${conf_topic.process }"></td>
 								</tr>
 							</c:forEach>
@@ -268,6 +283,17 @@ $(function(){
       activateFinalResult : true,
       change : function(ev){
          $('#widget2_reflect').val(ev.target.value);
+         var forToList = document.getElementById("forToList");
+         forToList.innerHTML="<input type='text' name='employee_nums' hidden='hidden' value="+ev.target.value+">";
+      }
+   });
+  
+  $('#widget3').inputosaurus({
+      width : '100%',
+      autoCompleteSource : ${toList },
+      activateFinalResult : true,
+      change : function(ev){
+         $('#widget3_reflect').val(ev.target.value);
          var forToList = document.getElementById("forToList");
          forToList.innerHTML="<input type='text' name='employee_nums' hidden='hidden' value="+ev.target.value+">";
       }
