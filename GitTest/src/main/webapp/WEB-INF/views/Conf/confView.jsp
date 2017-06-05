@@ -146,7 +146,7 @@ function deleteCheck(){
 		              <br>
 				 
 				 <div class="pull-right">
-		<c:if test="${user.employee_num == conf_mng.writer||user.employee_num == conf_topic.employee_num}">
+		<c:if test="${user.employee_num == conf_mng.writer}">
 			<table style="margin-right: 10px;">
 			<tr>
 			<td  style="padding: 10px;">
@@ -167,6 +167,20 @@ function deleteCheck(){
 			</tr>
 			</table>
 		</c:if>
+		<c:forEach var="conf_topic" items="${list_topic }">
+		<c:if test="${user.employee_num == conf_topic.employee_num}">
+			<table style="margin-right: 10px;">
+			<tr>
+			<td  style="padding: 10px;">
+			<form action="updateConf" method="get">
+				<input type="hidden" name="conf_num" value="${conf_mng.conf_num }">
+				<input class="btn btn-default btn-sm" type="submit" value="Update">
+			</form>
+			</td>
+			</tr>
+			</table>
+		</c:if>
+		</c:forEach>
 		
 		</div>
 				 
