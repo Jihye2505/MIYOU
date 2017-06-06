@@ -161,18 +161,8 @@ $(function(){
 									</td>
 									
 									<td>
-									<%-- <input class="form-control col-sm-3" type="text" name="employee_num" value="${conf_topic.employee_num }"> --%>
-									<div class="col-sm-12">
-								       <article>
-								         <input type="text" value="${conf_topic.employee_num }" id="widget3" name="employee_num" class="form-control col-sm-3"/>
-								         <div class="markup">
-								            <div>
-								               <input type="text" id="widget3_reflect" class="original" disabled="disabled" hidden="hidden">
-								               <div id="forToList"></div>
-								            </div>
-								         </div>
-								      </article>
-					                </div>
+									<input class="form-control col-sm-3" type="text" name="employee_num" value="${conf_topic.employee_num }">
+									
 									</td>
 									
 									<td><input class="form-control col-sm-3" type="text" name="process" placeholder="Progress can be input between 0~100." value="${conf_topic.process }"></td>
@@ -287,17 +277,7 @@ $(function(){
          forToList.innerHTML="<input type='text' name='employee_nums' hidden='hidden' value="+ev.target.value+">";
       }
    });
-  
-  $('#widget3').inputosaurus({
-      width : '100%',
-      autoCompleteSource : ${toList },
-      activateFinalResult : true,
-      change : function(ev){
-         $('#widget3_reflect').val(ev.target.value);
-         var forToList = document.getElementById("forToList");
-         forToList.innerHTML="<input type='text' name='employee_nums' hidden='hidden' value="+ev.target.value+">";
-      }
-   });
+ 
 
    $('.markup').on('click', 'a', function(ev){ $(ev.currentTarget).next('div').toggle();});
    

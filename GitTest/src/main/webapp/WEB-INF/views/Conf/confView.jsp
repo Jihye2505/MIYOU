@@ -168,6 +168,7 @@ function deleteCheck(){
 			</table>
 		</c:if>
 		<c:forEach var="conf_topic" items="${list_topic }">
+		<c:if test="${conf_mng.writer != conf_topic.employee_num}">
 		<c:if test="${user.employee_num == conf_topic.employee_num}">
 			<table style="margin-right: 10px;">
 			<tr>
@@ -179,6 +180,7 @@ function deleteCheck(){
 			</td>
 			</tr>
 			</table>
+		</c:if>
 		</c:if>
 		</c:forEach>
 		
