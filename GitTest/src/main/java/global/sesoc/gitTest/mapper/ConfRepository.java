@@ -86,7 +86,7 @@ public class ConfRepository {
 	}
 
 	public int updateConf(Conf_mng conf_mng, List<Integer> subtitle_ids, List<String> subtitles,
-			List<String> employee_nums, List<Integer> processes) {
+			List<String> employees_nums, List<Integer> processes) {
 
 		ConfDAO dao = sqlSession.getMapper(ConfDAO.class);
 		ArrayList<Conf_topic> conf_topics = new ArrayList<>();
@@ -96,7 +96,7 @@ public class ConfRepository {
 			conf_topic.setConf_num(conf_mng.getConf_num());
 			conf_topic.setSubtitle_id(subtitle_ids.get(i));
 			conf_topic.setSubtitle(subtitles.get(i));
-			conf_topic.setEmployee_num(employee_nums.get(i));
+			conf_topic.setEmployee_num(employees_nums.get(i));
 			conf_topic.setProcess(processes.get(i));
 			conf_topics.add(conf_topic);
 		}
