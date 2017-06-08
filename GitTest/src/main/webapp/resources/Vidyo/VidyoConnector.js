@@ -377,7 +377,7 @@ function handleParticipantChange(vidyoConnector) {
 			    for(var i=0; i<res.length;i++){
 			    	var strs = res[i].substr(0,3);
 			    	if(strs=="www"){
-			            res[i] = "<a href='https://"+res[i]+"' target='_blank'>"+res[i]+"</a>"
+			            res[i] = "<a href='http://"+res[i]+"' target='_blank'>"+res[i]+"</a>"
 			        };
 			        sum += res[i]+" ";
 			    }
